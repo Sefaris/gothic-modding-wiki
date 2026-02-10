@@ -60,6 +60,19 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "encyclopedia",
+        path: "encyclopedia",
+        routeBasePath: "encyclopedia",
+        sidebarPath: "./sidebarsEncyclopedia.ts",
+        editUrl: "https://github.com/sefaris/gothic-modding-wiki/tree/main/",
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
@@ -85,6 +98,13 @@ const config: Config = {
           sidebarId: "guidesSidebar",
           position: "left",
           label: "Poradniki",
+        },
+        {
+          type: "docSidebar",
+          docsPluginId: "encyclopedia",
+          sidebarId: "encyclopediaSidebar",
+          position: "left",
+          label: "Encyklopedia",
         },
         {
           href: "https://discord.gg/9EVFJv5Uyf",
@@ -115,6 +135,10 @@ const config: Config = {
             {
               label: "Poradniki",
               to: "/docs/modding-basics-daedalus/script-structure",
+            },
+            {
+              label: "Encyklopedia",
+              to: "/encyclopedia/routines",
             },
           ],
         },

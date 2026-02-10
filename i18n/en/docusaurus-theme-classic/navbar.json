@@ -15,6 +15,10 @@
     "message": "Guides",
     "description": "Navbar item with label Poradniki"
   },
+  "item.label.Encyklopedia": {
+    "message": "Encyclopedia",
+    "description": "Navbar item with label Encyklopedia"
+  },
   "item.label.Discord": {
     "message": "Discord",
     "description": "Navbar item with label Discord"

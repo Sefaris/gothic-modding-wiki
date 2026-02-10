@@ -19,6 +19,10 @@
     "message": "Guides",
     "description": "The label of footer link with label=Poradniki linking to /docs/modding-basics-daedalus/script-structure"
   },
+  "link.item.label.Encyklopedia": {
+    "message": "Encyclopedia",
+    "description": "The label of footer link with label=Encyklopedia linking to /encyclopedia/routines"
+  },
   "link.item.label.Discord": {
     "message": "Discord",
     "description": "The label of footer link with label=Discord linking to https://discord.gg/9EVFJv5Uyf"
