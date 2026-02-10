@@ -93,5 +93,5 @@ This project is licensed under the [MIT](LICENSE) license.
 ---
 
 <div align="center">
-  Made with ❤️ for the Gothic Modding community
+  Made with ❤️ for the Gothic Community
 </div>
