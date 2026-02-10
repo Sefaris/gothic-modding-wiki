@@ -1,41 +1,97 @@
-# Website
+# Gothic Modding Wiki
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+A bilingual (🇵🇱 Polish / 🇬🇧 English) documentation site for **Gothic I** and **Gothic II** modding, built with [Docusaurus 3](https://docusaurus.io/).
 
-## Installation
+## 📖 Contents
 
-```bash
-yarn
-```
+| Section               | Description                                                      |
+| --------------------- | ---------------------------------------------------------------- |
+| **Getting Started**   | Downloading the game, installing VS Code and required extensions |
+| **Guides — Daedalus** | Script structure, creating NPCs, items, quests, effects          |
+| **Guides — Union**    | Setting up the environment, creating C++ plugins                 |
+| **Encyclopedia**      | NPC routines, animations — a complete reference based on G2MDK   |
+| **General Info**      | Overview of Daedalus, Ikarus, and Union                          |
 
-## Local Development
+## 🛠️ Requirements
 
-```bash
-yarn start
-```
+- [Node.js](https://nodejs.org/) v18+
+- npm (bundled with Node.js)
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
-```bash
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-Using SSH:
+## 🚀 Getting Started
 
 ```bash
-USE_SSH=true yarn deploy
+# Install dependencies
+npm install
+
+# Development server (Polish — default)
+npm run start
+
+# Development server (English)
+npm run start:en
 ```
 
-Not using SSH:
+The server will start at `http://localhost:3000`. File changes are reflected live.
+
+## 📦 Build
 
 ```bash
-GIT_USER=<Your GitHub username> yarn deploy
+npm run build
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Generates static files into `build/` (PL) and `build/en/` (EN). You can test the build locally:
+
+```bash
+npm run serve
+```
+
+## 📁 Project Structure
+
+```
+├── docs/                  # Polish documentation (default)
+│   ├── getting-started/   #   Getting started guides
+│   ├── general-info/      #   General info (Daedalus, Ikarus)
+│   ├── modding-basics-daedalus/  #   Daedalus tutorials
+│   └── modding-basics-union/     #   Union tutorials
+├── encyclopedia/          # Polish encyclopedia (separate docs instance)
+├── i18n/en/               # English translations
+│   ├── docusaurus-plugin-content-docs/current/
+│   └── docusaurus-plugin-content-docs-encyclopedia/current/
+├── src/                   # React components, homepage, CSS
+├── static/img/            # Images and static assets
+├── docusaurus.config.ts   # Main Docusaurus configuration
+├── sidebars.ts            # Documentation sidebars
+└── sidebarsEncyclopedia.ts # Encyclopedia sidebar
+```
+
+## 🌍 Localization (i18n)
+
+| Language            | Source Path              | URL    |
+| ------------------- | ------------------------ | ------ |
+| 🇵🇱 Polish (default) | `docs/`, `encyclopedia/` | `/`    |
+| 🇬🇧 English          | `i18n/en/...`            | `/en/` |
+
+Every new document must exist in both language versions. File and folder names should always be in English.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/feature-name`
+3. Make your changes and commit
+4. Open a pull request
+
+### Conventions
+
+- Use ` ```daedalus ` for Daedalus code blocks
+- Use ` ```cpp ` for C++ (Union) code blocks
+- Use Docusaurus admonitions: `:::tip`, `:::warning`, `:::info`, `:::danger`
+- Every `.md` file needs front matter with `sidebar_position`, `title`, `description`
+
+## 📜 License
+
+This project is licensed under the [MIT](LICENSE) license.
+
+---
+
+<div align="center">
+  Made with ❤️ for the Gothic Modding community
+</div>
