@@ -64,6 +64,7 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
+      defaultMode: "dark",
       respectPrefersColorScheme: true,
     },
     navbar: {
@@ -75,9 +76,20 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          sidebarId: "gettingStartedSidebar",
           position: "left",
-          label: "Dokumentacja",
+          label: "Jak zacząć?",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "guidesSidebar",
+          position: "left",
+          label: "Poradniki",
+        },
+        {
+          href: "https://discord.gg/9EVFJv5Uyf",
+          label: "Discord",
+          position: "right",
         },
         {
           href: "https://github.com/sefaris/gothic-modding-wiki",
@@ -101,7 +113,7 @@ const config: Config = {
               to: "/docs/getting-started/download-game",
             },
             {
-              label: "Podstawy moddingu",
+              label: "Poradniki",
               to: "/docs/modding-basics-daedalus/script-structure",
             },
           ],
@@ -110,8 +122,21 @@ const config: Config = {
           title: "Społeczność",
           items: [
             {
+              label: "Discord",
+              href: "https://discord.gg/9EVFJv5Uyf",
+            },
+            {
               label: "GitHub",
               href: "https://github.com/sefaris/gothic-modding-wiki",
+            },
+          ],
+        },
+        {
+          title: "Więcej",
+          items: [
+            {
+              label: "sefaris.eu",
+              href: "https://sefaris.eu",
             },
           ],
         },

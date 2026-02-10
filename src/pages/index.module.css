@@ -3,21 +3,169 @@
  * and scoped locally.
  */
 
+/* ===== HERO ===== */
 .heroBanner {
-  padding: 4rem 0;
+  padding: 6rem 0 4rem;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #1c1c1c 0%, #141414 50%, #0f0f0f 100%);
+  color: #fff;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+  color: #c3c1c1bf;
+  font-weight: 300;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heroBtnPrimary {
+  background-color: #c7f148;
+  border-color: #c7f148;
+  color: #000;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.heroBtnPrimary:hover {
+  background-color: #a9dc11;
+  border-color: #a9dc11;
+  color: #000;
+}
+
+.heroBtnSecondary {
+  background-color: transparent;
+  border: 2px solid #c7f148;
+  color: #c7f148;
+  border-radius: 12px;
+}
+
+.heroBtnSecondary:hover {
+  background-color: rgba(199, 241, 72, 0.1);
+  color: #c7f148;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 3rem 1.5rem;
+  }
+  .heroTitle {
+    font-size: 2rem;
+  }
+}
+
+/* ===== FEATURES ===== */
+.features {
+  padding: 4rem 0;
+}
+
+.featureCard {
+  display: block;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #30303b;
+  background-color: rgba(105, 95, 91, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.featureCard:hover {
+  border-color: #c7f148;
+  box-shadow: 0 4px 24px rgba(199, 241, 72, 0.1);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: inherit;
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.featureDescription {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===== COMMUNITY ===== */
+.community {
+  padding: 4rem 0;
+  text-align: center;
+  background-color: rgba(20, 20, 20, 0.5);
+  border-top: 1px solid #30303b;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.communityLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.discordBtn {
+  background-color: #5865f2;
+  border-color: #5865f2;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.discordBtn:hover {
+  background-color: #4752c4;
+  border-color: #4752c4;
+  color: #fff;
+}
+
+.githubBtn {
+  background-color: #292929;
+  border: 1px solid #30303b;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.githubBtn:hover {
+  background-color: #333;
+  border-color: #c7f148;
+  color: #fff;
 }

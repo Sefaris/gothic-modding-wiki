@@ -1,0 +1,38 @@
+{
+  "link.title.Dokumentacja": {
+    "message": "Documentation",
+    "description": "The title of the footer links column with title=Dokumentacja in the footer"
+  },
+  "link.title.Społeczność": {
+    "message": "Community",
+    "description": "The title of the footer links column with title=Społeczność in the footer"
+  },
+  "link.title.Więcej": {
+    "message": "More",
+    "description": "The title of the footer links column with title=Więcej in the footer"
+  },
+  "link.item.label.Jak zacząć?": {
+    "message": "Getting Started",
+    "description": "The label of footer link with label=Jak zacząć? linking to /docs/getting-started/download-game"
+  },
+  "link.item.label.Poradniki": {
+    "message": "Guides",
+    "description": "The label of footer link with label=Poradniki linking to /docs/modding-basics-daedalus/script-structure"
+  },
+  "link.item.label.Discord": {
+    "message": "Discord",
+    "description": "The label of footer link with label=Discord linking to https://discord.gg/9EVFJv5Uyf"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/sefaris/gothic-modding-wiki"
+  },
+  "link.item.label.sefaris.eu": {
+    "message": "sefaris.eu",
+    "description": "The label of footer link with label=sefaris.eu linking to https://sefaris.eu"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 Gothic Modding Wiki. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}

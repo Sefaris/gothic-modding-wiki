@@ -4,27 +4,83 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap");
+
+/* Sefaris color scheme: lime accent on dark background */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #97c40f;
+  --ifm-color-primary-dark: #88b00e;
+  --ifm-color-primary-darker: #80a60d;
+  --ifm-color-primary-darkest: #69880b;
+  --ifm-color-primary-light: #a6d810;
+  --ifm-color-primary-lighter: #aede11;
+  --ifm-color-primary-lightest: #c7f148;
   --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "Lato", system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-weight: 700;
+  --ifm-font-weight-base: 400;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+[data-theme="dark"] {
+  --ifm-color-primary: #c7f148;
+  --ifm-color-primary-dark: #bfed2c;
+  --ifm-color-primary-darker: #b8e81b;
+  --ifm-color-primary-darkest: #97c40f;
+  --ifm-color-primary-light: #cff364;
+  --ifm-color-primary-lighter: #d5f577;
+  --ifm-color-primary-lightest: #e4f8a7;
+  --ifm-background-color: #1c1c1c;
+  --ifm-background-surface-color: #242424;
+  --ifm-navbar-background-color: #1c1c1c;
+  --ifm-footer-background-color: #141414;
+  --docusaurus-highlighted-code-line-bg: rgba(199, 241, 72, 0.15);
+}
+
+/* Navbar styling */
+.navbar {
+  border-bottom: 1px solid #30303b;
+}
+
+[data-theme="dark"] .navbar {
+  background-color: #1c1c1c;
+}
+
+[data-theme="dark"] .footer {
+  background-color: #141414;
+  border-top: 1px solid #30303b;
+}
+
+/* Custom scrollbar (matching sefaris.eu) */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7f148;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d5f577;
+}
+
+/* Link styling */
+[data-theme="dark"] a {
+  font-weight: 500;
+}
+
+/* Smooth transitions */
+a,
+.navbar__link,
+.menu__link,
+.button {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
