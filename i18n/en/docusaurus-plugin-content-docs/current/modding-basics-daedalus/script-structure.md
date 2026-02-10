@@ -12,16 +12,16 @@ Gothic scripts are divided into two main directories: **Content** (game content)
 
 `.src` files are lists of `.d` (Daedalus) files in the order they should be compiled. The Gothic engine reads them from top to bottom:
 
-| File | Directory | Description |
-|------|-----------|-------------|
-| `Gothic.src` | `Content/` | Main game content compilation (NPCs, items, dialogs, quests) |
-| `Fight.src` | `Content/` | Fight tactics (FAI) compilation |
-| `Camera.src` | `System/` | Camera settings |
-| `Menu.src` | `System/` | Game menu definitions |
-| `Music.src` | `System/` | Music instances |
-| `ParticleFX.src` | `System/` | Particle effects |
-| `SFX.src` | `System/` | Sound effects |
-| `VisualFX.src` | `System/` | Visual effects (spells, auras) |
+| File             | Directory  | Description                                                  |
+| ---------------- | ---------- | ------------------------------------------------------------ |
+| `Gothic.src`     | `Content/` | Main game content compilation (NPCs, items, dialogs, quests) |
+| `Fight.src`      | `Content/` | Fight tactics (FAI) compilation                              |
+| `Camera.src`     | `System/`  | Camera settings                                              |
+| `Menu.src`       | `System/`  | Game menu definitions                                        |
+| `Music.src`      | `System/`  | Music instances                                              |
+| `ParticleFX.src` | `System/`  | Particle effects                                             |
+| `SFX.src`        | `System/`  | Sound effects                                                |
+| `VisualFX.src`   | `System/`  | Visual effects (spells, auras)                               |
 
 :::danger
 The order of entries in `Gothic.src` is critical! If you reference an instance (e.g., an item in an NPC), it must be defined **earlier** in the `.src` file.
@@ -51,11 +51,11 @@ Content/
 
 Contains engine class declarations and global constants. This is the foundation upon which all other scripts are built.
 
-| File | Description |
-|------|-------------|
-| `Classes.d` | Engine classes: `C_NPC`, `C_Item`, `C_INFO`, `C_Mission` and others |
-| `Constants.d` | Global constants, mission state variables, story variables |
-| `Fight.d` | Combat system constants |
+| File          | Description                                                         |
+| ------------- | ------------------------------------------------------------------- |
+| `Classes.d`   | Engine classes: `C_NPC`, `C_Item`, `C_INFO`, `C_Mission` and others |
+| `Constants.d` | Global constants, mission state variables, story variables          |
+| `Fight.d`     | Combat system constants                                             |
 
 :::info
 Files in `_intern/` are always at the beginning of `Gothic.src` — they define the data types used by the rest of the scripts.
@@ -95,6 +95,7 @@ AI/
 ```
 
 **Naming conventions in AI:**
+
 - **B\_** (Behavior) — functions that perform actions, e.g., `B_Attack`, `B_Flee`
 - **C\_** (Condition) — functions that check conditions, e.g., `C_CanSeeNpc`
 - **TA\_** (Tagesablauf) — NPC daily routines
@@ -104,38 +105,38 @@ AI/
 
 All item definitions in the game. Files grouped by type:
 
-| File | Description |
-|------|-------------|
-| `IT_Melee_Weapons.d` | Melee weapons (swords, axes) |
-| `IT_Ranged_Weapons.d` | Ranged weapons (bows, crossbows) |
-| `IT_Armor.d` | Armor |
-| `IT_Food.d` | Food |
-| `IT_Potions.d` | Potions |
-| `IT_Plants.d` | Plants (alchemical ingredients) |
-| `IT_Runen.d` | Magic runes |
-| `IT_Scrolls.d` | Spell scrolls |
-| `IT_Ringe.d` | Rings |
-| `IT_Amulette.d` | Amulets |
-| `IT_Keys.d` | Keys |
-| `IT_Misc.d` | Miscellaneous items (gold, torches) |
-| `IT_Written.d` | Documents, letters, books |
-| `MissionItems_*.d` | Mission items (per chapter) |
+| File                  | Description                         |
+| --------------------- | ----------------------------------- |
+| `IT_Melee_Weapons.d`  | Melee weapons (swords, axes)        |
+| `IT_Ranged_Weapons.d` | Ranged weapons (bows, crossbows)    |
+| `IT_Armor.d`          | Armor                               |
+| `IT_Food.d`           | Food                                |
+| `IT_Potions.d`        | Potions                             |
+| `IT_Plants.d`         | Plants (alchemical ingredients)     |
+| `IT_Runen.d`          | Magic runes                         |
+| `IT_Scrolls.d`        | Spell scrolls                       |
+| `IT_Ringe.d`          | Rings                               |
+| `IT_Amulette.d`       | Amulets                             |
+| `IT_Keys.d`           | Keys                                |
+| `IT_Misc.d`           | Miscellaneous items (gold, torches) |
+| `IT_Written.d`        | Documents, letters, books           |
+| `MissionItems_*.d`    | Mission items (per chapter)         |
 
 ### `FAI/` — Fight Tactics
 
 Fight AI definitions for different enemy types:
 
-| File | Description |
-|------|-------------|
-| `FAI_Human_Normal.d` | Standard human tactic |
-| `FAI_Human_Strong.d` | Strong opponent |
-| `FAI_Human_Master.d` | Combat master |
+| File                 | Description              |
+| -------------------- | ------------------------ |
+| `FAI_Human_Normal.d` | Standard human tactic    |
+| `FAI_Human_Strong.d` | Strong opponent          |
+| `FAI_Human_Master.d` | Combat master            |
 | `FAI_Human_Coward.d` | Coward (flees at low HP) |
-| `FAI_Wolf.d` | Wolf |
-| `FAI_Orc.d` | Orc |
-| `FAI_Dragon.d` | Dragon |
-| `FAI_Troll.d` | Troll |
-| `FAI_Demon.d` | Demon |
+| `FAI_Wolf.d`         | Wolf                     |
+| `FAI_Orc.d`          | Orc                      |
+| `FAI_Dragon.d`       | Dragon                   |
+| `FAI_Troll.d`        | Troll                    |
+| `FAI_Demon.d`        | Demon                    |
 
 :::tip
 Fight tactics are assigned to NPCs through the `fight_tactic` field in the `C_NPC` instance.
@@ -213,19 +214,19 @@ Story/
 
 **NPC naming conventions (prefixes):**
 
-| Prefix | Guild |
-|--------|-------|
-| `PC_` | Player Character |
-| `VLK_` | Citizen (Volk) |
-| `MIL_` | Militia (Miliz) |
-| `PAL_` | Paladin |
-| `SLD_` | Mercenary (Söldner) |
-| `BAU_` | Farmer (Bauer) |
-| `BDT_` | Bandit |
-| `KDF_` | Fire Mage (Kreisfeuer) |
-| `KDW_` | Water Mage (Kreiswasser) |
-| `PIR_` | Pirate |
-| `NOV_` | Novice (Novize) |
+| Prefix | Guild                        |
+| ------ | ---------------------------- |
+| `PC_`  | Player Character             |
+| `VLK_` | Citizen (Volk)               |
+| `MIL_` | Militia (Miliz)              |
+| `PAL_` | Paladin                      |
+| `SLD_` | Mercenary (Söldner)          |
+| `BAU_` | Farmer (Bauer)               |
+| `BDT_` | Bandit                       |
+| `KDF_` | Fire Mage (Kreisfeuer)       |
+| `KDW_` | Water Mage (Kreiswasser)     |
+| `PIR_` | Pirate                       |
+| `NOV_` | Novice (Novize)              |
 | `DJG_` | Dragon Hunter (Drachenjäger) |
 
 ---
@@ -256,80 +257,80 @@ System/
 
 Engine class declarations for individual systems. Analogous to `Content/_intern/`, but for subsystems:
 
-| File | Description |
-|------|-------------|
-| `Camera.d` | `C_CamSys` class — camera parameters |
-| `Menu.d` | `C_Menu`, `C_MenuItem` classes — menu definitions |
-| `Music.d` | `C_MusicTheme` class — music themes |
-| `ParticleFX.d` | `C_ParticleFX` class — particle effects |
-| `SFX.d` | `C_SFX` class — sound effects |
-| `VisualFX.d` | `C_VisualFX` class — visual effects |
+| File           | Description                                       |
+| -------------- | ------------------------------------------------- |
+| `Camera.d`     | `C_CamSys` class — camera parameters              |
+| `Menu.d`       | `C_Menu`, `C_MenuItem` classes — menu definitions |
+| `Music.d`      | `C_MusicTheme` class — music themes               |
+| `ParticleFX.d` | `C_ParticleFX` class — particle effects           |
+| `SFX.d`        | `C_SFX` class — sound effects                     |
+| `VisualFX.d`   | `C_VisualFX` class — visual effects               |
 
 ### `Camera/` — Camera
 
 Camera instances used in the game:
 
-| File | Description |
-|------|-------------|
+| File        | Description                                            |
+| ----------- | ------------------------------------------------------ |
 | `CamInst.d` | Camera definitions: standard, dialog, combat, cutscene |
 
 ### `Menu/` — Game Menus
 
 Definitions for all menu screens:
 
-| File | Description |
-|------|-------------|
-| `Menu_Main.d` | Main menu |
-| `Menu_Status.d` | Character screen (stats, equipment) |
-| `Menu_Log.d` | Quest log |
-| `Menu_Opt.d` | Game options |
-| `Menu_Opt_Graphics.d` | Graphics options |
-| `Menu_Opt_Audio.d` | Audio options |
-| `Menu_Opt_Controls.d` | Control options |
-| `Menu_Savegame.d` | Save/load game |
-| `Menu_Defines.d` | Shared constants and definitions |
+| File                  | Description                         |
+| --------------------- | ----------------------------------- |
+| `Menu_Main.d`         | Main menu                           |
+| `Menu_Status.d`       | Character screen (stats, equipment) |
+| `Menu_Log.d`          | Quest log                           |
+| `Menu_Opt.d`          | Game options                        |
+| `Menu_Opt_Graphics.d` | Graphics options                    |
+| `Menu_Opt_Audio.d`    | Audio options                       |
+| `Menu_Opt_Controls.d` | Control options                     |
+| `Menu_Savegame.d`     | Save/load game                      |
+| `Menu_Defines.d`      | Shared constants and definitions    |
 
 ### `Music/` — Music
 
-| File | Description |
-|------|-------------|
+| File          | Description                                                      |
+| ------------- | ---------------------------------------------------------------- |
 | `MusicInst.d` | Music theme instances (exploration, combat, threat per location) |
 
 ### `PFX/` — Particle Effects
 
-| File | Description |
-|------|-------------|
-| `PfxInst.d` | General effects (fire, smoke, sparks) |
-| `PfxInstEngine.d` | Engine effects |
-| `PfxInstMagic.d` | Magic effects (spells, runes) |
+| File              | Description                           |
+| ----------------- | ------------------------------------- |
+| `PfxInst.d`       | General effects (fire, smoke, sparks) |
+| `PfxInstEngine.d` | Engine effects                        |
+| `PfxInstMagic.d`  | Magic effects (spells, runes)         |
 
 ### `SFX/` — Sound Effects
 
-| File | Description |
-|------|-------------|
-| `SfxInst.d` | Ambient, interface, and object sounds |
+| File              | Description                                 |
+| ----------------- | ------------------------------------------- |
+| `SfxInst.d`       | Ambient, interface, and object sounds       |
 | `SfxInstSpeech.d` | Speech sounds (dialog system configuration) |
 
 ### `VisualFX/` — Visual Effects
 
-| File | Description |
-|------|-------------|
+| File             | Description                        |
+| ---------------- | ---------------------------------- |
 | `VisualFxInst.d` | Spell visual effects, auras, buffs |
 
 ---
 
 ## Summary
 
-| Area | Directory | Compilation | Description |
-|------|-----------|-------------|-------------|
-| Engine classes | `Content/_intern/` | `Gothic.src` | Foundations — C_NPC, C_Item, C_INFO classes... |
-| AI | `Content/AI/` | `Gothic.src` | Behaviors, perception, AI states |
-| Items | `Content/Items/` | `Gothic.src` | Weapons, armor, potions, food |
-| Fight tactics | `Content/FAI/` | `Fight.src` | Fight tactics per enemy type |
-| Story | `Content/Story/` | `Gothic.src` | NPCs, dialogs, quests, events |
-| Camera | `System/Camera/` | `Camera.src` | Camera modes |
-| Menus | `System/Menu/` | `Menu.src` | Game menu screens |
-| Music | `System/Music/` | `Music.src` | Music themes |
-| Particles | `System/PFX/` | `ParticleFX.src` | Particle effects |
-| Sound | `System/SFX/` | `SFX.src` | Sound effects |
-| Visual FX | `System/VisualFX/` | `VisualFX.src` | Spell and aura effects |
+| Area           | Directory          | Compilation      | Description                                    |
+| -------------- | ------------------ | ---------------- | ---------------------------------------------- |
+| Engine classes | `Content/_intern/` | `Gothic.src`     | Foundations — C_NPC, C_Item, C_INFO classes... |
+| AI             | `Content/AI/`      | `Gothic.src`     | Behaviors, perception, AI states               |
+| Items          | `Content/Items/`   | `Gothic.src`     | Weapons, armor, potions, food                  |
+| Fight tactics  | `Content/FAI/`     | `Fight.src`      | Fight tactics per enemy type                   |
+| Story          | `Content/Story/`   | `Gothic.src`     | NPCs, dialogs, quests, events                  |
+| Camera         | `System/Camera/`   | `Camera.src`     | Camera modes                                   |
+| Menus          | `System/Menu/`     | `Menu.src`       | Game menu screens                              |
+| Music          | `System/Music/`    | `Music.src`      | Music themes                                   |
+| Particles      | `System/PFX/`      | `ParticleFX.src` | Particle effects                               |
+| Sound          | `System/SFX/`      | `SFX.src`        | Sound effects                                  |
+| Visual FX      | `System/VisualFX/` | `VisualFX.src`   | Spell and aura effects                         |

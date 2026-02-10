@@ -11,6 +11,7 @@ W tym poradniku nauczysz się tworzyć kompletne zadanie (quest) — od rozmowy 
 ## Jak działają questy w Gothic?
 
 System questów w Gothic opiera się na trzech elementach:
+
 1. **Dialogi** (`C_INFO`) — rozmowy z NPC, które rozpoczynają i kończą zadania
 2. **Dziennik misji** (Quest Log) — wpisy widoczne dla gracza
 3. **Zmienne stanu** — śledzenie postępu zadania
@@ -19,15 +20,15 @@ System questów w Gothic opiera się na trzech elementach:
 
 Każda opcja dialogowa to instancja klasy `C_INFO`:
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `npc` | `int` | NPC, z którym rozmawiamy |
-| `nr` | `int` | Kolejność wyświetlania (niższy = wyżej) |
-| `condition` | `func` | Funkcja warunku — kiedy opcja jest widoczna |
-| `information` | `func` | Funkcja wykonywana po wybraniu opcji |
-| `permanent` | `int` | `TRUE` = opcja nie znika po użyciu |
-| `important` | `int` | `TRUE` = NPC mówi pierwszy (bez wyboru gracza) |
-| `description` | `string` | Tekst opcji dialogowej |
+| Pole          | Typ      | Opis                                           |
+| ------------- | -------- | ---------------------------------------------- |
+| `npc`         | `int`    | NPC, z którym rozmawiamy                       |
+| `nr`          | `int`    | Kolejność wyświetlania (niższy = wyżej)        |
+| `condition`   | `func`   | Funkcja warunku — kiedy opcja jest widoczna    |
+| `information` | `func`   | Funkcja wykonywana po wybraniu opcji           |
+| `permanent`   | `int`    | `TRUE` = opcja nie znika po użyciu             |
+| `important`   | `int`    | `TRUE` = NPC mówi pierwszy (bez wyboru gracza) |
+| `description` | `string` | Tekst opcji dialogowej                         |
 
 ## Krok 1: Zmienna stanu misji
 
@@ -175,11 +176,11 @@ func void DIA_Konrad_Topor_Info ()
 
 ### Kluczowe funkcje dziennika:
 
-| Funkcja | Opis |
-|---------|------|
-| `Log_CreateTopic(topic, LOG_MISSION)` | Tworzy wpis w dzienniku |
-| `Log_SetTopicStatus(topic, status)` | Ustawia status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
-| `B_LogEntry(topic, tekst)` | Dodaje notatkę do istniejącego wpisu |
+| Funkcja                               | Opis                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| `Log_CreateTopic(topic, LOG_MISSION)` | Tworzy wpis w dzienniku                                      |
+| `Log_SetTopicStatus(topic, status)`   | Ustawia status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
+| `B_LogEntry(topic, tekst)`            | Dodaje notatkę do istniejącego wpisu                         |
 
 ## Krok 6: Dialog — oddanie przedmiotu i nagroda
 
@@ -263,6 +264,7 @@ Scripts/Content/
 ## Podsumowanie
 
 Kompletny quest w Gothic wymaga:
+
 1. **Zmiennej stanu** śledzącej postęp (0 → `LOG_RUNNING` → `LOG_SUCCESS`)
 2. **Przedmiotu misyjnego** z flagą `ITEM_MISSION`
 3. **Dialogów** z warunkami opartymi o stan questa i posiadane przedmioty

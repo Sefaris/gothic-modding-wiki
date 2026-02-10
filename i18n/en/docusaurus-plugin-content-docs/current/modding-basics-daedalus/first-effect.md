@@ -14,11 +14,11 @@ The PFX system in Gothic emits **particles** (small textured sprites) from an **
 
 Effects are defined as instances of the `C_ParticleFX` class in files in the `System/PFX/` directory:
 
-| File | Description |
-|------|-------------|
-| `PfxInst.d` | General effects (fire, smoke, sparks, water, weather) |
-| `PfxInstEngine.d` | Engine-required effects (blood, dust, water splash) |
-| `PfxInstMagic.d` | Magic effects (spells, runes, auras) |
+| File              | Description                                           |
+| ----------------- | ----------------------------------------------------- |
+| `PfxInst.d`       | General effects (fire, smoke, sparks, water, weather) |
+| `PfxInstEngine.d` | Engine-required effects (blood, dust, water splash)   |
+| `PfxInstMagic.d`  | Magic effects (spells, runes, auras)                  |
 
 ## The C_ParticleFX Class — Overview
 
@@ -26,88 +26,88 @@ The class has 49 fields divided into 7 categories. You don't need to set them al
 
 ### 1. Emission Rate — How Many Particles and When
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `ppsValue` | `float` | Base particles emitted per second |
-| `ppsScaleKeys_S` | `string` | Time-varying multipliers, e.g., `"1 2 3"` |
-| `ppsIsLooping` | `int` | `1` = looping, `0` = one-shot |
-| `ppsIsSmooth` | `int` | `1` = smooth interpolation between keys |
-| `ppsFPS` | `float` | Key playback speed (frames/sec) |
-| `ppsCreateEm_S` | `string` | Child effect name (spawned per particle) |
-| `ppsCreateEmDelay` | `float` | Child effect delay |
+| Field              | Type     | Description                               |
+| ------------------ | -------- | ----------------------------------------- |
+| `ppsValue`         | `float`  | Base particles emitted per second         |
+| `ppsScaleKeys_S`   | `string` | Time-varying multipliers, e.g., `"1 2 3"` |
+| `ppsIsLooping`     | `int`    | `1` = looping, `0` = one-shot             |
+| `ppsIsSmooth`      | `int`    | `1` = smooth interpolation between keys   |
+| `ppsFPS`           | `float`  | Key playback speed (frames/sec)           |
+| `ppsCreateEm_S`    | `string` | Child effect name (spawned per particle)  |
+| `ppsCreateEmDelay` | `float`  | Child effect delay                        |
 
 ### 2. Emitter Shape — Where Particles Come From
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `shpType_S` | `string` | Shape: `"POINT"`, `"LINE"`, `"BOX"`, `"CIRCLE"`, `"SPHERE"`, `"MESH"` |
-| `shpFOR_S` | `string` | Frame of reference: `"OBJECT"` or `"WORLD"` |
-| `shpOffsetVec_S` | `string` | Offset: `"X Y Z"` |
-| `shpDistribType_S` | `string` | Distribution: `"RAND"`, `"UNIFORM"`, `"WALK"`, `"DIR"` |
-| `shpIsVolume` | `int` | `1` = emit from volume, `0` = from surface only |
-| `shpDim_S` | `string` | Dimensions (shape-dependent) |
-| `shpMesh_S` | `string` | Emitter mesh (when `shpType_S = "MESH"`) |
-| `shpMeshRender_B` | `int` | `1` = render the emitter mesh |
+| Field              | Type     | Description                                                           |
+| ------------------ | -------- | --------------------------------------------------------------------- |
+| `shpType_S`        | `string` | Shape: `"POINT"`, `"LINE"`, `"BOX"`, `"CIRCLE"`, `"SPHERE"`, `"MESH"` |
+| `shpFOR_S`         | `string` | Frame of reference: `"OBJECT"` or `"WORLD"`                           |
+| `shpOffsetVec_S`   | `string` | Offset: `"X Y Z"`                                                     |
+| `shpDistribType_S` | `string` | Distribution: `"RAND"`, `"UNIFORM"`, `"WALK"`, `"DIR"`                |
+| `shpIsVolume`      | `int`    | `1` = emit from volume, `0` = from surface only                       |
+| `shpDim_S`         | `string` | Dimensions (shape-dependent)                                          |
+| `shpMesh_S`        | `string` | Emitter mesh (when `shpType_S = "MESH"`)                              |
+| `shpMeshRender_B`  | `int`    | `1` = render the emitter mesh                                         |
 
 ### 3. Direction and Speed
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `dirMode_S` | `string` | Mode: `"DIR"`, `"TARGET"`, `"MESH_POLY"`, `"RAND"`, `"NONE"` |
-| `dirFOR_S` | `string` | Direction frame of reference |
-| `dirAngleHead` | `float` | Horizontal rotation angle (°) |
-| `dirAngleHeadVar` | `float` | Angle variance (±°) |
-| `dirAngleElev` | `float` | Elevation angle (°); `90` = up, `-90` = down |
-| `dirAngleElevVar` | `float` | Elevation variance (±°) |
-| `velAvg` | `float` | Average initial velocity |
-| `velVar` | `float` | Velocity variance (±) |
+| Field             | Type     | Description                                                  |
+| ----------------- | -------- | ------------------------------------------------------------ |
+| `dirMode_S`       | `string` | Mode: `"DIR"`, `"TARGET"`, `"MESH_POLY"`, `"RAND"`, `"NONE"` |
+| `dirFOR_S`        | `string` | Direction frame of reference                                 |
+| `dirAngleHead`    | `float`  | Horizontal rotation angle (°)                                |
+| `dirAngleHeadVar` | `float`  | Angle variance (±°)                                          |
+| `dirAngleElev`    | `float`  | Elevation angle (°); `90` = up, `-90` = down                 |
+| `dirAngleElevVar` | `float`  | Elevation variance (±°)                                      |
+| `velAvg`          | `float`  | Average initial velocity                                     |
+| `velVar`          | `float`  | Velocity variance (±)                                        |
 
 ### 4. Particle Lifespan
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `lspPartAvg` | `float` | Average lifespan (ms) |
+| Field        | Type    | Description             |
+| ------------ | ------- | ----------------------- |
+| `lspPartAvg` | `float` | Average lifespan (ms)   |
 | `lspPartVar` | `float` | Lifespan variance (±ms) |
 
 ### 5. Flight Behavior
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `flyGravity_S` | `string` | Gravity vector: `"X Y Z"` |
-| `flyCollDet_B` | `int` | `0` = no collision, `1` = collisions, `3` = collisions + marks |
+| Field          | Type     | Description                                                    |
+| -------------- | -------- | -------------------------------------------------------------- |
+| `flyGravity_S` | `string` | Gravity vector: `"X Y Z"`                                      |
+| `flyCollDet_B` | `int`    | `0` = no collision, `1` = collisions, `3` = collisions + marks |
 
 ### 6. Visualization
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `visName_S` | `string` | Texture (`.TGA`) or model (`.3DS`) |
-| `visOrientation_S` | `string` | Billboard: `"NONE"`, `"VELO"`, `"VELO3D"`, `"VOB"` |
-| `visTexIsQuadPoly` | `int` | `0` = triangle, `1` = quad mesh |
-| `visTexAniFPS` | `float` | Texture animation FPS |
-| `visTexAniIsLooping` | `int` | `0` = once, `1` = loop, `2` = ping-pong |
-| `visTexColorStart_S` | `string` | Start color: `"R G B"` (0–255) |
-| `visTexColorEnd_S` | `string` | End color (interpolated over lifespan) |
-| `visSizeStart_S` | `string` | Start size: `"W H"` |
-| `visSizeEndScale` | `float` | End size multiplier |
-| `visAlphaFunc_S` | `string` | Blending: `"BLEND"`, `"ADD"`, `"MUL"` |
-| `visAlphaStart` | `float` | Start alpha (0–255) |
-| `visAlphaEnd` | `float` | End alpha (0–255) |
+| Field                | Type     | Description                                        |
+| -------------------- | -------- | -------------------------------------------------- |
+| `visName_S`          | `string` | Texture (`.TGA`) or model (`.3DS`)                 |
+| `visOrientation_S`   | `string` | Billboard: `"NONE"`, `"VELO"`, `"VELO3D"`, `"VOB"` |
+| `visTexIsQuadPoly`   | `int`    | `0` = triangle, `1` = quad mesh                    |
+| `visTexAniFPS`       | `float`  | Texture animation FPS                              |
+| `visTexAniIsLooping` | `int`    | `0` = once, `1` = loop, `2` = ping-pong            |
+| `visTexColorStart_S` | `string` | Start color: `"R G B"` (0–255)                     |
+| `visTexColorEnd_S`   | `string` | End color (interpolated over lifespan)             |
+| `visSizeStart_S`     | `string` | Start size: `"W H"`                                |
+| `visSizeEndScale`    | `float`  | End size multiplier                                |
+| `visAlphaFunc_S`     | `string` | Blending: `"BLEND"`, `"ADD"`, `"MUL"`              |
+| `visAlphaStart`      | `float`  | Start alpha (0–255)                                |
+| `visAlphaEnd`        | `float`  | End alpha (0–255)                                  |
 
 ### 7. Additional Effects
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `trlFadeSpeed` | `float` | Trail fade speed |
-| `trlTexture_S` | `string` | Trail texture |
-| `trlWidth` | `float` | Trail width |
-| `mrkFadeSpeed` | `float` | Mark (decal) fade speed |
-| `mrkTexture_S` | `string` | Mark texture |
-| `mrkSize` | `float` | Mark size |
-| `flockMode` | `string` | Flocking mode: `"WIND"` |
-| `flockStrength` | `float` | Flocking strength |
-| `useEmittersFOR` | `int` | `1` = particles follow emitter position |
-| `timeStartEnd_S` | `string` | Render time window: `"8 22"` (8am–10pm) |
-| `m_bIsAmbientPFX` | `int` | `1` = ambient effect (can be disabled in gothic.ini) |
+| Field             | Type     | Description                                          |
+| ----------------- | -------- | ---------------------------------------------------- |
+| `trlFadeSpeed`    | `float`  | Trail fade speed                                     |
+| `trlTexture_S`    | `string` | Trail texture                                        |
+| `trlWidth`        | `float`  | Trail width                                          |
+| `mrkFadeSpeed`    | `float`  | Mark (decal) fade speed                              |
+| `mrkTexture_S`    | `string` | Mark texture                                         |
+| `mrkSize`         | `float`  | Mark size                                            |
+| `flockMode`       | `string` | Flocking mode: `"WIND"`                              |
+| `flockStrength`   | `float`  | Flocking strength                                    |
+| `useEmittersFOR`  | `int`    | `1` = particles follow emitter position              |
+| `timeStartEnd_S`  | `string` | Render time window: `"8 22"` (8am–10pm)              |
+| `m_bIsAmbientPFX` | `int`    | `1` = ambient effect (can be disabled in gothic.ini) |
 
 ---
 
@@ -158,10 +158,11 @@ instance PFX_MySmoke (C_ParticleFX)
 
 :::tip
 **`visAlphaFunc_S`** — blending modes:
+
 - `"BLEND"` — classic blending (smoke, fog, dust)
 - `"ADD"` — additive (fire, sparks, magic — bright, glowing)
 - `"MUL"` — multiplicative (shadows, darkening)
-:::
+  :::
 
 ## Example 2: Campfire
 
@@ -370,14 +371,14 @@ instance PFX_MyBlood_Splat (C_ParticleFX)
 
 ## Emitter Shapes
 
-| Shape | `shpType_S` | `shpDim_S` | Description |
-|-------|-------------|------------|-------------|
-| Point | `"POINT"` | — | Emission from a single point |
-| Line | `"LINE"` | `"100"` (length) | Emission along a line |
-| Box | `"BOX"` | `"W H D"` | Emission from a rectangular area |
-| Circle | `"CIRCLE"` | `"50"` (radius) | Emission from a circle (or disk when `shpIsVolume = 1`) |
-| Sphere | `"SPHERE"` | `"50"` (radius) | Emission from a sphere |
-| Mesh | `"MESH"` | `"250"` (scale) | Emission from a 3D mesh surface |
+| Shape  | `shpType_S` | `shpDim_S`       | Description                                             |
+| ------ | ----------- | ---------------- | ------------------------------------------------------- |
+| Point  | `"POINT"`   | —                | Emission from a single point                            |
+| Line   | `"LINE"`    | `"100"` (length) | Emission along a line                                   |
+| Box    | `"BOX"`     | `"W H D"`        | Emission from a rectangular area                        |
+| Circle | `"CIRCLE"`  | `"50"` (radius)  | Emission from a circle (or disk when `shpIsVolume = 1`) |
+| Sphere | `"SPHERE"`  | `"50"` (radius)  | Emission from a sphere                                  |
+| Mesh   | `"MESH"`    | `"250"` (scale)  | Emission from a 3D mesh surface                         |
 
 ### shpIsVolume
 
@@ -386,12 +387,12 @@ instance PFX_MyBlood_Splat (C_ParticleFX)
 
 ## Particle Orientation
 
-| Mode | `visOrientation_S` | Description |
-|------|---------------------|-------------|
-| Billboard | `"NONE"` | Particles always face the camera (default) |
-| Along velocity | `"VELO"` | Particles stretched in movement direction (rain, sparks) |
-| 3D along velocity | `"VELO3D"` | Like VELO, but with full 3D rotation |
-| Object | `"VOB"` | Orientation matches the parent object |
+| Mode              | `visOrientation_S` | Description                                              |
+| ----------------- | ------------------ | -------------------------------------------------------- |
+| Billboard         | `"NONE"`           | Particles always face the camera (default)               |
+| Along velocity    | `"VELO"`           | Particles stretched in movement direction (rain, sparks) |
+| 3D along velocity | `"VELO3D"`         | Like VELO, but with full 3D rotation                     |
+| Object            | `"VOB"`            | Orientation matches the parent object                    |
 
 ## Registration in ParticleFX.src
 
@@ -426,18 +427,19 @@ PFX effects are **not** compiled by `Gothic.src` — they use their own `Particl
 
 ### Common Patterns
 
-| Effect | Key Settings |
-|--------|-------------|
-| Smoke | BLEND, large `visSizeEndScale`, `visAlphaEnd = 0` |
-| Fire | ADD, animated texture, short `lspPartAvg` |
-| Sparks | ADD, one-time burst, downward gravity, collisions |
-| Rain/Snow | Large CIRCLE emitter, Y offset, `dirAngleElev = -89` |
-| Blood | BLEND, gravity, child emitter (splats) |
-| Magic/Aura | ADD, CIRCLE emitter, `useEmittersFOR = 1` |
+| Effect     | Key Settings                                         |
+| ---------- | ---------------------------------------------------- |
+| Smoke      | BLEND, large `visSizeEndScale`, `visAlphaEnd = 0`    |
+| Fire       | ADD, animated texture, short `lspPartAvg`            |
+| Sparks     | ADD, one-time burst, downward gravity, collisions    |
+| Rain/Snow  | Large CIRCLE emitter, Y offset, `dirAngleElev = -89` |
+| Blood      | BLEND, gravity, child emitter (splats)               |
+| Magic/Aura | ADD, CIRCLE emitter, `useEmittersFOR = 1`            |
 
 ## Summary
 
 Creating particle effects requires:
+
 1. An **instance** of the `C_ParticleFX` class with appropriate parameters
 2. An **emitter shape** (`shpType_S`) — where particles come from
 3. **Direction and speed** — how they move

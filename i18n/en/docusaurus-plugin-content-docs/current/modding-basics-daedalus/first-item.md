@@ -12,36 +12,36 @@ In this tutorial you will learn how to create items in Daedalus — from swords,
 
 Every item in Gothic is an instance of the `C_Item` class. The most important fields are:
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `name` | `string` | Name displayed in game |
-| `mainflag` | `int` | Main category (weapon, armor, potion...) |
-| `flags` | `int` | Detailed type (sword, axe, bow...) |
-| `value` | `int` | Value in gold |
-| `visual` | `string` | 3D model (`*.3DS`) |
-| `material` | `int` | Material (metal, wood, glass...) |
-| `damageTotal` | `int` | Total damage (weapons) |
-| `damagetype` | `int` | Damage type (edge, blunt...) |
-| `range` | `int` | Weapon range |
-| `protection[]` | `int[]` | Protection (armors) |
-| `cond_atr[]` | `int[]` | Required attributes to use |
-| `cond_value[]` | `int[]` | Required attribute values |
-| `on_state[]` | `func[]` | Functions called on use |
-| `description` | `string` | Description in the inventory menu |
-| `TEXT[]` / `COUNT[]` | `string[]`/`int[]` | Description lines in tooltip |
+| Field                | Type               | Description                              |
+| -------------------- | ------------------ | ---------------------------------------- |
+| `name`               | `string`           | Name displayed in game                   |
+| `mainflag`           | `int`              | Main category (weapon, armor, potion...) |
+| `flags`              | `int`              | Detailed type (sword, axe, bow...)       |
+| `value`              | `int`              | Value in gold                            |
+| `visual`             | `string`           | 3D model (`*.3DS`)                       |
+| `material`           | `int`              | Material (metal, wood, glass...)         |
+| `damageTotal`        | `int`              | Total damage (weapons)                   |
+| `damagetype`         | `int`              | Damage type (edge, blunt...)             |
+| `range`              | `int`              | Weapon range                             |
+| `protection[]`       | `int[]`            | Protection (armors)                      |
+| `cond_atr[]`         | `int[]`            | Required attributes to use               |
+| `cond_value[]`       | `int[]`            | Required attribute values                |
+| `on_state[]`         | `func[]`           | Functions called on use                  |
+| `description`        | `string`           | Description in the inventory menu        |
+| `TEXT[]` / `COUNT[]` | `string[]`/`int[]` | Description lines in tooltip             |
 
 ### Item Categories (mainflag)
 
-| Constant | Description |
-|----------|-------------|
-| `ITEM_KAT_NF` | Melee weapon |
-| `ITEM_KAT_FF` | Ranged weapon |
-| `ITEM_KAT_ARMOR` | Armor |
-| `ITEM_KAT_FOOD` | Food |
-| `ITEM_KAT_POTIONS` | Potions |
-| `ITEM_KAT_DOCS` | Documents |
-| `ITEM_KAT_RUNE` | Runes and scrolls |
-| `ITEM_KAT_NONE` | Other (gold, keys, mission items) |
+| Constant           | Description                       |
+| ------------------ | --------------------------------- |
+| `ITEM_KAT_NF`      | Melee weapon                      |
+| `ITEM_KAT_FF`      | Ranged weapon                     |
+| `ITEM_KAT_ARMOR`   | Armor                             |
+| `ITEM_KAT_FOOD`    | Food                              |
+| `ITEM_KAT_POTIONS` | Potions                           |
+| `ITEM_KAT_DOCS`    | Documents                         |
+| `ITEM_KAT_RUNE`    | Runes and scrolls                 |
+| `ITEM_KAT_NONE`    | Other (gold, keys, mission items) |
 
 ## Example 1: Melee Weapon (Sword)
 
@@ -178,6 +178,7 @@ Items\IT_Food.d
 ## Summary
 
 Creating items requires:
+
 1. An **instance** of the `C_Item` class with appropriate `mainflag` and `flags`
 2. Setting **stats** (damage, protection, requirements)
 3. Providing a **3D model** (`.3DS`)

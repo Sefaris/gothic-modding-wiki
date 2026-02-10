@@ -11,6 +11,7 @@ In this tutorial you will learn how to create a complete quest — from talking 
 ## How Do Quests Work in Gothic?
 
 The quest system in Gothic is based on three elements:
+
 1. **Dialogs** (`C_INFO`) — conversations with NPCs that start and end quests
 2. **Quest Log** — entries visible to the player
 3. **State variables** — tracking quest progress
@@ -19,15 +20,15 @@ The quest system in Gothic is based on three elements:
 
 Each dialog option is an instance of the `C_INFO` class:
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `npc` | `int` | The NPC we're talking to |
-| `nr` | `int` | Display order (lower = higher) |
-| `condition` | `func` | Condition function — when the option is visible |
-| `information` | `func` | Function executed when the option is selected |
-| `permanent` | `int` | `TRUE` = option doesn't disappear after use |
-| `important` | `int` | `TRUE` = NPC speaks first (no player choice) |
-| `description` | `string` | Dialog option text |
+| Field         | Type     | Description                                     |
+| ------------- | -------- | ----------------------------------------------- |
+| `npc`         | `int`    | The NPC we're talking to                        |
+| `nr`          | `int`    | Display order (lower = higher)                  |
+| `condition`   | `func`   | Condition function — when the option is visible |
+| `information` | `func`   | Function executed when the option is selected   |
+| `permanent`   | `int`    | `TRUE` = option doesn't disappear after use     |
+| `important`   | `int`    | `TRUE` = NPC speaks first (no player choice)    |
+| `description` | `string` | Dialog option text                              |
 
 ## Step 1: Mission State Variable
 
@@ -175,11 +176,11 @@ func void DIA_Konrad_Topor_Info ()
 
 ### Key Quest Log Functions:
 
-| Function | Description |
-|----------|-------------|
-| `Log_CreateTopic(topic, LOG_MISSION)` | Creates an entry in the quest log |
-| `Log_SetTopicStatus(topic, status)` | Sets status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
-| `B_LogEntry(topic, text)` | Adds a note to an existing entry |
+| Function                              | Description                                               |
+| ------------------------------------- | --------------------------------------------------------- |
+| `Log_CreateTopic(topic, LOG_MISSION)` | Creates an entry in the quest log                         |
+| `Log_SetTopicStatus(topic, status)`   | Sets status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
+| `B_LogEntry(topic, text)`             | Adds a note to an existing entry                          |
 
 ## Step 6: Dialog — Returning the Item and Reward
 
@@ -263,6 +264,7 @@ Scripts/Content/
 ## Summary
 
 A complete quest in Gothic requires:
+
 1. A **state variable** tracking progress (0 → `LOG_RUNNING` → `LOG_SUCCESS`)
 2. A **mission item** with the `ITEM_MISSION` flag
 3. **Dialogs** with conditions based on quest state and owned items

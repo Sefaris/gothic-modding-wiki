@@ -14,11 +14,11 @@ System PFX w Gothic emituje **cząsteczki** (małe sprite'y z teksturą) z **emi
 
 Efekty definiowane są jako instancje klasy `C_ParticleFX` w plikach w katalogu `System/PFX/`:
 
-| Plik | Opis |
-|------|------|
-| `PfxInst.d` | Efekty ogólne (ogień, dym, iskry, woda, pogoda) |
+| Plik              | Opis                                                  |
+| ----------------- | ----------------------------------------------------- |
+| `PfxInst.d`       | Efekty ogólne (ogień, dym, iskry, woda, pogoda)       |
 | `PfxInstEngine.d` | Efekty wymagane przez silnik (krew, kurz, plusk wody) |
-| `PfxInstMagic.d` | Efekty magiczne (zaklęcia, runy, aury) |
+| `PfxInstMagic.d`  | Efekty magiczne (zaklęcia, runy, aury)                |
 
 ## Klasa C_ParticleFX — przegląd
 
@@ -26,88 +26,88 @@ Klasa ma 49 pól podzielonych na 7 kategorii. Nie musisz ustawiać wszystkich �
 
 ### 1. Emisja — ile cząsteczek i kiedy
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `ppsValue` | `float` | Bazowa liczba cząsteczek na sekundę |
-| `ppsScaleKeys_S` | `string` | Mnożniki rozłożone w czasie, np. `"1 2 3"` |
-| `ppsIsLooping` | `int` | `1` = zapętlone, `0` = jednorazowe |
-| `ppsIsSmooth` | `int` | `1` = płynna interpolacja między kluczami |
-| `ppsFPS` | `float` | Prędkość odtwarzania kluczy (klatki/s) |
-| `ppsCreateEm_S` | `string` | Nazwa efektu potomnego (spawny per cząsteczka) |
-| `ppsCreateEmDelay` | `float` | Opóźnienie efektu potomnego |
+| Pole               | Typ      | Opis                                           |
+| ------------------ | -------- | ---------------------------------------------- |
+| `ppsValue`         | `float`  | Bazowa liczba cząsteczek na sekundę            |
+| `ppsScaleKeys_S`   | `string` | Mnożniki rozłożone w czasie, np. `"1 2 3"`     |
+| `ppsIsLooping`     | `int`    | `1` = zapętlone, `0` = jednorazowe             |
+| `ppsIsSmooth`      | `int`    | `1` = płynna interpolacja między kluczami      |
+| `ppsFPS`           | `float`  | Prędkość odtwarzania kluczy (klatki/s)         |
+| `ppsCreateEm_S`    | `string` | Nazwa efektu potomnego (spawny per cząsteczka) |
+| `ppsCreateEmDelay` | `float`  | Opóźnienie efektu potomnego                    |
 
 ### 2. Kształt emitera — skąd lecą cząsteczki
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `shpType_S` | `string` | Kształt: `"POINT"`, `"LINE"`, `"BOX"`, `"CIRCLE"`, `"SPHERE"`, `"MESH"` |
-| `shpFOR_S` | `string` | Układ odniesienia: `"OBJECT"` lub `"WORLD"` |
-| `shpOffsetVec_S` | `string` | Przesunięcie: `"X Y Z"` |
-| `shpDistribType_S` | `string` | Rozkład: `"RAND"`, `"UNIFORM"`, `"WALK"`, `"DIR"` |
-| `shpIsVolume` | `int` | `1` = emisja z objętości, `0` = z powierzchni |
-| `shpDim_S` | `string` | Wymiary (zależne od kształtu) |
-| `shpMesh_S` | `string` | Mesh emitera (gdy `shpType_S = "MESH"`) |
-| `shpMeshRender_B` | `int` | `1` = renderuj mesh emitera |
+| Pole               | Typ      | Opis                                                                    |
+| ------------------ | -------- | ----------------------------------------------------------------------- |
+| `shpType_S`        | `string` | Kształt: `"POINT"`, `"LINE"`, `"BOX"`, `"CIRCLE"`, `"SPHERE"`, `"MESH"` |
+| `shpFOR_S`         | `string` | Układ odniesienia: `"OBJECT"` lub `"WORLD"`                             |
+| `shpOffsetVec_S`   | `string` | Przesunięcie: `"X Y Z"`                                                 |
+| `shpDistribType_S` | `string` | Rozkład: `"RAND"`, `"UNIFORM"`, `"WALK"`, `"DIR"`                       |
+| `shpIsVolume`      | `int`    | `1` = emisja z objętości, `0` = z powierzchni                           |
+| `shpDim_S`         | `string` | Wymiary (zależne od kształtu)                                           |
+| `shpMesh_S`        | `string` | Mesh emitera (gdy `shpType_S = "MESH"`)                                 |
+| `shpMeshRender_B`  | `int`    | `1` = renderuj mesh emitera                                             |
 
 ### 3. Kierunek i prędkość
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `dirMode_S` | `string` | Tryb: `"DIR"`, `"TARGET"`, `"MESH_POLY"`, `"RAND"`, `"NONE"` |
-| `dirFOR_S` | `string` | Układ odniesienia kierunku |
-| `dirAngleHead` | `float` | Kąt obrotu poziomego (°) |
-| `dirAngleHeadVar` | `float` | Wariancja kąta (±°) |
-| `dirAngleElev` | `float` | Kąt elewacji (°); `90` = w górę, `-90` = w dół |
-| `dirAngleElevVar` | `float` | Wariancja elewacji (±°) |
-| `velAvg` | `float` | Średnia prędkość początkowa |
-| `velVar` | `float` | Wariancja prędkości (±) |
+| Pole              | Typ      | Opis                                                         |
+| ----------------- | -------- | ------------------------------------------------------------ |
+| `dirMode_S`       | `string` | Tryb: `"DIR"`, `"TARGET"`, `"MESH_POLY"`, `"RAND"`, `"NONE"` |
+| `dirFOR_S`        | `string` | Układ odniesienia kierunku                                   |
+| `dirAngleHead`    | `float`  | Kąt obrotu poziomego (°)                                     |
+| `dirAngleHeadVar` | `float`  | Wariancja kąta (±°)                                          |
+| `dirAngleElev`    | `float`  | Kąt elewacji (°); `90` = w górę, `-90` = w dół               |
+| `dirAngleElevVar` | `float`  | Wariancja elewacji (±°)                                      |
+| `velAvg`          | `float`  | Średnia prędkość początkowa                                  |
+| `velVar`          | `float`  | Wariancja prędkości (±)                                      |
 
 ### 4. Czas życia cząsteczek
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `lspPartAvg` | `float` | Średni czas życia (ms) |
+| Pole         | Typ     | Opis                        |
+| ------------ | ------- | --------------------------- |
+| `lspPartAvg` | `float` | Średni czas życia (ms)      |
 | `lspPartVar` | `float` | Wariancja czasu życia (±ms) |
 
 ### 5. Zachowanie w locie
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `flyGravity_S` | `string` | Wektor grawitacji: `"X Y Z"` |
-| `flyCollDet_B` | `int` | `0` = brak kolizji, `1` = kolizje, `3` = kolizje + ślady |
+| Pole           | Typ      | Opis                                                     |
+| -------------- | -------- | -------------------------------------------------------- |
+| `flyGravity_S` | `string` | Wektor grawitacji: `"X Y Z"`                             |
+| `flyCollDet_B` | `int`    | `0` = brak kolizji, `1` = kolizje, `3` = kolizje + ślady |
 
 ### 6. Wizualizacja
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `visName_S` | `string` | Tekstura (`.TGA`) lub model (`.3DS`) |
-| `visOrientation_S` | `string` | Billboard: `"NONE"`, `"VELO"`, `"VELO3D"`, `"VOB"` |
-| `visTexIsQuadPoly` | `int` | `0` = trójkąt, `1` = kwadrat |
-| `visTexAniFPS` | `float` | FPS animacji tekstury |
-| `visTexAniIsLooping` | `int` | `0` = raz, `1` = pętla, `2` = ping-pong |
-| `visTexColorStart_S` | `string` | Kolor początkowy: `"R G B"` (0–255) |
-| `visTexColorEnd_S` | `string` | Kolor końcowy (interpolacja w czasie życia) |
-| `visSizeStart_S` | `string` | Rozmiar początkowy: `"W H"` |
-| `visSizeEndScale` | `float` | Mnożnik rozmiaru końcowego |
-| `visAlphaFunc_S` | `string` | Blending: `"BLEND"`, `"ADD"`, `"MUL"` |
-| `visAlphaStart` | `float` | Przezroczystość początkowa (0–255) |
-| `visAlphaEnd` | `float` | Przezroczystość końcowa (0–255) |
+| Pole                 | Typ      | Opis                                               |
+| -------------------- | -------- | -------------------------------------------------- |
+| `visName_S`          | `string` | Tekstura (`.TGA`) lub model (`.3DS`)               |
+| `visOrientation_S`   | `string` | Billboard: `"NONE"`, `"VELO"`, `"VELO3D"`, `"VOB"` |
+| `visTexIsQuadPoly`   | `int`    | `0` = trójkąt, `1` = kwadrat                       |
+| `visTexAniFPS`       | `float`  | FPS animacji tekstury                              |
+| `visTexAniIsLooping` | `int`    | `0` = raz, `1` = pętla, `2` = ping-pong            |
+| `visTexColorStart_S` | `string` | Kolor początkowy: `"R G B"` (0–255)                |
+| `visTexColorEnd_S`   | `string` | Kolor końcowy (interpolacja w czasie życia)        |
+| `visSizeStart_S`     | `string` | Rozmiar początkowy: `"W H"`                        |
+| `visSizeEndScale`    | `float`  | Mnożnik rozmiaru końcowego                         |
+| `visAlphaFunc_S`     | `string` | Blending: `"BLEND"`, `"ADD"`, `"MUL"`              |
+| `visAlphaStart`      | `float`  | Przezroczystość początkowa (0–255)                 |
+| `visAlphaEnd`        | `float`  | Przezroczystość końcowa (0–255)                    |
 
 ### 7. Efekty dodatkowe
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `trlFadeSpeed` | `float` | Prędkość zanikania śladu (trail) |
-| `trlTexture_S` | `string` | Tekstura śladu |
-| `trlWidth` | `float` | Szerokość śladu |
-| `mrkFadeSpeed` | `float` | Prędkość zanikania odcisku (mark) |
-| `mrkTexture_S` | `string` | Tekstura odcisku |
-| `mrkSize` | `float` | Rozmiar odcisku |
-| `flockMode` | `string` | Tryb stadny: `"WIND"` |
-| `flockStrength` | `float` | Siła efektu stadnego |
-| `useEmittersFOR` | `int` | `1` = cząsteczki podążają za emiterem |
-| `timeStartEnd_S` | `string` | Okno czasowe renderowania: `"8 22"` (8:00–22:00) |
-| `m_bIsAmbientPFX` | `int` | `1` = efekt ambientowy (można wyłączyć w gothic.ini) |
+| Pole              | Typ      | Opis                                                 |
+| ----------------- | -------- | ---------------------------------------------------- |
+| `trlFadeSpeed`    | `float`  | Prędkość zanikania śladu (trail)                     |
+| `trlTexture_S`    | `string` | Tekstura śladu                                       |
+| `trlWidth`        | `float`  | Szerokość śladu                                      |
+| `mrkFadeSpeed`    | `float`  | Prędkość zanikania odcisku (mark)                    |
+| `mrkTexture_S`    | `string` | Tekstura odcisku                                     |
+| `mrkSize`         | `float`  | Rozmiar odcisku                                      |
+| `flockMode`       | `string` | Tryb stadny: `"WIND"`                                |
+| `flockStrength`   | `float`  | Siła efektu stadnego                                 |
+| `useEmittersFOR`  | `int`    | `1` = cząsteczki podążają za emiterem                |
+| `timeStartEnd_S`  | `string` | Okno czasowe renderowania: `"8 22"` (8:00–22:00)     |
+| `m_bIsAmbientPFX` | `int`    | `1` = efekt ambientowy (można wyłączyć w gothic.ini) |
 
 ---
 
@@ -158,10 +158,11 @@ instance PFX_MojDym (C_ParticleFX)
 
 :::tip
 **`visAlphaFunc_S`** — tryby blendingu:
+
 - `"BLEND"` — klasyczne przenikanie (dym, mgła, kurz)
 - `"ADD"` — addytywne (ogień, iskry, magia — jasne, świecące)
 - `"MUL"` — multiplikatywne (cienie, przyciemnianie)
-:::
+  :::
 
 ## Przykład 2: Ognisko
 
@@ -370,14 +371,14 @@ instance PFX_MojaKrew_Plama (C_ParticleFX)
 
 ## Kształty emiterów
 
-| Kształt | `shpType_S` | `shpDim_S` | Opis |
-|---------|-------------|------------|------|
-| Punkt | `"POINT"` | — | Emisja z jednego punktu |
-| Linia | `"LINE"` | `"100"` (długość) | Emisja wzdłuż linii |
-| Prostopadłościan | `"BOX"` | `"W H D"` | Emisja z prostokątnego obszaru |
-| Okrąg | `"CIRCLE"` | `"50"` (promień) | Emisja z koła (lub dysku gdy `shpIsVolume = 1`) |
-| Sfera | `"SPHERE"` | `"50"` (promień) | Emisja z kuli |
-| Mesh | `"MESH"` | `"250"` (skala) | Emisja z powierzchni mesha 3D |
+| Kształt          | `shpType_S` | `shpDim_S`        | Opis                                            |
+| ---------------- | ----------- | ----------------- | ----------------------------------------------- |
+| Punkt            | `"POINT"`   | —                 | Emisja z jednego punktu                         |
+| Linia            | `"LINE"`    | `"100"` (długość) | Emisja wzdłuż linii                             |
+| Prostopadłościan | `"BOX"`     | `"W H D"`         | Emisja z prostokątnego obszaru                  |
+| Okrąg            | `"CIRCLE"`  | `"50"` (promień)  | Emisja z koła (lub dysku gdy `shpIsVolume = 1`) |
+| Sfera            | `"SPHERE"`  | `"50"` (promień)  | Emisja z kuli                                   |
+| Mesh             | `"MESH"`    | `"250"` (skala)   | Emisja z powierzchni mesha 3D                   |
 
 ### shpIsVolume
 
@@ -386,12 +387,12 @@ instance PFX_MojaKrew_Plama (C_ParticleFX)
 
 ## Orientacja cząsteczek
 
-| Tryb | `visOrientation_S` | Opis |
-|------|---------------------|------|
-| Billboard | `"NONE"` | Cząsteczki zawsze zwrócone do kamery (domyślne) |
-| Wzdłuż prędkości | `"VELO"` | Cząsteczki rozciągnięte w kierunku ruchu (deszcz, iskry) |
-| 3D wzdłuż prędkości | `"VELO3D"` | Jak VELO, ale z pełną rotacją 3D |
-| Obiekt | `"VOB"` | Orientacja zgodna z obiektem nadrzędnym |
+| Tryb                | `visOrientation_S` | Opis                                                     |
+| ------------------- | ------------------ | -------------------------------------------------------- |
+| Billboard           | `"NONE"`           | Cząsteczki zawsze zwrócone do kamery (domyślne)          |
+| Wzdłuż prędkości    | `"VELO"`           | Cząsteczki rozciągnięte w kierunku ruchu (deszcz, iskry) |
+| 3D wzdłuż prędkości | `"VELO3D"`         | Jak VELO, ale z pełną rotacją 3D                         |
+| Obiekt              | `"VOB"`            | Orientacja zgodna z obiektem nadrzędnym                  |
 
 ## Rejestracja w ParticleFX.src
 
@@ -426,18 +427,19 @@ Efekty PFX **nie** są kompilowane przez `Gothic.src` — używają własnego pl
 
 ### Częste wzorce
 
-| Efekt | Kluczowe ustawienia |
-|-------|---------------------|
-| Dym | BLEND, duży `visSizeEndScale`, `visAlphaEnd = 0` |
-| Ogień | ADD, animowana tekstura, krótki `lspPartAvg` |
-| Iskry | ADD, jednorazowy burst, grawitacja w dół, kolizje |
+| Efekt        | Kluczowe ustawienia                                  |
+| ------------ | ---------------------------------------------------- |
+| Dym          | BLEND, duży `visSizeEndScale`, `visAlphaEnd = 0`     |
+| Ogień        | ADD, animowana tekstura, krótki `lspPartAvg`         |
+| Iskry        | ADD, jednorazowy burst, grawitacja w dół, kolizje    |
 | Deszcz/śnieg | Duży emiter CIRCLE, offset w Y, `dirAngleElev = -89` |
-| Krew | BLEND, grawitacja, efekt potomny (plamy) |
-| Magia/aura | ADD, CIRCLE emiter, `useEmittersFOR = 1` |
+| Krew         | BLEND, grawitacja, efekt potomny (plamy)             |
+| Magia/aura   | ADD, CIRCLE emiter, `useEmittersFOR = 1`             |
 
 ## Podsumowanie
 
 Tworzenie efektów cząsteczkowych wymaga:
+
 1. **Instancji** klasy `C_ParticleFX` z odpowiednimi parametrami
 2. **Kształtu emitera** (`shpType_S`) — skąd lecą cząsteczki
 3. **Kierunku i prędkości** — jak się poruszają

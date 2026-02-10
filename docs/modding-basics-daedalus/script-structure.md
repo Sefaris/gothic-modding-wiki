@@ -12,16 +12,16 @@ Skrypty Gothic podzielone są na dwa główne katalogi: **Content** (treść gry
 
 Pliki `.src` to listy plików `.d` (Daedalus) w kolejności, w jakiej mają być skompilowane. Silnik Gothic czyta je od góry do dołu:
 
-| Plik | Katalog | Opis |
-|------|---------|------|
-| `Gothic.src` | `Content/` | Główna kompilacja treści gry (NPC, przedmioty, dialogi, questy) |
-| `Fight.src` | `Content/` | Kompilacja taktyk walki (FAI) |
-| `Camera.src` | `System/` | Ustawienia kamery |
-| `Menu.src` | `System/` | Definicje menu gry |
-| `Music.src` | `System/` | Instancje muzyki |
-| `ParticleFX.src` | `System/` | Efekty cząsteczkowe |
-| `SFX.src` | `System/` | Efekty dźwiękowe |
-| `VisualFX.src` | `System/` | Efekty wizualne (czary, aury) |
+| Plik             | Katalog    | Opis                                                            |
+| ---------------- | ---------- | --------------------------------------------------------------- |
+| `Gothic.src`     | `Content/` | Główna kompilacja treści gry (NPC, przedmioty, dialogi, questy) |
+| `Fight.src`      | `Content/` | Kompilacja taktyk walki (FAI)                                   |
+| `Camera.src`     | `System/`  | Ustawienia kamery                                               |
+| `Menu.src`       | `System/`  | Definicje menu gry                                              |
+| `Music.src`      | `System/`  | Instancje muzyki                                                |
+| `ParticleFX.src` | `System/`  | Efekty cząsteczkowe                                             |
+| `SFX.src`        | `System/`  | Efekty dźwiękowe                                                |
+| `VisualFX.src`   | `System/`  | Efekty wizualne (czary, aury)                                   |
 
 :::danger
 Kolejność wpisów w `Gothic.src` jest krytyczna! Jeśli odwołujesz się do instancji (np. przedmiotu w NPC), musi być ona zdefiniowana **wcześniej** w pliku `.src`.
@@ -51,11 +51,11 @@ Content/
 
 Zawiera deklaracje klas silnika oraz stałe globalne. To fundament, na którym opierają się wszystkie inne skrypty.
 
-| Plik | Opis |
-|------|------|
-| `Classes.d` | Klasy silnika: `C_NPC`, `C_Item`, `C_INFO`, `C_Mission` i inne |
-| `Constants.d` | Stałe globalne, zmienne stanu misji, zmienne fabuły |
-| `Fight.d` | Stałe systemu walki |
+| Plik          | Opis                                                           |
+| ------------- | -------------------------------------------------------------- |
+| `Classes.d`   | Klasy silnika: `C_NPC`, `C_Item`, `C_INFO`, `C_Mission` i inne |
+| `Constants.d` | Stałe globalne, zmienne stanu misji, zmienne fabuły            |
+| `Fight.d`     | Stałe systemu walki                                            |
 
 :::info
 Pliki w `_intern/` są zawsze na początku `Gothic.src` — definiują typy danych, z których korzysta reszta skryptów.
@@ -95,6 +95,7 @@ AI/
 ```
 
 **Konwencje nazewnicze w AI:**
+
 - **B\_** (Behavior) — funkcje wykonujące akcje, np. `B_Attack`, `B_Flee`
 - **C\_** (Condition) — funkcje sprawdzające warunki, np. `C_CanSeeNpc`
 - **TA\_** (Tagesablauf) — plany dnia NPC
@@ -104,38 +105,38 @@ AI/
 
 Wszystkie definicje przedmiotów w grze. Pliki pogrupowane według typu:
 
-| Plik | Opis |
-|------|------|
-| `IT_Melee_Weapons.d` | Broń biała (miecze, topory) |
-| `IT_Ranged_Weapons.d` | Broń dystansowa (łuki, kusze) |
-| `IT_Armor.d` | Zbroje |
-| `IT_Food.d` | Jedzenie |
-| `IT_Potions.d` | Mikstury |
-| `IT_Plants.d` | Rośliny (składniki alchemiczne) |
-| `IT_Runen.d` | Runy magiczne |
-| `IT_Scrolls.d` | Zwoje zaklęć |
-| `IT_Ringe.d` | Pierścienie |
-| `IT_Amulette.d` | Amulety |
-| `IT_Keys.d` | Klucze |
-| `IT_Misc.d` | Przedmioty różne (złoto, pochodnie) |
-| `IT_Written.d` | Dokumenty, listy, księgi |
-| `MissionItems_*.d` | Przedmioty misyjne (per rozdział) |
+| Plik                  | Opis                                |
+| --------------------- | ----------------------------------- |
+| `IT_Melee_Weapons.d`  | Broń biała (miecze, topory)         |
+| `IT_Ranged_Weapons.d` | Broń dystansowa (łuki, kusze)       |
+| `IT_Armor.d`          | Zbroje                              |
+| `IT_Food.d`           | Jedzenie                            |
+| `IT_Potions.d`        | Mikstury                            |
+| `IT_Plants.d`         | Rośliny (składniki alchemiczne)     |
+| `IT_Runen.d`          | Runy magiczne                       |
+| `IT_Scrolls.d`        | Zwoje zaklęć                        |
+| `IT_Ringe.d`          | Pierścienie                         |
+| `IT_Amulette.d`       | Amulety                             |
+| `IT_Keys.d`           | Klucze                              |
+| `IT_Misc.d`           | Przedmioty różne (złoto, pochodnie) |
+| `IT_Written.d`        | Dokumenty, listy, księgi            |
+| `MissionItems_*.d`    | Przedmioty misyjne (per rozdział)   |
 
 ### `FAI/` — taktyki walki
 
 Definicje taktyk walki (Fight AI) dla różnych typów przeciwników:
 
-| Plik | Opis |
-|------|------|
-| `FAI_Human_Normal.d` | Standardowa taktyka ludzka |
-| `FAI_Human_Strong.d` | Silny przeciwnik |
-| `FAI_Human_Master.d` | Mistrz walki |
+| Plik                 | Opis                           |
+| -------------------- | ------------------------------ |
+| `FAI_Human_Normal.d` | Standardowa taktyka ludzka     |
+| `FAI_Human_Strong.d` | Silny przeciwnik               |
+| `FAI_Human_Master.d` | Mistrz walki                   |
 | `FAI_Human_Coward.d` | Tchórz (ucieka przy niskim HP) |
-| `FAI_Wolf.d` | Wilk |
-| `FAI_Orc.d` | Ork |
-| `FAI_Dragon.d` | Smok |
-| `FAI_Troll.d` | Troll |
-| `FAI_Demon.d` | Demon |
+| `FAI_Wolf.d`         | Wilk                           |
+| `FAI_Orc.d`          | Ork                            |
+| `FAI_Dragon.d`       | Smok                           |
+| `FAI_Troll.d`        | Troll                          |
+| `FAI_Demon.d`        | Demon                          |
 
 :::tip
 Taktyki walki są przypisywane do NPC przez pole `fight_tactic` w instancji `C_NPC`.
@@ -213,19 +214,19 @@ Story/
 
 **Konwencje nazewnicze NPC (prefixy):**
 
-| Prefix | Gildia |
-|--------|--------|
-| `PC_` | Gracz (Player Character) |
-| `VLK_` | Mieszczanin (Volk) |
-| `MIL_` | Milicjant (Miliz) |
-| `PAL_` | Paladyn |
-| `SLD_` | Najemnik (Söldner) |
-| `BAU_` | Farmer (Bauer) |
-| `BDT_` | Bandyta (Bandit) |
-| `KDF_` | Mag ognia (Kreisfeuer) |
-| `KDW_` | Mag wody (Kreiswasser) |
-| `PIR_` | Pirat |
-| `NOV_` | Nowicjusz (Novize) |
+| Prefix | Gildia                      |
+| ------ | --------------------------- |
+| `PC_`  | Gracz (Player Character)    |
+| `VLK_` | Mieszczanin (Volk)          |
+| `MIL_` | Milicjant (Miliz)           |
+| `PAL_` | Paladyn                     |
+| `SLD_` | Najemnik (Söldner)          |
+| `BAU_` | Farmer (Bauer)              |
+| `BDT_` | Bandyta (Bandit)            |
+| `KDF_` | Mag ognia (Kreisfeuer)      |
+| `KDW_` | Mag wody (Kreiswasser)      |
+| `PIR_` | Pirat                       |
+| `NOV_` | Nowicjusz (Novize)          |
 | `DJG_` | Łowca smoków (Drachenjäger) |
 
 ---
@@ -256,80 +257,80 @@ System/
 
 Deklaracje klas silnika dla poszczególnych systemów. Analogicznie do `Content/_intern/`, ale dla podsystemów:
 
-| Plik | Opis |
-|------|------|
-| `Camera.d` | Klasa `C_CamSys` — parametry kamery |
-| `Menu.d` | Klasy `C_Menu`, `C_MenuItem` — definicje menu |
-| `Music.d` | Klasa `C_MusicTheme` — motywy muzyczne |
-| `ParticleFX.d` | Klasa `C_ParticleFX` — efekty cząsteczkowe |
-| `SFX.d` | Klasa `C_SFX` — efekty dźwiękowe |
-| `VisualFX.d` | Klasa `C_VisualFX` — efekty wizualne |
+| Plik           | Opis                                          |
+| -------------- | --------------------------------------------- |
+| `Camera.d`     | Klasa `C_CamSys` — parametry kamery           |
+| `Menu.d`       | Klasy `C_Menu`, `C_MenuItem` — definicje menu |
+| `Music.d`      | Klasa `C_MusicTheme` — motywy muzyczne        |
+| `ParticleFX.d` | Klasa `C_ParticleFX` — efekty cząsteczkowe    |
+| `SFX.d`        | Klasa `C_SFX` — efekty dźwiękowe              |
+| `VisualFX.d`   | Klasa `C_VisualFX` — efekty wizualne          |
 
 ### `Camera/` — kamera
 
 Instancje kamer używanych w grze:
 
-| Plik | Opis |
-|------|------|
+| Plik        | Opis                                                      |
+| ----------- | --------------------------------------------------------- |
 | `CamInst.d` | Definicje kamer: standardowa, dialogowa, walki, cutscenki |
 
 ### `Menu/` — menu gry
 
 Definicje wszystkich ekranów menu:
 
-| Plik | Opis |
-|------|------|
-| `Menu_Main.d` | Menu główne |
-| `Menu_Status.d` | Ekran postaci (statystyki, ekwipunek) |
-| `Menu_Log.d` | Dziennik questów |
-| `Menu_Opt.d` | Opcje gry |
-| `Menu_Opt_Graphics.d` | Opcje grafiki |
-| `Menu_Opt_Audio.d` | Opcje dźwięku |
-| `Menu_Opt_Controls.d` | Opcje sterowania |
-| `Menu_Savegame.d` | Zapis/odczyt gry |
-| `Menu_Defines.d` | Stałe i definicje wspólne |
+| Plik                  | Opis                                  |
+| --------------------- | ------------------------------------- |
+| `Menu_Main.d`         | Menu główne                           |
+| `Menu_Status.d`       | Ekran postaci (statystyki, ekwipunek) |
+| `Menu_Log.d`          | Dziennik questów                      |
+| `Menu_Opt.d`          | Opcje gry                             |
+| `Menu_Opt_Graphics.d` | Opcje grafiki                         |
+| `Menu_Opt_Audio.d`    | Opcje dźwięku                         |
+| `Menu_Opt_Controls.d` | Opcje sterowania                      |
+| `Menu_Savegame.d`     | Zapis/odczyt gry                      |
+| `Menu_Defines.d`      | Stałe i definicje wspólne             |
 
 ### `Music/` — muzyka
 
-| Plik | Opis |
-|------|------|
+| Plik          | Opis                                                                      |
+| ------------- | ------------------------------------------------------------------------- |
 | `MusicInst.d` | Instancje motywów muzycznych (eksploracja, walka, zagrożenie per lokacja) |
 
 ### `PFX/` — efekty cząsteczkowe
 
-| Plik | Opis |
-|------|------|
-| `PfxInst.d` | Efekty ogólne (ogień, dym, iskry) |
-| `PfxInstEngine.d` | Efekty silnikowe |
-| `PfxInstMagic.d` | Efekty magiczne (zaklęcia, runy) |
+| Plik              | Opis                              |
+| ----------------- | --------------------------------- |
+| `PfxInst.d`       | Efekty ogólne (ogień, dym, iskry) |
+| `PfxInstEngine.d` | Efekty silnikowe                  |
+| `PfxInstMagic.d`  | Efekty magiczne (zaklęcia, runy)  |
 
 ### `SFX/` — efekty dźwiękowe
 
-| Plik | Opis |
-|------|------|
-| `SfxInst.d` | Dźwięki otoczenia, interfejsu, obiektów |
+| Plik              | Opis                                         |
+| ----------------- | -------------------------------------------- |
+| `SfxInst.d`       | Dźwięki otoczenia, interfejsu, obiektów      |
 | `SfxInstSpeech.d` | Dźwięki mowy (konfiguracja systemu dialogów) |
 
 ### `VisualFX/` — efekty wizualne
 
-| Plik | Opis |
-|------|------|
+| Plik             | Opis                               |
+| ---------------- | ---------------------------------- |
 | `VisualFxInst.d` | Efekty wizualne zaklęć, aur, buffy |
 
 ---
 
 ## Podsumowanie
 
-| Obszar | Katalog | Kompilacja | Opis |
-|--------|---------|------------|------|
-| Klasy silnika | `Content/_intern/` | `Gothic.src` | Fundamenty — klasy C_NPC, C_Item, C_INFO... |
-| AI | `Content/AI/` | `Gothic.src` | Zachowania, percepcja, stany AI |
-| Przedmioty | `Content/Items/` | `Gothic.src` | Bronie, zbroje, mikstury, jedzenie |
-| Taktyki walki | `Content/FAI/` | `Fight.src` | Taktyki walki per typ wroga |
-| Fabuła | `Content/Story/` | `Gothic.src` | NPC, dialogi, questy, eventy |
-| Kamera | `System/Camera/` | `Camera.src` | Tryby kamery |
-| Menu | `System/Menu/` | `Menu.src` | Ekrany menu gry |
-| Muzyka | `System/Music/` | `Music.src` | Motywy muzyczne |
-| Cząsteczki | `System/PFX/` | `ParticleFX.src` | Efekty cząsteczkowe |
-| Dźwięk | `System/SFX/` | `SFX.src` | Efekty dźwiękowe |
-| Efekty wizualne | `System/VisualFX/` | `VisualFX.src` | Efekty zaklęć i aur |
+| Obszar          | Katalog            | Kompilacja       | Opis                                        |
+| --------------- | ------------------ | ---------------- | ------------------------------------------- |
+| Klasy silnika   | `Content/_intern/` | `Gothic.src`     | Fundamenty — klasy C_NPC, C_Item, C_INFO... |
+| AI              | `Content/AI/`      | `Gothic.src`     | Zachowania, percepcja, stany AI             |
+| Przedmioty      | `Content/Items/`   | `Gothic.src`     | Bronie, zbroje, mikstury, jedzenie          |
+| Taktyki walki   | `Content/FAI/`     | `Fight.src`      | Taktyki walki per typ wroga                 |
+| Fabuła          | `Content/Story/`   | `Gothic.src`     | NPC, dialogi, questy, eventy                |
+| Kamera          | `System/Camera/`   | `Camera.src`     | Tryby kamery                                |
+| Menu            | `System/Menu/`     | `Menu.src`       | Ekrany menu gry                             |
+| Muzyka          | `System/Music/`    | `Music.src`      | Motywy muzyczne                             |
+| Cząsteczki      | `System/PFX/`      | `ParticleFX.src` | Efekty cząsteczkowe                         |
+| Dźwięk          | `System/SFX/`      | `SFX.src`        | Efekty dźwiękowe                            |
+| Efekty wizualne | `System/VisualFX/` | `VisualFX.src`   | Efekty zaklęć i aur                         |

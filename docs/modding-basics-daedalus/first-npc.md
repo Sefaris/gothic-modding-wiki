@@ -11,6 +11,7 @@ W tym poradniku nauczysz się tworzyć prostą postać niezależną (NPC) w jęz
 ## Wymagania wstępne
 
 Przed rozpoczęciem upewnij się, że:
+
 - Masz zainstalowane skrypty Gothic (folder `Scripts/Content/`)
 - Rozumiesz [strukturę skryptów](./script-structure.md)
 - Wiesz, czym jest instancja i prototyp w Daedalusie
@@ -19,19 +20,19 @@ Przed rozpoczęciem upewnij się, że:
 
 Każdy NPC w Gothic jest **instancją** klasy `C_NPC`. Najważniejsze pola tej klasy to:
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `name` | `string[5]` | Imię NPC (wyświetlane w grze) |
-| `guild` | `int` | Gildia (np. `GIL_MIL` — milicja, `GIL_OUT` — bezgildyjny) |
-| `id` | `int` | Unikalny identyfikator NPC |
-| `voice` | `int` | Numer głosu (powiązany z plikami audio) |
-| `level` | `int` | Poziom postaci |
-| `attribute[]` | `int[]` | Atrybuty: HP, mana, siła, zręczność |
-| `protection[]` | `int[]` | Ochrona przed typami obrażeń |
-| `fight_tactic` | `int` | Taktyka walki (np. `FAI_HUMAN_COWARD`) |
-| `daily_routine` | `func` | Funkcja z dziennym planem NPC |
-| `npctype` | `int` | Typ NPC (główny, przyjaciel, wróg) |
-| `flags` | `int` | Flagi (np. `NPC_FLAG_IMMORTAL`) |
+| Pole            | Typ         | Opis                                                      |
+| --------------- | ----------- | --------------------------------------------------------- |
+| `name`          | `string[5]` | Imię NPC (wyświetlane w grze)                             |
+| `guild`         | `int`       | Gildia (np. `GIL_MIL` — milicja, `GIL_OUT` — bezgildyjny) |
+| `id`            | `int`       | Unikalny identyfikator NPC                                |
+| `voice`         | `int`       | Numer głosu (powiązany z plikami audio)                   |
+| `level`         | `int`       | Poziom postaci                                            |
+| `attribute[]`   | `int[]`     | Atrybuty: HP, mana, siła, zręczność                       |
+| `protection[]`  | `int[]`     | Ochrona przed typami obrażeń                              |
+| `fight_tactic`  | `int`       | Taktyka walki (np. `FAI_HUMAN_COWARD`)                    |
+| `daily_routine` | `func`      | Funkcja z dziennym planem NPC                             |
+| `npctype`       | `int`       | Typ NPC (główny, przyjaciel, wróg)                        |
+| `flags`         | `int`       | Flagi (np. `NPC_FLAG_IMMORTAL`)                           |
 
 ## Prototyp Npc_Default
 
@@ -147,16 +148,16 @@ Waypointy (np. `"NW_CITY_WELL_01"`) muszą istnieć w świecie gry (pliku `.zen`
 
 Dostępne funkcje planu dnia:
 
-| Funkcja | Opis |
-|---------|------|
+| Funkcja                | Opis                         |
+| ---------------------- | ---------------------------- |
 | `TA_Stand_ArmsCrossed` | Stoi ze skrzyżowanymi rękoma |
-| `TA_Stand_Guarding` | Stoi na straży |
-| `TA_Sit_Bench` | Siedzi na ławce |
-| `TA_Sleep` | Śpi |
-| `TA_Smalltalk` | Rozmawia z pobliskimi NPC |
-| `TA_Smith` | Kowalstwo |
-| `TA_Eat` | Je |
-| `TA_Practice` | Ćwiczy |
+| `TA_Stand_Guarding`    | Stoi na straży               |
+| `TA_Sit_Bench`         | Siedzi na ławce              |
+| `TA_Sleep`             | Śpi                          |
+| `TA_Smalltalk`         | Rozmawia z pobliskimi NPC    |
+| `TA_Smith`             | Kowalstwo                    |
+| `TA_Eat`               | Je                           |
+| `TA_Practice`          | Ćwiczy                       |
 
 ## Rejestracja w Gothic.src
 
@@ -187,6 +188,7 @@ func void Startup_NewWorld ()
 ## Podsumowanie
 
 Utworzenie NPC wymaga:
+
 1. **Instancji** dziedziczącej po `Npc_Default`
 2. Ustawienia **atrybutów** (siła, HP, poziom)
 3. Konfiguracji **wyglądu** (model, tekstura, zbroja)

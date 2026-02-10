@@ -11,6 +11,7 @@ In this tutorial you will learn how to create a simple non-player character (NPC
 ## Prerequisites
 
 Before starting, make sure that:
+
 - You have the Gothic scripts installed (`Scripts/Content/` folder)
 - You understand the [script structure](./script-structure.md)
 - You know what an instance and prototype are in Daedalus
@@ -19,19 +20,19 @@ Before starting, make sure that:
 
 Every NPC in Gothic is an **instance** of the `C_NPC` class. The most important fields are:
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `name` | `string[5]` | NPC name (displayed in game) |
-| `guild` | `int` | Guild (e.g., `GIL_MIL` — militia, `GIL_OUT` — guildless) |
-| `id` | `int` | Unique NPC identifier |
-| `voice` | `int` | Voice number (linked to audio files) |
-| `level` | `int` | Character level |
-| `attribute[]` | `int[]` | Attributes: HP, mana, strength, dexterity |
-| `protection[]` | `int[]` | Protection against damage types |
-| `fight_tactic` | `int` | Combat tactic (e.g., `FAI_HUMAN_COWARD`) |
-| `daily_routine` | `func` | NPC daily routine function |
-| `npctype` | `int` | NPC type (main, friend, enemy) |
-| `flags` | `int` | Flags (e.g., `NPC_FLAG_IMMORTAL`) |
+| Field           | Type        | Description                                              |
+| --------------- | ----------- | -------------------------------------------------------- |
+| `name`          | `string[5]` | NPC name (displayed in game)                             |
+| `guild`         | `int`       | Guild (e.g., `GIL_MIL` — militia, `GIL_OUT` — guildless) |
+| `id`            | `int`       | Unique NPC identifier                                    |
+| `voice`         | `int`       | Voice number (linked to audio files)                     |
+| `level`         | `int`       | Character level                                          |
+| `attribute[]`   | `int[]`     | Attributes: HP, mana, strength, dexterity                |
+| `protection[]`  | `int[]`     | Protection against damage types                          |
+| `fight_tactic`  | `int`       | Combat tactic (e.g., `FAI_HUMAN_COWARD`)                 |
+| `daily_routine` | `func`      | NPC daily routine function                               |
+| `npctype`       | `int`       | NPC type (main, friend, enemy)                           |
+| `flags`         | `int`       | Flags (e.g., `NPC_FLAG_IMMORTAL`)                        |
 
 ## The Npc_Default Prototype
 
@@ -147,16 +148,16 @@ Waypoints (e.g., `"NW_CITY_WELL_01"`) must exist in the game world (`.zen` file)
 
 Available daily routine functions:
 
-| Function | Description |
-|----------|-------------|
+| Function               | Description              |
+| ---------------------- | ------------------------ |
 | `TA_Stand_ArmsCrossed` | Stands with arms crossed |
-| `TA_Stand_Guarding` | Stands on guard |
-| `TA_Sit_Bench` | Sits on a bench |
-| `TA_Sleep` | Sleeps |
-| `TA_Smalltalk` | Talks with nearby NPCs |
-| `TA_Smith` | Smithing |
-| `TA_Eat` | Eats |
-| `TA_Practice` | Practices |
+| `TA_Stand_Guarding`    | Stands on guard          |
+| `TA_Sit_Bench`         | Sits on a bench          |
+| `TA_Sleep`             | Sleeps                   |
+| `TA_Smalltalk`         | Talks with nearby NPCs   |
+| `TA_Smith`             | Smithing                 |
+| `TA_Eat`               | Eats                     |
+| `TA_Practice`          | Practices                |
 
 ## Registration in Gothic.src
 
@@ -187,6 +188,7 @@ func void Startup_NewWorld ()
 ## Summary
 
 Creating an NPC requires:
+
 1. An **instance** inheriting from `Npc_Default`
 2. Setting **attributes** (strength, HP, level)
 3. Configuring **appearance** (model, texture, armor)

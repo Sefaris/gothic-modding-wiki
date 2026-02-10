@@ -12,36 +12,36 @@ W tym poradniku nauczysz się tworzyć przedmioty w języku Daedalus — od miec
 
 Każdy przedmiot w Gothic to instancja klasy `C_Item`. Najważniejsze pola:
 
-| Pole | Typ | Opis |
-|------|-----|------|
-| `name` | `string` | Nazwa wyświetlana w grze |
-| `mainflag` | `int` | Główna kategoria (broń, zbroja, mikstura...) |
-| `flags` | `int` | Typ szczegółowy (miecz, topór, łuk...) |
-| `value` | `int` | Wartość w złocie |
-| `visual` | `string` | Model 3D (`*.3DS`) |
-| `material` | `int` | Materiał (metal, drewno, szkło...) |
-| `damageTotal` | `int` | Łączne obrażenia (broń) |
-| `damagetype` | `int` | Typ obrażeń (sieczne, obuchowe...) |
-| `range` | `int` | Zasięg broni |
-| `protection[]` | `int[]` | Ochrona (zbroje) |
-| `cond_atr[]` | `int[]` | Wymagane atrybuty do użycia |
-| `cond_value[]` | `int[]` | Wymagane wartości atrybutów |
-| `on_state[]` | `func[]` | Funkcje wywoływane przy użyciu |
-| `description` | `string` | Opis w menu ekwipunku |
-| `TEXT[]` / `COUNT[]` | `string[]`/`int[]` | Linie opisu w tooltipie |
+| Pole                 | Typ                | Opis                                         |
+| -------------------- | ------------------ | -------------------------------------------- |
+| `name`               | `string`           | Nazwa wyświetlana w grze                     |
+| `mainflag`           | `int`              | Główna kategoria (broń, zbroja, mikstura...) |
+| `flags`              | `int`              | Typ szczegółowy (miecz, topór, łuk...)       |
+| `value`              | `int`              | Wartość w złocie                             |
+| `visual`             | `string`           | Model 3D (`*.3DS`)                           |
+| `material`           | `int`              | Materiał (metal, drewno, szkło...)           |
+| `damageTotal`        | `int`              | Łączne obrażenia (broń)                      |
+| `damagetype`         | `int`              | Typ obrażeń (sieczne, obuchowe...)           |
+| `range`              | `int`              | Zasięg broni                                 |
+| `protection[]`       | `int[]`            | Ochrona (zbroje)                             |
+| `cond_atr[]`         | `int[]`            | Wymagane atrybuty do użycia                  |
+| `cond_value[]`       | `int[]`            | Wymagane wartości atrybutów                  |
+| `on_state[]`         | `func[]`           | Funkcje wywoływane przy użyciu               |
+| `description`        | `string`           | Opis w menu ekwipunku                        |
+| `TEXT[]` / `COUNT[]` | `string[]`/`int[]` | Linie opisu w tooltipie                      |
 
 ### Kategorie przedmiotów (mainflag)
 
-| Stała | Opis |
-|-------|------|
-| `ITEM_KAT_NF` | Broń biała (melee) |
-| `ITEM_KAT_FF` | Broń dystansowa |
-| `ITEM_KAT_ARMOR` | Zbroja |
-| `ITEM_KAT_FOOD` | Jedzenie |
-| `ITEM_KAT_POTIONS` | Mikstury |
-| `ITEM_KAT_DOCS` | Dokumenty |
-| `ITEM_KAT_RUNE` | Runy i zwoje |
-| `ITEM_KAT_NONE` | Inne (złoto, klucze, mission items) |
+| Stała              | Opis                                |
+| ------------------ | ----------------------------------- |
+| `ITEM_KAT_NF`      | Broń biała (melee)                  |
+| `ITEM_KAT_FF`      | Broń dystansowa                     |
+| `ITEM_KAT_ARMOR`   | Zbroja                              |
+| `ITEM_KAT_FOOD`    | Jedzenie                            |
+| `ITEM_KAT_POTIONS` | Mikstury                            |
+| `ITEM_KAT_DOCS`    | Dokumenty                           |
+| `ITEM_KAT_RUNE`    | Runy i zwoje                        |
+| `ITEM_KAT_NONE`    | Inne (złoto, klucze, mission items) |
 
 ## Przykład 1: Broń biała (miecz)
 
@@ -178,6 +178,7 @@ Items\IT_Food.d
 ## Podsumowanie
 
 Tworzenie przedmiotów wymaga:
+
 1. **Instancji** klasy `C_Item` z odpowiednim `mainflag` i `flags`
 2. Ustawienia **statystyk** (obrażenia, ochrona, wymagania)
 3. Podania **modelu 3D** (`.3DS`)
