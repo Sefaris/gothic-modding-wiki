@@ -39,7 +39,7 @@ The documentation is divided into 5 main sections:
 
 ### Encyclopedia (separate docs plugin)
 
-- **Daily Routines (TA_)** (`routines.md`) – Complete list of TA_ daily routine functions.
+- **Daily Routines (TA\_)** (`routines.md`) – Complete list of TA\_ daily routine functions.
 - **Animations** (`animations.md`) – Complete list of animations, MDS overlays, state transitions.
 
 ## Localization (i18n)
