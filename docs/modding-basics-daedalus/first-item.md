@@ -77,7 +77,7 @@ instance ItMw_Miecz_Konrada (C_Item)
 | Field           | Value                            | Description                      |
 | --------------- | -------------------------------- | -------------------------------- |
 | `name`          | `"Konrad's Sword"`               | Item name displayed in game      |
-| `mainflag`      | `ITEM_KAT_NF`                   | Melee weapon category            |
+| `mainflag`      | `ITEM_KAT_NF`                    | Melee weapon category            |
 | `flags`         | `ITEM_SWD`                       | One-handed sword                 |
 | `material`      | `MAT_METAL`                      | Metal (affects pickup/hit sound) |
 | `damageTotal`   | `35`                             | 35 damage points                 |
@@ -124,22 +124,22 @@ func void Use_ItPo_Zdrowie_Konrada ()
 };
 ```
 
-| Field                                           | Value                    | Description                         |
-| ----------------------------------------------- | ------------------------ | ----------------------------------- |
-| `name`                                          | `"Konrad's Health Potion"` | Item name displayed in game         |
-| `mainflag`                                      | `ITEM_KAT_POTIONS`       | Potion category                     |
-| `flags`                                         | `ITEM_MULTI`             | Stackable item                      |
-| `value`                                         | `75`                     | Worth 75 gold                       |
-| `visual`                                        | `"ItPo_Health_01.3ds"`   | 3D model file                       |
-| `material`                                      | `MAT_GLAS`               | Glass (affects pickup sound)        |
+| Field                                           | Value                      | Description                       |
+| ----------------------------------------------- | -------------------------- | --------------------------------- |
+| `name`                                          | `"Konrad's Health Potion"` | Item name displayed in game       |
+| `mainflag`                                      | `ITEM_KAT_POTIONS`         | Potion category                   |
+| `flags`                                         | `ITEM_MULTI`               | Stackable item                    |
+| `value`                                         | `75`                       | Worth 75 gold                     |
+| `visual`                                        | `"ItPo_Health_01.3ds"`     | 3D model file                     |
+| `material`                                      | `MAT_GLAS`                 | Glass (affects pickup sound)      |
 | `on_state[0]`                                   | `Use_ItPo_Zdrowie_Konrada` | Function called when item is used |
-| `scemeName`                                     | `"POTIONFAST"`           | Drinking animation                  |
-| `wear`                                          | `WEAR_EFFECT`            | Enables visual effect on use        |
-| `effect`                                        | `"SPELLFX_HEALTHPOTION"` | Visual effect played on use         |
-| `description`                                   | `name`                   | Tooltip header = item name          |
-| `TEXT[1]/COUNT[1]`                              | `+100 HP`                | Tooltip: health bonus               |
-| `TEXT[5]/COUNT[5]`                              | value                    | Tooltip: item value                 |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                        | Restores 100 HP on use              |
+| `scemeName`                                     | `"POTIONFAST"`             | Drinking animation                |
+| `wear`                                          | `WEAR_EFFECT`              | Enables visual effect on use      |
+| `effect`                                        | `"SPELLFX_HEALTHPOTION"`   | Visual effect played on use       |
+| `description`                                   | `name`                     | Tooltip header = item name        |
+| `TEXT[1]/COUNT[1]`                              | `+100 HP`                  | Tooltip: health bonus             |
+| `TEXT[5]/COUNT[5]`                              | value                      | Tooltip: item value               |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                          | Restores 100 HP on use            |
 
 :::tip
 `ITEM_MULTI` makes items of the same type stack in the inventory (instead of taking up separate slots).
@@ -171,20 +171,20 @@ func void Use_ItFo_Chleb_Konrada ()
 };
 ```
 
-| Field                                          | Value          | Description                    |
-| ---------------------------------------------- | -------------- | ------------------------------ |
-| `name`                                         | `"Konrad's Bread"` | Item name displayed in game |
-| `mainflag`                                     | `ITEM_KAT_FOOD` | Food category                 |
-| `flags`                                        | `ITEM_MULTI`   | Stackable item                 |
-| `value`                                        | `10`           | Worth 10 gold                  |
-| `visual`                                       | `"ItFo_Bread.3ds"` | 3D model file              |
-| `material`                                     | `MAT_LEATHER`  | Material (affects sounds)      |
-| `on_state[0]`                                  | `Use_ItFo_Chleb_Konrada` | Function called on use |
-| `scemeName`                                    | `"FOOD"`       | Eating animation               |
-| `description`                                  | `name`         | Tooltip header = item name     |
-| `TEXT[1]/COUNT[1]`                             | `+15 HP`       | Tooltip: health bonus          |
-| `TEXT[5]/COUNT[5]`                             | value          | Tooltip: item value            |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 15)` | —              | Restores 15 HP on use          |
+| Field                                          | Value                    | Description                 |
+| ---------------------------------------------- | ------------------------ | --------------------------- |
+| `name`                                         | `"Konrad's Bread"`       | Item name displayed in game |
+| `mainflag`                                     | `ITEM_KAT_FOOD`          | Food category               |
+| `flags`                                        | `ITEM_MULTI`             | Stackable item              |
+| `value`                                        | `10`                     | Worth 10 gold               |
+| `visual`                                       | `"ItFo_Bread.3ds"`       | 3D model file               |
+| `material`                                     | `MAT_LEATHER`            | Material (affects sounds)   |
+| `on_state[0]`                                  | `Use_ItFo_Chleb_Konrada` | Function called on use      |
+| `scemeName`                                    | `"FOOD"`                 | Eating animation            |
+| `description`                                  | `name`                   | Tooltip header = item name  |
+| `TEXT[1]/COUNT[1]`                             | `+15 HP`                 | Tooltip: health bonus       |
+| `TEXT[5]/COUNT[5]`                             | value                    | Tooltip: item value         |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 15)` | —                        | Restores 15 HP on use       |
 
 ## Giving Items to NPCs
 

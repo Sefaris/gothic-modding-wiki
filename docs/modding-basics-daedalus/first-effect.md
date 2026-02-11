@@ -156,32 +156,32 @@ instance PFX_MySmoke (C_ParticleFX)
 };
 ```
 
-| Field                | Value           | Description                       |
-| -------------------- | --------------- | --------------------------------- |
-| `ppsValue`           | `30`            | 30 particles per second           |
-| `ppsScaleKeys_S`     | `"1"`           | Constant rate (no scaling)        |
-| `ppsIsLooping`       | `1`             | Continuous emission               |
-| `shpType_S`          | `"POINT"`       | Emits from a single point         |
-| `shpFOR_S`           | `"OBJECT"`      | Relative to the emitter object    |
-| `dirMode_S`          | `"DIR"`         | Directional emission              |
-| `dirFOR_S`           | `"OBJECT"`      | Direction relative to object      |
-| `dirAngleElev`       | `90`            | Upward direction                  |
-| `dirAngleElevVar`    | `15`            | ±15° random variance              |
-| `dirAngleHeadVar`    | `180`           | Full 360° horizontal spread       |
-| `velAvg`             | `0.02`          | Slow speed                        |
-| `velVar`             | `0.01`          | Slight speed variation            |
-| `lspPartAvg`         | `2500`          | Average lifespan 2.5 seconds      |
-| `lspPartVar`         | `500`           | ±0.5s lifespan variance           |
-| `flyGravity_S`       | `"0 0.0001 0"`  | Slightly upward (smoke rises)     |
-| `visName_S`          | `"SMOKE1.TGA"`  | Smoke texture                     |
-| `visOrientation_S`   | `"NONE"`        | Billboard facing camera           |
-| `visTexColorStart_S` | `"150 150 150"` | Gray at birth                     |
-| `visTexColorEnd_S`   | `"80 80 80"`    | Darkens over time                 |
-| `visSizeStart_S`     | `"10 10"`       | 10×10 starting size                |
-| `visSizeEndScale`    | `5`             | Grows 5×                          |
-| `visAlphaFunc_S`     | `"BLEND"`       | Standard blending                 |
-| `visAlphaStart`      | `180`           | Semi-transparent at birth         |
-| `visAlphaEnd`        | `0`             | Fades out completely              |
+| Field                | Value           | Description                    |
+| -------------------- | --------------- | ------------------------------ |
+| `ppsValue`           | `30`            | 30 particles per second        |
+| `ppsScaleKeys_S`     | `"1"`           | Constant rate (no scaling)     |
+| `ppsIsLooping`       | `1`             | Continuous emission            |
+| `shpType_S`          | `"POINT"`       | Emits from a single point      |
+| `shpFOR_S`           | `"OBJECT"`      | Relative to the emitter object |
+| `dirMode_S`          | `"DIR"`         | Directional emission           |
+| `dirFOR_S`           | `"OBJECT"`      | Direction relative to object   |
+| `dirAngleElev`       | `90`            | Upward direction               |
+| `dirAngleElevVar`    | `15`            | ±15° random variance           |
+| `dirAngleHeadVar`    | `180`           | Full 360° horizontal spread    |
+| `velAvg`             | `0.02`          | Slow speed                     |
+| `velVar`             | `0.01`          | Slight speed variation         |
+| `lspPartAvg`         | `2500`          | Average lifespan 2.5 seconds   |
+| `lspPartVar`         | `500`           | ±0.5s lifespan variance        |
+| `flyGravity_S`       | `"0 0.0001 0"`  | Slightly upward (smoke rises)  |
+| `visName_S`          | `"SMOKE1.TGA"`  | Smoke texture                  |
+| `visOrientation_S`   | `"NONE"`        | Billboard facing camera        |
+| `visTexColorStart_S` | `"150 150 150"` | Gray at birth                  |
+| `visTexColorEnd_S`   | `"80 80 80"`    | Darkens over time              |
+| `visSizeStart_S`     | `"10 10"`       | 10×10 starting size            |
+| `visSizeEndScale`    | `5`             | Grows 5×                       |
+| `visAlphaFunc_S`     | `"BLEND"`       | Standard blending              |
+| `visAlphaStart`      | `180`           | Semi-transparent at birth      |
+| `visAlphaEnd`        | `0`             | Fades out completely           |
 
 :::tip
 **`visAlphaFunc_S`** — blending modes:
@@ -240,36 +240,36 @@ instance PFX_MyFire (C_ParticleFX)
 };
 ```
 
-| Field                | Value           | Description                       |
-| -------------------- | --------------- | --------------------------------- |
-| `ppsValue`           | `80`            | 80 particles per second           |
-| `ppsScaleKeys_S`     | `"1"`           | Constant rate                     |
-| `ppsIsLooping`       | `1`             | Continuous emission               |
-| `shpType_S`          | `"CIRCLE"`      | Circular emitter shape            |
-| `shpFOR_S`           | `"OBJECT"`      | Relative to the emitter object    |
-| `shpIsVolume`        | `1`             | Emits from entire disk area       |
-| `shpDim_S`           | `"15"`          | Circle radius 15 units            |
-| `dirMode_S`          | `"DIR"`         | Directional emission              |
-| `dirFOR_S`           | `"OBJECT"`      | Direction relative to object      |
-| `dirAngleElev`       | `90`            | Upward direction                  |
-| `dirAngleElevVar`    | `20`            | ±20° random variance              |
-| `dirAngleHeadVar`    | `180`           | Full 360° horizontal spread       |
-| `velAvg`             | `0.05`          | Moderate speed                    |
-| `velVar`             | `0.02`          | Speed variation                   |
-| `lspPartAvg`         | `800`           | Short lifespan (0.8s)             |
-| `lspPartVar`         | `200`           | ±0.2s variance                    |
-| `flyGravity_S`       | `"0 0.0003 0"` | Slight upward pull (hot air)      |
+| Field                | Value             | Description                    |
+| -------------------- | ----------------- | ------------------------------ |
+| `ppsValue`           | `80`              | 80 particles per second        |
+| `ppsScaleKeys_S`     | `"1"`             | Constant rate                  |
+| `ppsIsLooping`       | `1`               | Continuous emission            |
+| `shpType_S`          | `"CIRCLE"`        | Circular emitter shape         |
+| `shpFOR_S`           | `"OBJECT"`        | Relative to the emitter object |
+| `shpIsVolume`        | `1`               | Emits from entire disk area    |
+| `shpDim_S`           | `"15"`            | Circle radius 15 units         |
+| `dirMode_S`          | `"DIR"`           | Directional emission           |
+| `dirFOR_S`           | `"OBJECT"`        | Direction relative to object   |
+| `dirAngleElev`       | `90`              | Upward direction               |
+| `dirAngleElevVar`    | `20`              | ±20° random variance           |
+| `dirAngleHeadVar`    | `180`             | Full 360° horizontal spread    |
+| `velAvg`             | `0.05`            | Moderate speed                 |
+| `velVar`             | `0.02`            | Speed variation                |
+| `lspPartAvg`         | `800`             | Short lifespan (0.8s)          |
+| `lspPartVar`         | `200`             | ±0.2s variance                 |
+| `flyGravity_S`       | `"0 0.0003 0"`    | Slight upward pull (hot air)   |
 | `visName_S`          | `"FIREFLARE.TGA"` | Fire texture                   |
-| `visOrientation_S`   | `"NONE"`        | Billboard facing camera           |
-| `visTexAniFPS`       | `8`             | Texture animation speed           |
-| `visTexAniIsLooping` | `1`             | Animation loops                   |
-| `visTexColorStart_S` | `"255 255 255"` | White (overexposed center)        |
-| `visTexColorEnd_S`   | `"255 100 30"`  | Orange (flame edges)              |
-| `visSizeStart_S`     | `"5 5"`         | 5×5 starting size                  |
-| `visSizeEndScale`    | `4`             | Grows 4×                          |
-| `visAlphaFunc_S`     | `"ADD"`         | Additive blending (glowing)       |
-| `visAlphaStart`      | `255`           | Fully opaque at birth             |
-| `visAlphaEnd`        | `0`             | Fades out completely              |
+| `visOrientation_S`   | `"NONE"`          | Billboard facing camera        |
+| `visTexAniFPS`       | `8`               | Texture animation speed        |
+| `visTexAniIsLooping` | `1`               | Animation loops                |
+| `visTexColorStart_S` | `"255 255 255"`   | White (overexposed center)     |
+| `visTexColorEnd_S`   | `"255 100 30"`    | Orange (flame edges)           |
+| `visSizeStart_S`     | `"5 5"`           | 5×5 starting size              |
+| `visSizeEndScale`    | `4`               | Grows 4×                       |
+| `visAlphaFunc_S`     | `"ADD"`           | Additive blending (glowing)    |
+| `visAlphaStart`      | `255`             | Fully opaque at birth          |
+| `visAlphaEnd`        | `0`               | Fades out completely           |
 
 ## Example 3: Sparks
 
@@ -318,34 +318,34 @@ instance PFX_MySparks (C_ParticleFX)
 };
 ```
 
-| Field                | Value           | Description                       |
-| -------------------- | --------------- | --------------------------------- |
-| `ppsValue`           | `50`            | 50 particles in burst             |
-| `ppsScaleKeys_S`     | `"1 0"`         | Instant burst, then nothing       |
-| `ppsIsLooping`       | `0`             | One-shot (not looping)            |
-| `ppsFPS`             | `2`             | Scale key playback speed          |
-| `shpType_S`          | `"POINT"`       | Emits from a single point         |
-| `shpFOR_S`           | `"OBJECT"`      | Relative to the emitter object    |
-| `dirMode_S`          | `"DIR"`         | Directional emission              |
-| `dirFOR_S`           | `"OBJECT"`      | Direction relative to object      |
-| `dirAngleHeadVar`    | `180`           | Full 360° scatter                 |
-| `dirAngleElev`       | `45`            | Slightly upward                   |
-| `dirAngleElevVar`    | `45`            | Wide vertical variance            |
-| `velAvg`             | `0.15`          | Fast speed                        |
-| `velVar`             | `0.08`          | High speed variance               |
-| `lspPartAvg`         | `600`           | Short lifespan (0.6s)             |
-| `lspPartVar`         | `300`           | ±0.3s variance                    |
-| `flyGravity_S`       | `"0 -0.0005 0"` | Gravity pulls down                |
-| `flyCollDet_B`       | `1`             | Collides with world geometry      |
-| `visName_S`          | `"ZFLARE1.TGA"` | Small flare texture               |
-| `visOrientation_S`   | `"NONE"`        | Billboard facing camera           |
-| `visTexColorStart_S` | `"255 220 100"` | Yellow                            |
-| `visTexColorEnd_S`   | `"255 80 20"`   | Dark orange                       |
-| `visSizeStart_S`     | `"2 2"`         | 2×2 small size                     |
-| `visSizeEndScale`    | `0.5`           | Shrinks to half size              |
-| `visAlphaFunc_S`     | `"ADD"`         | Additive blending (glowing)       |
-| `visAlphaStart`      | `255`           | Fully opaque at birth             |
-| `visAlphaEnd`        | `0`             | Fades out completely              |
+| Field                | Value           | Description                    |
+| -------------------- | --------------- | ------------------------------ |
+| `ppsValue`           | `50`            | 50 particles in burst          |
+| `ppsScaleKeys_S`     | `"1 0"`         | Instant burst, then nothing    |
+| `ppsIsLooping`       | `0`             | One-shot (not looping)         |
+| `ppsFPS`             | `2`             | Scale key playback speed       |
+| `shpType_S`          | `"POINT"`       | Emits from a single point      |
+| `shpFOR_S`           | `"OBJECT"`      | Relative to the emitter object |
+| `dirMode_S`          | `"DIR"`         | Directional emission           |
+| `dirFOR_S`           | `"OBJECT"`      | Direction relative to object   |
+| `dirAngleHeadVar`    | `180`           | Full 360° scatter              |
+| `dirAngleElev`       | `45`            | Slightly upward                |
+| `dirAngleElevVar`    | `45`            | Wide vertical variance         |
+| `velAvg`             | `0.15`          | Fast speed                     |
+| `velVar`             | `0.08`          | High speed variance            |
+| `lspPartAvg`         | `600`           | Short lifespan (0.6s)          |
+| `lspPartVar`         | `300`           | ±0.3s variance                 |
+| `flyGravity_S`       | `"0 -0.0005 0"` | Gravity pulls down             |
+| `flyCollDet_B`       | `1`             | Collides with world geometry   |
+| `visName_S`          | `"ZFLARE1.TGA"` | Small flare texture            |
+| `visOrientation_S`   | `"NONE"`        | Billboard facing camera        |
+| `visTexColorStart_S` | `"255 220 100"` | Yellow                         |
+| `visTexColorEnd_S`   | `"255 80 20"`   | Dark orange                    |
+| `visSizeStart_S`     | `"2 2"`         | 2×2 small size                 |
+| `visSizeEndScale`    | `0.5`           | Shrinks to half size           |
+| `visAlphaFunc_S`     | `"ADD"`         | Additive blending (glowing)    |
+| `visAlphaStart`      | `255`           | Fully opaque at birth          |
+| `visAlphaEnd`        | `0`             | Fades out completely           |
 
 ## Example 4: Snow
 
@@ -397,35 +397,35 @@ instance PFX_MySnow (C_ParticleFX)
 };
 ```
 
-| Field                | Value                    | Description                        |
-| -------------------- | ------------------------ | ---------------------------------- |
-| `ppsValue`           | `50`                     | 50 particles per second            |
-| `ppsScaleKeys_S`     | `"1"`                    | Constant rate                      |
-| `ppsIsLooping`       | `1`                      | Continuous emission                |
-| `shpType_S`          | `"CIRCLE"`               | Circular emitter shape             |
-| `shpFOR_S`           | `"OBJECT"`               | Relative to the emitter object     |
-| `shpOffsetVec_S`     | `"0 500 0"`              | 500 units above the emitter        |
-| `shpIsVolume`        | `1`                      | Fills entire disk area             |
-| `shpDim_S`           | `"300"`                  | Circle radius 300 units            |
-| `dirMode_S`          | `"DIR"`                  | Directional emission               |
-| `dirFOR_S`           | `"OBJECT"`               | Direction relative to object       |
-| `dirAngleHead`       | `20`                     | Slight wind direction              |
-| `dirAngleHeadVar`    | `10`                     | ±10° wind variance                  |
-| `dirAngleElev`       | `-89`                    | Nearly straight down               |
-| `velAvg`             | `0.05`                   | Slow falling speed                 |
-| `velVar`             | `0.02`                   | Slight speed variation             |
-| `lspPartAvg`         | `5000`                   | Long lifespan (5 seconds)          |
-| `flyGravity_S`       | `"0 0 0"`                | No gravity (constant fall speed)   |
-| `visName_S`          | `"MFX_SLEEP_STAR.TGA"`   | Snowflake texture                  |
-| `visOrientation_S`   | `"NONE"`                 | Billboard facing camera            |
-| `visTexColorStart_S` | `"255 255 255"`           | White                              |
-| `visTexColorEnd_S`   | `"255 255 255"`           | Stays white                        |
-| `visSizeStart_S`     | `"5 5"`                  | 5×5 flake size                      |
-| `visSizeEndScale`    | `1`                      | No size change                     |
-| `visAlphaFunc_S`     | `"ADD"`                  | Additive blending (bright flakes)  |
-| `visAlphaStart`      | `255`                    | Fully visible                      |
-| `visAlphaEnd`        | `255`                    | Stays visible (no fade)            |
-| `m_bIsAmbientPFX`    | `1`                      | Ambient effect (can disable in options) |
+| Field                | Value                  | Description                             |
+| -------------------- | ---------------------- | --------------------------------------- |
+| `ppsValue`           | `50`                   | 50 particles per second                 |
+| `ppsScaleKeys_S`     | `"1"`                  | Constant rate                           |
+| `ppsIsLooping`       | `1`                    | Continuous emission                     |
+| `shpType_S`          | `"CIRCLE"`             | Circular emitter shape                  |
+| `shpFOR_S`           | `"OBJECT"`             | Relative to the emitter object          |
+| `shpOffsetVec_S`     | `"0 500 0"`            | 500 units above the emitter             |
+| `shpIsVolume`        | `1`                    | Fills entire disk area                  |
+| `shpDim_S`           | `"300"`                | Circle radius 300 units                 |
+| `dirMode_S`          | `"DIR"`                | Directional emission                    |
+| `dirFOR_S`           | `"OBJECT"`             | Direction relative to object            |
+| `dirAngleHead`       | `20`                   | Slight wind direction                   |
+| `dirAngleHeadVar`    | `10`                   | ±10° wind variance                      |
+| `dirAngleElev`       | `-89`                  | Nearly straight down                    |
+| `velAvg`             | `0.05`                 | Slow falling speed                      |
+| `velVar`             | `0.02`                 | Slight speed variation                  |
+| `lspPartAvg`         | `5000`                 | Long lifespan (5 seconds)               |
+| `flyGravity_S`       | `"0 0 0"`              | No gravity (constant fall speed)        |
+| `visName_S`          | `"MFX_SLEEP_STAR.TGA"` | Snowflake texture                       |
+| `visOrientation_S`   | `"NONE"`               | Billboard facing camera                 |
+| `visTexColorStart_S` | `"255 255 255"`        | White                                   |
+| `visTexColorEnd_S`   | `"255 255 255"`        | Stays white                             |
+| `visSizeStart_S`     | `"5 5"`                | 5×5 flake size                          |
+| `visSizeEndScale`    | `1`                    | No size change                          |
+| `visAlphaFunc_S`     | `"ADD"`                | Additive blending (bright flakes)       |
+| `visAlphaStart`      | `255`                  | Fully visible                           |
+| `visAlphaEnd`        | `255`                  | Stays visible (no fade)                 |
+| `m_bIsAmbientPFX`    | `1`                    | Ambient effect (can disable in options) |
 
 ## Example 5: Blood (Child Emitters)
 
@@ -484,44 +484,44 @@ instance PFX_MyBlood_Splat (C_ParticleFX)
 
 **PFX_MyBlood:**
 
-| Field                | Value                 | Description                        |
-| -------------------- | --------------------- | ---------------------------------- |
-| `ppsValue`           | `64`                  | 64 particles in burst              |
-| `ppsCreateEm_S`      | `"PFX_MyBlood_Splat"` | Spawns child effect per particle   |
-| `dirMode_S`          | `"DIR"`               | Directional emission               |
-| `dirFOR_S`           | `"OBJECT"`            | Direction relative to object       |
-| `dirAngleHeadVar`    | `30`                  | ±30° horizontal scatter             |
-| `dirAngleElevVar`    | `30`                  | ±30° vertical scatter               |
-| `velAvg`             | `0.1`                 | Moderate speed                     |
-| `velVar`             | `0.05`                | Speed variation                    |
-| `lspPartAvg`         | `750`                 | 0.75s lifespan                     |
-| `lspPartVar`         | `550`                 | High lifespan variance             |
-| `flyGravity_S`       | `"0 -0.0001 0"`       | Falls downward                     |
-| `flyCollDet_B`       | `1`                   | Collides with world geometry       |
-| `visName_S`          | `"BLOOD1.TGA"`        | Blood texture                      |
-| `visTexColorStart_S` | `"255 255 255"`        | White (preserves texture color)    |
-| `visTexColorEnd_S`   | `"255 255 255"`        | No color change                    |
-| `visSizeStart_S`     | `"6 6"`               | 6×6 starting size                    |
-| `visSizeEndScale`    | `1`                   | No size change                     |
-| `visAlphaFunc_S`     | `"BLEND"`             | Standard blending                  |
-| `visAlphaStart`      | `255`                 | Fully opaque                       |
+| Field                | Value                 | Description                      |
+| -------------------- | --------------------- | -------------------------------- |
+| `ppsValue`           | `64`                  | 64 particles in burst            |
+| `ppsCreateEm_S`      | `"PFX_MyBlood_Splat"` | Spawns child effect per particle |
+| `dirMode_S`          | `"DIR"`               | Directional emission             |
+| `dirFOR_S`           | `"OBJECT"`            | Direction relative to object     |
+| `dirAngleHeadVar`    | `30`                  | ±30° horizontal scatter          |
+| `dirAngleElevVar`    | `30`                  | ±30° vertical scatter            |
+| `velAvg`             | `0.1`                 | Moderate speed                   |
+| `velVar`             | `0.05`                | Speed variation                  |
+| `lspPartAvg`         | `750`                 | 0.75s lifespan                   |
+| `lspPartVar`         | `550`                 | High lifespan variance           |
+| `flyGravity_S`       | `"0 -0.0001 0"`       | Falls downward                   |
+| `flyCollDet_B`       | `1`                   | Collides with world geometry     |
+| `visName_S`          | `"BLOOD1.TGA"`        | Blood texture                    |
+| `visTexColorStart_S` | `"255 255 255"`       | White (preserves texture color)  |
+| `visTexColorEnd_S`   | `"255 255 255"`       | No color change                  |
+| `visSizeStart_S`     | `"6 6"`               | 6×6 starting size                |
+| `visSizeEndScale`    | `1`                   | No size change                   |
+| `visAlphaFunc_S`     | `"BLEND"`             | Standard blending                |
+| `visAlphaStart`      | `255`                 | Fully opaque                     |
 
 **PFX_MyBlood_Splat:**
 
-| Field            | Value                    | Description                     |
-| ---------------- | ------------------------ | ------------------------------- |
-| `ppsValue`       | `1`                      | Single particle (one splat)     |
-| `ppsIsLooping`   | `0`                      | One-shot                        |
-| `shpType_S`      | `"POINT"`                | Point emitter                   |
-| `dirMode_S`      | `"NONE"`                 | No movement direction           |
-| `velAvg`         | `0`                      | Stationary                      |
-| `lspPartAvg`     | `3000`                   | Lasts 3 seconds                 |
-| `visName_S`      | `"YOURBLOODSPLAT.TGA"`   | Splat texture                   |
-| `visSizeStart_S` | `"10 10"`                | 10×10 splat size                  |
-| `visSizeEndScale`| `1`                      | No size change                  |
-| `visAlphaFunc_S` | `"BLEND"`                | Standard blending               |
-| `visAlphaStart`  | `200`                    | Slightly transparent            |
-| `visAlphaEnd`    | `0`                      | Fades out completely            |
+| Field             | Value                  | Description                 |
+| ----------------- | ---------------------- | --------------------------- |
+| `ppsValue`        | `1`                    | Single particle (one splat) |
+| `ppsIsLooping`    | `0`                    | One-shot                    |
+| `shpType_S`       | `"POINT"`              | Point emitter               |
+| `dirMode_S`       | `"NONE"`               | No movement direction       |
+| `velAvg`          | `0`                    | Stationary                  |
+| `lspPartAvg`      | `3000`                 | Lasts 3 seconds             |
+| `visName_S`       | `"YOURBLOODSPLAT.TGA"` | Splat texture               |
+| `visSizeStart_S`  | `"10 10"`              | 10×10 splat size            |
+| `visSizeEndScale` | `1`                    | No size change              |
+| `visAlphaFunc_S`  | `"BLEND"`              | Standard blending           |
+| `visAlphaStart`   | `200`                  | Slightly transparent        |
+| `visAlphaEnd`     | `0`                    | Fades out completely        |
 
 :::info
 **`ppsCreateEm_S`** — each particle from the main emitter becomes a source for a new child effect. This is a powerful tool but expensive — use carefully to avoid overloading the engine.

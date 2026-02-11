@@ -69,19 +69,19 @@ prototype Npc_Default (C_NPC)
 };
 ```
 
-| Pole                           | Domyślnie                 | Opis                                                            |
-| ------------------------------ | ------------------------- | --------------------------------------------------------------- |
-| `attribute[ATR_STRENGTH]`      | `10`                      | Bazowa siła                                                     |
-| `attribute[ATR_DEXTERITY]`     | `10`                      | Bazowa zręczność                                                |
-| `attribute[ATR_MANA_MAX]`      | `10`                      | Maksymalna mana                                                 |
-| `attribute[ATR_MANA]`          | `10`                      | Startowa mana                                                   |
-| `attribute[ATR_HITPOINTS_MAX]` | `40`                      | Maksymalne zdrowie                                              |
-| `attribute[ATR_HITPOINTS]`     | `40`                      | Startowe zdrowie                                                |
+| Pole                           | Domyślnie                 | Opis                                                             |
+| ------------------------------ | ------------------------- | ---------------------------------------------------------------- |
+| `attribute[ATR_STRENGTH]`      | `10`                      | Bazowa siła                                                      |
+| `attribute[ATR_DEXTERITY]`     | `10`                      | Bazowa zręczność                                                 |
+| `attribute[ATR_MANA_MAX]`      | `10`                      | Maksymalna mana                                                  |
+| `attribute[ATR_MANA]`          | `10`                      | Startowa mana                                                    |
+| `attribute[ATR_HITPOINTS_MAX]` | `40`                      | Maksymalne zdrowie                                               |
+| `attribute[ATR_HITPOINTS]`     | `40`                      | Startowe zdrowie                                                 |
 | `HitChance[NPC_TALENT_*]`      | `0`                       | Szansa trafienia per typ broni — 0% = nie umie walczyć tą bronią |
-| `protection[PROT_*]`           | `0`                       | Ochrona przed typami obrażeń — 0 = brak ochrony                |
-| `damagetype`                   | `DAM_BLUNT`               | Domyślny typ zadawanych obrażeń                                 |
-| `senses`                       | `SENSE_HEAR \| SENSE_SEE` | NPC słyszy i widzi                                              |
-| `senses_range`                 | `PERC_DIST_ACTIVE_MAX`    | Maksymalny zasięg percepcji                                     |
+| `protection[PROT_*]`           | `0`                       | Ochrona przed typami obrażeń — 0 = brak ochrony                  |
+| `damagetype`                   | `DAM_BLUNT`               | Domyślny typ zadawanych obrażeń                                  |
+| `senses`                       | `SENSE_HEAR \| SENSE_SEE` | NPC słyszy i widzi                                               |
+| `senses_range`                 | `PERC_DIST_ACTIVE_MAX`    | Maksymalny zasięg percepcji                                      |
 
 :::info
 Prototyp ustawia **domyślne wartości**. Każda instancja NPC może nadpisać dowolne z nich.
@@ -131,29 +131,29 @@ instance BAU_900_Konrad (Npc_Default)
 };
 ```
 
-| Pole / Wywołanie                                   | Opis                                                  |
-| -------------------------------------------------- | ----------------------------------------------------- |
-| `name = "Konrad"`                                   | Imię NPC wyświetlane w grze                           |
-| `guild = GIL_OUT`                                  | Bezgildyjny (rolnik)                                  |
-| `id = 900`                                         | Unikalny numer identyfikacyjny                        |
-| `voice = 90`                                       | Numer głosu (powiązany z plikami audio)               |
-| `flags = 0`                                        | `0` = normalny, `NPC_FLAG_IMMORTAL` = nieśmiertelny   |
-| `npctype = NPCTYPE_MAIN`                           | Ważna postać (związana z questami)                    |
-| `attribute[ATR_STRENGTH] = 30`                     | Siła (nadpisuje 10 z prototypu)                       |
-| `attribute[ATR_DEXTERITY] = 15`                    | Zręczność (nadpisuje 10 z prototypu)                  |
-| `attribute[ATR_HITPOINTS_MAX] = 80`                | Maksymalne zdrowie (nadpisuje 40 z prototypu)         |
-| `attribute[ATR_HITPOINTS] = 80`                    | Startowe zdrowie                                      |
-| `level = 5`                                        | Poziom postaci                                        |
-| `fight_tactic = FAI_HUMAN_COWARD`                  | Ucieka przed walką                                    |
-| `EquipItem(self, ItMw_1h_Bau_Axe)`                | Zakłada topór farmera                                 |
-| `CreateInvItems(self, ItMi_Gold, 25)`              | 25 sztuk złota w ekwipunku                            |
-| `CreateInvItems(self, ItFo_Apple, 3)`              | 3 jabłka w ekwipunku                                  |
-| `B_SetNpcVisual(self, ...)`                        | Ustawia mesh ciała, głowę, twarz, teksturę i zbroję   |
-| `Mdl_SetModelFatness(self, 1)`                     | Tusza postaci (0 = chudy, 1 = normalny, 2 = gruby)   |
-| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Zrelaksowana nakładka animacji                        |
-| `B_GiveNpcTalents(self)`                           | Przypisuje domyślne talenty                           |
-| `B_SetFightSkills(self, 15)`                       | 15% szans trafienia dla wszystkich typów broni         |
-| `daily_routine = Rtn_Start_900`                    | Funkcja planu dnia (zobacz niżej)                     |
+| Pole / Wywołanie                                  | Opis                                                |
+| ------------------------------------------------- | --------------------------------------------------- |
+| `name = "Konrad"`                                 | Imię NPC wyświetlane w grze                         |
+| `guild = GIL_OUT`                                 | Bezgildyjny (rolnik)                                |
+| `id = 900`                                        | Unikalny numer identyfikacyjny                      |
+| `voice = 90`                                      | Numer głosu (powiązany z plikami audio)             |
+| `flags = 0`                                       | `0` = normalny, `NPC_FLAG_IMMORTAL` = nieśmiertelny |
+| `npctype = NPCTYPE_MAIN`                          | Ważna postać (związana z questami)                  |
+| `attribute[ATR_STRENGTH] = 30`                    | Siła (nadpisuje 10 z prototypu)                     |
+| `attribute[ATR_DEXTERITY] = 15`                   | Zręczność (nadpisuje 10 z prototypu)                |
+| `attribute[ATR_HITPOINTS_MAX] = 80`               | Maksymalne zdrowie (nadpisuje 40 z prototypu)       |
+| `attribute[ATR_HITPOINTS] = 80`                   | Startowe zdrowie                                    |
+| `level = 5`                                       | Poziom postaci                                      |
+| `fight_tactic = FAI_HUMAN_COWARD`                 | Ucieka przed walką                                  |
+| `EquipItem(self, ItMw_1h_Bau_Axe)`                | Zakłada topór farmera                               |
+| `CreateInvItems(self, ItMi_Gold, 25)`             | 25 sztuk złota w ekwipunku                          |
+| `CreateInvItems(self, ItFo_Apple, 3)`             | 3 jabłka w ekwipunku                                |
+| `B_SetNpcVisual(self, ...)`                       | Ustawia mesh ciała, głowę, twarz, teksturę i zbroję |
+| `Mdl_SetModelFatness(self, 1)`                    | Tusza postaci (0 = chudy, 1 = normalny, 2 = gruby)  |
+| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Zrelaksowana nakładka animacji                      |
+| `B_GiveNpcTalents(self)`                          | Przypisuje domyślne talenty                         |
+| `B_SetFightSkills(self, 15)`                      | 15% szans trafienia dla wszystkich typów broni      |
+| `daily_routine = Rtn_Start_900`                   | Funkcja planu dnia (zobacz niżej)                   |
 
 :::tip
 Konwencja nazewnictwa: `BAU` (Bauer = farmer), `900` (unikalne ID), `Konrad` (imię). W oryginalnych skryptach Gothic każda gildia ma swój prefix.
