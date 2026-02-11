@@ -1,105 +1,105 @@
 ---
 sidebar_position: 4
-title: "Moje pierwsze zadanie"
-description: "Tworzenie pierwszego questa w Gothic."
+title: "My First Quest"
+description: "Creating your first quest in Gothic."
 ---
 
-# Moje pierwsze zadanie
+# My First Quest
 
-W tym poradniku nauczysz się tworzyć kompletne zadanie (quest) — od rozmowy z NPC, przez dziennik misji, po nagrodę za wykonanie.
+In this tutorial you will learn how to create a complete quest — from talking to an NPC, through the quest log, to receiving a reward.
 
-## Jak działają questy w Gothic?
+## How Do Quests Work in Gothic?
 
-System questów w Gothic opiera się na trzech elementach:
+The quest system in Gothic is based on three elements:
 
-1. **Dialogi** (`C_INFO`) — rozmowy z NPC, które rozpoczynają i kończą zadania
-2. **Dziennik misji** (Quest Log) — wpisy widoczne dla gracza
-3. **Zmienne stanu** — śledzenie postępu zadania
+1. **Dialogs** (`C_INFO`) — conversations with NPCs that start and end quests
+2. **Quest Log** — entries visible to the player
+3. **State variables** — tracking quest progress
 
-## Klasa C_INFO — dialogi
+## The C_INFO Class — Dialogs
 
-Każda opcja dialogowa to instancja klasy `C_INFO`:
+Each dialog option is an instance of the `C_INFO` class:
 
-| Pole          | Typ      | Opis                                           |
-| ------------- | -------- | ---------------------------------------------- |
-| `npc`         | `int`    | NPC, z którym rozmawiamy                       |
-| `nr`          | `int`    | Kolejność wyświetlania (niższy = wyżej)        |
-| `condition`   | `func`   | Funkcja warunku — kiedy opcja jest widoczna    |
-| `information` | `func`   | Funkcja wykonywana po wybraniu opcji           |
-| `permanent`   | `int`    | `TRUE` = opcja nie znika po użyciu             |
-| `important`   | `int`    | `TRUE` = NPC mówi pierwszy (bez wyboru gracza) |
-| `description` | `string` | Tekst opcji dialogowej                         |
+| Field         | Type     | Description                                     |
+| ------------- | -------- | ----------------------------------------------- |
+| `npc`         | `int`    | The NPC we're talking to                        |
+| `nr`          | `int`    | Display order (lower = higher)                  |
+| `condition`   | `func`   | Condition function — when the option is visible |
+| `information` | `func`   | Function executed when the option is selected   |
+| `permanent`   | `int`    | `TRUE` = option doesn't disappear after use     |
+| `important`   | `int`    | `TRUE` = NPC speaks first (no player choice)    |
+| `description` | `string` | Dialog option text                              |
 
-## Krok 1: Zmienna stanu misji
+## Step 1: Mission State Variable
 
-Najpierw zdefiniuj zmienną śledzącą postęp questa. Dodaj ją do pliku ze stałymi misji (np. `Log_Constants.d`):
+First, define a variable to track quest progress. Add it to the mission constants file (e.g., `Log_Constants.d`):
 
 ```daedalus
-// Stany misji:
-// 0             = nie rozpoczęta
-// LOG_RUNNING   = w trakcie
-// LOG_SUCCESS   = zakończona sukcesem
-// LOG_FAILED    = zakończona porażką
+// Mission states:
+// 0             = not started
+// LOG_RUNNING   = in progress
+// LOG_SUCCESS   = completed successfully
+// LOG_FAILED    = failed
 
-var int MIS_Konrad_ZnajdzTopor;
+var int MIS_Konrad_FindAxe;
 
-// Nazwa tematu w dzienniku
-const string TOPIC_Konrad_ZnajdzTopor = "Topór Konrada";
+// Quest log topic name
+const string TOPIC_Konrad_FindAxe = "Konrad's Axe";
 ```
 
-## Krok 2: Przedmiot misyjny
+## Step 2: Mission Item
 
-Stwórz przedmiot, który gracz musi znaleźć (w `Items/MissionItems.d`):
+Create an item that the player needs to find (in `Items/MissionItems.d`):
 
 ```daedalus
 instance ItMi_Topor_Konrada (C_Item)
 {
-    name      = "Stary topór Konrada";
+    name      = "Konrad's Old Axe";
     mainflag  = ITEM_KAT_NONE;
-    flags     = ITEM_MISSION;           // przedmiot misyjny
-    value     = 0;                      // nie do sprzedania
+    flags     = ITEM_MISSION;           // mission item
+    value     = 0;                      // not for sale
     visual    = "ItMw_010_1h_misc_axe_01.3DS";
     material  = MAT_WOOD;
 
     description = name;
-    TEXT[5]     = "Przedmiot misyjny";
+    TEXT[5]     = "Mission Item";
 };
 ```
 
 :::info
-Flaga `ITEM_MISSION` sprawia, że przedmiot nie może być sprzedany ani wyrzucony.
+The `ITEM_MISSION` flag prevents the item from being sold or dropped.
 :::
 
-## Krok 3: Dialog — wyjście z rozmowy
+## Step 3: Dialog — Exit Conversation
 
-Każdy NPC musi mieć opcję **zakończenia rozmowy**. To standardowy element:
+Every NPC must have an **exit conversation** option. This is a standard element:
 
 ```daedalus
-// --- Zakończ rozmowę ---
+// --- End conversation ---
 instance DIA_Konrad_EXIT (C_INFO)
 {
     npc         = BAU_900_Konrad;
-    nr          = 999;                  // na samym dole
+    nr          = 999;                  // at the very bottom
     condition   = DIA_Konrad_EXIT_Condition;
     information = DIA_Konrad_EXIT_Info;
     permanent   = TRUE;
-    description = DIALOG_ENDE;          // "Koniec"
+    description = DIALOG_ENDE;          // "End"
 };
 
 func int DIA_Konrad_EXIT_Condition ()
 {
-    return TRUE;                        // zawsze widoczny
+    return TRUE;                        // always visible
 };
 
 func void DIA_Konrad_EXIT_Info ()
 {
-    AI_StopProcessInfos (self);         // zamknij okno dialogu
+    AI_StopProcessInfos (self);         // close dialog window
 };
 ```
 
-## Krok 4: Dialog — powitanie (NPC mówi pierwszy)
+## Step 4: Dialog — Greeting (NPC Speaks First)
 
-Gdy gracz podejdzie do Konrada po raz pierwszy:
+When the player approaches Konrad for the first time:
 
 ```daedalus
 instance DIA_Konrad_Hallo (C_INFO)
@@ -108,14 +108,14 @@ instance DIA_Konrad_Hallo (C_INFO)
     nr          = 1;
     condition   = DIA_Konrad_Hallo_Condition;
     information = DIA_Konrad_Hallo_Info;
-    permanent   = FALSE;                // tylko raz
-    important   = TRUE;                 // NPC mówi pierwszy
+    permanent   = FALSE;                // only once
+    important   = TRUE;                 // NPC speaks first
 };
 
 func int DIA_Konrad_Hallo_Condition ()
 {
-    // Pokaż tylko jeśli quest nie został jeszcze rozpoczęty
-    if (MIS_Konrad_ZnajdzTopor == 0)
+    // Show only if quest hasn't been started yet
+    if (MIS_Konrad_FindAxe == 0)
     {
         return TRUE;
     };
@@ -123,18 +123,18 @@ func int DIA_Konrad_Hallo_Condition ()
 
 func void DIA_Konrad_Hallo_Info ()
 {
-    // self = NPC (Konrad), other = gracz
-    AI_Output (self, other, "DIA_Konrad_Hallo_01_01"); //Hej, ty tam! Masz chwilę?
-    AI_Output (other, self, "DIA_Konrad_Hallo_15_01"); //Czego chcesz?
-    AI_Output (self, other, "DIA_Konrad_Hallo_01_02"); //Zgubiłem swój topór gdzieś w lesie. Pomożesz mi go znaleźć?
+    // self = NPC (Konrad), other = player
+    AI_Output (self, other, "DIA_Konrad_Hallo_01_01"); //Hey, you there! Got a moment?
+    AI_Output (other, self, "DIA_Konrad_Hallo_15_01"); //What do you want?
+    AI_Output (self, other, "DIA_Konrad_Hallo_01_02"); //I lost my axe somewhere in the forest. Will you help me find it?
 };
 ```
 
 :::tip
-**Konwencja nazewnictwa audio:** `DIA_Konrad_Hallo_01_01` — `01` = numer głosu NPC, `01` = numer linii. `15` w linii gracza oznacza głos bohatera. Komentarz `//` po `AI_Output` **musi** być w tej samej linii — parser Daedalusa traktuje go jako tekst napisów dialogowych.
+**Audio naming convention:** `DIA_Konrad_Hallo_01_01` — `01` = NPC voice number, `01` = line number. `15` in the player's line refers to the hero's voice. The `//` comment after `AI_Output` **must** be on the same line — the Daedalus parser treats it as the dialog subtitle text.
 :::
 
-## Krok 5: Dialog — przyjęcie zadania
+## Step 5: Dialog — Accepting the Quest
 
 ```daedalus
 instance DIA_Konrad_Topor (C_INFO)
@@ -144,12 +144,12 @@ instance DIA_Konrad_Topor (C_INFO)
     condition   = DIA_Konrad_Topor_Condition;
     information = DIA_Konrad_Topor_Info;
     permanent   = FALSE;
-    description = "Pomogę ci znaleźć topór.";
+    description = "I'll help you find the axe.";
 };
 
 func int DIA_Konrad_Topor_Condition ()
 {
-    if (MIS_Konrad_ZnajdzTopor == 0)
+    if (MIS_Konrad_FindAxe == 0)
     {
         return TRUE;
     };
@@ -157,32 +157,32 @@ func int DIA_Konrad_Topor_Condition ()
 
 func void DIA_Konrad_Topor_Info ()
 {
-    AI_Output (other, self, "DIA_Konrad_Topor_15_01"); //Dobra, poszukam twojego topora.
-    AI_Output (self, other, "DIA_Konrad_Topor_01_01"); //Dzięki! Ostatni raz widziałem go koło starej jaskini na północy.
+    AI_Output (other, self, "DIA_Konrad_Topor_15_01"); //Alright, I'll look for your axe.
+    AI_Output (self, other, "DIA_Konrad_Topor_01_01"); //Thanks! Last time I saw it near the old cave to the north.
 
-    // === ROZPOCZNIJ QUEST ===
-    MIS_Konrad_ZnajdzTopor = LOG_RUNNING;
+    // === START QUEST ===
+    MIS_Konrad_FindAxe = LOG_RUNNING;
 
-    // Utwórz temat w dzienniku
-    Log_CreateTopic (TOPIC_Konrad_ZnajdzTopor, LOG_MISSION);
-    Log_SetTopicStatus (TOPIC_Konrad_ZnajdzTopor, LOG_RUNNING);
-    B_LogEntry (TOPIC_Konrad_ZnajdzTopor,
-        "Konrad zgubił swój topór w lesie koło starej jaskini na północy. Powinienem go poszukać."
+    // Create topic in the quest log
+    Log_CreateTopic (TOPIC_Konrad_FindAxe, LOG_MISSION);
+    Log_SetTopicStatus (TOPIC_Konrad_FindAxe, LOG_RUNNING);
+    B_LogEntry (TOPIC_Konrad_FindAxe,
+        "Konrad lost his axe in the forest near the old cave to the north. I should look for it."
     );
 
     AI_StopProcessInfos (self);
 };
 ```
 
-### Kluczowe funkcje dziennika:
+### Key Quest Log Functions:
 
-| Funkcja                               | Opis                                                         |
-| ------------------------------------- | ------------------------------------------------------------ |
-| `Log_CreateTopic(topic, LOG_MISSION)` | Tworzy wpis w dzienniku                                      |
-| `Log_SetTopicStatus(topic, status)`   | Ustawia status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
-| `B_LogEntry(topic, tekst)`            | Dodaje notatkę do istniejącego wpisu                         |
+| Function                              | Description                                               |
+| ------------------------------------- | --------------------------------------------------------- |
+| `Log_CreateTopic(topic, LOG_MISSION)` | Creates an entry in the quest log                         |
+| `Log_SetTopicStatus(topic, status)`   | Sets status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
+| `B_LogEntry(topic, text)`             | Adds a note to an existing entry                          |
 
-## Krok 6: Dialog — oddanie przedmiotu i nagroda
+## Step 6: Dialog — Returning the Item and Reward
 
 ```daedalus
 instance DIA_Konrad_Topor_Oddaj (C_INFO)
@@ -192,13 +192,13 @@ instance DIA_Konrad_Topor_Oddaj (C_INFO)
     condition   = DIA_Konrad_Topor_Oddaj_Condition;
     information = DIA_Konrad_Topor_Oddaj_Info;
     permanent   = FALSE;
-    description = "Mam twój topór.";
+    description = "I have your axe.";
 };
 
 func int DIA_Konrad_Topor_Oddaj_Condition ()
 {
-    // Pokaż tylko gdy quest jest aktywny I gracz ma topór
-    if (MIS_Konrad_ZnajdzTopor == LOG_RUNNING)
+    // Show only when quest is active AND player has the axe
+    if (MIS_Konrad_FindAxe == LOG_RUNNING)
     && (Npc_HasItems (other, ItMi_Topor_Konrada) >= 1)
     {
         return TRUE;
@@ -207,67 +207,67 @@ func int DIA_Konrad_Topor_Oddaj_Condition ()
 
 func void DIA_Konrad_Topor_Oddaj_Info ()
 {
-    AI_Output (other, self, "DIA_Konrad_Topor_Oddaj_15_01"); //Mam twój topór. Znalazłem go koło jaskini.
+    AI_Output (other, self, "DIA_Konrad_Topor_Oddaj_15_01"); //I have your axe. Found it near the cave.
 
-    // Gracz oddaje topór
+    // Player gives the axe
     B_GiveInvItems (other, self, ItMi_Topor_Konrada, 1);
 
-    AI_Output (self, other, "DIA_Konrad_Topor_Oddaj_01_01"); //Świetnie! Weź to złoto jako podziękowanie.
+    AI_Output (self, other, "DIA_Konrad_Topor_Oddaj_01_01"); //Great! Take this gold as thanks.
 
-    // === NAGRODA ===
+    // === REWARD ===
     CreateInvItems (self, ItMi_Gold, 150);
-    B_GiveInvItems (self, other, ItMi_Gold, 150);      // 150 złota
-    B_GivePlayerXP (100);                               // 100 pkt doświadczenia
+    B_GiveInvItems (self, other, ItMi_Gold, 150);      // 150 gold
+    B_GivePlayerXP (100);                               // 100 XP
 
-    // === ZAKOŃCZ QUEST ===
-    MIS_Konrad_ZnajdzTopor = LOG_SUCCESS;
-    B_LogEntry (TOPIC_Konrad_ZnajdzTopor,
-        "Odnalazłem topór Konrada i oddałem mu go. W zamian dostałem 150 sztuk złota."
+    // === COMPLETE QUEST ===
+    MIS_Konrad_FindAxe = LOG_SUCCESS;
+    B_LogEntry (TOPIC_Konrad_FindAxe,
+        "I found Konrad's axe and returned it to him. In return, I received 150 gold coins."
     );
 
     AI_StopProcessInfos (self);
 };
 ```
 
-## Krok 7: Umieszczenie przedmiotu w świecie
+## Step 7: Placing the Item in the World
 
-W pliku `Startup.d` (funkcja startowa świata) umieść topór w lokacji:
+In the `Startup.d` file (world startup function) place the axe at a location:
 
 ```daedalus
 func void Startup_NewWorld ()
 {
-    // ... inne elementy ...
+    // ... other elements ...
 
-    // Umieść topór Konrada przy waypoincie jaskini
+    // Place Konrad's axe at the cave waypoint
     Wld_InsertItem (ItMi_Topor_Konrada, "NW_CAVE_NORTH_01");
 };
 ```
 
-## Pełna struktura plików
+## Complete File Structure
 
-Kompletny quest wymaga tych plików:
+A complete quest requires these files:
 
 ```
 Scripts/Content/
-├── _intern/Constants.d          ← zmienna MIS_Konrad_ZnajdzTopor
+├── _intern/Constants.d          ← MIS_Konrad_FindAxe variable
 ├── Story/Log_Entries/
-│   └── LOG_Constants.d          ← stała TOPIC_Konrad_ZnajdzTopor
+│   └── LOG_Constants.d          ← TOPIC_Konrad_FindAxe constant
 ├── Items/
 │   └── MissionItems.d           ← ItMi_Topor_Konrada
 ├── Story/NPC/
-│   └── BAU_900_Konrad.d         ← definicja NPC
+│   └── BAU_900_Konrad.d         ← NPC definition
 ├── Story/Dialoge/
-│   └── DIA_BAU_900_Konrad.d     ← wszystkie dialogi
+│   └── DIA_BAU_900_Konrad.d     ← all dialogs
 └── Story/Startup.d              ← Wld_InsertNpc + Wld_InsertItem
 ```
 
-## Podsumowanie
+## Summary
 
-Kompletny quest w Gothic wymaga:
+A complete quest in Gothic requires:
 
-1. **Zmiennej stanu** śledzącej postęp (0 → `LOG_RUNNING` → `LOG_SUCCESS`)
-2. **Przedmiotu misyjnego** z flagą `ITEM_MISSION`
-3. **Dialogów** z warunkami opartymi o stan questa i posiadane przedmioty
-4. **Wpisów w dzienniku** informujących gracza o postępie
-5. **Nagrody** (złoto, XP, przedmioty)
-6. **Rejestracji** wszystkich plików w `Gothic.src` w odpowiedniej kolejności
+1. A **state variable** tracking progress (0 → `LOG_RUNNING` → `LOG_SUCCESS`)
+2. A **mission item** with the `ITEM_MISSION` flag
+3. **Dialogs** with conditions based on quest state and owned items
+4. **Quest log entries** informing the player about progress
+5. **Rewards** (gold, XP, items)
+6. **Registration** of all files in `Gothic.src` in the correct order

@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-title: "Źródła i materiały"
-description: "Przydatne linki, narzędzia i zasoby do moddingu Gothic."
+title: "Resources"
+description: "Useful links, tools, and resources for Gothic modding."
 ---
 
-# Źródła i materiały
+# Resources
 
 :::info
-Ta strona jest w trakcie tworzenia. Treść zostanie uzupełniona wkrótce.
+This page is under construction. Content will be added soon.
 :::

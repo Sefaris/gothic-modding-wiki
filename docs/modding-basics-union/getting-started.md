@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-title: "Jak zacząć?"
-description: "Konfiguracja środowiska do tworzenia pluginów Union."
+title: "Getting Started"
+description: "Setting up the environment for creating Union plugins."
 ---
 
-# Jak zacząć?
+# Getting Started
 
 :::info
-Ta strona jest w trakcie tworzenia. Treść zostanie uzupełniona wkrótce.
+This page is under construction. Content will be added soon.
 :::

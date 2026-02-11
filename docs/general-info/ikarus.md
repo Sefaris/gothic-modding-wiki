@@ -1,43 +1,43 @@
 ---
 sidebar_position: 2
 title: "Ikarus"
-description: "Opis biblioteki Ikarus rozszerzającej możliwości języka Daedalus."
+description: "Overview of the Ikarus library that extends Daedalus capabilities."
 ---
 
 # Ikarus
 
-**Ikarus** to biblioteka skryptowa dla Daedalusa stworzona przez **Sektenspinnera** (z udziałem Gottfrieda, mud-freaka i Neconspictora). Pozwala przełamać ograniczenia standardowego Daedalusa, udostępniając:
+**Ikarus** is a scripting library for Daedalus created by **Sektenspinner** (with contributions from Gottfried, mud-freak, and Neconspictor). It breaks through the limitations of standard Daedalus by providing:
 
-- **Bezpośredni dostęp do pamięci** silnika Gothic (odczyt/zapis)
-- **Dostęp do klas silnikowych** — `oCGame`, `oCNpc`, `zCWorld`, `zCParser` i wiele innych
-- **Wywoływanie funkcji C++ silnika** z poziomu Daedalusa
-- **Arytmetykę zmiennoprzecinkową** (IEEE 754) — standardowy Daedalus obsługuje tylko `int`
-- **Pętle** (`while`/`end`, `repeat`/`end`) — nieobecne w standardowym Daedalusie
-- **Odczyt/zapis plików INI** (Gothic.ini, [Mod].ini)
-- **Detekcję klawiszy** (klawiatura i mysz)
-- **Funkcje operacji na stringach** (`STR_Len`, `STR_IndexOf`, `STR_Split` i inne)
-- **Ładowanie zewnętrznych bibliotek DLL**
+- **Direct memory access** to the Gothic engine (read/write)
+- **Engine class access** — `oCGame`, `oCNpc`, `zCWorld`, `zCParser`, and many more
+- **Calling C++ engine functions** from Daedalus
+- **Floating-point arithmetic** (IEEE 754) — standard Daedalus only supports `int`
+- **Loops** (`while`/`end`, `repeat`/`end`) — absent in standard Daedalus
+- **INI file read/write** (Gothic.ini, [Mod].ini)
+- **Key input detection** (keyboard and mouse)
+- **String manipulation functions** (`STR_Len`, `STR_IndexOf`, `STR_Split`, and more)
+- **Loading external DLL libraries**
 
 :::info
-Ikarus jest wymagany przez bibliotekę **LeGo** oraz większość zaawansowanych modów Gothic. Bez Ikarusa modder jest ograniczony wyłącznie do standardowych możliwości Daedalusa.
+Ikarus is required by the **LeGo** library and most advanced Gothic mods. Without Ikarus, a modder is limited to standard Daedalus capabilities only.
 :::
 
 ---
 
-## Instalacja
+## Installation
 
-### Wymagane pliki
+### Required Files
 
-Pakiet Ikarus składa się z:
+The Ikarus package consists of:
 
-1. **Stałe** — `Ikarus_Const_G2.d` (lub `Ikarus_Const_G1.d` dla Gothic I)
-2. **Klasy silnikowe** — `EngineClasses_G2/*.d` (lub `EngineClasses_G1/*.d`)
-3. **Rdzeń Ikarusa** — `Ikarus.d` (identyczny dla G1 i G2)
-4. **Obsługa floatów** (opcjonalnie) — `float.d`
+1. **Constants** — `Ikarus_Const_G2.d` (or `Ikarus_Const_G1.d` for Gothic I)
+2. **Engine classes** — `EngineClasses_G2/*.d` (or `EngineClasses_G1/*.d`)
+3. **Ikarus core** — `Ikarus.d` (identical for G1 and G2)
+4. **Float support** (optional) — `float.d`
 
-### Integracja z Gothic.src
+### Gothic.src Integration
 
-Pliki Ikarusa muszą być dodane do `Gothic.src` **po** `CLASSES.D` i **przed** skryptami, które z nich korzystają:
+Ikarus files must be added to `Gothic.src` **after** `CLASSES.D` and **before** any scripts that use them:
 
 ```
 _INTERN\CONSTANTS.D
@@ -54,287 +54,287 @@ AI\AI_INTERN\AI_CONSTANTS.D
 
 ---
 
-## Inicjalizacja
+## Initialization
 
 ### MEM_InitAll()
 
-Główna funkcja inicjalizacji Ikarusa. Musi być wywołana zanim użyje się jakichkolwiek funkcji biblioteki.
+The main Ikarus initialization function. Must be called before using any library functions.
 
 ```daedalus
 func void INIT_GLOBAL()
 {
     Game_InitGerman();
     MEM_InitAll();
-    // ... reszta kodu
+    // ... rest of code
 };
 ```
 
-`MEM_InitAll()` wykonuje następujące operacje:
+`MEM_InitAll()` performs the following operations:
 
-- Lokalizuje struktury parsera Daedalusa w pamięci
-- Inicjalizuje system etykiet i skoków
-- Ustawia globalne instancje silnikowe (`MEM_Game`, `MEM_World` itd.)
-- Włącza operatory `_@()`, `_@s()`, `_@f()`
-- Inicjalizuje podsystem assemblerowy
-- Włącza pętle `repeat`/`end`
+- Locates Daedalus parser structures in memory
+- Initializes the label and jump system
+- Sets up global engine instances (`MEM_Game`, `MEM_World`, etc.)
+- Enables `_@()`, `_@s()`, `_@f()` operators
+- Initializes the assembler subsystem
+- Enables `repeat`/`end` loops
 
 :::tip
-Wielokrotne wywołanie `MEM_InitAll()` jest bezpieczne — Ikarus sprawdza, czy już został zainicjalizowany.
+Multiple calls to `MEM_InitAll()` are safe — Ikarus checks if it has already been initialized.
 :::
 
 ---
 
-## Odczyt i zapis pamięci
+## Memory Read and Write
 
-Podstawowe funkcje Ikarusa umożliwiają bezpośredni dostęp do pamięci silnika:
+Ikarus core functions provide direct access to engine memory:
 
 ```daedalus
-// Odczyt
-var int wartosc;
-wartosc = MEM_ReadInt(adres);           // odczytaj 4 bajty jako int
-var string tekst;
-tekst = MEM_ReadString(adres);          // odczytaj string
+// Reading
+var int value;
+value = MEM_ReadInt(address);           // read 4 bytes as int
+var string text;
+text = MEM_ReadString(address);         // read string
 
-// Zapis
-MEM_WriteInt(adres, 42);               // zapisz int pod adresem
-MEM_WriteString(adres, "test");         // zapisz string
+// Writing
+MEM_WriteInt(address, 42);              // write int at address
+MEM_WriteString(address, "test");       // write string
 
-// Bajty
-var int bajt;
-bajt = MEM_ReadByte(adres);            // odczytaj 1 bajt
-MEM_WriteByte(adres, 255);             // zapisz 1 bajt
+// Bytes
+var int byte;
+byte = MEM_ReadByte(address);           // read 1 byte
+MEM_WriteByte(address, 255);            // write 1 byte
 ```
 
-### Tablice w pamięci
+### Memory Arrays
 
 ```daedalus
-// Odczyt/zapis tablic w pamięci (offset w elementach, nie w bajtach)
+// Read/write arrays in memory (offset is in elements, not bytes)
 var int elem;
-elem = MEM_ReadIntArray(tablicaAdres, 3);          // 4. element
-MEM_WriteIntArray(tablicaAdres, 3, nowaWartosc);   // zapisz 4. element
+elem = MEM_ReadIntArray(arrayAddress, 3);          // 4th element
+MEM_WriteIntArray(arrayAddress, 3, newValue);      // write 4th element
 ```
 
 ---
 
-## Instancje i wskaźniki
+## Instances and Pointers
 
-### Konwersja wskaźnik → instancja
+### Pointer → Instance Conversion
 
-Jedną z najpotężniejszych możliwości Ikarusa jest konwersja surowych wskaźników pamięci na instancje Daedalusa:
+One of Ikarus's most powerful features is converting raw memory pointers to Daedalus instances:
 
 ```daedalus
-// _^() — konwertuj wskaźnik na instancję (alias MEM_PtrToInst)
-var oCNpc npcWPamieci;
-npcWPamieci = _^(adresNpc);
+// _^() — convert pointer to instance (alias for MEM_PtrToInst)
+var oCNpc npcInMemory;
+npcInMemory = _^(npcAddress);
 
-// Teraz możesz odczytywać pola klasy silnikowej:
+// Now you can read engine class fields:
 var int hp;
-hp = npcWPamieci.attribute[ATR_HITPOINTS];
+hp = npcInMemory.attribute[ATR_HITPOINTS];
 ```
 
-### Konwersja instancja → wskaźnik
+### Instance → Pointer Conversion
 
 ```daedalus
-var int adres;
-adres = MEM_InstToPtr(self);    // adres NPC w pamięci
+var int address;
+address = MEM_InstToPtr(self);    // NPC address in memory
 ```
 
-### Operatory adresów
+### Address Operators
 
 ```daedalus
-var int adrInt;
-adrInt = _@(mojaZmienna);      // adres zmiennej int
+var int addrInt;
+addrInt = _@(myVariable);      // address of int variable
 
-var int adrStr;
-adrStr = _@s(mojString);       // adres zmiennej string
+var int addrStr;
+addrStr = _@s(myString);       // address of string variable
 
-var int adrFloat;
-adrFloat = _@f(mojFloat);      // adres zmiennej float
+var int addrFloat;
+addrFloat = _@f(myFloat);      // address of float variable
 ```
 
-### Przykład — odczyt nazwy obiektu w focusie
+### Example — Reading the Name of the Focused Object
 
 ```daedalus
-func void PokazFocus()
+func void ShowFocus()
 {
-    var oCNpc gracz;
-    gracz = Hlp_GetNpc(PC_HERO);
+    var oCNpc player;
+    player = Hlp_GetNpc(PC_HERO);
 
-    if (!gracz.focus_vob) { return; };
+    if (!player.focus_vob) { return; };
 
-    var zCVob mojFocus;
-    mojFocus = _^(gracz.focus_vob);
-    Print(mojFocus._zCObject_objectName);
+    var zCVob myFocus;
+    myFocus = _^(player.focus_vob);
+    Print(myFocus._zCObject_objectName);
 };
 ```
 
 ---
 
-## Globalne instancje silnikowe
+## Global Engine Instances
 
-Po wywołaniu `MEM_InitAll()` dostępne są instancje reprezentujące kluczowe obiekty silnika:
+After calling `MEM_InitAll()`, instances representing key engine objects are available:
 
-| Instancja           | Klasa                     | Opis                        |
+| Instance            | Class                     | Description                 |
 | ------------------- | ------------------------- | --------------------------- |
-| `MEM_Game`          | `oCGame`                  | Bieżąca sesja gry           |
-| `MEM_World`         | `oWorld`                  | Bieżący świat               |
-| `MEM_Timer`         | `zCTimer`                 | Timer silnika (czas klatki) |
-| `MEM_WorldTimer`    | `oCWorldTimer`            | Czas w grze (dzień/godzina) |
-| `MEM_Vobtree`       | `zCTree`                  | Korzeń drzewa vobów         |
-| `MEM_InfoMan`       | `oCInfoManager`           | Menedżer dialogów           |
-| `MEM_Waynet`        | `zCWaynet`                | Sieć waypointów             |
-| `MEM_Camera`        | `zCCamera`                | Kamera                      |
-| `MEM_SkyController` | `zCSkyController_Outdoor` | Kontroler nieba/pogody      |
-| `MEM_Parser`        | `zCParser`                | Parser Daedalusa (VM)       |
-| `MEM_SpawnManager`  | `oCSpawnManager`          | Menedżer spawnowania NPC    |
+| `MEM_Game`          | `oCGame`                  | Current game session        |
+| `MEM_World`         | `oWorld`                  | Current world               |
+| `MEM_Timer`         | `zCTimer`                 | Engine timer (frame timing) |
+| `MEM_WorldTimer`    | `oCWorldTimer`            | In-game time (day/hour)     |
+| `MEM_Vobtree`       | `zCTree`                  | Root of vob tree            |
+| `MEM_InfoMan`       | `oCInfoManager`           | Dialog manager              |
+| `MEM_Waynet`        | `zCWaynet`                | Waypoint network            |
+| `MEM_Camera`        | `zCCamera`                | Camera                      |
+| `MEM_SkyController` | `zCSkyController_Outdoor` | Sky/weather controller      |
+| `MEM_Parser`        | `zCParser`                | Daedalus parser (VM)        |
+| `MEM_SpawnManager`  | `oCSpawnManager`          | NPC spawn manager           |
 
 ```daedalus
-// Przykład — odczyt aktualnej godziny w grze
-var int godzina;
-godzina = MEM_WorldTimer.worldTime_hour;
+// Example — reading current in-game hour
+var int hour;
+hour = MEM_WorldTimer.worldTime_hour;
 ```
 
 ---
 
-## Wyszukiwanie symboli parsera
+## Parser Symbol Lookup
 
-Ikarus pozwala dynamicznie wyszukiwać symbole (funkcje, instancje, zmienne) po nazwie:
+Ikarus allows dynamically searching for symbols (functions, instances, variables) by name:
 
 ```daedalus
-// Znajdź indeks symbolu (-1 jeśli nie istnieje)
+// Find symbol index (-1 if not found)
 var int idx;
 idx = MEM_FindParserSymbol("PC_HERO");
 
-// Znajdź wskaźnik do struktury zCPar_Symbol (0 jeśli nie istnieje)
+// Find pointer to zCPar_Symbol structure (0 if not found)
 var int symPtr;
 symPtr = MEM_GetParserSymbol("DIA_Fred_Hallo");
 ```
 
 ---
 
-## Dynamiczne wywoływanie funkcji
+## Dynamic Function Calling
 
-### Wywołanie funkcji Daedalusa
+### Calling Daedalus Functions
 
 ```daedalus
-// Po nazwie
-MEM_CallByString("MOJA_FUNKCJA");
+// By name
+MEM_CallByString("MY_FUNCTION");
 
-// Po ID symbolu
+// By symbol ID
 var int id;
-id = MEM_GetFuncID(MojaFunkcja);
+id = MEM_GetFuncID(MyFunction);
 MEM_CallByID(id);
 
-// Z parametrami
+// With parameters
 MEM_PushIntParam(42);
 MEM_PushStringParam("test");
-MEM_CallByString("MOJA_FUNKCJA");
+MEM_CallByString("MY_FUNCTION");
 
-// Pobranie wyniku
-var int wynik;
-wynik = MEM_PopIntResult();
+// Getting the result
+var int result;
+result = MEM_PopIntResult();
 ```
 
-### Podmiana funkcji
+### Function Replacement
 
 ```daedalus
-// Zamień implementację funkcji — wszystkie wywołania f1 teraz wykonują f2
-MEM_ReplaceFunc(StaraFunkcja, NowaFunkcja);
+// Replace function implementation — all calls to f1 now execute f2
+MEM_ReplaceFunc(OldFunction, NewFunction);
 ```
 
-### Wywoływanie funkcji C++ silnika
+### Calling C++ Engine Functions
 
 ```daedalus
-// Przykład — wywołanie oCNpc::SetAsPlayer z poziomu Daedalusa
+// Example — calling oCNpc::SetAsPlayer from Daedalus
 func void SetAsPlayer(var C_NPC slf)
 {
-    const int oCNpc__SetAsPlayer = 7612064; // adres w pamięci (0x7426A0)
+    const int oCNpc__SetAsPlayer = 7612064; // memory address (0x7426A0)
 
     CALL__thiscall(MEM_InstToPtr(slf), oCNpc__SetAsPlayer);
 };
 ```
 
-Konwencje wywołań C++:
+C++ calling conventions:
 
-| Funkcja                         | Konwencja                      |
+| Function                        | Convention                     |
 | ------------------------------- | ------------------------------ |
-| `CALL__thiscall(this, adr)`     | Metoda klasy C++ (najczęstsza) |
-| `CALL__stdcall(adr)`            | Standardowa konwencja Windows  |
-| `CALL__cdecl(adr)`              | Konwencja C                    |
-| `CALL__fastcall(ecx, edx, adr)` | Konwencja szybka               |
+| `CALL__thiscall(this, adr)`     | C++ class method (most common) |
+| `CALL__stdcall(adr)`            | Standard Windows convention    |
+| `CALL__cdecl(adr)`              | C convention                   |
+| `CALL__fastcall(ecx, edx, adr)` | Fast convention                |
 
-Przed wywołaniem można przekazać parametry:
+Push parameters before calling:
 
 ```daedalus
 CALL_IntParam(42);
-CALL_PtrParam(adresObiektu);
-CALL_zStringPtrParam("tekst");
-CALL__thiscall(thisPtr, adresFunkcji);
-var int wynik;
-wynik = CALL_RetValAsInt();
+CALL_PtrParam(objectAddress);
+CALL_zStringPtrParam("text");
+CALL__thiscall(thisPtr, functionAddress);
+var int result;
+result = CALL_RetValAsInt();
 ```
 
 ---
 
-## Odczyt/zapis plików INI
+## INI File Read/Write
 
 ```daedalus
-// Odczyt z Gothic.ini
-var string rozdzielczosc;
-rozdzielczosc = MEM_GetGothOpt("VIDEO", "zVidResFullscreenX");
+// Read from Gothic.ini
+var string resolution;
+resolution = MEM_GetGothOpt("VIDEO", "zVidResFullscreenX");
 
-// Odczyt z [Mod].ini
-var string opcja;
-opcja = MEM_GetModOpt("MOJASEKCJA", "MojaOpcja");
+// Read from [Mod].ini
+var string option;
+option = MEM_GetModOpt("MYSECTION", "MyOption");
 
-// Sprawdzenie czy sekcja/opcja istnieje
+// Check if section/option exists
 if (MEM_GothOptExists("VIDEO", "zVidResFullscreenX"))
 {
-    // opcja istnieje
+    // option exists
 };
 
-// Zapis do Gothic.ini (zapisywany na dysk przy wyjściu z gry)
+// Write to Gothic.ini (saved to disk when Gothic exits)
 MEM_SetGothOpt("VIDEO", "zVidResFullscreenX", "1920");
 ```
 
 ---
 
-## Detekcja klawiszy
+## Key Input Detection
 
 ```daedalus
-// Sprawdzenie czy klawisz jest wciśnięty
+// Check if a key is pressed
 if (MEM_KeyPressed(KEY_SPACE))
 {
-    Print("Spacja wciśnięta!");
+    Print("Space pressed!");
 };
 
-// Dokładniejszy stan klawisza
-var int stan;
-stan = MEM_KeyState(KEY_F1);
+// More precise key state
+var int state;
+state = MEM_KeyState(KEY_F1);
 
-if (stan == KEY_PRESSED)   { /* właśnie wciśnięty */ };
-if (stan == KEY_HOLD)      { /* trzymany */          };
-if (stan == KEY_RELEASED)  { /* właśnie puszczony */  };
+if (state == KEY_PRESSED)   { /* just pressed */  };
+if (state == KEY_HOLD)      { /* held down */     };
+if (state == KEY_RELEASED)  { /* just released */ };
 
-// Odczyt przypisania klawisza z Gothic.ini
-var int klawiszInwentarza;
-klawiszInwentarza = MEM_GetKey("keyInventory");
+// Read key assignment from Gothic.ini
+var int inventoryKey;
+inventoryKey = MEM_GetKey("keyInventory");
 ```
 
-Stany klawiszy:
+Key states:
 
-| Stała          | Znaczenie                        |
-| -------------- | -------------------------------- |
-| `KEY_UP`       | Nie wciśnięty, nie był wciśnięty |
-| `KEY_PRESSED`  | Właśnie wciśnięty (nowa klatka)  |
-| `KEY_HOLD`     | Trzymany (kolejne klatki)        |
-| `KEY_RELEASED` | Właśnie puszczony                |
+| Constant       | Meaning                      |
+| -------------- | ---------------------------- |
+| `KEY_UP`       | Not pressed, was not pressed |
+| `KEY_PRESSED`  | Just pressed (new frame)     |
+| `KEY_HOLD`     | Held (subsequent frames)     |
+| `KEY_RELEASED` | Just released                |
 
 ---
 
-## Pętle
+## Loops
 
-Standardowy Daedalus nie posiada pętli. Ikarus dodaje je przez hackowanie parsera.
+Standard Daedalus has no loops. Ikarus adds them through parser hacking.
 
 ### while / end
 
@@ -349,86 +349,86 @@ end;
 
 ### repeat / end
 
-Pętla iterująca zmienną od 0 do n-1:
+A loop that iterates a variable from 0 to n-1:
 
 ```daedalus
 repeat(i, 10); var int i;
-    Print(IntToString(i));   // wypisze 0, 1, 2, ..., 9
+    Print(IntToString(i));   // prints 0, 1, 2, ..., 9
 end;
 ```
 
-### Sterowanie pętlą
+### Loop Control
 
 ```daedalus
-const int break    = -42;   // przerwij pętlę
-const int continue = -23;   // przejdź do następnej iteracji
+const int break    = -42;   // break out of loop
+const int continue = -23;   // skip to next iteration
 
 while(i < 100);
     i += 1;
-    if (i == 5)  { continue; };  // pomiń resztę, następna iteracja
-    if (i == 50) { break; };     // zakończ pętlę
+    if (i == 5)  { continue; };  // skip rest, next iteration
+    if (i == 50) { break; };     // end loop
 end;
 ```
 
-### Etykiety i skoki (niskopoziomowe)
+### Labels and Jumps (Low-Level)
 
 ```daedalus
 MEM_InitLabels();
 
-var int etykieta;
-etykieta = MEM_StackPos.position;     // zapamiętaj pozycję
-// ... kod ...
-MEM_StackPos.position = etykieta;     // skocz z powrotem (nieskonczona pętla!)
+var int label;
+label = MEM_StackPos.position;     // save position
+// ... code ...
+MEM_StackPos.position = label;     // jump back (infinite loop!)
 ```
 
 ---
 
-## Operacje na stringach
+## String Operations
 
-Ikarus rozszerza ubogie możliwości stringów w Daedalusie:
+Ikarus extends the poor string capabilities of Daedalus:
 
 ```daedalus
-var int dlugosc;
-dlugosc = STR_Len("Hello");                        // 5
+var int length;
+length = STR_Len("Hello");                        // 5
 
 var string fragment;
 fragment = STR_SubStr("Hello World", 6, 5);         // "World"
 fragment = STR_Prefix("Hello World", 5);             // "Hello"
 
-var int pozycja;
-pozycja = STR_IndexOf("Hello World", "World");       // 6
-pozycja = STR_IndexOf("Hello World", "xyz");         // -1
+var int position;
+position = STR_IndexOf("Hello World", "World");       // 6
+position = STR_IndexOf("Hello World", "xyz");         // -1
 
-// Podział stringa
-var int czesci;
-czesci = STR_SplitCount("a;b;c", ";");               // 3
+// String splitting
+var int parts;
+parts = STR_SplitCount("a;b;c", ";");               // 3
 var string elem;
 elem = STR_Split("a;b;c", ";", 1);                   // "b"
 
-// Konwersja string → int
-var int liczba;
-liczba = STR_ToInt("42");                             // 42
+// String → int conversion
+var int number;
+number = STR_ToInt("42");                             // 42
 
-// Wielkie/małe litery
-var string duze;
-duze = STR_Upper("hello");                            // "HELLO"
-var string male;
-male = STR_Lower("HELLO");                            // "hello"
+// Upper/lower case
+var string upper;
+upper = STR_Upper("hello");                            // "HELLO"
+var string lower;
+lower = STR_Lower("HELLO");                            // "hello"
 
-// Pojedyncze znaki
+// Single characters
 var int ascii;
 ascii = STR_GetCharAt("ABC", 0);                      // 65 (ASCII 'A')
-var string znak;
-znak = STR_FromChar(65);                               // "A"
+var string ch;
+ch = STR_FromChar(65);                                 // "A"
 ```
 
 ---
 
-## Arytmetyka zmiennoprzecinkowa (float.d)
+## Floating-Point Arithmetic (float.d)
 
-Standardowy Daedalus nie obsługuje operacji na `float`. Ikarus emuluje je, przechowując wartości IEEE 754 jako `int`:
+Standard Daedalus doesn't support float operations. Ikarus emulates them by storing IEEE 754 values as `int`:
 
-### Stałe
+### Constants
 
 ```daedalus
 const int FLOATNULL = 0;            // 0.0
@@ -437,40 +437,40 @@ const int FLOATHALB = 1056964608;    // 0.5
 const int PI        = 1078530011;    // 3.14159...
 ```
 
-### Konwersja
+### Conversion
 
 ```daedalus
 var int f;
 f = mkf(42);                 // int → float (42 → 42.0)
 
 var int n;
-n = truncf(f);               // float → int (obcięcie)
-n = roundf(f);               // float → int (zaokrąglenie)
+n = truncf(f);               // float → int (truncate)
+n = roundf(f);               // float → int (round)
 ```
 
-### Operacje arytmetyczne
+### Arithmetic Operations
 
 ```daedalus
 var int a; a = mkf(10);      // 10.0
 var int b; b = mkf(3);       // 3.0
 
-var int suma;    suma    = addf(a, b);   // 13.0
-var int roznica; roznica = subf(a, b);   // 7.0
-var int iloczyn; iloczyn = mulf(a, b);   // 30.0
-var int iloraz;  iloraz  = divf(a, b);   // 3.333...
-var int ujemne;  ujemne  = negf(a);      // -10.0
-var int bezwzgl; bezwzgl = absf(ujemne); // 10.0
+var int sum;     sum     = addf(a, b);   // 13.0
+var int diff;    diff    = subf(a, b);   // 7.0
+var int product; product = mulf(a, b);   // 30.0
+var int quotient; quotient = divf(a, b); // 3.333...
+var int neg;     neg     = negf(a);      // -10.0
+var int abs;     abs     = absf(neg);    // 10.0
 
-// Ułamek
-var int polowa;
-polowa = fracf(1, 2);                    // 0.5
+// Fraction
+var int half;
+half = fracf(1, 2);                      // 0.5
 
-// Potęga i pierwiastek
-var int kwadrat;    kwadrat    = sqrf(a);       // 100.0
-var int pierwiastek; pierwiastek = sqrtf(a);    // 3.162...
+// Square and square root
+var int squared; squared = sqrf(a);       // 100.0
+var int root;    root    = sqrtf(a);      // 3.162...
 ```
 
-### Porównania
+### Comparisons
 
 ```daedalus
 if (lf(a, b))  { /* a < b  */ };
@@ -479,182 +479,182 @@ if (gf(a, b))  { /* a > b  */ };
 if (gef(a, b)) { /* a >= b */ };
 ```
 
-### Wyświetlanie
+### Display
 
 ```daedalus
-var string tekst;
-tekst = toStringf(iloraz);   // "3.333..."
-Print(tekst);
+var string text;
+text = toStringf(quotient);   // "3.333..."
+Print(text);
 ```
 
 ---
 
-## Zarządzanie pamięcią
+## Memory Management
 
 ```daedalus
-// Alokacja pamięci
-var int bufor;
-bufor = MEM_Alloc(256);          // alokuj 256 bajtów
+// Memory allocation
+var int buffer;
+buffer = MEM_Alloc(256);          // allocate 256 bytes
 
-// Użycie bufora...
-MEM_WriteInt(bufor, 42);
+// Use the buffer...
+MEM_WriteInt(buffer, 42);
 
-// Zwolnienie pamięci
-MEM_Free(bufor);
+// Free memory
+MEM_Free(buffer);
 
-// Kopiowanie pamięci
-MEM_CopyBytes(zrodlo, cel, iloscBajtow);
+// Copy memory
+MEM_CopyBytes(source, destination, byteCount);
 
-// Porównywanie pamięci
-var int rowne;
-rowne = MEM_CompareBytes(ptr1, ptr2, iloscBajtow);  // 0 = różne, 1 = identyczne
+// Compare memory
+var int equal;
+equal = MEM_CompareBytes(ptr1, ptr2, byteCount);  // 0 = different, 1 = identical
 ```
 
 ---
 
-## Wyszukiwanie vobów
+## Vob Search
 
 ```daedalus
-// Znajdź vob po nazwie
+// Find vob by name
 var int vobPtr;
 vobPtr = MEM_SearchVobByName("ITMW_1H_SWORD_01");
 
 if (vobPtr)
 {
-    var zCVob mojVob;
-    mojVob = _^(vobPtr);
-    Print(mojVob._zCObject_objectName);
+    var zCVob myVob;
+    myVob = _^(vobPtr);
+    Print(myVob._zCObject_objectName);
 };
 
-// Wstaw nowy vob
-var int nowyVob;
-nowyVob = MEM_InsertVob("ItMw_1h_Sword_01.3ds", "FP_ITEM_01");
+// Insert new vob
+var int newVob;
+newVob = MEM_InsertVob("ItMw_1h_Sword_01.3ds", "FP_ITEM_01");
 
-// Usuń vob
+// Delete vob
 MEM_DeleteVob(vobPtr);
 
-// Sprawdzanie typu
-if (Hlp_Is_oCNpc(ptr))       { /* to NPC */       };
-if (Hlp_Is_oCItem(ptr))      { /* to przedmiot */ };
-if (Hlp_Is_oCMobContainer(ptr)) { /* to skrzynia */ };
+// Type checking
+if (Hlp_Is_oCNpc(ptr))       { /* it's an NPC */       };
+if (Hlp_Is_oCItem(ptr))      { /* it's an item */      };
+if (Hlp_Is_oCMobContainer(ptr)) { /* it's a chest */ };
 ```
 
 ---
 
-## Logowanie i debugowanie
+## Logging and Debugging
 
 ```daedalus
-// Wyślij wiadomość do zSpy
-MEM_Info("Informacja: wszystko OK");
-MEM_Warn("Ostrzeżenie: coś jest nie tak");
-MEM_Error("Błąd: krytyczny problem!");
+// Send message to zSpy
+MEM_Info("Info: everything OK");
+MEM_Warn("Warning: something is wrong");
+MEM_Error("Error: critical problem!");
 
-// Stack trace Daedalusa
+// Daedalus stack trace
 MEM_PrintStackTrace();
 
-// Pomiar wydajności
-var int czas;
-czas = MEM_BenchmarkMS(MojaFunkcja);   // czas w milisekundach
+// Performance measurement
+var int time;
+time = MEM_BenchmarkMS(MyFunction);   // time in milliseconds
 ```
 
 ---
 
-## Ładowanie bibliotek DLL
+## Loading DLL Libraries
 
 ```daedalus
-// Załaduj bibliotekę DLL
+// Load a DLL library
 var int hDll;
-hDll = LoadLibrary("MojaDll.dll");
+hDll = LoadLibrary("MyDll.dll");
 
-// Pobierz adres funkcji
-var int adresFunkcji;
-adresFunkcji = GetProcAddress(hDll, "MojaFunkcja");
+// Get function address
+var int funcAddress;
+funcAddress = GetProcAddress(hDll, "MyFunction");
 ```
 
 ---
 
-## Assembler (ASM)
+## Assembly (ASM)
 
-Ikarus umożliwia generowanie i wykonywanie kodu maszynowego x86 bezpośrednio z Daedalusa:
+Ikarus enables generating and executing x86 machine code directly from Daedalus:
 
 ```daedalus
-ASM_Open(64);                  // rozpocznij bufor 64 bajty
+ASM_Open(64);                  // start 64-byte buffer
 ASM_1(133);                    // push EBP
 ASM_1(137); ASM_1(229);       // mov EBP, ESP
-// ... instrukcje maszynowe ...
+// ... machine instructions ...
 ASM_1(195);                    // ret
-var int kod;
-kod = ASM_Close();             // zakończ, zwróć wskaźnik
-ASM_Run(kod);                  // wykonaj kod
+var int code;
+code = ASM_Close();            // finish, return pointer
+ASM_Run(code);                 // execute code
 ```
 
 :::danger
-Używanie ASM wymaga zaawansowanej wiedzy o architekturze x86 i pamięci silnika Gothic. Błędy mogą spowodować natychmiastowy crash gry.
+Using ASM requires advanced knowledge of x86 architecture and Gothic engine memory. Errors can cause an immediate game crash.
 :::
 
 ---
 
-## Kompatybilność: Gothic I vs Gothic II
+## Compatibility: Gothic I vs Gothic II
 
-Ikarus został pierwotnie stworzony dla **Gothic II**, ale działa również z **Gothic I** (wersja 1.08k_mod).
+Ikarus was originally created for **Gothic II** but also works with **Gothic I** (version 1.08k_mod).
 
-| Aspekt             | Gothic I            | Gothic II           |
-| ------------------ | ------------------- | ------------------- |
-| Plik stałych       | `Ikarus_Const_G1.d` | `Ikarus_Const_G2.d` |
-| Klasy silnikowe    | `EngineClasses_G1/` | `EngineClasses_G2/` |
-| Rdzeń (`Ikarus.d`) | Ten sam plik        | Ten sam plik        |
-| `float.d`          | Ten sam plik        | Ten sam plik        |
-| Adresy w pamięci   | Inne adresy         | Inne adresy         |
+| Aspect            | Gothic I            | Gothic II           |
+| ----------------- | ------------------- | ------------------- |
+| Constants file    | `Ikarus_Const_G1.d` | `Ikarus_Const_G2.d` |
+| Engine classes    | `EngineClasses_G1/` | `EngineClasses_G2/` |
+| Core (`Ikarus.d`) | Same file           | Same file           |
+| `float.d`         | Same file           | Same file           |
+| Memory addresses  | Different addresses | Different addresses |
 
-Ikarus automatycznie rozpoznaje wersję gry i dobiera odpowiednie adresy dzięki funkcji `MEMINT_SwitchG1G2()`.
+Ikarus automatically detects the game version and selects appropriate addresses via the `MEMINT_SwitchG1G2()` function.
 
 :::warning
-Niektóre klasy silnikowe dla Gothic I mają status „niezweryfikowane" (np. `zCMenuItem`, `oCAIHuman`). Korzystaj z nich ostrożnie.
+Some engine classes for Gothic I have "unverified" status (e.g., `zCMenuItem`, `oCAIHuman`). Use them with caution.
 :::
 
 ---
 
-## LeGo — rozszerzenie Ikarusa
+## LeGo — Ikarus Extension
 
-**LeGo** to pakiet skryptów zbudowany **na bazie Ikarusa**, stworzony przez **Lehonę** i społeczność Gothic. Wymaga Ikarusa ≥ 1.2.0.
+**LeGo** is a script package built **on top of Ikarus**, created by **Lehona** and the Gothic community. Requires Ikarus ≥ 1.2.0.
 
-### Inicjalizacja
+### Initialization
 
 ```daedalus
 func void INIT_GLOBAL()
 {
-    // LeGo_Init wywołuje MEM_InitAll() automatycznie
+    // LeGo_Init calls MEM_InitAll() automatically
     LeGo_Init(LeGo_All);
-    // lub selektywnie:
+    // or selectively:
     // LeGo_Init(LeGo_FrameFunctions | LeGo_Bars | LeGo_HookEngine);
 };
 ```
 
-### Główne moduły LeGo
+### Main LeGo Modules
 
-| Moduł               | Opis                                                   |
-| ------------------- | ------------------------------------------------------ |
-| **HookEngine**      | Hookowanie funkcji silnika C++ z poziomu Daedalusa     |
-| **FrameFunctions**  | Wywoływanie funkcji co klatkę                          |
-| **Bars**            | Własne paski statusu (HP, mana, niestandardowe)        |
-| **Cursor**          | Obsługa kursora myszy                                  |
-| **Buttons**         | Klikalne przyciski UI                                  |
-| **Trialoge**        | Dialogi wieloosobowe (więcej niż 2 osoby)              |
-| **Dialoggestures**  | Animacje podczas dialogów                              |
-| **Saves**           | Zapis/odczyt własnych danych (przetrwanie save/load)   |
-| **PermMem**         | Trwała pamięć (przetrwanie save/load)                  |
-| **Anim8**           | Animacja/tweening wartości                             |
-| **View**            | Niestandardowe elementy widoku                         |
-| **Sprite**          | Renderowanie sprite'ów 2D                              |
-| **Draw3D**          | Rysowanie prymitywów 3D                                |
-| **Random**          | Lepszy generator liczb losowych                        |
-| **Bloodsplats**     | Efekty rozbryzgu krwi                                  |
-| **ConsoleCommands** | Własne komendy konsoli                                 |
-| **Buffs**           | System buffów/debuffów                                 |
-| **EventHandler**    | System zdarzeń                                         |
-| **Timer**           | Narzędzia do timerów                                   |
-| **Gamestate**       | Śledzenie stanu gry (nowa gra / load / zmiana poziomu) |
+| Module              | Description                                          |
+| ------------------- | ---------------------------------------------------- |
+| **HookEngine**      | Hook C++ engine functions from Daedalus              |
+| **FrameFunctions**  | Call functions every frame                           |
+| **Bars**            | Custom status bars (HP, mana, custom)                |
+| **Cursor**          | Mouse cursor support                                 |
+| **Buttons**         | Clickable UI buttons                                 |
+| **Trialoge**        | Multi-person dialogs (more than 2 people)            |
+| **Dialoggestures**  | Animations during dialogs                            |
+| **Saves**           | Save/load custom data (survives save/load)           |
+| **PermMem**         | Persistent memory (survives save/load)               |
+| **Anim8**           | Value animation/tweening                             |
+| **View**            | Custom view elements                                 |
+| **Sprite**          | 2D sprite rendering                                  |
+| **Draw3D**          | 3D drawing primitives                                |
+| **Random**          | Better random number generator                       |
+| **Bloodsplats**     | Blood splatter effects                               |
+| **ConsoleCommands** | Custom console commands                              |
+| **Buffs**           | Buff/debuff system                                   |
+| **EventHandler**    | Event system                                         |
+| **Timer**           | Timer utilities                                      |
+| **Gamestate**       | Game state tracking (new game / load / level change) |
 
 :::tip
-Więcej o LeGo dowiesz się z [oficjalnej dokumentacji LeGo](https://lego.worldofgothic.de/) lub z kodu źródłowego na GitHubie.
+Learn more about LeGo from the [official LeGo documentation](https://lego.worldofgothic.de/) or from the source code on GitHub.
 :::

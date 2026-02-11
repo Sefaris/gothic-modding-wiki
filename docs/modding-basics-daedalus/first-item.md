@@ -1,78 +1,78 @@
 ---
 sidebar_position: 3
-title: "Mój pierwszy przedmiot"
-description: "Tworzenie pierwszego przedmiotu w Gothic."
+title: "My First Item"
+description: "Creating your first item in Gothic."
 ---
 
-# Mój pierwszy przedmiot
+# My First Item
 
-W tym poradniku nauczysz się tworzyć przedmioty w języku Daedalus — od miecza, przez mikstury, po jedzenie.
+In this tutorial you will learn how to create items in Daedalus — from swords, through potions, to food.
 
-## Klasa C_Item — co definiuje przedmiot?
+## The C_Item Class — What Defines an Item?
 
-Każdy przedmiot w Gothic to instancja klasy `C_Item`. Najważniejsze pola:
+Every item in Gothic is an instance of the `C_Item` class. The most important fields are:
 
-| Pole                 | Typ                | Opis                                         |
-| -------------------- | ------------------ | -------------------------------------------- |
-| `name`               | `string`           | Nazwa wyświetlana w grze                     |
-| `mainflag`           | `int`              | Główna kategoria (broń, zbroja, mikstura...) |
-| `flags`              | `int`              | Typ szczegółowy (miecz, topór, łuk...)       |
-| `value`              | `int`              | Wartość w złocie                             |
-| `visual`             | `string`           | Model 3D (`*.3DS`)                           |
-| `material`           | `int`              | Materiał (metal, drewno, szkło...)           |
-| `damageTotal`        | `int`              | Łączne obrażenia (broń)                      |
-| `damagetype`         | `int`              | Typ obrażeń (sieczne, obuchowe...)           |
-| `range`              | `int`              | Zasięg broni                                 |
-| `protection[]`       | `int[]`            | Ochrona (zbroje)                             |
-| `cond_atr[]`         | `int[]`            | Wymagane atrybuty do użycia                  |
-| `cond_value[]`       | `int[]`            | Wymagane wartości atrybutów                  |
-| `on_state[]`         | `func[]`           | Funkcje wywoływane przy użyciu               |
-| `description`        | `string`           | Opis w menu ekwipunku                        |
-| `TEXT[]` / `COUNT[]` | `string[]`/`int[]` | Linie opisu w tooltipie                      |
+| Field                | Type               | Description                              |
+| -------------------- | ------------------ | ---------------------------------------- |
+| `name`               | `string`           | Name displayed in game                   |
+| `mainflag`           | `int`              | Main category (weapon, armor, potion...) |
+| `flags`              | `int`              | Detailed type (sword, axe, bow...)       |
+| `value`              | `int`              | Value in gold                            |
+| `visual`             | `string`           | 3D model (`*.3DS`)                       |
+| `material`           | `int`              | Material (metal, wood, glass...)         |
+| `damageTotal`        | `int`              | Total damage (weapons)                   |
+| `damagetype`         | `int`              | Damage type (edge, blunt...)             |
+| `range`              | `int`              | Weapon range                             |
+| `protection[]`       | `int[]`            | Protection (armors)                      |
+| `cond_atr[]`         | `int[]`            | Required attributes to use               |
+| `cond_value[]`       | `int[]`            | Required attribute values                |
+| `on_state[]`         | `func[]`           | Functions called on use                  |
+| `description`        | `string`           | Description in the inventory menu        |
+| `TEXT[]` / `COUNT[]` | `string[]`/`int[]` | Description lines in tooltip             |
 
-### Kategorie przedmiotów (mainflag)
+### Item Categories (mainflag)
 
-| Stała              | Opis                                |
-| ------------------ | ----------------------------------- |
-| `ITEM_KAT_NF`      | Broń biała (melee)                  |
-| `ITEM_KAT_FF`      | Broń dystansowa                     |
-| `ITEM_KAT_ARMOR`   | Zbroja                              |
-| `ITEM_KAT_FOOD`    | Jedzenie                            |
-| `ITEM_KAT_POTIONS` | Mikstury                            |
-| `ITEM_KAT_DOCS`    | Dokumenty                           |
-| `ITEM_KAT_RUNE`    | Runy i zwoje                        |
-| `ITEM_KAT_NONE`    | Inne (złoto, klucze, mission items) |
+| Constant           | Description                       |
+| ------------------ | --------------------------------- |
+| `ITEM_KAT_NF`      | Melee weapon                      |
+| `ITEM_KAT_FF`      | Ranged weapon                     |
+| `ITEM_KAT_ARMOR`   | Armor                             |
+| `ITEM_KAT_FOOD`    | Food                              |
+| `ITEM_KAT_POTIONS` | Potions                           |
+| `ITEM_KAT_DOCS`    | Documents                         |
+| `ITEM_KAT_RUNE`    | Runes and scrolls                 |
+| `ITEM_KAT_NONE`    | Other (gold, keys, mission items) |
 
-## Przykład 1: Broń biała (miecz)
+## Example 1: Melee Weapon (Sword)
 
-Utwórz plik lub dodaj instancję do `Items/IT_Melee_Weapons.d`:
+Create a file or add an instance to `Items/IT_Melee_Weapons.d`:
 
 ```daedalus
 instance ItMw_Miecz_Konrada (C_Item)
 {
-    name        = "Miecz Konrada";
+    name        = "Konrad's Sword";
 
-    // --- Kategoria ---
-    mainflag    = ITEM_KAT_NF;         // broń biała
-    flags       = ITEM_SWD;            // miecz jednoręczny
+    // --- Category ---
+    mainflag    = ITEM_KAT_NF;         // melee weapon
+    flags       = ITEM_SWD;            // one-handed sword
     material    = MAT_METAL;
 
-    // --- Statystyki ---
-    damageTotal = 35;                   // 35 pkt obrażeń
-    damagetype  = DAM_EDGE;            // obrażenia sieczne
-    range       = 100;                  // zasięg ataku
+    // --- Stats ---
+    damageTotal = 35;                   // 35 damage points
+    damagetype  = DAM_EDGE;            // edge damage
+    range       = 100;                  // attack range
 
-    // --- Wymagania ---
-    cond_atr[2]   = ATR_STRENGTH;       // wymaga siły
-    cond_value[2] = 20;                 // minimum 20 siły
+    // --- Requirements ---
+    cond_atr[2]   = ATR_STRENGTH;       // requires strength
+    cond_value[2] = 20;                 // minimum 20 strength
 
-    // --- Wartość ---
-    value       = 250;                  // 250 złota
+    // --- Value ---
+    value       = 250;                  // 250 gold
 
-    // --- Model 3D ---
+    // --- 3D Model ---
     visual      = "ItMw_025_1h_sld_sword_01.3DS";
 
-    // --- Tooltip (opis w ekwipunku) ---
+    // --- Tooltip (inventory description) ---
     description    = name;
     TEXT[2]  = NAME_Dam_Edge;       COUNT[2] = damageTotal;
     TEXT[3]  = NAME_Str_needed;     COUNT[3] = cond_value[2];
@@ -81,30 +81,30 @@ instance ItMw_Miecz_Konrada (C_Item)
 ```
 
 :::info
-Pole `flags` określa typ broni: `ITEM_SWD` (miecz 1H), `ITEM_AXE` (topór 1H), `ITEM_2HD_SWD` (miecz 2H), `ITEM_2HD_AXE` (topór 2H).
+The `flags` field determines the weapon type: `ITEM_SWD` (1H sword), `ITEM_AXE` (1H axe), `ITEM_2HD_SWD` (2H sword), `ITEM_2HD_AXE` (2H axe).
 :::
 
-## Przykład 2: Mikstura
+## Example 2: Potion
 
 ```daedalus
 instance ItPo_Zdrowie_Konrada (C_Item)
 {
-    name      = "Mikstura zdrowia Konrada";
+    name      = "Konrad's Health Potion";
 
-    // --- Kategoria ---
+    // --- Category ---
     mainflag  = ITEM_KAT_POTIONS;
-    flags     = ITEM_MULTI;             // przedmiot stackowalny
+    flags     = ITEM_MULTI;             // stackable item
 
-    // --- Wartość i wygląd ---
+    // --- Value and appearance ---
     value     = 75;
     visual    = "ItPo_Health_01.3ds";
-    material  = MAT_GLAS;              // szkło (dźwięk przy podnoszeniu)
+    material  = MAT_GLAS;              // glass (pickup sound)
 
-    // --- Efekt użycia ---
+    // --- Use effect ---
     on_state[0] = Use_ItPo_Zdrowie_Konrada;
-    scemeName   = "POTIONFAST";         // animacja picia
+    scemeName   = "POTIONFAST";         // drinking animation
     wear        = WEAR_EFFECT;
-    effect      = "SPELLFX_HEALTHPOTION"; // efekt wizualny
+    effect      = "SPELLFX_HEALTHPOTION"; // visual effect
 
     // --- Tooltip ---
     description = name;
@@ -112,7 +112,7 @@ instance ItPo_Zdrowie_Konrada (C_Item)
     TEXT[5]  = NAME_Value;       COUNT[5] = value;
 };
 
-// Funkcja wywoływana po użyciu
+// Function called after use
 func void Use_ItPo_Zdrowie_Konrada ()
 {
     Npc_ChangeAttribute (self, ATR_HITPOINTS, 100);   // +100 HP
@@ -120,15 +120,15 @@ func void Use_ItPo_Zdrowie_Konrada ()
 ```
 
 :::tip
-`ITEM_MULTI` sprawia, że przedmioty tego samego typu stackują się w ekwipunku (zamiast zajmować osobne sloty).
+`ITEM_MULTI` makes items of the same type stack in the inventory (instead of taking up separate slots).
 :::
 
-## Przykład 3: Jedzenie
+## Example 3: Food
 
 ```daedalus
 instance ItFo_Chleb_Konrada (C_Item)
 {
-    name      = "Chleb Konrada";
+    name      = "Konrad's Bread";
     mainflag  = ITEM_KAT_FOOD;
     flags     = ITEM_MULTI;
     value     = 10;
@@ -136,7 +136,7 @@ instance ItFo_Chleb_Konrada (C_Item)
     material  = MAT_LEATHER;
 
     on_state[0] = Use_ItFo_Chleb_Konrada;
-    scemeName   = "FOOD";               // animacja jedzenia
+    scemeName   = "FOOD";               // eating animation
 
     description = name;
     TEXT[1]  = NAME_Bonus_HP;    COUNT[1] = 15;
@@ -149,25 +149,25 @@ func void Use_ItFo_Chleb_Konrada ()
 };
 ```
 
-## Dawanie przedmiotu NPC
+## Giving Items to NPCs
 
-Aby NPC miał przedmiot w ekwipunku, użyj w definicji NPC:
+To have an NPC carry an item in their inventory, use in the NPC definition:
 
 ```daedalus
-// W instancji NPC:
-EquipItem (self, ItMw_Miecz_Konrada);              // zakłada (broń/zbroję)
-CreateInvItems (self, ItPo_Zdrowie_Konrada, 5);     // 5 mikstur w plecaku
-CreateInvItems (self, ItFo_Chleb_Konrada, 3);       // 3 chleby
-CreateInvItems (self, ItMi_Gold, 100);               // 100 złota
+// In the NPC instance:
+EquipItem (self, ItMw_Miecz_Konrada);              // equips (weapon/armor)
+CreateInvItems (self, ItPo_Zdrowie_Konrada, 5);     // 5 potions in backpack
+CreateInvItems (self, ItFo_Chleb_Konrada, 3);       // 3 bread loaves
+CreateInvItems (self, ItMi_Gold, 100);               // 100 gold
 ```
 
 :::warning
-`EquipItem` automatycznie **zakłada** przedmiot (NPC będzie trzymał broń lub nosił zbroję). `CreateInvItems` tylko dodaje do ekwipunku.
+`EquipItem` automatically **equips** the item (the NPC will hold the weapon or wear the armor). `CreateInvItems` only adds to the inventory.
 :::
 
-## Rejestracja w Gothic.src
+## Registration in Gothic.src
 
-Dodaj plik z przedmiotami do `Gothic.src` — **przed** definicjami NPC:
+Add the item files to `Gothic.src` — **before** NPC definitions:
 
 ```
 Items\IT_Melee_Weapons.d
@@ -175,13 +175,13 @@ Items\IT_Potions.d
 Items\IT_Food.d
 ```
 
-## Podsumowanie
+## Summary
 
-Tworzenie przedmiotów wymaga:
+Creating items requires:
 
-1. **Instancji** klasy `C_Item` z odpowiednim `mainflag` i `flags`
-2. Ustawienia **statystyk** (obrażenia, ochrona, wymagania)
-3. Podania **modelu 3D** (`.3DS`)
-4. Dla przedmiotów używalnych — **funkcji on_state** zmieniającej atrybuty
-5. **Tooltipa** (TEXT/COUNT) do wyświetlania informacji w grze
-6. **Rejestracji** w `Gothic.src`
+1. An **instance** of the `C_Item` class with appropriate `mainflag` and `flags`
+2. Setting **stats** (damage, protection, requirements)
+3. Providing a **3D model** (`.3DS`)
+4. For usable items — an **on_state function** that modifies attributes
+5. A **tooltip** (TEXT/COUNT) to display information in game
+6. **Registration** in `Gothic.src`

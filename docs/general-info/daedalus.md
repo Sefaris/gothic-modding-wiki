@@ -1,70 +1,70 @@
 ---
 sidebar_position: 1
 title: "Daedalus"
-description: "Opis języka skryptowego Daedalus używanego w grze Gothic."
+description: "Overview of the Daedalus scripting language used in Gothic."
 ---
 
 # Daedalus
 
-**Daedalus** to język skryptowy wbudowany w silnik **ZenGin** — silnik gier Gothic I i Gothic II. Za jego pomocą definiuje się praktycznie całą logikę gry: postacie, przedmioty, dialogi, zadania, efekty, dźwięki, AI i wiele więcej.
+**Daedalus** is a scripting language built into the **ZenGin** engine — the engine powering Gothic I and Gothic II. It's used to define virtually all game logic: characters, items, dialogs, quests, effects, sounds, AI, and much more.
 
-Pliki źródłowe Daedalusa mają rozszerzenie **`.d`**, a pliki kompilacyjne (listy plików do kompilacji) — **`.src`**. Po kompilacji powstaje plik binarny **`.dat`**, który jest odczytywany przez silnik gry.
+Daedalus source files have the **`.d`** extension, and compilation files (lists of files to compile) use **`.src`**. After compilation, a binary **`.dat`** file is produced, which is read by the game engine.
 
 :::info
-Daedalus **nie jest** językiem ogólnego przeznaczenia. To język domenowy zaprojektowany specjalnie pod Gothic — ma wiele ograniczeń w porównaniu z nowoczesnymi językami, ale doskonale spełnia swoją rolę w kontekście moddingu.
+Daedalus is **not** a general-purpose language. It's a domain-specific language designed specifically for Gothic — it has many limitations compared to modern languages, but it perfectly fulfills its role in the context of modding.
 :::
 
 ---
 
-## Typy danych
+## Data Types
 
-Daedalus posiada bardzo ograniczony system typów:
+Daedalus has a very limited type system:
 
-| Typ      | Opis                                        | Przykład                     |
-| -------- | ------------------------------------------- | ---------------------------- |
-| `int`    | Liczba całkowita (32-bit)                   | `var int licznik;`           |
-| `float`  | Liczba zmiennoprzecinkowa                   | `var float zasieg;`          |
-| `string` | Łańcuch znaków                              | `var string imie;`           |
-| `void`   | Brak wartości zwracanej (tylko w funkcjach) | `func void MojaFunkcja()`    |
-| `func`   | Referencja do funkcji                       | `var func codzienna_rutyna;` |
+| Type     | Description                      | Example                   |
+| -------- | -------------------------------- | ------------------------- |
+| `int`    | Integer (32-bit)                 | `var int counter;`        |
+| `float`  | Floating-point number            | `var float range;`        |
+| `string` | Text string                      | `var string name;`        |
+| `void`   | No return value (functions only) | `func void MyFunction()`  |
+| `func`   | Function reference               | `var func daily_routine;` |
 
-**Nie istnieje typ `bool`** — zamiast niego używa się stałych `TRUE` (1) i `FALSE` (0), które są typu `int`.
+**There is no `bool` type** — instead, constants `TRUE` (1) and `FALSE` (0) of type `int` are used.
 
 ---
 
-## Zmienne
+## Variables
 
-### Zmienne lokalne
+### Local Variables
 
-Deklarowane wewnątrz funkcji za pomocą słowa kluczowego `var`:
+Declared inside functions using the `var` keyword:
 
 ```daedalus
-func string PobierzNazwe(var int instancja)
+func string GetName(var int instance)
 {
-    var string nazwa;
-    var int wartosc;
+    var string name;
+    var int value;
     // ...
-    return nazwa;
+    return name;
 };
 ```
 
-### Zmienne globalne
+### Global Variables
 
-Deklarowane poza funkcjami — dostępne z dowolnego miejsca w skryptach:
+Declared outside functions — accessible from anywhere in the scripts:
 
 ```daedalus
-var int Kapitel;
-var int MojeZadanie_Status;
-var string PrzepiszNazwa;
+var int Chapter;
+var int MyQuest_Status;
+var string RecipeName;
 ```
 
 :::warning
-Zmienne globalne **muszą być zadeklarowane przed ich użyciem** — kolejność plików w `Gothic.src` ma znaczenie!
+Global variables **must be declared before they are used** — the file order in `Gothic.src` matters!
 :::
 
-### Stałe (`const`)
+### Constants (`const`)
 
-Wartości niezmienne, definiowane słowem kluczowym `const`:
+Immutable values defined with the `const` keyword:
 
 ```daedalus
 const int    ATR_HITPOINTS     = 0;
@@ -75,27 +75,27 @@ const int    TRUE              = 1;
 const int    FALSE             = 0;
 ```
 
-Stałe mogą odwoływać się do innych stałych i używać wyrażeń:
+Constants can reference other constants and use expressions:
 
 ```daedalus
-const int NPC_FLAG_IMMORTAL = 1 << 1;          // przesunięcie bitowe
+const int NPC_FLAG_IMMORTAL = 1 << 1;          // bit shift
 const int NPC_FLAG_GHOST    = 1 << 2;
-const int DAM_BLUNT         = DAM_BARRIER << 1; // odwołanie do innej stałej
+const int DAM_BLUNT         = DAM_BARRIER << 1; // reference to another constant
 ```
 
 ---
 
-## Tablice
+## Arrays
 
-Tablice w Daedalusie mają **stały rozmiar** określony w nawiasach kwadratowych:
+Arrays in Daedalus have a **fixed size** specified in square brackets:
 
 ```daedalus
-var string  name[5];                    // 5 elementów
-var int     attribute[ATR_INDEX_MAX];   // rozmiar ze stałej (= 8)
-var int     aivar[100];                 // 100 zmiennych AI
+var string  name[5];                    // 5 elements
+var int     attribute[ATR_INDEX_MAX];   // size from constant (= 8)
+var int     aivar[100];                 // 100 AI variables
 ```
 
-Dostęp do elementów przez indeks:
+Element access via index:
 
 ```daedalus
 attribute[ATR_STRENGTH]    = 50;
@@ -103,7 +103,7 @@ name[0]                    = "Konrad";
 on_state[0]                = UseItPo_Health;
 ```
 
-Dostęp do tablic przez notację z kropką (na instancjach):
+Array access via dot notation (on instances):
 
 ```daedalus
 self.attribute[ATR_STRENGTH]    = 50;
@@ -111,104 +111,104 @@ self.attribute[ATR_HITPOINTS]   = 160;
 ```
 
 :::warning
-Nie istnieją tablice dynamiczne. Rozmiar tablicy musi być znany w czasie kompilacji. Biblioteka Ikarus omija to ograniczenie przez bezpośredni dostęp do pamięci.
+Dynamic arrays do not exist. Array size must be known at compile time. The Ikarus library works around this limitation through direct memory access.
 :::
 
 ---
 
-## Operatory
+## Operators
 
-### Arytmetyczne
+### Arithmetic
 
-| Operator | Opis                        | Przykład |
-| -------- | --------------------------- | -------- |
-| `+`      | Dodawanie                   | `a + b`  |
-| `-`      | Odejmowanie                 | `a - b`  |
-| `*`      | Mnożenie                    | `a * b`  |
-| `/`      | Dzielenie (całkowite)       | `a / b`  |
-| `%`      | Reszta z dzielenia (modulo) | `a % 5`  |
+| Operator | Description        | Example |
+| -------- | ------------------ | ------- |
+| `+`      | Addition           | `a + b` |
+| `-`      | Subtraction        | `a - b` |
+| `*`      | Multiplication     | `a * b` |
+| `/`      | Division (integer) | `a / b` |
+| `%`      | Modulo (remainder) | `a % 5` |
 
-### Przypisanie i przypisanie złożone
+### Assignment and Compound Assignment
 
-| Operator | Opis               | Przykład  |
-| -------- | ------------------ | --------- |
-| `=`      | Przypisanie        | `x = 10;` |
-| `+=`     | Dodaj i przypisz   | `x += 5;` |
-| `-=`     | Odejmij i przypisz | `x -= 3;` |
+| Operator | Description         | Example   |
+| -------- | ------------------- | --------- |
+| `=`      | Assignment          | `x = 10;` |
+| `+=`     | Add and assign      | `x += 5;` |
+| `-=`     | Subtract and assign | `x -= 3;` |
 
-### Porównania
+### Comparison
 
-| Operator | Opis               | Przykład   |
-| -------- | ------------------ | ---------- |
-| `==`     | Równe              | `x == 1`   |
-| `!=`     | Różne              | `x != 0`   |
-| `>`      | Większe            | `x > 10`   |
-| `<`      | Mniejsze           | `x < 5`    |
-| `>=`     | Większe lub równe  | `x >= 0`   |
-| `<=`     | Mniejsze lub równe | `x <= 100` |
+| Operator | Description      | Example    |
+| -------- | ---------------- | ---------- |
+| `==`     | Equal            | `x == 1`   |
+| `!=`     | Not equal        | `x != 0`   |
+| `>`      | Greater than     | `x > 10`   |
+| `<`      | Less than        | `x < 5`    |
+| `>=`     | Greater or equal | `x >= 0`   |
+| `<=`     | Less or equal    | `x <= 100` |
 
-### Logiczne
+### Logical
 
-| Operator | Opis         | Przykład                 |
-| -------- | ------------ | ------------------------ |
-| `&&`     | Logiczne AND | `(x > 0) && (y < 10)`    |
-| `\|\|`   | Logiczne OR  | `(x == 1) \|\| (x == 2)` |
-| `!`      | Negacja      | `!Npc_IsPlayer(self)`    |
+| Operator | Description | Example                  |
+| -------- | ----------- | ------------------------ |
+| `&&`     | Logical AND | `(x > 0) && (y < 10)`    |
+| `\|\|`   | Logical OR  | `(x == 1) \|\| (x == 2)` |
+| `!`      | Negation    | `!Npc_IsPlayer(self)`    |
 
-### Bitowe
+### Bitwise
 
-| Operator | Opis                | Przykład                  |
-| -------- | ------------------- | ------------------------- |
-| `&`      | AND bitowe          | `flags & ITEM_SWD`        |
-| `\|`     | OR bitowe           | `SENSE_HEAR \| SENSE_SEE` |
-| `<<`     | Przesunięcie w lewo | `1 << 3`                  |
+| Operator | Description | Example                   |
+| -------- | ----------- | ------------------------- |
+| `&`      | Bitwise AND | `flags & ITEM_SWD`        |
+| `\|`     | Bitwise OR  | `SENSE_HEAR \| SENSE_SEE` |
+| `<<`     | Left shift  | `1 << 3`                  |
 
-Operatory bitowe są często używane do definiowania flag:
+Bitwise operators are commonly used to define flags:
 
 ```daedalus
-const int ITEM_KAT_NF    = 1 << 1;    // kategoria: broń biała
-const int ITEM_KAT_FF    = 1 << 2;    // kategoria: broń dystansowa
-const int ITEM_KAT_MUN   = 1 << 3;    // kategoria: amunicja
-const int ITEM_KAT_MAGIC = 1 << 31;   // kategoria: magia
+const int ITEM_KAT_NF    = 1 << 1;    // category: melee weapon
+const int ITEM_KAT_FF    = 1 << 2;    // category: ranged weapon
+const int ITEM_KAT_MUN   = 1 << 3;    // category: ammo
+const int ITEM_KAT_MAGIC = 1 << 31;   // category: magic
 
-// Sprawdzanie flagi:
+// Checking a flag:
 if (type & ITEM_SWD)
 {
-    // przedmiot jest mieczem
+    // item is a sword
 };
 ```
 
 ---
 
-## Instrukcje warunkowe
+## Conditional Statements
 
 ### if / else if / else
 
 ```daedalus
 if (type & ITEM_SWD || type & ITEM_AXE)
 {
-    nazwa = "Broń jednoreczna";
+    name = "One-handed weapon";
 }
 else if (type & ITEM_2HD_SWD || type & ITEM_2HD_AXE)
 {
-    nazwa = "Broń dwureczna";
+    name = "Two-handed weapon";
 }
 else
 {
-    nazwa = "[???]";
+    name = "[???]";
 };
 ```
 
 :::danger
-Każdy blok `if`, `else if` i `else` musi kończyć się **średnikiem po klamrze zamykającej** `};` — to specyfika Daedalusa!
+Every `if`, `else if`, and `else` block must end with a **semicolon after the closing brace** `};` — this is a Daedalus peculiarity!
 :::
 
-### Warunki wieloliniowe
+### Multi-line Conditions
 
-Daedalus pozwala na pisanie warunków `&&` i `||` w **nowych liniach** — bez nawiasów:
+Daedalus allows writing `&&` and `||` conditions on **new lines** — without parentheses:
 
 ```daedalus
-if (GanelunTot == TRUE)
+if (GanelunDead == TRUE)
 && (RemoveGanelunVarant == FALSE)
 {
     B_StartOtherRoutine(PAL_99001_Ganelun, "VERRAT");
@@ -216,45 +216,45 @@ if (GanelunTot == TRUE)
 };
 ```
 
-Jest to unikalna cecha składni Daedalusa, często spotykana w oryginalnych skryptach Gothic.
+This is a unique Daedalus syntax feature, commonly found in the original Gothic scripts.
 
-### Brak switch/case
+### No switch/case
 
-W Daedalusie **nie istnieje instrukcja `switch/case`**. Zamiast niej stosuje się łańcuchy `if / else if`:
+Daedalus **does not have a `switch/case` statement**. Instead, `if / else if` chains are used:
 
 ```daedalus
-if (kapitel == 1)
+if (chapter == 1)
 {
-    // logika dla rozdziału 1
+    // chapter 1 logic
 }
-else if (kapitel == 2)
+else if (chapter == 2)
 {
-    // logika dla rozdziału 2
+    // chapter 2 logic
 }
-else if (kapitel == 3)
+else if (chapter == 3)
 {
-    // logika dla rozdziału 3
+    // chapter 3 logic
 };
 ```
 
 ---
 
-## Pętle
+## Loops
 
-Standardowy Daedalus **nie posiada pętli**. Nie ma `for`, `while`, ani `do/while`.
+Standard Daedalus **has no loops**. There is no `for`, `while`, or `do/while`.
 
 :::tip
-Biblioteka **Ikarus** dodaje obsługę pętli `while` i `repeat` poprzez hackowanie parsera. Więcej informacji znajdziesz na stronie o [Ikarusie](./ikarus.md).
+The **Ikarus** library adds `while` and `repeat` loop support through parser hacking. More information on the [Ikarus](./ikarus.md) page.
 
 ```daedalus
-// Pętla while (Ikarus)
+// while loop (Ikarus)
 while(i < 10);
     i += 1;
 end;
 
-// Pętla repeat (LeGo)
+// repeat loop (LeGo)
 repeat(i, 10);
-    // kod wykonywany 10 razy
+    // code executed 10 times
 end;
 ```
 
@@ -262,31 +262,31 @@ end;
 
 ---
 
-## Łańcuchy znaków (stringi)
+## Strings
 
-### Konkatenacja
+### Concatenation
 
-**Nie ma operatora `+` dla stringów.** Do łączenia tekstu służy funkcja zewnętrzna `ConcatStrings()`:
+**There is no `+` operator for strings.** To join text, use the external function `ConcatStrings()`:
 
 ```daedalus
-var string tekst;
-tekst = ConcatStrings("Witaj, ", "świecie!");               // "Witaj, świecie!"
-tekst = ConcatStrings(tekst, ConcatStrings(" Mam ", IntToString(10)));
-tekst = ConcatStrings(tekst, " złota.");                     // "Witaj, świecie! Mam 10 złota."
+var string text;
+text = ConcatStrings("Hello, ", "world!");               // "Hello, world!"
+text = ConcatStrings(text, ConcatStrings(" I have ", IntToString(10)));
+text = ConcatStrings(text, " gold.");                     // "Hello, world! I have 10 gold."
 ```
 
-### Porównywanie
+### Comparison
 
-Do porównywania stringów służy funkcja `Hlp_StrCmp()`:
+To compare strings, use `Hlp_StrCmp()`:
 
 ```daedalus
-if (Hlp_StrCmp(opcja, "tak"))
+if (Hlp_StrCmp(option, "yes"))
 {
-    // opcja to "tak"
+    // option is "yes"
 };
 ```
 
-### Konwersja typów
+### Type Conversion
 
 ```daedalus
 var string s;
@@ -294,57 +294,57 @@ s = IntToString(42);     // int → string: "42"
 ```
 
 :::info
-Funkcja `IntToString()` to jedyna wbudowana konwersja typów. Nie istnieje odwrotny `StringToInt()` w standardowym Daedalusie — dodaje go biblioteka Ikarus.
+`IntToString()` is the only built-in type conversion. There is no reverse `StringToInt()` in standard Daedalus — the Ikarus library adds it.
 :::
 
 ---
 
-## Funkcje
+## Functions
 
-### Deklaracja funkcji
+### Function Declaration
 
-Funkcje deklaruje się słowem kluczowym `func`, podając typ zwracany, nazwę i parametry:
+Functions are declared with the `func` keyword, specifying return type, name, and parameters:
 
 ```daedalus
-func void B_UstawWalke(var C_NPC slf, var int procent)
+func void B_SetFightSkills(var C_NPC slf, var int percent)
 {
-    B_RaiseFightTalent(slf, NPC_TALENT_1H, procent);
-    B_RaiseFightTalent(slf, NPC_TALENT_2H, procent);
+    B_RaiseFightTalent(slf, NPC_TALENT_1H, percent);
+    B_RaiseFightTalent(slf, NPC_TALENT_2H, percent);
 };
 ```
 
 ```daedalus
-func string PobierzInfoOBroni(var int typ, var int zasieg)
+func string GetWeaponInfo(var int type, var int range)
 {
-    var string tekst;
-    tekst = ConcatStrings("Zasieg: ", IntToString(zasieg));
-    return tekst;
+    var string text;
+    text = ConcatStrings("Range: ", IntToString(range));
+    return text;
 };
 ```
 
 :::danger
-Ciało funkcji **musi** kończyć się średnikiem po klamrze: `};`
+The function body **must** end with a semicolon after the brace: `};`
 :::
 
-### Parametry
+### Parameters
 
-Parametry muszą mieć jawnie podany typ:
+Parameters must have explicitly declared types:
 
 ```daedalus
-func void MojaFunkcja(var int a, var string b, var C_NPC npc)
+func void MyFunction(var int a, var string b, var C_NPC npc)
 {
     // ...
 };
 ```
 
-### Wartość zwracana (`return`)
+### Return Value (`return`)
 
 ```daedalus
-func int CzyGraczWWalce()
+func int IsPlayerInFight()
 {
-    var int stan;
-    stan = Npc_GetBodyState(hero);
-    if (stan == 2)
+    var int state;
+    state = Npc_GetBodyState(hero);
+    if (state == 2)
     {
         return TRUE;
     };
@@ -352,52 +352,52 @@ func int CzyGraczWWalce()
 };
 ```
 
-### Funkcje zewnętrzne (externals)
+### External Functions (Externals)
 
-To funkcje zaimplementowane w C++ w silniku Gothic, dostępne do wywołania z Daedalusa. **Nie mają ciała w skryptach** — są wywoływane jak zwykłe funkcje:
+These are functions implemented in C++ in the Gothic engine, available to call from Daedalus. They have **no body in scripts** — they are called like regular functions:
 
 ```daedalus
-// Funkcje NPC
-Npc_IsPlayer(self)                         // czy to gracz?
-Npc_HasItems(self, ItPo_Health_01)         // czy NPC ma przedmiot?
-Npc_KnowsInfo(other, DIA_Fred_Hallo)      // czy zna informację?
+// NPC functions
+Npc_IsPlayer(self)                         // is this the player?
+Npc_HasItems(self, ItPo_Health_01)         // does the NPC have the item?
+Npc_KnowsInfo(other, DIA_Fred_Hallo)      // does NPC know this info?
 Npc_SetTalentSkill(slf, NPC_TALENT_1H, 60)
 
-// Funkcje AI
-AI_Output(self, other, "DIA_Fred_Hallo_15_01")    // wypowiedź NPC
-AI_StopProcessInfos(self)                          // zakończ dialog
-AI_StartState(self, ZS_Flee, 0, "")                // zmień stan AI
+// AI functions
+AI_Output(self, other, "DIA_Fred_Hallo_15_01")    // NPC speech line
+AI_StopProcessInfos(self)                          // end dialog
+AI_StartState(self, ZS_Flee, 0, "")                // change AI state
 
-// Funkcje świata
-Wld_InsertNpc(MOJ_NPC, "WP_SPAWN")        // wstaw NPC do świata
-Wld_InsertItem(ItMw_1h_Sword, "FP_ITEM")  // wstaw przedmiot
+// World functions
+Wld_InsertNpc(MY_NPC, "WP_SPAWN")         // insert NPC into world
+Wld_InsertItem(ItMw_1h_Sword, "FP_ITEM")  // insert item into world
 
-// Funkcje przedmiotów
-CreateInvItems(self, ItMi_Gold, 100)       // daj złoto
-EquipItem(self, ItMw_1h_Bau_Axe)          // wyposaż w przedmiot
+// Item functions
+CreateInvItems(self, ItMi_Gold, 100)       // give gold
+EquipItem(self, ItMw_1h_Bau_Axe)          // equip item
 
-// Funkcje modelu
+// Model functions
 Mdl_SetVisual(slf, "HUMANS.MDS")
 Mdl_SetModelFatness(self, 0.5)
 
-// Funkcje logów/misji
-Log_CreateTopic(TOPIC_MOJ_QUEST, LOG_MISSION)
-Log_SetTopicStatus(TOPIC_MOJ_QUEST, LOG_RUNNING)
+// Log/mission functions
+Log_CreateTopic(TOPIC_MY_QUEST, LOG_MISSION)
+Log_SetTopicStatus(TOPIC_MY_QUEST, LOG_RUNNING)
 
-// Funkcje pomocnicze
-Hlp_StrCmp(opcja, "tak")                  // porównaj stringi
-Hlp_GetInstanceID(other)                   // pobierz ID instancji
+// Helper functions
+Hlp_StrCmp(option, "yes")                 // compare strings
+Hlp_GetInstanceID(other)                   // get instance ID
 
-// Funkcje druku
-Print("Tekst na ekranie")
-PrintScreen("Tekst", 50, 50, FONT_Screen, 2)
+// Print functions
+Print("Text on screen")
+PrintScreen("Text", 50, 50, FONT_Screen, 2)
 ```
 
 ---
 
-## Klasy (`class`)
+## Classes (`class`)
 
-Klasy definiują struktury danych odpowiadające klasom C++ w silniku. Zawierają **wyłącznie deklaracje zmiennych** — nie mają metod.
+Classes define data structures corresponding to C++ classes in the engine. They contain **only variable declarations** — they have no methods.
 
 ```daedalus
 class C_NPC
@@ -426,29 +426,29 @@ class C_NPC
 };
 ```
 
-Klasy silnikowe (np. `C_NPC`, `C_Item`, `C_INFO`, `C_Spell`) są predefiniowane i mapują się 1:1 na struktury w pamięci silnika. Nie należy zmieniać ich kolejności pól ani ich dodawać.
+Engine classes (e.g., `C_NPC`, `C_Item`, `C_INFO`, `C_Spell`) are predefined and map 1:1 to structures in engine memory. You should not change their field order or add new fields.
 
-### Główne klasy silnikowe
+### Main Engine Classes
 
-| Klasa          | Przeznaczenie                |
+| Class          | Purpose                      |
 | -------------- | ---------------------------- |
-| `C_NPC`        | Postacie (NPC i gracz)       |
-| `C_Item`       | Przedmioty                   |
-| `C_INFO`       | Wpisy dialogowe              |
-| `C_Spell`      | Zaklęcia                     |
-| `C_Mission`    | Misje                        |
-| `C_Focus`      | Ustawienia kursora/celowania |
-| `C_FightAI`    | Ruchy walki AI               |
-| `C_SFX`        | Efekty dźwiękowe             |
-| `C_ParticleFX` | Efekty cząsteczkowe          |
-| `C_Menu`       | Elementy menu                |
-| `C_Menu_Item`  | Pola menu                    |
+| `C_NPC`        | Characters (NPCs and player) |
+| `C_Item`       | Items                        |
+| `C_INFO`       | Dialog entries               |
+| `C_Spell`      | Spells                       |
+| `C_Mission`    | Missions                     |
+| `C_Focus`      | Cursor/targeting settings    |
+| `C_FightAI`    | Fight AI moves               |
+| `C_SFX`        | Sound effects                |
+| `C_ParticleFX` | Particle effects             |
+| `C_Menu`       | Menu elements                |
+| `C_Menu_Item`  | Menu fields                  |
 
 ---
 
-## Prototypy (`prototype`)
+## Prototypes (`prototype`)
 
-Prototyp to **szablon** oparty na klasie, z wstępnie wypełnionymi domyślnymi wartościami. Instancje mogą dziedziczyć z prototypu, zamiast ustawiać wszystko od zera.
+A prototype is a **template** based on a class, with pre-filled default values. Instances can inherit from a prototype instead of setting everything from scratch.
 
 ```daedalus
 prototype Npc_Default(C_NPC)
@@ -483,15 +483,15 @@ prototype C_Spell_Proto(C_Spell)
 };
 ```
 
-Prototypy upraszczają tworzenie wielu podobnych instancji — wystarczy nadpisać wartości, które różnią się od domyślnych.
+Prototypes simplify the creation of many similar instances — you only need to override values that differ from the defaults.
 
 ---
 
-## Instancje (`instance`)
+## Instances (`instance`)
 
-Instancja tworzy **konkretny obiekt** na podstawie prototypu lub bezpośrednio z klasy. W przeciwieństwie do klas i prototypów, instancje mogą zawierać **kod wykonywalny** (wywołania funkcji).
+An instance creates a **concrete object** based on a prototype or directly from a class. Unlike classes and prototypes, instances can contain **executable code** (function calls).
 
-### Instancja NPC (z prototypu)
+### NPC Instance (from prototype)
 
 ```daedalus
 instance BAU_4410_Klara(Npc_Default)
@@ -503,7 +503,7 @@ instance BAU_4410_Klara(Npc_Default)
     flags     = 0;
     npctype   = NPCTYPE_MAIN;
 
-    // Wywołania funkcji — kod wykonywalny!
+    // Function calls — executable code!
     B_SetAttributesToChapter(self, 4);
     B_GiveNpcTalents(self);
     fight_tactic = FAI_HUMAN_COWARD;
@@ -515,12 +515,12 @@ instance BAU_4410_Klara(Npc_Default)
 };
 ```
 
-### Instancja przedmiotu (z klasy)
+### Item Instance (from class)
 
 ```daedalus
 instance ItPo_Health_01(C_Item)
 {
-    name       = "Esencja leczenia";
+    name       = "Healing Essence";
     mainflag   = ITEM_KAT_POTIONS;
     flags      = ITEM_MULTI;
     value      = 50;
@@ -534,7 +534,7 @@ instance ItPo_Health_01(C_Item)
 };
 ```
 
-### Instancja dialogu
+### Dialog Instance
 
 ```daedalus
 instance DIA_Fred_EXIT(C_INFO)
@@ -548,45 +548,45 @@ instance DIA_Fred_EXIT(C_INFO)
 };
 ```
 
-### Globalne instancje silnikowe
+### Global Engine Instances
 
-Silnik Gothic definiuje kilka specjalnych instancji globalnych, które są zawsze dostępne:
+The Gothic engine defines several special global instances that are always available:
 
 ```daedalus
-instance self, other(C_NPC);     // aktualny NPC i rozmówca
-instance victim(C_NPC);          // ofiara (w percepcjach)
-instance item(C_Item);           // aktualny przedmiot
-instance hero(C_NPC);            // gracz — zawsze dostępny
+instance self, other(C_NPC);     // current NPC and dialog partner
+instance victim(C_NPC);          // victim (in perceptions)
+instance item(C_Item);           // current item
+instance hero(C_NPC);            // the player — always available
 ```
 
-| Instancja | Opis                                                                      |
-| --------- | ------------------------------------------------------------------------- |
-| `self`    | NPC, dla którego aktualnie wykonywany jest skrypt                         |
-| `other`   | Drugi uczestnik interakcji (np. w dialogu: `self` = NPC, `other` = gracz) |
-| `hero`    | Zawsze wskazuje na postać gracza                                          |
-| `victim`  | Ofiara w callbackach percepcji                                            |
-| `item`    | Ustawiany przez pewne funkcje zewnętrzne (np. `Npc_GetInvItem`)           |
+| Instance | Description                                                                         |
+| -------- | ----------------------------------------------------------------------------------- |
+| `self`   | The NPC for which the current script is executing                                   |
+| `other`  | The other interaction participant (e.g., in dialog: `self` = NPC, `other` = player) |
+| `hero`   | Always points to the player character                                               |
+| `victim` | Victim in perception callbacks                                                      |
+| `item`   | Set by certain external functions (e.g., `Npc_GetInvItem`)                          |
 
 ---
 
-## Komentarze
+## Comments
 
 ```daedalus
-// To jest komentarz jednoliniowy
+// This is a single-line comment
 
 /*
-   To jest komentarz
-   wieloliniowy
+   This is a
+   multi-line comment
 */
 
-const int ATR_HITPOINTS = 0;    // komentarz na końcu linii
+const int ATR_HITPOINTS = 0;    // end-of-line comment
 ```
 
 ---
 
-## Kompilacja — Gothic.src
+## Compilation — Gothic.src
 
-Pliki Daedalusa nie są kompilowane pojedynczo. Plik **`Gothic.src`** (w katalogu `Content/`) zawiera **uporządkowaną listę** wszystkich plików `.d` do kompilacji:
+Daedalus files are not compiled individually. The **`Gothic.src`** file (in the `Content/` directory) contains an **ordered list** of all `.d` files to compile:
 
 ```
 _INTERN\CONSTANTS.D
@@ -598,246 +598,246 @@ STORY\DIALOGE\DIA_BAU_4401_Fred.D
 STORY\Startup.d
 ```
 
-### Zasady kompilacji
+### Compilation Rules
 
-1. **Kolejność ma znaczenie** — symbol musi być zadeklarowany **przed** jego użyciem. Stałe i klasy muszą być na początku listy.
-2. **Wzorce `*.d`** — można użyć wildcarda: `STORY\NPC\*.D` dołączy wszystkie pliki `.d` z folderu.
-3. **Pliki `.src` jako inkludy** — `Gothic.src` może odwoływać się do innych plików `.src` (np. `Ikarus\Ikarus.d`).
-4. **Wynik kompilacji** — plik `Gothic.dat` w katalogu `System/`, odczytywany przez silnik.
+1. **Order matters** — a symbol must be declared **before** it's used. Constants and classes must be at the top of the list.
+2. **`*.d` wildcards** — you can use wildcards: `STORY\NPC\*.D` will include all `.d` files from the folder.
+3. **`.src` files as includes** — `Gothic.src` can reference other `.src` files (e.g., `Ikarus\Ikarus.d`).
+4. **Compilation output** — the `Gothic.dat` file in the `System/` directory, read by the engine.
 
 ---
 
-## Cechy szczególne składni
+## Special Syntax Features
 
-### Wielkość liter — bez znaczenia
+### Case Sensitivity — None
 
-Daedalus jest **case-insensitive**. Poniższe zapisy są równoważne:
+Daedalus is **case-insensitive**. The following are equivalent:
 
 ```daedalus
-const int MOJ_WARTOSC = 10;
-CONST INT MOJ_WARTOSC = 10;
-Const Int Moj_Wartosc = 10;
+const int MY_VALUE = 10;
+CONST INT MY_VALUE = 10;
+Const Int My_Value = 10;
 
-var string imie;
-VAR STRING imie;
+var string name;
+VAR STRING name;
 
-func void MojaFunkcja() {};
-FUNC VOID MojaFunkcja() {};
+func void MyFunction() {};
+FUNC VOID MyFunction() {};
 ```
 
-W praktyce w oryginalnych skryptach mieszane są zapisy `CONST INT`, `const int`, `VAR INT`, `var int`, `FUNC VOID`, `func void`.
+In practice, the original scripts freely mix `CONST INT`, `const int`, `VAR INT`, `var int`, `FUNC VOID`, `func void`.
 
-### Średniki — wszędzie!
+### Semicolons — Everywhere!
 
-Jedną z najbardziej charakterystycznych cech Daedalusa jest **obowiązkowy średnik po każdym bloku kodu**, włącznie z klamrami zamykającymi:
+One of Daedalus's most distinctive features is the **mandatory semicolon after every code block**, including closing braces:
 
 ```daedalus
 if (x == 1)
 {
-    // kod
-};              // ← średnik po klamrze!
+    // code
+};              // ← semicolon after brace!
 
 func void Foo()
 {
-    // kod
-};              // ← średnik po funkcji!
+    // code
+};              // ← semicolon after function!
 
 class C_NPC
 {
     var int id;
-};              // ← średnik po klasie!
+};              // ← semicolon after class!
 
 prototype Npc_Default(C_NPC)
 {
     // ...
-};              // ← średnik po prototypie!
+};              // ← semicolon after prototype!
 ```
 
 :::danger
-Brak średnika po `};` to jeden z najczęstszych błędów początkujących. Kompilator zgłosi błąd lub — co gorsze — skompiluje kod nieprawidłowo.
+Missing semicolons after `};` is one of the most common beginner mistakes. The compiler will throw an error or — worse — compile the code incorrectly.
 :::
 
-### Brak zaawansowanych konstrukcji
+### Missing Advanced Constructs
 
-Daedalus **nie posiada** wielu konstrukcji znanych z nowoczesnych języków:
+Daedalus **does not have** many constructs found in modern languages:
 
-| Czego brakuje                    | Alternatywa                                 |
-| -------------------------------- | ------------------------------------------- |
-| Pętle (`for`, `while`)           | Biblioteka Ikarus dodaje `while` i `repeat` |
-| `switch / case`                  | Łańcuchy `if / else if`                     |
-| Dynamiczne tablice               | Ikarus — dostęp do pamięci                  |
-| Wskaźniki                        | Ikarus — `_^()` (kastowanie adresów)        |
-| Struktury (`struct`)             | Tylko `class`                               |
-| Metody w klasach                 | Wolnostojące funkcje                        |
-| Przeciążanie funkcji             | Unikalne nazwy funkcji                      |
-| Przestrzenie nazw                | Konwencje nazewnicze (prefiksy)             |
-| Łączenie stringów operatorem `+` | `ConcatStrings()`                           |
+| What's Missing                | Alternative                              |
+| ----------------------------- | ---------------------------------------- |
+| Loops (`for`, `while`)        | Ikarus library adds `while` and `repeat` |
+| `switch / case`               | `if / else if` chains                    |
+| Dynamic arrays                | Ikarus — direct memory access            |
+| Pointers                      | Ikarus — `_^()` (address casting)        |
+| Structs                       | Only `class`                             |
+| Methods in classes            | Standalone functions                     |
+| Function overloading          | Unique function names                    |
+| Namespaces                    | Naming conventions (prefixes)            |
+| String concatenation with `+` | `ConcatStrings()`                        |
 
 ---
 
-## System dialogowy — AI_Output
+## Dialog System — AI_Output
 
-System dialogowy w Gothic oparty jest na funkcji `AI_Output` i klasie `C_INFO`. Ma unikalny mechanizm parsowania, który różni się od wszystkiego w standardowych językach programowania.
+Gothic's dialog system is based on the `AI_Output` function and the `C_INFO` class. It has a unique parsing mechanism that differs from anything in standard programming languages.
 
-### C_INFO — definicja wpisu dialogowego
+### C_INFO — Dialog Entry Definition
 
-Każda opcja dialogowa to instancja klasy `C_INFO`:
+Each dialog option is an instance of the `C_INFO` class:
 
 ```daedalus
 instance DIA_Konrad_Hallo(C_INFO)
 {
-    npc         = BAU_900_Konrad;            // do którego NPC należy dialog
-    nr          = 4;                          // kolejność sortowania (niższy = wyżej)
-    condition   = DIA_Konrad_Hallo_Condition; // funkcja warunku (TRUE = pokaż opcję)
-    information = DIA_Konrad_Hallo_Info;      // funkcja wykonywana po wybraniu opcji
-    permanent   = FALSE;                      // czy powtarzalny
-    important   = FALSE;                      // czy NPC sam podchodzi i zaczyna rozmowę
-    description = "Cześć, jak się masz?";     // tekst widoczny w liście opcji
+    npc         = BAU_900_Konrad;            // which NPC this dialog belongs to
+    nr          = 4;                          // sort order (lower = higher in list)
+    condition   = DIA_Konrad_Hallo_Condition; // condition function (TRUE = show option)
+    information = DIA_Konrad_Hallo_Info;      // function executed when option is chosen
+    permanent   = FALSE;                      // repeatable?
+    important   = FALSE;                      // does NPC approach and start talking?
+    description = "Hi, how are you?";         // text visible in option list
 };
 ```
 
-| Pole          | Opis                                                                          |
-| ------------- | ----------------------------------------------------------------------------- |
-| `npc`         | Instancja NPC, do którego należy dialog                                       |
-| `nr`          | Kolejność sortowania — mniejszy numer = wyżej na liście. EXIT ma zwykle `999` |
-| `condition`   | Funkcja zwracająca `TRUE` jeśli opcja ma być widoczna                         |
-| `information` | Funkcja wywoływana po wybraniu opcji (tu piszemy AI_Output)                   |
-| `permanent`   | `TRUE` = opcja dostępna zawsze, `FALSE` = znika po użyciu                     |
-| `important`   | `TRUE` = NPC sam podchodzi do gracza i rozpoczyna rozmowę                     |
-| `description` | Tekst wyświetlany w menu dialogowym                                           |
-| `trade`       | `TRUE` = otwiera okno handlu                                                  |
+| Field         | Description                                                        |
+| ------------- | ------------------------------------------------------------------ |
+| `npc`         | NPC instance this dialog belongs to                                |
+| `nr`          | Sort order — lower number = higher in list. EXIT usually has `999` |
+| `condition`   | Function returning `TRUE` if the option should be visible          |
+| `information` | Function called when option is selected (AI_Output calls go here)  |
+| `permanent`   | `TRUE` = always available, `FALSE` = disappears after use          |
+| `important`   | `TRUE` = NPC approaches player and starts conversation             |
+| `description` | Text shown in dialog menu                                          |
+| `trade`       | `TRUE` = opens trade window                                        |
 
-### AI_Output — wypowiedź NPC
+### AI_Output — NPC Speech Line
 
 ```daedalus
 func void AI_Output(var C_NPC speaker, var C_NPC listener, var string outputName);
 ```
 
-To najważniejsza funkcja systemu dialogowego. Powoduje, że NPC wypowiada kwestię z podkładem audio i napisami.
+This is the core dialog system function. It makes an NPC speak a line with audio and subtitles.
 
-#### Kto mówi — kolejność parametrów
+#### Who Speaks — Parameter Order
 
-- **`AI_Output(self, other, "...")`** → mówi **NPC** (self = NPC, other = gracz)
-- **`AI_Output(other, self, "...")`** → mówi **gracz** (other = bohater, self = NPC słucha)
+- **`AI_Output(self, other, "...")`** → the **NPC** speaks (self = NPC, other = player)
+- **`AI_Output(other, self, "...")`** → the **player** speaks (other = hero, self = NPC listens)
 
 ```daedalus
 func void DIA_Konrad_Hallo_Info()
 {
-    AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hej, dobrze cię widzieć!
-    AI_Output(other, self, "DIA_Konrad_Hallo_15_01"); //Co u ciebie słychać?
-    AI_Output(self, other, "DIA_Konrad_Hallo_08_02"); //Wszystko po staremu.
+    AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hey, good to see you!
+    AI_Output(other, self, "DIA_Konrad_Hallo_15_01"); //How have you been?
+    AI_Output(self, other, "DIA_Konrad_Hallo_08_02"); //Same as always.
 };
 ```
 
-#### Parsowanie komentarza jako tekstu napisów
+#### Comment Parsing as Subtitle Text
 
-To **unikalna cecha parsera Daedalusa** — komentarz `//` w tej samej linii co `AI_Output` **nie jest ignorowany**. Parser traktuje go jako **tekst napisów dialogowych** wyświetlany na ekranie.
+This is a **unique Daedalus parser feature** — the `//` comment on the same line as `AI_Output` **is not ignored**. The parser treats it as **subtitle text** displayed on screen.
 
 ```daedalus
-AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hej, dobrze cię widzieć!
-//                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//                                                    Ten komentarz to napisy!
+AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hey, good to see you!
+//                                                    ^^^^^^^^^^^^^^^^^^^^^^^
+//                                                    This comment IS the subtitles!
 ```
 
 :::danger
-Komentarz z tekstem napisów **musi** być w **tej samej linii** co wywołanie `AI_Output`. Jeśli przeniesiesz go do następnej linii — napisy będą puste.
+The subtitle comment **must** be on the **same line** as the `AI_Output` call. If you move it to the next line — subtitles will be empty.
 
 ```daedalus
-// ❌ ŹLE — napisy będą puste!
+// ❌ WRONG — subtitles will be empty!
 AI_Output(self, other, "DIA_Konrad_Hallo_08_01");
-//Hej, dobrze cię widzieć!
+//Hey, good to see you!
 
-// ✅ DOBRZE — napisy działają
-AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hej, dobrze cię widzieć!
+// ✅ CORRECT — subtitles work
+AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hey, good to see you!
 ```
 
 :::
 
-#### Identyfikator outputu — konwencja nazewnictwa
+#### Output Identifier — Naming Convention
 
-Format: **`DIA_<NPC>_<Temat>_<NrGłosu>_<NrLinii>`**
+Format: **`DIA_<NPC>_<Topic>_<VoiceNumber>_<LineNumber>`**
 
-Przykład: `DIA_Konrad_Hallo_08_01`
+Example: `DIA_Konrad_Hallo_08_01`
 
-| Fragment | Znaczenie                                              |
-| -------- | ------------------------------------------------------ |
-| `DIA`    | Prefiks — dialog                                       |
-| `Konrad` | Nazwa NPC                                              |
-| `Hallo`  | Nazwa tematu/dialogu                                   |
-| `08`     | **Numer głosu** NPC (pole `voice` w instancji `C_NPC`) |
-| `01`     | **Numer linii** w dialogu (sekwencyjny)                |
+| Part     | Meaning                                                         |
+| -------- | --------------------------------------------------------------- |
+| `DIA`    | Prefix — dialog                                                 |
+| `Konrad` | NPC name                                                        |
+| `Hallo`  | Topic/dialog name                                               |
+| `08`     | **Voice number** of the NPC (`voice` field in `C_NPC` instance) |
+| `01`     | **Line number** in the dialog (sequential)                      |
 
-Dla gracza numer głosu to zawsze **`15`**:
+The player's voice number is always **`15`**:
 
 ```daedalus
-AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Konrad mówi (voice = 8)
-AI_Output(other, self, "DIA_Konrad_Hallo_15_01"); //Gracz mówi (voice = 15)
+AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Konrad speaks (voice = 8)
+AI_Output(other, self, "DIA_Konrad_Hallo_15_01"); //Player speaks (voice = 15)
 ```
 
-#### Mapowanie na plik audio WAV
+#### Mapping to WAV Audio File
 
-Identyfikator outputu jest bezpośrednio nazwą pliku audio:
+The output identifier is directly the audio file name:
 
 ```
 Gothic II/Data/Sound/Speech/DIA_Konrad_Hallo_08_01.WAV
 Gothic II/Data/Sound/Speech/DIA_Konrad_Hallo_15_01.WAV
 ```
 
-Jeśli plik WAV nie istnieje, wyświetlane są tylko napisy (bez dźwięku). Przy tworzeniu moda audio nie jest wymagane.
+If the WAV file doesn't exist, only subtitles are displayed (no audio). Audio is not required when creating a mod.
 
-### Wybory w dialogu (Info_AddChoice)
+### Dialog Choices (Info_AddChoice)
 
-Do tworzenia rozgałęzionych dialogów służą `Info_AddChoice` i `Info_ClearChoices`:
+For branching dialogs, use `Info_AddChoice` and `Info_ClearChoices`:
 
 ```daedalus
-func void DIA_Konrad_Oferta_Info()
+func void DIA_Konrad_Offer_Info()
 {
-    AI_Output(self, other, "DIA_Konrad_Oferta_08_01"); //Mogę ci pomóc. Czego potrzebujesz?
+    AI_Output(self, other, "DIA_Konrad_Offer_08_01"); //I can help you. What do you need?
 
-    Info_ClearChoices(DIA_Konrad_Oferta);   // wyczyść poprzednie opcje
-    Info_AddChoice(DIA_Konrad_Oferta, "Potrzebuję broni.", DIA_Konrad_Oferta_Bron);
-    Info_AddChoice(DIA_Konrad_Oferta, "Potrzebuję mikstury.", DIA_Konrad_Oferta_Mikstura);
-    Info_AddChoice(DIA_Konrad_Oferta, "Niczego nie potrzebuję.", DIA_Konrad_Oferta_Nic);
+    Info_ClearChoices(DIA_Konrad_Offer);   // clear previous options
+    Info_AddChoice(DIA_Konrad_Offer, "I need a weapon.", DIA_Konrad_Offer_Weapon);
+    Info_AddChoice(DIA_Konrad_Offer, "I need a potion.", DIA_Konrad_Offer_Potion);
+    Info_AddChoice(DIA_Konrad_Offer, "I don't need anything.", DIA_Konrad_Offer_Nothing);
 };
 
-func void DIA_Konrad_Oferta_Bron()
+func void DIA_Konrad_Offer_Weapon()
 {
-    AI_Output(other, self, "DIA_Konrad_Oferta_Bron_15_01"); //Daj mi jakiś miecz.
-    AI_Output(self, other, "DIA_Konrad_Oferta_Bron_08_01"); //Proszę bardzo.
-    Info_ClearChoices(DIA_Konrad_Oferta);   // zamknij menu wyboru
+    AI_Output(other, self, "DIA_Konrad_Offer_Weapon_15_01"); //Give me a sword.
+    AI_Output(self, other, "DIA_Konrad_Offer_Weapon_08_01"); //Here you go.
+    Info_ClearChoices(DIA_Konrad_Offer);   // close choice menu
 };
 ```
 
-### Kończenie dialogu
+### Ending a Dialog
 
-Standardowy wzorzec EXIT:
+Standard EXIT pattern:
 
 ```daedalus
 instance DIA_Konrad_EXIT(C_INFO)
 {
     npc         = BAU_900_Konrad;
-    nr          = 999;                        // zawsze ostatni na liście
+    nr          = 999;                        // always last in list
     condition   = DIA_Konrad_EXIT_Condition;
     information = DIA_Konrad_EXIT_Info;
-    permanent   = TRUE;                       // zawsze dostępny
-    description = DIALOG_ENDE;                // stała = "KONIEC"
+    permanent   = TRUE;                       // always available
+    description = DIALOG_ENDE;                // constant = "END"
 };
 
 func int DIA_Konrad_EXIT_Condition() { return TRUE; };
 
 func void DIA_Konrad_EXIT_Info()
 {
-    AI_StopProcessInfos(self);   // zakończ rozmowę
+    AI_StopProcessInfos(self);   // end conversation
 };
 ```
 
-### Sprawdzanie czy dialog był już widziany
+### Checking if a Dialog Was Already Seen
 
 ```daedalus
-// W warunku innego dialogu:
-func int DIA_Konrad_Dalej_Condition()
+// In another dialog's condition:
+func int DIA_Konrad_Continue_Condition()
 {
-    if (Npc_KnowsInfo(other, DIA_Konrad_Hallo))  // gracz widział dialog Hallo?
+    if (Npc_KnowsInfo(other, DIA_Konrad_Hallo))  // player saw the Hallo dialog?
     {
         return TRUE;
     };
@@ -845,42 +845,42 @@ func int DIA_Konrad_Dalej_Condition()
 };
 ```
 
-### AI_OutputSVM — standardowe kwestie głosowe
+### AI_OutputSVM — Standard Voice Messages
 
-Oprócz `AI_Output` istnieje `AI_OutputSVM` do odtwarzania **standardowych kwestii głosowych** (SVM — Standard Voice Messages). Są to gotowe wypowiedzi typu okrzyki bojowe, pozdrowienia, ostrzeżenia:
+Besides `AI_Output`, there is `AI_OutputSVM` for playing **Standard Voice Messages** (SVM). These are pre-made lines like combat shouts, greetings, warnings:
 
 ```daedalus
-// NPC mówi standardową kwestię głosową
-B_Say(self, other, "$NOTNOW");              // "Zostaw mnie w spokoju!"
+// NPC says a standard voice line
+B_Say(self, other, "$NOTNOW");              // "Leave me alone!"
 B_Say(self, other, "$Alarm");               // "ALARM!"
-B_Say(self, other, "$HandsOff");            // "Ręce przy sobie!"
+B_Say(self, other, "$HandsOff");            // "Hands off!"
 ```
 
-Każdy NPC ma pole `voice` w `C_NPC`, które wskazuje na zestaw SVM (`SVM_0`, `SVM_1`, ..., `SVM_100`). Klasa `C_SVM` definiuje setki standardowych kwestii, a każdy zestaw głosowy ma własne pliki audio.
+Each NPC has a `voice` field in `C_NPC` that points to an SVM set (`SVM_0`, `SVM_1`, ..., `SVM_100`). The `C_SVM` class defines hundreds of standard lines, and each voice set has its own audio files.
 
-`AI_OutputSVM_Overlay` działa jak `AI_OutputSVM`, ale jest **nieblokujący** — nie czeka na zakończenie odtwarzania. Używany do okrzyków w walce.
+`AI_OutputSVM_Overlay` works like `AI_OutputSVM` but is **non-blocking** — it doesn't wait for playback to finish. Used for combat shouts.
 
 ---
 
-## Konwencje nazewnicze
+## Naming Conventions
 
-W oryginalnych skryptach Gothic stosowane są prefiksy wskazujące na typ i przeznaczenie symbolu:
+The original Gothic scripts use prefixes indicating the type and purpose of a symbol:
 
-| Prefiks     | Znaczenie                    | Przykład                             |
-| ----------- | ---------------------------- | ------------------------------------ |
-| `C_`        | Klasa                        | `C_NPC`, `C_Item`, `C_INFO`          |
-| `B_`        | Funkcja bazowa (reużywalna)  | `B_SetFightSkills`, `B_GivePlayerXP` |
-| `ZS_`       | Stan AI (Zustand)            | `ZS_Attack`, `ZS_Flee`, `ZS_Talk`    |
-| `TA_`       | Rutyna dzienna (Tagesablauf) | `TA_Sleep`, `TA_Cook_Cauldron`       |
-| `DIA_`      | Dialog                       | `DIA_Fred_Hallo`                     |
-| `IT` / `It` | Przedmiot (Item)             | `ItMw_1h_Sword`, `ItPo_Health_01`    |
-| `FA_`       | Instancja walki AI           | `FA_ENEMY_PREHIT_6`                  |
-| `FAI_`      | Stała walki AI               | `FAI_HUMAN_COWARD`                   |
-| `GIL_`      | Gildia                       | `GIL_PAL`, `GIL_MIL`, `GIL_BAU`      |
-| `ATR_`      | Atrybut                      | `ATR_STRENGTH`, `ATR_HITPOINTS`      |
-| `DAM_`      | Typ obrażeń                  | `DAM_BLUNT`, `DAM_EDGE`              |
-| `PERC_`     | Percepcja                    | `PERC_ASSESSENEMY`                   |
-| `AIV_`      | Indeks zmiennej AI           | `AIV_ATTACKREASON`                   |
-| `Rtn_`      | Funkcja rutyny dziennej      | `Rtn_Start_4401`                     |
+| Prefix      | Meaning                     | Example                              |
+| ----------- | --------------------------- | ------------------------------------ |
+| `C_`        | Class                       | `C_NPC`, `C_Item`, `C_INFO`          |
+| `B_`        | Basic function (reusable)   | `B_SetFightSkills`, `B_GivePlayerXP` |
+| `ZS_`       | AI state (Zustand)          | `ZS_Attack`, `ZS_Flee`, `ZS_Talk`    |
+| `TA_`       | Daily routine (Tagesablauf) | `TA_Sleep`, `TA_Cook_Cauldron`       |
+| `DIA_`      | Dialog                      | `DIA_Fred_Hallo`                     |
+| `IT` / `It` | Item                        | `ItMw_1h_Sword`, `ItPo_Health_01`    |
+| `FA_`       | Fight AI instance           | `FA_ENEMY_PREHIT_6`                  |
+| `FAI_`      | Fight AI constant           | `FAI_HUMAN_COWARD`                   |
+| `GIL_`      | Guild                       | `GIL_PAL`, `GIL_MIL`, `GIL_BAU`      |
+| `ATR_`      | Attribute                   | `ATR_STRENGTH`, `ATR_HITPOINTS`      |
+| `DAM_`      | Damage type                 | `DAM_BLUNT`, `DAM_EDGE`              |
+| `PERC_`     | Perception                  | `PERC_ASSESSENEMY`                   |
+| `AIV_`      | AI variable index           | `AIV_ATTACKREASON`                   |
+| `Rtn_`      | Daily routine function      | `Rtn_Start_4401`                     |
 
-Przestrzeganie tych konwencji nie jest wymagane przez kompilator, ale **zdecydowanie zalecane** — poprawia czytelność i jest zgodne ze stylem oryginalnych skryptów.
+Following these conventions is not required by the compiler but is **strongly recommended** — it improves readability and is consistent with the original script style.

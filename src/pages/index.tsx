@@ -39,8 +39,8 @@ function HomepageHeader() {
         </Heading>
         <p className={styles.heroSubtitle}>
           <Translate id="homepage.tagline">
-            Kompletna dokumentacja moddingu gry Gothic — od pierwszych kroków po
-            zaawansowane techniki.
+            Complete Gothic modding documentation — from first steps to
+            advanced techniques.
           </Translate>
         </p>
         <div className={styles.buttons}>
@@ -48,13 +48,13 @@ function HomepageHeader() {
             className={clsx("button button--lg", styles.heroBtnPrimary)}
             to="/docs/getting-started/download-game"
           >
-            <Translate id="homepage.cta.start">Zacznij tutaj</Translate>
+            <Translate id="homepage.cta.start">Get Started</Translate>
           </Link>
           <Link
             className={clsx("button button--lg", styles.heroBtnSecondary)}
             to="/docs/modding-basics-daedalus/script-structure"
           >
-            <Translate id="homepage.cta.guides">Poradniki</Translate>
+            <Translate id="homepage.cta.guides">Guides</Translate>
           </Link>
         </div>
       </div>
@@ -66,13 +66,13 @@ function HomepageFeatures() {
   const features: FeatureItem[] = [
     {
       title: (
-        <Translate id="homepage.feature.start.title">Jak zacząć?</Translate>
+        <Translate id="homepage.feature.start.title">Getting Started</Translate>
       ),
       icon: "🚀",
       description: (
         <Translate id="homepage.feature.start.description">
-          Pobierz grę, zainstaluj narzędzia i skonfiguruj środowisko do moddingu
-          Gothic krok po kroku.
+          Download the game, install tools, and set up your Gothic modding
+          environment step by step.
         </Translate>
       ),
       link: "/docs/getting-started/download-game",
@@ -80,27 +80,27 @@ function HomepageFeatures() {
     {
       title: (
         <Translate id="homepage.feature.daedalus.title">
-          Skrypty Daedalus
+          Daedalus Scripts
         </Translate>
       ),
       icon: "📜",
       description: (
         <Translate id="homepage.feature.daedalus.description">
-          Twórz NPC, przedmioty i zadania. Naucz się języka skryptowego
-          wbudowanego w silnik Gothic.
+          Create NPCs, items, and quests. Learn the scripting language built
+          into the Gothic engine.
         </Translate>
       ),
       link: "/docs/modding-basics-daedalus/script-structure",
     },
     {
       title: (
-        <Translate id="homepage.feature.union.title">Pluginy Union</Translate>
+        <Translate id="homepage.feature.union.title">Union Plugins</Translate>
       ),
       icon: "⚙️",
       description: (
         <Translate id="homepage.feature.union.description">
-          Rozszerzaj możliwości silnika Gothic za pomocą pluginów C++ z
-          frameworka Union.
+          Extend the Gothic engine capabilities with C++ plugins using the
+          Union framework.
         </Translate>
       ),
       link: "/docs/modding-basics-union/getting-started",
@@ -126,13 +126,13 @@ function HomepageCommunity() {
       <div className="container">
         <Heading as="h2" className={styles.sectionTitle}>
           <Translate id="homepage.community.title">
-            Dołącz do społeczności
+            Join the community
           </Translate>
         </Heading>
         <p className={styles.sectionSubtitle}>
           <Translate id="homepage.community.description">
-            Masz pytania? Potrzebujesz pomocy? Dołącz do naszego Discorda lub
-            sprawdź kod źródłowy na GitHubie.
+            Have questions? Need help? Join our Discord or check the source code
+            on GitHub.
           </Translate>
         </p>
         <div className={styles.communityLinks}>
@@ -159,12 +159,12 @@ export default function Home(): ReactNode {
     <Layout
       title={translate({
         id: "homepage.title",
-        message: "Strona główna",
+        message: "Home",
       })}
       description={translate({
         id: "homepage.metaDescription",
         message:
-          "Dokumentacja moddingu gry Gothic — poradniki, narzędzia i społeczność.",
+          "Gothic modding documentation — guides, tools, and community.",
       })}
     >
       <HomepageHeader />

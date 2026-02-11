@@ -1,335 +1,335 @@
 ---
 sidebar_position: 2
-title: "Animacje"
-description: "Kompletna lista animacji w Gothic II — nakładki MDS, przejścia stanów, animacje postaci i potworów."
+title: "Animations"
+description: "Complete list of animations in Gothic II — MDS overlays, state transitions, character and monster animations."
 ---
 
-# Animacje
+# Animations
 
-Animacje w Gothic II są odtwarzane za pomocą funkcji silnika Daedalusa. Dzielą się na kilka kategorii według konwencji nazewnictwa i sposobu użycia.
+Animations in Gothic II are played using Daedalus engine functions. They are divided into several categories based on naming conventions and usage patterns.
 
-## Konwencje nazw
+## Naming conventions
 
-| Prefiks | Typ        | Opis                                                                                      |
-| ------- | ---------- | ----------------------------------------------------------------------------------------- |
-| `T_`    | Transition | Animacja przejścia — jednorazowe przejście między dwoma stanami (np. stanie → siedzenie). |
-| `S_`    | State      | Animacja stanu — zapętlona animacja trwającego stanu (np. jedzenie, leżenie).             |
-| `R_`    | Random     | Animacja losowa — odtwarzana losowo jako idle (np. drapanie głowy, poruszenie się).       |
+| Prefix | Type       | Description                                                                                 |
+| ------ | ---------- | ------------------------------------------------------------------------------------------- |
+| `T_`   | Transition | Transition animation — a one-shot transition between two states (e.g., standing → sitting). |
+| `S_`   | State      | State animation — a looping animation for an ongoing state (e.g., eating, lying down).      |
+| `R_`   | Random     | Random animation — played randomly as an idle (e.g., head scratching, shifting weight).     |
 
-## Funkcje odtwarzania animacji
+## Animation playback functions
 
-| Funkcja                                               | Opis                                                                          |
-| ----------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `AI_PlayAni(self, "NAZWA")`                           | Odtwarza animację jednorazowo. NPC musi być w odpowiednim stanie bazowym.     |
-| `AI_PlayAniBS(self, "NAZWA", BS_STAN)`                | Odtwarza animację i zmienia body state NPC (np. `BS_SIT`, `BS_LIE`).          |
-| `Mdl_ApplyOverlayMds(self, "PLIK.MDS")`               | Nakłada overlay animacyjny — zmienia zestaw animacji NPC (np. chód, postawa). |
-| `Mdl_RemoveOverlayMds(self, "PLIK.MDS")`              | Usuwa nałożony overlay.                                                       |
-| `Mdl_ApplyOverlayMdsTimed(self, "PLIK.MDS", czas)`    | Nakłada overlay na określony czas (ms).                                       |
-| `Mdl_ApplyRandomAni(self, "BAZOWA", "LOSOWA")`        | Rejestruje animację losową odtwarzaną w danym stanie bazowym.                 |
-| `Mdl_ApplyRandomAniFreq(self, "BAZOWA", freq)`        | Ustawia częstotliwość (w sekundach) odtwarzania animacji losowych.            |
-| `Mdl_StartFaceAni(self, "NAZWA", intensywność, czas)` | Odtwarza animację twarzy (mimika). Czas `-1` = nieskończony.                  |
+| Function                                           | Description                                                                           |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `AI_PlayAni(self, "NAME")`                         | Plays an animation once. The NPC must be in the appropriate base state.               |
+| `AI_PlayAniBS(self, "NAME", BS_STATE)`             | Plays an animation and changes the NPC's body state (e.g., `BS_SIT`, `BS_LIE`).       |
+| `Mdl_ApplyOverlayMds(self, "FILE.MDS")`            | Applies an animation overlay — changes the NPC's animation set (e.g., walk, posture). |
+| `Mdl_RemoveOverlayMds(self, "FILE.MDS")`           | Removes an applied overlay.                                                           |
+| `Mdl_ApplyOverlayMdsTimed(self, "FILE.MDS", time)` | Applies an overlay for a specified duration (ms).                                     |
+| `Mdl_ApplyRandomAni(self, "BASE", "RANDOM")`       | Registers a random animation to play during a given base state.                       |
+| `Mdl_ApplyRandomAniFreq(self, "BASE", freq)`       | Sets the frequency (in seconds) for random animation playback.                        |
+| `Mdl_StartFaceAni(self, "NAME", intensity, time)`  | Plays a facial animation (expression). Time `-1` = infinite.                          |
 
 ### Body States
 
-Funkcja `AI_PlayAniBS` wymaga podania stanu ciała:
+The `AI_PlayAniBS` function requires a body state parameter:
 
-| Stała                      | Opis                                       |
-| -------------------------- | ------------------------------------------ |
-| `BS_STAND`                 | Stoi                                       |
-| `BS_SIT`                   | Siedzi                                     |
-| `BS_LIE`                   | Leży                                       |
-| `BS_UNCONSCIOUS`           | Nieprzytomny                               |
-| `BS_ITEMINTERACT`          | Interakcja z przedmiotem (jedzenie, picie) |
-| `BS_MOBINTERACT_INTERRUPT` | Przerwanie interakcji z mobem              |
-
----
-
-## Nakładki MDS (Overlays)
-
-Nakładki zmieniają zestaw animacji NPC — wpływają na chód, postawę i zachowanie. Nakładane za pomocą `Mdl_ApplyOverlayMds` w definicji NPC.
-
-### Nakładki osobowości
-
-| Plik MDS               | Opis                                  | Używane dla                                                     |
-| ---------------------- | ------------------------------------- | --------------------------------------------------------------- |
-| `Humans_Relaxed.mds`   | Rozluźniona postawa, swobodny chód    | Bandyci, najemnicy, piraci, wieśniacy                           |
-| `Humans_Militia.mds`   | Postawa wojskowa, pewny chód          | Paladyni, milicja, strażnicy, wojownicy                         |
-| `Humans_Mage.mds`      | Postawa maga, powolny chód            | Magowie ognia (KDF), magowie wody (KDW), dementorzy, nowicjusze |
-| `Humans_Arrogance.mds` | Arogancka postawa                     | Szlachta, kupcy, niektórzy bandyci (Raven, Bullco)              |
-| `Humans_Tired.mds`     | Wyczerpana postawa, przygarbiony chód | Więźniowie, robotnicy, niektórzy wieśniacy                      |
-| `Humans_Babe.mds`      | Kobiecy chód i postawa                | Kobiety NPC (obywatelki, prostytutki)                           |
-
-### Nakładki ruchu
-
-| Plik MDS            | Opis                             | Sposób nałożenia                               |
-| ------------------- | -------------------------------- | ---------------------------------------------- |
-| `HUMANS_FLEE.MDS`   | Przerażony bieg (uciekanie)      | `Mdl_ApplyOverlayMds` / `Mdl_RemoveOverlayMds` |
-| `HUMANS_SPRINT.MDS` | Sprint (chwilowe przyspieszenie) | `Mdl_ApplyOverlayMdsTimed` (z timeoutem)       |
-
-### Nakładki szkieletów
-
-| Plik MDS                  | Opis                          |
-| ------------------------- | ----------------------------- |
-| `humans_skeleton.mds`     | Bazowy overlay dla szkieletów |
-| `humans_skeleton_fly.mds` | Latający mag-szkielet         |
-| `humans_1hST1.mds`        | Styl walki: miecz jednoręczny |
-| `humans_2hST2.mds`        | Styl walki: broń dwuręczna    |
-| `humans_BowT1.mds`        | Styl walki: łuk               |
-| `humans_CBowT1.mds`       | Styl walki: kusza             |
-
-### Nakładki potworów
-
-| Plik MDS              | Opis                                           |
-| --------------------- | ---------------------------------------------- |
-| `Golem_Firegolem.mds` | Ognisty golem (overlay na bazowego golema)     |
-| `Golem_Icegolem.mds`  | Lodowy golem (overlay na bazowego golema)      |
-| `Firewaran.mds`       | Ognisty waran (overlay na bazowego warana)     |
-| `Orcbiter.mds`        | Orczy kąsacz (overlay na bazowego ścierwojada) |
+| Constant                   | Description                         |
+| -------------------------- | ----------------------------------- |
+| `BS_STAND`                 | Standing                            |
+| `BS_SIT`                   | Sitting                             |
+| `BS_LIE`                   | Lying down                          |
+| `BS_UNCONSCIOUS`           | Unconscious                         |
+| `BS_ITEMINTERACT`          | Item interaction (eating, drinking) |
+| `BS_MOBINTERACT_INTERRUPT` | Mob interaction interrupt           |
 
 ---
 
-## Bazowe modele wizualne (Mdl_SetVisual)
+## MDS Overlays
 
-Każdy NPC lub potwór ma przypisany bazowy plik `.mds` definiujący jego model i zestaw animacji.
+Overlays change an NPC's animation set — they affect walking, posture, and behavior. Applied via `Mdl_ApplyOverlayMds` in NPC definitions.
 
-### Ludzie
+### Personality overlays
 
-| Plik MDS     | Opis                       |
-| ------------ | -------------------------- |
-| `HUMANS.MDS` | Wszyscy ludzie NPC i gracz |
+| MDS File               | Description                      | Used For                                                |
+| ---------------------- | -------------------------------- | ------------------------------------------------------- |
+| `Humans_Relaxed.mds`   | Relaxed posture, casual walk     | Bandits, mercenaries, pirates, villagers                |
+| `Humans_Militia.mds`   | Military posture, confident walk | Paladins, militia, guards, fighters                     |
+| `Humans_Mage.mds`      | Mage posture, slow walk          | Fire mages (KDF), water mages (KDW), dementors, novices |
+| `Humans_Arrogance.mds` | Arrogant posture                 | Nobles, merchants, some bandits (Raven, Bullco)         |
+| `Humans_Tired.mds`     | Exhausted posture, slouched walk | Prisoners, workers, some villagers                      |
+| `Humans_Babe.mds`      | Female walk and posture          | Female NPCs (citizens, prostitutes)                     |
 
-### Potwory
+### Movement overlays
 
-| Plik MDS            | Stworzenie                                                     |
-| ------------------- | -------------------------------------------------------------- |
-| `Alligator.mds`     | Aligator                                                       |
-| `Blattcrawler.mds`  | Liściowy pełzacz                                               |
-| `Bloodfly.mds`      | Krwiopijca (Bloodfly)                                          |
-| `Crawler.mds`       | Kopalniany pełzacz, Pełzacz-wojownik                           |
-| `Demon.mds`         | Demon, Pan Demonów                                             |
-| `Draconian.mds`     | Jaszczuroczłek (Draconian)                                     |
-| `Dragon.mds`        | Wszystkie smoki (Ognisty, Lodowy, Skalny, Bagienny, Nieumarły) |
-| `DragonSnapper.mds` | Smocze szczękacze                                              |
-| `FireShadow.mds`    | Ognisty cień                                                   |
-| `Giant_Bug.mds`     | Wielki robak                                                   |
-| `Giant_Rat.mds`     | Wielki szczur, Wielki pustynny szczur                          |
-| `Gobbo.mds`         | Goblin (Zielony, Czarny, Szkielet, Wojownik)                   |
-| `Golem.mds`         | Kamienny golem (bazowy)                                        |
-| `Harpie.mds`        | Harpia                                                         |
-| `Irrlicht.mds`      | Błędny ognik (Wisp)                                            |
-| `Keiler.mds`        | Dzik                                                           |
-| `Lurker.mds`        | Czarownik (Lurker)                                             |
-| `Meatbug.mds`       | Mięsny robak                                                   |
-| `Molerat.mds`       | Kretoszczur                                                    |
-| `Orc.mds`           | Ork Elitarny, Ork Szaman, Ork Wojownik, Nieumarły Ork          |
-| `Razor.mds`         | Żyletka (Razor)                                                |
-| `Scavenger.mds`     | Ścierwojad                                                     |
-| `ScavengerGL.mds`   | Ścierwojad-demon                                               |
-| `Shadow.mds`        | Cienisty, Cienisty Szkielet, Ogar krwi                         |
-| `Sheep.mds`         | Owca, Baran                                                    |
-| `Snapper.mds`       | Szczękacz                                                      |
-| `StoneGuardian.mds` | Kamienny strażnik                                              |
-| `StonePuma.mds`     | Kamienna puma                                                  |
-| `SwampDrone.mds`    | Bagienny trutnik                                               |
-| `SwampGolem.mds`    | Bagienny golem                                                 |
-| `Swamprat.mds`      | Bagienny szczur                                                |
-| `Swampshark.mds`    | Bagienny rekin                                                 |
-| `SwampZombie.mds`   | Bagienny zombie                                                |
-| `Swarm.mds`         | Rój                                                            |
-| `Troll.mds`         | Troll, Czarny Troll                                            |
-| `Waran.mds`         | Waran (bazowy)                                                 |
-| `Wolf.mds`          | Wilk, Warg, Lodowy wilk                                        |
-| `Zombie.mds`        | Zombie, Bagienne stworzenie                                    |
+| MDS File            | Description                    | Application Method                             |
+| ------------------- | ------------------------------ | ---------------------------------------------- |
+| `HUMANS_FLEE.MDS`   | Frightened run (fleeing)       | `Mdl_ApplyOverlayMds` / `Mdl_RemoveOverlayMds` |
+| `HUMANS_SPRINT.MDS` | Sprint (temporary speed boost) | `Mdl_ApplyOverlayMdsTimed` (with timeout)      |
+
+### Skeleton overlays
+
+| MDS File                  | Description                       |
+| ------------------------- | --------------------------------- |
+| `humans_skeleton.mds`     | Base overlay for skeletons        |
+| `humans_skeleton_fly.mds` | Flying skeleton mage              |
+| `humans_1hST1.mds`        | Fighting style: one-handed sword  |
+| `humans_2hST2.mds`        | Fighting style: two-handed weapon |
+| `humans_BowT1.mds`        | Fighting style: bow               |
+| `humans_CBowT1.mds`       | Fighting style: crossbow          |
+
+### Monster overlays
+
+| MDS File              | Description                           |
+| --------------------- | ------------------------------------- |
+| `Golem_Firegolem.mds` | Fire golem (overlay on base golem)    |
+| `Golem_Icegolem.mds`  | Ice golem (overlay on base golem)     |
+| `Firewaran.mds`       | Fire waran (overlay on base waran)    |
+| `Orcbiter.mds`        | Orc biter (overlay on base scavenger) |
 
 ---
 
-## Animacje przejścia (T\_)
+## Base visual models (Mdl_SetVisual)
 
-Animacje jednorazowe odtwarzające przejście między dwoma stanami NPC.
+Every NPC or monster has an assigned base `.mds` file defining its model and animation set.
 
-### Pozycje strażnika
+### Humans
 
-| Animacja              | Opis                                            |
-| --------------------- | ----------------------------------------------- |
-| `T_STAND_2_HGUARD`    | Stanie → poza strażnika (ręce na biodrach)      |
-| `T_HGUARD_2_STAND`    | Poza strażnika → stanie                         |
-| `T_HGUARD_LOOKAROUND` | Rozglądanie się w pozie strażnika               |
-| `T_STAND_2_LGUARD`    | Stanie → skrzyżowane ręce                       |
-| `T_LGUARD_2_STAND`    | Skrzyżowane ręce → stanie                       |
-| `T_LGUARD_SCRATCH`    | Drapanie się (idle ze skrzyżowanymi rękami)     |
-| `T_LGUARD_STRETCH`    | Przeciąganie się (idle ze skrzyżowanymi rękami) |
-| `T_LGUARD_CHANGELEG`  | Zmiana nogi (idle ze skrzyżowanymi rękami)      |
+| MDS File     | Description                             |
+| ------------ | --------------------------------------- |
+| `HUMANS.MDS` | All human NPCs and the player character |
 
-### Siedzenie
+### Monsters
 
-| Animacja               | Opis                                         |
-| ---------------------- | -------------------------------------------- |
-| `T_STAND_2_SIT`        | Stanie → siedzenie na ziemi                  |
-| `T_SIT_2_STAND`        | Siedzenie na ziemi → stanie                  |
-| `T_STAND_2_GUARDSLEEP` | Stanie → siedzenie w pozie drzemki strażnika |
-| `T_GUARDSLEEP_2_STAND` | Drzemka strażnika → stanie                   |
+| MDS File            | Creature                                       |
+| ------------------- | ---------------------------------------------- |
+| `Alligator.mds`     | Alligator                                      |
+| `Blattcrawler.mds`  | Leaf crawler                                   |
+| `Bloodfly.mds`      | Bloodfly                                       |
+| `Crawler.mds`       | Minecrawler, Minecrawler Warrior               |
+| `Demon.mds`         | Demon, Demon Lord                              |
+| `Draconian.mds`     | Draconian                                      |
+| `Dragon.mds`        | All dragons (Fire, Ice, Rock, Swamp, Undead)   |
+| `DragonSnapper.mds` | Dragon Snapper                                 |
+| `FireShadow.mds`    | Fire Shadowbeast                               |
+| `Giant_Bug.mds`     | Giant Bug                                      |
+| `Giant_Rat.mds`     | Giant Rat, Giant Desert Rat                    |
+| `Gobbo.mds`         | Goblin (Green, Black, Skeleton, Warrior)       |
+| `Golem.mds`         | Stone Golem (base)                             |
+| `Harpie.mds`        | Harpy                                          |
+| `Irrlicht.mds`      | Wisp                                           |
+| `Keiler.mds`        | Boar                                           |
+| `Lurker.mds`        | Lurker                                         |
+| `Meatbug.mds`       | Meatbug                                        |
+| `Molerat.mds`       | Molerat                                        |
+| `Orc.mds`           | Orc Elite, Orc Shaman, Orc Warrior, Undead Orc |
+| `Razor.mds`         | Razor                                          |
+| `Scavenger.mds`     | Scavenger                                      |
+| `ScavengerGL.mds`   | Scavenger Demon                                |
+| `Shadow.mds`        | Shadowbeast, Shadowbeast Skeleton, Bloodhound  |
+| `Sheep.mds`         | Sheep, Ram                                     |
+| `Snapper.mds`       | Snapper                                        |
+| `StoneGuardian.mds` | Stone Guardian                                 |
+| `StonePuma.mds`     | Stone Puma                                     |
+| `SwampDrone.mds`    | Swamp Drone                                    |
+| `SwampGolem.mds`    | Swamp Golem                                    |
+| `Swamprat.mds`      | Swamp Rat                                      |
+| `Swampshark.mds`    | Swampshark                                     |
+| `SwampZombie.mds`   | Swamp Zombie                                   |
+| `Swarm.mds`         | Swarm                                          |
+| `Troll.mds`         | Troll, Black Troll                             |
+| `Waran.mds`         | Waran (base)                                   |
+| `Wolf.mds`          | Wolf, Warg, Ice Wolf                           |
+| `Zombie.mds`        | Zombie, Mud creature                           |
 
-### Modlitwa
+---
 
-| Animacja         | Opis                                         |
-| ---------------- | -------------------------------------------- |
-| `T_STAND_2_PRAY` | Stanie → klęczenie/modlitwa                  |
-| `T_PRAY_2_STAND` | Modlitwa → stanie                            |
-| `T_PRAY_RANDOM`  | Losowa animacja modlitwy (idle na klęczkach) |
+## Transition animations (T\_)
 
-### Spanie
+One-shot animations that play a transition between two NPC states.
 
-| Animacja          | Opis                        |
-| ----------------- | --------------------------- |
-| `T_STAND_2_SLEEP` | Stanie → leżenie (potwory)  |
-| `T_SLEEP_2_STAND` | Leżenie → stanie (potwory)  |
-| `T_REST_2_STAND`  | Odpoczynek → stanie (smoki) |
+### Guard positions
 
-### Jedzenie / picie / palenie
+| Animation             | Description                           |
+| --------------------- | ------------------------------------- |
+| `T_STAND_2_HGUARD`    | Standing → guard pose (hands on hips) |
+| `T_HGUARD_2_STAND`    | Guard pose → standing                 |
+| `T_HGUARD_LOOKAROUND` | Looking around in guard pose          |
+| `T_STAND_2_LGUARD`    | Standing → arms crossed               |
+| `T_LGUARD_2_STAND`    | Arms crossed → standing               |
+| `T_LGUARD_SCRATCH`    | Scratching (arms-crossed idle)        |
+| `T_LGUARD_STRETCH`    | Stretching (arms-crossed idle)        |
+| `T_LGUARD_CHANGELEG`  | Shifting weight (arms-crossed idle)   |
 
-| Animacja              | Opis                                         |
+### Sitting
+
+| Animation              | Description                         |
+| ---------------------- | ----------------------------------- |
+| `T_STAND_2_SIT`        | Standing → sitting on the ground    |
+| `T_SIT_2_STAND`        | Sitting on the ground → standing    |
+| `T_STAND_2_GUARDSLEEP` | Standing → guard-sleep sitting pose |
+| `T_GUARDSLEEP_2_STAND` | Guard-sleep → standing              |
+
+### Prayer
+
+| Animation        | Description                             |
+| ---------------- | --------------------------------------- |
+| `T_STAND_2_PRAY` | Standing → kneeling/praying             |
+| `T_PRAY_2_STAND` | Praying → standing                      |
+| `T_PRAY_RANDOM`  | Random prayer animation (kneeling idle) |
+
+### Sleeping
+
+| Animation         | Description                      |
+| ----------------- | -------------------------------- |
+| `T_STAND_2_SLEEP` | Standing → lying down (monsters) |
+| `T_SLEEP_2_STAND` | Lying down → standing (monsters) |
+| `T_REST_2_STAND`  | Resting → standing (dragons)     |
+
+### Eating / drinking / smoking
+
+| Animation             | Description                                  |
 | --------------------- | -------------------------------------------- |
-| `T_STAND_2_EAT`       | Stanie → jedzenie z ziemi (potwory)          |
-| `T_EAT_2_STAND`       | Jedzenie z ziemi → stanie (potwory)          |
-| `T_FOOD_RANDOM_1`     | Jedzenie małego posiłku (jabłko) — wariant 1 |
-| `T_FOOD_RANDOM_2`     | Jedzenie małego posiłku (jabłko) — wariant 2 |
-| `T_FOODHUGE_RANDOM_1` | Jedzenie dużego posiłku (ser)                |
-| `T_MEAT_RANDOM_1`     | Jedzenie mięsa (boczek, baranina)            |
-| `T_POTION_RANDOM_1`   | Picie — wariant 1                            |
-| `T_POTION_RANDOM_2`   | Picie — wariant 2                            |
-| `T_POTION_RANDOM_3`   | Picie — wariant 3                            |
-| `T_JOINT_RANDOM_1`    | Palenie skręta                               |
+| `T_STAND_2_EAT`       | Standing → eating from the ground (monsters) |
+| `T_EAT_2_STAND`       | Eating from the ground → standing (monsters) |
+| `T_FOOD_RANDOM_1`     | Eating small food (apple) — variant 1        |
+| `T_FOOD_RANDOM_2`     | Eating small food (apple) — variant 2        |
+| `T_FOODHUGE_RANDOM_1` | Eating large food (cheese)                   |
+| `T_MEAT_RANDOM_1`     | Eating meat (bacon, mutton)                  |
+| `T_POTION_RANDOM_1`   | Drinking — variant 1                         |
+| `T_POTION_RANDOM_2`   | Drinking — variant 2                         |
+| `T_POTION_RANDOM_3`   | Drinking — variant 3                         |
+| `T_JOINT_RANDOM_1`    | Smoking a joint                              |
 
-### Taniec
+### Dance
 
-| Animacja     | Opis         |
-| ------------ | ------------ |
-| `T_DANCE_01` | Styl tańca 1 |
-| `T_DANCE_02` | Styl tańca 2 |
-| `T_DANCE_03` | Styl tańca 3 |
-| `T_DANCE_04` | Styl tańca 4 |
-| `T_DANCE_05` | Styl tańca 5 |
-| `T_DANCE_06` | Styl tańca 6 |
-| `T_DANCE_07` | Styl tańca 7 |
-| `T_DANCE_08` | Styl tańca 8 |
-| `T_DANCE_09` | Styl tańca 9 |
+| Animation    | Description   |
+| ------------ | ------------- |
+| `T_DANCE_01` | Dance style 1 |
+| `T_DANCE_02` | Dance style 2 |
+| `T_DANCE_03` | Dance style 3 |
+| `T_DANCE_04` | Dance style 4 |
+| `T_DANCE_05` | Dance style 5 |
+| `T_DANCE_06` | Dance style 6 |
+| `T_DANCE_07` | Dance style 7 |
+| `T_DANCE_08` | Dance style 8 |
+| `T_DANCE_09` | Dance style 9 |
 
-### Rozmowa / interakcje
+### Conversation / interactions
 
-| Animacja            | Opis                                      |
-| ------------------- | ----------------------------------------- |
-| `T_STAND_2_TALK`    | Stanie → poza rozmowy                     |
-| `T_TALK_2_STAND`    | Poza rozmowy → stanie                     |
-| `T_YES`             | Kiwnięcie głową (tak)                     |
-| `T_DONTKNOW`        | Gest „nie wiem"                           |
-| `T_WATCHFIGHT_OHNO` | Reakcja obserwatora walki — zdenerwowanie |
-| `T_WATCHFIGHT_YEAH` | Reakcja obserwatora walki — radość        |
+| Animation           | Description                           |
+| ------------------- | ------------------------------------- |
+| `T_STAND_2_TALK`    | Standing → talking pose               |
+| `T_TALK_2_STAND`    | Talking pose → standing               |
+| `T_YES`             | Nodding (yes)                         |
+| `T_DONTKNOW`        | "I don't know" gesture                |
+| `T_WATCHFIGHT_OHNO` | Fight spectator reaction — dismay     |
+| `T_WATCHFIGHT_YEAH` | Fight spectator reaction — excitement |
 
-### Akcje cielesne / prace
+### Bodily actions / labor
 
-| Animacja            | Opis                                 |
-| ------------------- | ------------------------------------ |
-| `T_STAND_2_PEE`     | Stanie → oddawanie moczu             |
-| `T_PEE_2_STAND`     | Oddawanie moczu → stanie             |
-| `T_STAND_2_WASH`    | Stanie → mycie/pranie                |
-| `T_WASH_2_STAND`    | Mycie → stanie                       |
-| `T_PLUNDER`         | Przeszukiwanie / zbieranie           |
-| `T_SEARCH`          | Szukanie czegoś                      |
-| `T_1HSFREE`         | Ćwiczenie walki mieczem jednoręcznym |
-| `T_REPAIR_RANDOM_1` | Losowa animacja naprawy              |
+| Animation           | Description                |
+| ------------------- | -------------------------- |
+| `T_STAND_2_PEE`     | Standing → urinating       |
+| `T_PEE_2_STAND`     | Urinating → standing       |
+| `T_STAND_2_WASH`    | Standing → washing/laundry |
+| `T_WASH_2_STAND`    | Washing → standing         |
+| `T_PLUNDER`         | Looting / picking up       |
+| `T_SEARCH`          | Searching for something    |
+| `T_1HSFREE`         | One-handed sword practice  |
+| `T_REPAIR_RANDOM_1` | Random repair animation    |
 
-### Magia / ćwiczenia
+### Magic / practice
 
-| Animacja           | Opis                                       |
+| Animation          | Description                                |
 | ------------------ | ------------------------------------------ |
-| `T_PRACTICEMAGIC`  | Ćwiczenie magii — wariant 1                |
-| `T_PRACTICEMAGIC2` | Ćwiczenie magii — wariant 2                |
-| `T_PRACTICEMAGIC3` | Ćwiczenie magii — wariant 3                |
-| `T_PRACTICEMAGIC4` | Ćwiczenie magii — wariant 4                |
-| `T_PRACTICEMAGIC5` | Ćwiczenie magii — wariant 5 (rytuał kręgu) |
+| `T_PRACTICEMAGIC`  | Magic practice — variant 1                 |
+| `T_PRACTICEMAGIC2` | Magic practice — variant 2                 |
+| `T_PRACTICEMAGIC3` | Magic practice — variant 3                 |
+| `T_PRACTICEMAGIC4` | Magic practice — variant 4                 |
+| `T_PRACTICEMAGIC5` | Magic practice — variant 5 (circle ritual) |
 
-### Reakcje na trafienie / walka
+### Hit reactions / combat
 
-| Animacja              | Opis                                |
-| --------------------- | ----------------------------------- |
-| `T_MAGRUN_2_HEASHOOT` | Bieg → trafienie w głowę (padanie)  |
-| `T_HEASHOOT_2_STAND`  | Trafienie w głowę → wstanie         |
-| `T_DEAD`              | Śmierć (upadek)                     |
-| `T_RISE`              | Wstanie z martwych                  |
-| `T_DOWN`              | Upadek na ziemię                    |
-| `T_WARN`              | Ostrzeżenie / zagrożenie (potwory)  |
-| `T_PERCEPTION`        | Percepcja / nasłuchiwanie (potwory) |
+| Animation             | Description                       |
+| --------------------- | --------------------------------- |
+| `T_MAGRUN_2_HEASHOOT` | Run → headshot (falling down)     |
+| `T_HEASHOOT_2_STAND`  | Headshot → getting up             |
+| `T_DEAD`              | Death (collapse)                  |
+| `T_RISE`              | Rising from the dead              |
+| `T_DOWN`              | Falling to the ground             |
+| `T_WARN`              | Warning / threatening (monsters)  |
+| `T_PERCEPTION`        | Perception / listening (monsters) |
 
-### Ofiary zaklęć
+### Spell victim animations
 
-| Animacja                          | Zaklęcie                    |
+| Animation                         | Spell                       |
 | --------------------------------- | --------------------------- |
-| `T_STAND_2_LIGHTNING_VICTIM`      | Porażenie piorunem          |
-| `T_STAND_2_SUCKENERGY_VICTIM`     | Wysysanie energii           |
-| `T_STAND_2_FREEZE_VICTIM`         | Zamrożenie                  |
-| `T_STAND_2_GREENTENTACLEA_VICTIM` | Zielone macki — wariant A   |
-| `T_STAND_2_GREENTENTACLEB_VICTIM` | Zielone macki — wariant B   |
-| `T_STAND_2_GREENTENTACLEC_VICTIM` | Zielone macki — wariant C   |
-| `T_STAND_2_INFLATE_VICTIM`        | Nadmuchanie                 |
-| `T_STAND_2_WHIRLWIND_VICTIM`      | Wir powietrzny              |
-| `T_STAND_2_SWARM_VICTIM`          | Atak roju                   |
-| `T_STAND_2_VICTIM_SLE`            | Magiczny sen                |
-| `T_VICTIM_SLE_2_STAND`            | Magiczny sen → przebudzenie |
-| `T_STAND_2_FEAR_VICTIM1`          | Magiczny strach — wariant 1 |
-| `T_STAND_2_FEAR_VICTIM2`          | Magiczny strach — wariant 2 |
-| `T_STAND_2_FEAR_VICTIM3`          | Magiczny strach — wariant 3 |
+| `T_STAND_2_LIGHTNING_VICTIM`      | Lightning strike            |
+| `T_STAND_2_SUCKENERGY_VICTIM`     | Energy drain                |
+| `T_STAND_2_FREEZE_VICTIM`         | Freeze                      |
+| `T_STAND_2_GREENTENTACLEA_VICTIM` | Green tentacles — variant A |
+| `T_STAND_2_GREENTENTACLEB_VICTIM` | Green tentacles — variant B |
+| `T_STAND_2_GREENTENTACLEC_VICTIM` | Green tentacles — variant C |
+| `T_STAND_2_INFLATE_VICTIM`        | Inflate                     |
+| `T_STAND_2_WHIRLWIND_VICTIM`      | Whirlwind                   |
+| `T_STAND_2_SWARM_VICTIM`          | Swarm attack                |
+| `T_STAND_2_VICTIM_SLE`            | Magic sleep                 |
+| `T_VICTIM_SLE_2_STAND`            | Magic sleep → waking up     |
+| `T_STAND_2_FEAR_VICTIM1`          | Magic fear — variant 1      |
+| `T_STAND_2_FEAR_VICTIM2`          | Magic fear — variant 2      |
+| `T_STAND_2_FEAR_VICTIM3`          | Magic fear — variant 3      |
 
 ---
 
-## Animacje stanu (S\_)
+## State animations (S\_)
 
-Zapętlone animacje utrzymujące NPC w danym stanie.
+Looping animations that keep the NPC in a given state.
 
-| Animacja        | Opis                                   |
-| --------------- | -------------------------------------- |
-| `S_EAT`         | Jedzenie z ziemi (potwory — zapętlone) |
-| `S_FIRE_VICTIM` | Płonięcie (ofiara ognia)               |
-
----
-
-## Animacje losowe (R\_)
-
-Odtwarzane losowo jako idle — dodają życia NPC i potworom.
-
-### Potwory
-
-| Animacja  | Opis                                                    |
-| --------- | ------------------------------------------------------- |
-| `R_ROAM1` | Losowe poruszenie — wariant 1 (rozglądanie, ruch głową) |
-| `R_ROAM2` | Losowe poruszenie — wariant 2                           |
-| `R_ROAM3` | Losowe poruszenie — wariant 3                           |
-
-### Ludzie — stanie
-
-| Animacja        | Opis                   |
-| --------------- | ---------------------- |
-| `R_SCRATCHHEAD` | Drapanie się po głowie |
-
-### Ludzie — siedzenie
-
-| Animacja           | Opis                                           |
-| ------------------ | ---------------------------------------------- |
-| `R_CHAIR_RANDOM_1` | Losowe poruszenie na krześle/ławce — wariant 1 |
-| `R_CHAIR_RANDOM_2` | Losowe poruszenie na krześle/ławce — wariant 2 |
-| `R_CHAIR_RANDOM_3` | Losowe poruszenie na krześle/ławce — wariant 3 |
-| `R_CHAIR_RANDOM_4` | Losowe poruszenie na krześle/ławce — wariant 4 |
+| Animation       | Description                                 |
+| --------------- | ------------------------------------------- |
+| `S_EAT`         | Eating from the ground (monsters — looping) |
+| `S_FIRE_VICTIM` | Burning (fire victim)                       |
 
 ---
 
-## Animacje twarzy
+## Random animations (R\_)
 
-Mimika NPC odtwarzana za pomocą `Mdl_StartFaceAni`:
+Played randomly as idle — they bring NPCs and monsters to life.
 
-| Animacja    | Opis                   |
-| ----------- | ---------------------- |
-| `S_ANGRY`   | Zły wyraz twarzy       |
-| `S_NEUTRAL` | Neutralny wyraz twarzy |
+### Monsters
+
+| Animation | Description                                                 |
+| --------- | ----------------------------------------------------------- |
+| `R_ROAM1` | Random movement — variant 1 (looking around, head movement) |
+| `R_ROAM2` | Random movement — variant 2                                 |
+| `R_ROAM3` | Random movement — variant 3                                 |
+
+### Humans — standing
+
+| Animation       | Description     |
+| --------------- | --------------- |
+| `R_SCRATCHHEAD` | Head scratching |
+
+### Humans — sitting
+
+| Animation          | Description                             |
+| ------------------ | --------------------------------------- |
+| `R_CHAIR_RANDOM_1` | Random chair/bench movement — variant 1 |
+| `R_CHAIR_RANDOM_2` | Random chair/bench movement — variant 2 |
+| `R_CHAIR_RANDOM_3` | Random chair/bench movement — variant 3 |
+| `R_CHAIR_RANDOM_4` | Random chair/bench movement — variant 4 |
+
+---
+
+## Facial animations
+
+NPC facial expressions played via `Mdl_StartFaceAni`:
+
+| Animation   | Description               |
+| ----------- | ------------------------- |
+| `S_ANGRY`   | Angry facial expression   |
+| `S_NEUTRAL` | Neutral facial expression |
 
 :::info
-Animacje twarzy przyjmują parametr intensywności (0.0–1.0) i czasu trwania w milisekundach. Wartość `-1` oznacza nieskończony czas — animacja utrzymuje się aż do ręcznego usunięcia lub zmiany stanu.
+Facial animations take an intensity parameter (0.0–1.0) and a duration in milliseconds. A value of `-1` means infinite — the animation persists until manually removed or the state changes.
 :::

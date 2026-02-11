@@ -1,11 +1,11 @@
 ---
 sidebar_position: 3
 title: "Union"
-description: "Opis frameworka Union do tworzenia pluginów C++ dla Gothic."
+description: "Overview of the Union framework for creating C++ plugins for Gothic."
 ---
 
 # Union
 
 :::info
-Ta strona jest w trakcie tworzenia. Treść zostanie uzupełniona wkrótce.
+This page is under construction. Content will be added soon.
 :::

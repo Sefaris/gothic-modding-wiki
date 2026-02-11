@@ -1,188 +1,188 @@
 ---
 sidebar_position: 5
-title: "Mój pierwszy efekt"
-description: "Tworzenie pierwszego efektu cząsteczkowego (PFX) w Gothic."
+title: "My First Effect"
+description: "Creating your first particle effect (PFX) in Gothic."
 ---
 
-# Mój pierwszy efekt
+# My First Effect
 
-W tym poradniku nauczysz się tworzyć efekty cząsteczkowe (Particle Effects, PFX) — od prostego dymu, przez ogień, po deszcz i śnieg.
+In this tutorial you will learn how to create particle effects (Particle Effects, PFX) — from simple smoke, through fire, to rain and snow.
 
-## Jak działają efekty cząsteczkowe?
+## How Do Particle Effects Work?
 
-System PFX w Gothic emituje **cząsteczki** (małe sprite'y z teksturą) z **emitera** o określonym kształcie. Każda cząsteczka ma swój kierunek, prędkość, czas życia i wygląd.
+The PFX system in Gothic emits **particles** (small textured sprites) from an **emitter** with a defined shape. Each particle has its own direction, speed, lifespan, and appearance.
 
-Efekty definiowane są jako instancje klasy `C_ParticleFX` w plikach w katalogu `System/PFX/`:
+Effects are defined as instances of the `C_ParticleFX` class in files in the `System/PFX/` directory:
 
-| Plik              | Opis                                                  |
+| File              | Description                                           |
 | ----------------- | ----------------------------------------------------- |
-| `PfxInst.d`       | Efekty ogólne (ogień, dym, iskry, woda, pogoda)       |
-| `PfxInstEngine.d` | Efekty wymagane przez silnik (krew, kurz, plusk wody) |
-| `PfxInstMagic.d`  | Efekty magiczne (zaklęcia, runy, aury)                |
+| `PfxInst.d`       | General effects (fire, smoke, sparks, water, weather) |
+| `PfxInstEngine.d` | Engine-required effects (blood, dust, water splash)   |
+| `PfxInstMagic.d`  | Magic effects (spells, runes, auras)                  |
 
-## Klasa C_ParticleFX — przegląd
+## The C_ParticleFX Class — Overview
 
-Klasa ma 49 pól podzielonych na 7 kategorii. Nie musisz ustawiać wszystkich — pola, których nie ustawisz, przyjmą wartości domyślne (zazwyczaj 0 lub pusty string).
+The class has 49 fields divided into 7 categories. You don't need to set them all — fields you don't set will use default values (usually 0 or empty string).
 
-### 1. Emisja — ile cząsteczek i kiedy
+### 1. Emission Rate — How Many Particles and When
 
-| Pole               | Typ      | Opis                                           |
-| ------------------ | -------- | ---------------------------------------------- |
-| `ppsValue`         | `float`  | Bazowa liczba cząsteczek na sekundę            |
-| `ppsScaleKeys_S`   | `string` | Mnożniki rozłożone w czasie, np. `"1 2 3"`     |
-| `ppsIsLooping`     | `int`    | `1` = zapętlone, `0` = jednorazowe             |
-| `ppsIsSmooth`      | `int`    | `1` = płynna interpolacja między kluczami      |
-| `ppsFPS`           | `float`  | Prędkość odtwarzania kluczy (klatki/s)         |
-| `ppsCreateEm_S`    | `string` | Nazwa efektu potomnego (spawny per cząsteczka) |
-| `ppsCreateEmDelay` | `float`  | Opóźnienie efektu potomnego                    |
+| Field              | Type     | Description                               |
+| ------------------ | -------- | ----------------------------------------- |
+| `ppsValue`         | `float`  | Base particles emitted per second         |
+| `ppsScaleKeys_S`   | `string` | Time-varying multipliers, e.g., `"1 2 3"` |
+| `ppsIsLooping`     | `int`    | `1` = looping, `0` = one-shot             |
+| `ppsIsSmooth`      | `int`    | `1` = smooth interpolation between keys   |
+| `ppsFPS`           | `float`  | Key playback speed (frames/sec)           |
+| `ppsCreateEm_S`    | `string` | Child effect name (spawned per particle)  |
+| `ppsCreateEmDelay` | `float`  | Child effect delay                        |
 
-### 2. Kształt emitera — skąd lecą cząsteczki
+### 2. Emitter Shape — Where Particles Come From
 
-| Pole               | Typ      | Opis                                                                    |
-| ------------------ | -------- | ----------------------------------------------------------------------- |
-| `shpType_S`        | `string` | Kształt: `"POINT"`, `"LINE"`, `"BOX"`, `"CIRCLE"`, `"SPHERE"`, `"MESH"` |
-| `shpFOR_S`         | `string` | Układ odniesienia: `"OBJECT"` lub `"WORLD"`                             |
-| `shpOffsetVec_S`   | `string` | Przesunięcie: `"X Y Z"`                                                 |
-| `shpDistribType_S` | `string` | Rozkład: `"RAND"`, `"UNIFORM"`, `"WALK"`, `"DIR"`                       |
-| `shpIsVolume`      | `int`    | `1` = emisja z objętości, `0` = z powierzchni                           |
-| `shpDim_S`         | `string` | Wymiary (zależne od kształtu)                                           |
-| `shpMesh_S`        | `string` | Mesh emitera (gdy `shpType_S = "MESH"`)                                 |
-| `shpMeshRender_B`  | `int`    | `1` = renderuj mesh emitera                                             |
+| Field              | Type     | Description                                                           |
+| ------------------ | -------- | --------------------------------------------------------------------- |
+| `shpType_S`        | `string` | Shape: `"POINT"`, `"LINE"`, `"BOX"`, `"CIRCLE"`, `"SPHERE"`, `"MESH"` |
+| `shpFOR_S`         | `string` | Frame of reference: `"OBJECT"` or `"WORLD"`                           |
+| `shpOffsetVec_S`   | `string` | Offset: `"X Y Z"`                                                     |
+| `shpDistribType_S` | `string` | Distribution: `"RAND"`, `"UNIFORM"`, `"WALK"`, `"DIR"`                |
+| `shpIsVolume`      | `int`    | `1` = emit from volume, `0` = from surface only                       |
+| `shpDim_S`         | `string` | Dimensions (shape-dependent)                                          |
+| `shpMesh_S`        | `string` | Emitter mesh (when `shpType_S = "MESH"`)                              |
+| `shpMeshRender_B`  | `int`    | `1` = render the emitter mesh                                         |
 
-### 3. Kierunek i prędkość
+### 3. Direction and Speed
 
-| Pole              | Typ      | Opis                                                         |
+| Field             | Type     | Description                                                  |
 | ----------------- | -------- | ------------------------------------------------------------ |
-| `dirMode_S`       | `string` | Tryb: `"DIR"`, `"TARGET"`, `"MESH_POLY"`, `"RAND"`, `"NONE"` |
-| `dirFOR_S`        | `string` | Układ odniesienia kierunku                                   |
-| `dirAngleHead`    | `float`  | Kąt obrotu poziomego (°)                                     |
-| `dirAngleHeadVar` | `float`  | Wariancja kąta (±°)                                          |
-| `dirAngleElev`    | `float`  | Kąt elewacji (°); `90` = w górę, `-90` = w dół               |
-| `dirAngleElevVar` | `float`  | Wariancja elewacji (±°)                                      |
-| `velAvg`          | `float`  | Średnia prędkość początkowa                                  |
-| `velVar`          | `float`  | Wariancja prędkości (±)                                      |
+| `dirMode_S`       | `string` | Mode: `"DIR"`, `"TARGET"`, `"MESH_POLY"`, `"RAND"`, `"NONE"` |
+| `dirFOR_S`        | `string` | Direction frame of reference                                 |
+| `dirAngleHead`    | `float`  | Horizontal rotation angle (°)                                |
+| `dirAngleHeadVar` | `float`  | Angle variance (±°)                                          |
+| `dirAngleElev`    | `float`  | Elevation angle (°); `90` = up, `-90` = down                 |
+| `dirAngleElevVar` | `float`  | Elevation variance (±°)                                      |
+| `velAvg`          | `float`  | Average initial velocity                                     |
+| `velVar`          | `float`  | Velocity variance (±)                                        |
 
-### 4. Czas życia cząsteczek
+### 4. Particle Lifespan
 
-| Pole         | Typ     | Opis                        |
-| ------------ | ------- | --------------------------- |
-| `lspPartAvg` | `float` | Średni czas życia (ms)      |
-| `lspPartVar` | `float` | Wariancja czasu życia (±ms) |
+| Field        | Type    | Description             |
+| ------------ | ------- | ----------------------- |
+| `lspPartAvg` | `float` | Average lifespan (ms)   |
+| `lspPartVar` | `float` | Lifespan variance (±ms) |
 
-### 5. Zachowanie w locie
+### 5. Flight Behavior
 
-| Pole           | Typ      | Opis                                                     |
-| -------------- | -------- | -------------------------------------------------------- |
-| `flyGravity_S` | `string` | Wektor grawitacji: `"X Y Z"`                             |
-| `flyCollDet_B` | `int`    | `0` = brak kolizji, `1` = kolizje, `3` = kolizje + ślady |
+| Field          | Type     | Description                                                    |
+| -------------- | -------- | -------------------------------------------------------------- |
+| `flyGravity_S` | `string` | Gravity vector: `"X Y Z"`                                      |
+| `flyCollDet_B` | `int`    | `0` = no collision, `1` = collisions, `3` = collisions + marks |
 
-### 6. Wizualizacja
+### 6. Visualization
 
-| Pole                 | Typ      | Opis                                               |
+| Field                | Type     | Description                                        |
 | -------------------- | -------- | -------------------------------------------------- |
-| `visName_S`          | `string` | Tekstura (`.TGA`) lub model (`.3DS`)               |
+| `visName_S`          | `string` | Texture (`.TGA`) or model (`.3DS`)                 |
 | `visOrientation_S`   | `string` | Billboard: `"NONE"`, `"VELO"`, `"VELO3D"`, `"VOB"` |
-| `visTexIsQuadPoly`   | `int`    | `0` = trójkąt, `1` = kwadrat                       |
-| `visTexAniFPS`       | `float`  | FPS animacji tekstury                              |
-| `visTexAniIsLooping` | `int`    | `0` = raz, `1` = pętla, `2` = ping-pong            |
-| `visTexColorStart_S` | `string` | Kolor początkowy: `"R G B"` (0–255)                |
-| `visTexColorEnd_S`   | `string` | Kolor końcowy (interpolacja w czasie życia)        |
-| `visSizeStart_S`     | `string` | Rozmiar początkowy: `"W H"`                        |
-| `visSizeEndScale`    | `float`  | Mnożnik rozmiaru końcowego                         |
+| `visTexIsQuadPoly`   | `int`    | `0` = triangle, `1` = quad mesh                    |
+| `visTexAniFPS`       | `float`  | Texture animation FPS                              |
+| `visTexAniIsLooping` | `int`    | `0` = once, `1` = loop, `2` = ping-pong            |
+| `visTexColorStart_S` | `string` | Start color: `"R G B"` (0–255)                     |
+| `visTexColorEnd_S`   | `string` | End color (interpolated over lifespan)             |
+| `visSizeStart_S`     | `string` | Start size: `"W H"`                                |
+| `visSizeEndScale`    | `float`  | End size multiplier                                |
 | `visAlphaFunc_S`     | `string` | Blending: `"BLEND"`, `"ADD"`, `"MUL"`              |
-| `visAlphaStart`      | `float`  | Przezroczystość początkowa (0–255)                 |
-| `visAlphaEnd`        | `float`  | Przezroczystość końcowa (0–255)                    |
+| `visAlphaStart`      | `float`  | Start alpha (0–255)                                |
+| `visAlphaEnd`        | `float`  | End alpha (0–255)                                  |
 
-### 7. Efekty dodatkowe
+### 7. Additional Effects
 
-| Pole              | Typ      | Opis                                                 |
+| Field             | Type     | Description                                          |
 | ----------------- | -------- | ---------------------------------------------------- |
-| `trlFadeSpeed`    | `float`  | Prędkość zanikania śladu (trail)                     |
-| `trlTexture_S`    | `string` | Tekstura śladu                                       |
-| `trlWidth`        | `float`  | Szerokość śladu                                      |
-| `mrkFadeSpeed`    | `float`  | Prędkość zanikania odcisku (mark)                    |
-| `mrkTexture_S`    | `string` | Tekstura odcisku                                     |
-| `mrkSize`         | `float`  | Rozmiar odcisku                                      |
-| `flockMode`       | `string` | Tryb stadny: `"WIND"`                                |
-| `flockStrength`   | `float`  | Siła efektu stadnego                                 |
-| `useEmittersFOR`  | `int`    | `1` = cząsteczki podążają za emiterem                |
-| `timeStartEnd_S`  | `string` | Okno czasowe renderowania: `"8 22"` (8:00–22:00)     |
-| `m_bIsAmbientPFX` | `int`    | `1` = efekt ambientowy (można wyłączyć w gothic.ini) |
+| `trlFadeSpeed`    | `float`  | Trail fade speed                                     |
+| `trlTexture_S`    | `string` | Trail texture                                        |
+| `trlWidth`        | `float`  | Trail width                                          |
+| `mrkFadeSpeed`    | `float`  | Mark (decal) fade speed                              |
+| `mrkTexture_S`    | `string` | Mark texture                                         |
+| `mrkSize`         | `float`  | Mark size                                            |
+| `flockMode`       | `string` | Flocking mode: `"WIND"`                              |
+| `flockStrength`   | `float`  | Flocking strength                                    |
+| `useEmittersFOR`  | `int`    | `1` = particles follow emitter position              |
+| `timeStartEnd_S`  | `string` | Render time window: `"8 22"` (8am–10pm)              |
+| `m_bIsAmbientPFX` | `int`    | `1` = ambient effect (can be disabled in gothic.ini) |
 
 ---
 
-## Przykład 1: Prosty dym
+## Example 1: Simple Smoke
 
-Zacznijmy od czegoś prostego — słup dymu unoszący się w górę:
+Let's start with something simple — a column of smoke rising upward:
 
 ```daedalus
-instance PFX_MojDym (C_ParticleFX)
+instance PFX_MySmoke (C_ParticleFX)
 {
-    // --- Emisja: 30 cząsteczek/s, ciągłe ---
+    // --- Emission: 30 particles/sec, continuous ---
     ppsValue        = 30;
     ppsScaleKeys_S  = "1";
     ppsIsLooping    = 1;
 
-    // --- Kształt: punkt ---
+    // --- Shape: point ---
     shpType_S       = "POINT";
     shpFOR_S        = "OBJECT";
 
-    // --- Kierunek: w górę z losowym odchyleniem ---
+    // --- Direction: upward with random variance ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleElev    = 90;               // w górę
-    dirAngleElevVar = 15;               // ±15° odchylenia
-    dirAngleHeadVar = 180;              // rozrzut na boki
-    velAvg          = 0.02;             // powolny
+    dirAngleElev    = 90;               // upward
+    dirAngleElevVar = 15;               // ±15° variance
+    dirAngleHeadVar = 180;              // spread sideways
+    velAvg          = 0.02;             // slow
     velVar          = 0.01;
 
-    // --- Czas życia: 2–3 sekundy ---
+    // --- Lifespan: 2–3 seconds ---
     lspPartAvg      = 2500;
     lspPartVar      = 500;
 
-    // --- Brak grawitacji (dym unosi się) ---
-    flyGravity_S    = "0 0.0001 0";     // lekko w górę
+    // --- No gravity (smoke rises) ---
+    flyGravity_S    = "0 0.0001 0";     // slightly upward
 
-    // --- Wygląd ---
+    // --- Appearance ---
     visName_S           = "SMOKE1.TGA";
-    visOrientation_S    = "NONE";           // billboard skierowany do kamery
-    visTexColorStart_S  = "150 150 150";    // szary
-    visTexColorEnd_S    = "80 80 80";       // ciemniejszy z czasem
+    visOrientation_S    = "NONE";           // billboard facing camera
+    visTexColorStart_S  = "150 150 150";    // gray
+    visTexColorEnd_S    = "80 80 80";       // darkens over time
     visSizeStart_S      = "10 10";
-    visSizeEndScale     = 5;                // rośnie 5x
-    visAlphaFunc_S      = "BLEND";          // zwykłe przenikanie
+    visSizeEndScale     = 5;                // grows 5x
+    visAlphaFunc_S      = "BLEND";          // standard blending
     visAlphaStart       = 180;
-    visAlphaEnd         = 0;                // zanika
+    visAlphaEnd         = 0;                // fades out
 };
 ```
 
 :::tip
-**`visAlphaFunc_S`** — tryby blendingu:
+**`visAlphaFunc_S`** — blending modes:
 
-- `"BLEND"` — klasyczne przenikanie (dym, mgła, kurz)
-- `"ADD"` — addytywne (ogień, iskry, magia — jasne, świecące)
-- `"MUL"` — multiplikatywne (cienie, przyciemnianie)
+- `"BLEND"` — classic blending (smoke, fog, dust)
+- `"ADD"` — additive (fire, sparks, magic — bright, glowing)
+- `"MUL"` — multiplicative (shadows, darkening)
   :::
 
-## Przykład 2: Ognisko
+## Example 2: Campfire
 
-Ogień to połączenie szybkiej emisji, addytywnego blendingu i animowanej tekstury:
+Fire combines fast emission, additive blending, and animated textures:
 
 ```daedalus
-instance PFX_MojOgien (C_ParticleFX)
+instance PFX_MyFire (C_ParticleFX)
 {
-    // --- Emisja: dużo cząsteczek, ciągłe ---
+    // --- Emission: lots of particles, continuous ---
     ppsValue        = 80;
     ppsScaleKeys_S  = "1";
     ppsIsLooping    = 1;
 
-    // --- Kształt: koło (baza ogniska) ---
+    // --- Shape: circle (fire base) ---
     shpType_S       = "CIRCLE";
     shpFOR_S        = "OBJECT";
     shpIsVolume     = 1;
-    shpDim_S        = "15";             // promień 15 jednostek
+    shpDim_S        = "15";             // radius 15 units
 
-    // --- Kierunek: w górę ---
+    // --- Direction: upward ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
     dirAngleElev    = 90;
@@ -191,110 +191,110 @@ instance PFX_MojOgien (C_ParticleFX)
     velAvg          = 0.05;
     velVar          = 0.02;
 
-    // --- Czas życia: krótki (szybki ogień) ---
+    // --- Lifespan: short (fast fire) ---
     lspPartAvg      = 800;
     lspPartVar      = 200;
 
-    // --- Lekka grawitacja w górę (gorące powietrze) ---
+    // --- Slight upward gravity (hot air) ---
     flyGravity_S    = "0 0.0003 0";
 
-    // --- Wygląd ---
+    // --- Appearance ---
     visName_S           = "FIREFLARE.TGA";
     visOrientation_S    = "NONE";
-    visTexAniFPS        = 8;                // animacja tekstury
-    visTexAniIsLooping  = 1;                // zapętlona
-    visTexColorStart_S  = "255 255 255";    // biały (prześwietlony środek)
-    visTexColorEnd_S    = "255 100 30";     // pomarańczowy (krawędzie)
+    visTexAniFPS        = 8;                // texture animation
+    visTexAniIsLooping  = 1;                // looped
+    visTexColorStart_S  = "255 255 255";    // white (overexposed center)
+    visTexColorEnd_S    = "255 100 30";     // orange (edges)
     visSizeStart_S      = "5 5";
-    visSizeEndScale     = 4;                // rośnie
-    visAlphaFunc_S      = "ADD";            // addytywne = świecące
+    visSizeEndScale     = 4;                // grows
+    visAlphaFunc_S      = "ADD";            // additive = glowing
     visAlphaStart       = 255;
     visAlphaEnd         = 0;
 };
 ```
 
-## Przykład 3: Iskry
+## Example 3: Sparks
 
-Iskry to małe, szybkie cząsteczki z grawitacją i kolizjami:
+Sparks are small, fast particles with gravity and collisions:
 
 ```daedalus
-instance PFX_MojeIskry (C_ParticleFX)
+instance PFX_MySparks (C_ParticleFX)
 {
-    // --- Emisja: jednorazowy wybuch ---
+    // --- Emission: one-time burst ---
     ppsValue        = 50;
-    ppsScaleKeys_S  = "1 0";           // natychmiast, potem nic
-    ppsIsLooping    = 0;                // jednorazowe
+    ppsScaleKeys_S  = "1 0";           // instant burst, then nothing
+    ppsIsLooping    = 0;                // one-shot
     ppsFPS          = 2;
 
-    // --- Kształt: punkt ---
+    // --- Shape: point ---
     shpType_S       = "POINT";
     shpFOR_S        = "OBJECT";
 
-    // --- Kierunek: rozbiegają się we wszystkie strony ---
+    // --- Direction: scatter in all directions ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleHeadVar = 180;              // pełne 360°
-    dirAngleElev    = 45;               // lekko w górę
-    dirAngleElevVar = 45;               // ale z dużym rozrzutem
-    velAvg          = 0.15;             // szybkie
+    dirAngleHeadVar = 180;              // full 360°
+    dirAngleElev    = 45;               // slightly upward
+    dirAngleElevVar = 45;               // but with wide variance
+    velAvg          = 0.15;             // fast
     velVar          = 0.08;
 
-    // --- Czas życia: krótki ---
+    // --- Lifespan: short ---
     lspPartAvg      = 600;
     lspPartVar      = 300;
 
-    // --- Grawitacja ciągnie w dół ---
+    // --- Gravity pulls down ---
     flyGravity_S    = "0 -0.0005 0";
-    flyCollDet_B    = 1;                // kolizje ze światem
+    flyCollDet_B    = 1;                // collision with world
 
-    // --- Wygląd: małe, jaskrawe punkty ---
+    // --- Appearance: small, bright dots ---
     visName_S           = "ZFLARE1.TGA";
     visOrientation_S    = "NONE";
-    visTexColorStart_S  = "255 220 100";    // żółty
-    visTexColorEnd_S    = "255 80 20";      // ciemny pomarańcz
+    visTexColorStart_S  = "255 220 100";    // yellow
+    visTexColorEnd_S    = "255 80 20";      // dark orange
     visSizeStart_S      = "2 2";
-    visSizeEndScale     = 0.5;              // zmniejszają się
+    visSizeEndScale     = 0.5;              // shrink
     visAlphaFunc_S      = "ADD";
     visAlphaStart       = 255;
     visAlphaEnd         = 0;
 };
 ```
 
-## Przykład 4: Śnieg
+## Example 4: Snow
 
-Śnieg to duży emiter na dużej wysokości, wolno opadające cząsteczki:
+Snow uses a large emitter high above, with slowly falling particles:
 
 ```daedalus
-instance PFX_MojSnieg (C_ParticleFX)
+instance PFX_MySnow (C_ParticleFX)
 {
-    // --- Emisja: ciągła ---
+    // --- Emission: continuous ---
     ppsValue        = 50;
     ppsScaleKeys_S  = "1";
     ppsIsLooping    = 1;
 
-    // --- Kształt: duży okrąg wysoko nad graczem ---
+    // --- Shape: large circle high above the player ---
     shpType_S       = "CIRCLE";
     shpFOR_S        = "OBJECT";
-    shpOffsetVec_S  = "0 500 0";        // 500 jednostek nad emiterem
+    shpOffsetVec_S  = "0 500 0";        // 500 units above emitter
     shpIsVolume     = 1;
-    shpDim_S        = "300";            // promień 300
+    shpDim_S        = "300";            // radius 300
 
-    // --- Kierunek: w dół ---
+    // --- Direction: downward ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleHead    = 20;               // lekki wiatr
+    dirAngleHead    = 20;               // slight wind
     dirAngleHeadVar = 10;
-    dirAngleElev    = -89;              // prawie prosto w dół
+    dirAngleElev    = -89;              // nearly straight down
     velAvg          = 0.05;
     velVar          = 0.02;
 
-    // --- Czas życia: długi ---
+    // --- Lifespan: long ---
     lspPartAvg      = 5000;
 
-    // --- Brak grawitacji (stała prędkość opadania) ---
+    // --- No gravity (constant fall speed) ---
     flyGravity_S    = "0 0 0";
 
-    // --- Wygląd: białe płatki ---
+    // --- Appearance: white flakes ---
     visName_S           = "MFX_SLEEP_STAR.TGA";
     visOrientation_S    = "NONE";
     visTexColorStart_S  = "255 255 255";
@@ -305,21 +305,21 @@ instance PFX_MojSnieg (C_ParticleFX)
     visAlphaStart       = 255;
     visAlphaEnd         = 255;
 
-    // --- Efekt ambientowy (gracz może wyłączyć w opcjach) ---
+    // --- Ambient effect (can be disabled in options) ---
     m_bIsAmbientPFX     = 1;
 };
 ```
 
-## Przykład 5: Krew (efekt potomny)
+## Example 5: Blood (Child Emitters)
 
-System potomnych emiterów pozwala tworzyć złożone efekty. Krew w Gothic składa się z dwóch instancji — głównej (bryzy krwi) i potomnej (plamy na podłożu):
+The child emitter system lets you create complex effects. Blood in Gothic consists of two instances — the main one (blood spray) and the child one (ground splat):
 
 ```daedalus
-// Główny efekt: bryzy krwi rozlatujące się
-instance PFX_MojaKrew (C_ParticleFX)
+// Main effect: blood spray scattering
+instance PFX_MyBlood (C_ParticleFX)
 {
     ppsValue            = 64;
-    ppsCreateEm_S       = "PFX_MojaKrew_Plama";    // potomny efekt!
+    ppsCreateEm_S       = "PFX_MyBlood_Splat";     // child effect!
 
     dirMode_S           = "DIR";
     dirFOR_S            = "OBJECT";
@@ -331,7 +331,7 @@ instance PFX_MojaKrew (C_ParticleFX)
     lspPartAvg          = 750;
     lspPartVar          = 550;
 
-    flyGravity_S        = "0 -0.0001 0"; // spada
+    flyGravity_S        = "0 -0.0001 0"; // falls
     flyCollDet_B        = 1;
 
     visName_S           = "BLOOD1.TGA";
@@ -343,105 +343,105 @@ instance PFX_MojaKrew (C_ParticleFX)
     visAlphaStart       = 255;
 };
 
-// Efekt potomny: plama na podłożu
-instance PFX_MojaKrew_Plama (C_ParticleFX)
+// Child effect: ground splat
+instance PFX_MyBlood_Splat (C_ParticleFX)
 {
     ppsValue            = 1;
-    ppsIsLooping        = 0;            // jedna plama
+    ppsIsLooping        = 0;            // single splat
 
     shpType_S           = "POINT";
 
-    dirMode_S           = "NONE";       // bez ruchu
+    dirMode_S           = "NONE";       // no movement
     velAvg              = 0;
 
-    lspPartAvg          = 3000;         // 3 sekundy
+    lspPartAvg          = 3000;         // 3 seconds
 
     visName_S           = "YOURBLOODSPLAT.TGA";
     visSizeStart_S      = "10 10";
     visSizeEndScale     = 1;
     visAlphaFunc_S      = "BLEND";
     visAlphaStart       = 200;
-    visAlphaEnd         = 0;            // zanika
+    visAlphaEnd         = 0;            // fades out
 };
 ```
 
 :::info
-**`ppsCreateEm_S`** — każda cząsteczka z głównego emitera staje się źródłem nowego efektu potomnego. To potężne narzędzie, ale kosztowne — używaj ostrożnie, by nie obciążyć silnika.
+**`ppsCreateEm_S`** — each particle from the main emitter becomes a source for a new child effect. This is a powerful tool but expensive — use carefully to avoid overloading the engine.
 :::
 
-## Kształty emiterów
+## Emitter Shapes
 
-| Kształt          | `shpType_S` | `shpDim_S`        | Opis                                            |
-| ---------------- | ----------- | ----------------- | ----------------------------------------------- |
-| Punkt            | `"POINT"`   | —                 | Emisja z jednego punktu                         |
-| Linia            | `"LINE"`    | `"100"` (długość) | Emisja wzdłuż linii                             |
-| Prostopadłościan | `"BOX"`     | `"W H D"`         | Emisja z prostokątnego obszaru                  |
-| Okrąg            | `"CIRCLE"`  | `"50"` (promień)  | Emisja z koła (lub dysku gdy `shpIsVolume = 1`) |
-| Sfera            | `"SPHERE"`  | `"50"` (promień)  | Emisja z kuli                                   |
-| Mesh             | `"MESH"`    | `"250"` (skala)   | Emisja z powierzchni mesha 3D                   |
+| Shape  | `shpType_S` | `shpDim_S`       | Description                                             |
+| ------ | ----------- | ---------------- | ------------------------------------------------------- |
+| Point  | `"POINT"`   | —                | Emission from a single point                            |
+| Line   | `"LINE"`    | `"100"` (length) | Emission along a line                                   |
+| Box    | `"BOX"`     | `"W H D"`        | Emission from a rectangular area                        |
+| Circle | `"CIRCLE"`  | `"50"` (radius)  | Emission from a circle (or disk when `shpIsVolume = 1`) |
+| Sphere | `"SPHERE"`  | `"50"` (radius)  | Emission from a sphere                                  |
+| Mesh   | `"MESH"`    | `"250"` (scale)  | Emission from a 3D mesh surface                         |
 
 ### shpIsVolume
 
-- `shpIsVolume = 0` — cząsteczki pojawiają się **na krawędzi** kształtu (np. na obwodzie koła)
-- `shpIsVolume = 1` — cząsteczki pojawiają się **wewnątrz** kształtu (np. w całym kole)
+- `shpIsVolume = 0` — particles appear **on the edge** of the shape (e.g., on the circle circumference)
+- `shpIsVolume = 1` — particles appear **inside** the shape (e.g., within the entire circle)
 
-## Orientacja cząsteczek
+## Particle Orientation
 
-| Tryb                | `visOrientation_S` | Opis                                                     |
-| ------------------- | ------------------ | -------------------------------------------------------- |
-| Billboard           | `"NONE"`           | Cząsteczki zawsze zwrócone do kamery (domyślne)          |
-| Wzdłuż prędkości    | `"VELO"`           | Cząsteczki rozciągnięte w kierunku ruchu (deszcz, iskry) |
-| 3D wzdłuż prędkości | `"VELO3D"`         | Jak VELO, ale z pełną rotacją 3D                         |
-| Obiekt              | `"VOB"`            | Orientacja zgodna z obiektem nadrzędnym                  |
+| Mode              | `visOrientation_S` | Description                                              |
+| ----------------- | ------------------ | -------------------------------------------------------- |
+| Billboard         | `"NONE"`           | Particles always face the camera (default)               |
+| Along velocity    | `"VELO"`           | Particles stretched in movement direction (rain, sparks) |
+| 3D along velocity | `"VELO3D"`         | Like VELO, but with full 3D rotation                     |
+| Object            | `"VOB"`            | Orientation matches the parent object                    |
 
-## Rejestracja w ParticleFX.src
+## Registration in ParticleFX.src
 
-Efekty cząsteczkowe mają **oddzielną kompilację** od skryptów gry. Dodaj swój plik do `System/ParticleFX.src`:
+Particle effects have a **separate compilation** from game scripts. Add your file to `System/ParticleFX.src`:
 
 ```
 _intern\ParticleFx.d
 Pfx\PfxInstEngine.d
 Pfx\PfxInst.d
 Pfx\PfxInstMagic.d
-Pfx\MojePfx.d
+Pfx\MyPfx.d
 ```
 
 :::warning
-Efekty PFX **nie** są kompilowane przez `Gothic.src` — używają własnego pliku `ParticleFX.src` w katalogu `System/`.
+PFX effects are **not** compiled by `Gothic.src` — they use their own `ParticleFX.src` file in the `System/` directory.
 :::
 
-## Porady praktyczne
+## Practical Tips
 
-### Wydajność
+### Performance
 
-- Im wyższe `ppsValue`, tym więcej cząsteczek = więcej obliczeń
-- `flyCollDet_B` z dużą ilością cząsteczek mocno obciąża CPU
-- `useEmittersFOR = 1` wraz z `flyCollDet_B` to najkosztowniejsza kombinacja
-- `ppsCreateEm_S` mnoży liczbę efektów — każda cząsteczka tworzy nowy emiter
+- Higher `ppsValue` means more particles = more computation
+- `flyCollDet_B` with many particles heavily loads the CPU
+- `useEmittersFOR = 1` combined with `flyCollDet_B` is the most expensive combination
+- `ppsCreateEm_S` multiplies the number of effects — each particle creates a new emitter
 
-### Debugowanie
+### Debugging
 
-- Jeśli efekt nie jest widoczny, sprawdź czy `visAlphaStart` > 0 i `visSizeStart_S` nie jest za małe
-- Sprawdź, czy tekstura (`.TGA`) istnieje w katalogu `Textures/`
-- Efekty z `m_bIsAmbientPFX = 1` mogą być wyłączone w opcjach gry
+- If the effect is not visible, check that `visAlphaStart` > 0 and `visSizeStart_S` is not too small
+- Verify that the texture (`.TGA`) exists in the `Textures/` directory
+- Effects with `m_bIsAmbientPFX = 1` can be disabled in game options
 
-### Częste wzorce
+### Common Patterns
 
-| Efekt        | Kluczowe ustawienia                                  |
-| ------------ | ---------------------------------------------------- |
-| Dym          | BLEND, duży `visSizeEndScale`, `visAlphaEnd = 0`     |
-| Ogień        | ADD, animowana tekstura, krótki `lspPartAvg`         |
-| Iskry        | ADD, jednorazowy burst, grawitacja w dół, kolizje    |
-| Deszcz/śnieg | Duży emiter CIRCLE, offset w Y, `dirAngleElev = -89` |
-| Krew         | BLEND, grawitacja, efekt potomny (plamy)             |
-| Magia/aura   | ADD, CIRCLE emiter, `useEmittersFOR = 1`             |
+| Effect     | Key Settings                                         |
+| ---------- | ---------------------------------------------------- |
+| Smoke      | BLEND, large `visSizeEndScale`, `visAlphaEnd = 0`    |
+| Fire       | ADD, animated texture, short `lspPartAvg`            |
+| Sparks     | ADD, one-time burst, downward gravity, collisions    |
+| Rain/Snow  | Large CIRCLE emitter, Y offset, `dirAngleElev = -89` |
+| Blood      | BLEND, gravity, child emitter (splats)               |
+| Magic/Aura | ADD, CIRCLE emitter, `useEmittersFOR = 1`            |
 
-## Podsumowanie
+## Summary
 
-Tworzenie efektów cząsteczkowych wymaga:
+Creating particle effects requires:
 
-1. **Instancji** klasy `C_ParticleFX` z odpowiednimi parametrami
-2. **Kształtu emitera** (`shpType_S`) — skąd lecą cząsteczki
-3. **Kierunku i prędkości** — jak się poruszają
-4. **Wizualizacji** — tekstura, kolor, rozmiar, przenikanie
-5. **Rejestracji** w `ParticleFX.src` (nie w `Gothic.src`!)
+1. An **instance** of the `C_ParticleFX` class with appropriate parameters
+2. An **emitter shape** (`shpType_S`) — where particles come from
+3. **Direction and speed** — how they move
+4. **Visualization** — texture, color, size, blending
+5. **Registration** in `ParticleFX.src` (not in `Gothic.src`!)

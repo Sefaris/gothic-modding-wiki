@@ -6,7 +6,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Gothic Modding Wiki",
-  tagline: "Dokumentacja moddingu gry Gothic",
+  tagline: "Gothic game modding documentation",
   favicon: "img/favicon.ico",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -32,8 +32,8 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "pl",
-    locales: ["pl", "en"],
+    defaultLocale: "en",
+    locales: ["en", "pl"],
     localeConfigs: {
       en: {
         label: "English",
@@ -91,20 +91,20 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "gettingStartedSidebar",
           position: "left",
-          label: "Jak zacząć?",
+          label: "Getting Started",
         },
         {
           type: "docSidebar",
           sidebarId: "guidesSidebar",
           position: "left",
-          label: "Poradniki",
+          label: "Guides",
         },
         {
           type: "docSidebar",
           docsPluginId: "encyclopedia",
           sidebarId: "encyclopediaSidebar",
           position: "left",
-          label: "Encyklopedia",
+          label: "Encyclopedia",
         },
         {
           href: "https://discord.gg/9EVFJv5Uyf",
@@ -126,24 +126,24 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Dokumentacja",
+          title: "Documentation",
           items: [
             {
-              label: "Jak zacząć?",
+              label: "Getting Started",
               to: "/docs/getting-started/download-game",
             },
             {
-              label: "Poradniki",
+              label: "Guides",
               to: "/docs/modding-basics-daedalus/script-structure",
             },
             {
-              label: "Encyklopedia",
+              label: "Encyclopedia",
               to: "/encyclopedia/routines",
             },
           ],
         },
         {
-          title: "Społeczność",
+          title: "Community",
           items: [
             {
               label: "Discord",
@@ -156,7 +156,7 @@ const config: Config = {
           ],
         },
         {
-          title: "Więcej",
+          title: "More",
           items: [
             {
               label: "sefaris.eu",

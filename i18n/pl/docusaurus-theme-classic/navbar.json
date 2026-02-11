@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "Gothic Modding Wiki",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Gothic Modding Wiki Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Getting Started": {
+    "message": "Jak zacząć?",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Guides": {
+    "message": "Poradniki",
+    "description": "Navbar item with label Guides"
+  },
+  "item.label.Encyclopedia": {
+    "message": "Encyklopedia",
+    "description": "Navbar item with label Encyclopedia"
+  },
+  "item.label.Discord": {
+    "message": "Discord",
+    "description": "Navbar item with label Discord"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

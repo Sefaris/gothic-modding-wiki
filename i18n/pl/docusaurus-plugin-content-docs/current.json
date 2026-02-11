@@ -1,0 +1,21 @@
+{
+  "sidebar.gettingStartedSidebar.category.Installation": {
+    "message": "Instalacja"
+  },
+  "sidebar.gettingStartedSidebar.category.General Information": {
+    "message": "Informacje ogólne"
+  },
+  "sidebar.gettingStartedSidebar.category.Resources": {
+    "message": "Źródła i materiały"
+  },
+  "sidebar.guidesSidebar.category.Daedalus": {
+    "message": "Daedalus"
+  },
+  "sidebar.guidesSidebar.category.Union": {
+    "message": "Union"
+  },
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  }
+}

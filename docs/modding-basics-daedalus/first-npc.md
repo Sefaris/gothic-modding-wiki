@@ -1,47 +1,47 @@
 ---
 sidebar_position: 2
-title: "Mój pierwszy NPC"
-description: "Tworzenie pierwszej postaci niezależnej w Gothic."
+title: "My First NPC"
+description: "Creating your first non-player character in Gothic."
 ---
 
-# Mój pierwszy NPC
+# My First NPC
 
-W tym poradniku nauczysz się tworzyć prostą postać niezależną (NPC) w języku Daedalus. Stworzymy farmera, który stoi na rynku i ma swój dzienny plan zajęć.
+In this tutorial you will learn how to create a simple non-player character (NPC) in Daedalus. We will create a farmer who stands in the market and has his own daily routine.
 
-## Wymagania wstępne
+## Prerequisites
 
-Przed rozpoczęciem upewnij się, że:
+Before starting, make sure that:
 
-- Masz zainstalowane skrypty Gothic (folder `Scripts/Content/`)
-- Rozumiesz [strukturę skryptów](./script-structure.md)
-- Wiesz, czym jest instancja i prototyp w Daedalusie
+- You have the Gothic scripts installed (`Scripts/Content/` folder)
+- You understand the [script structure](./script-structure.md)
+- You know what an instance and prototype are in Daedalus
 
-## Klasa C_NPC — co definiuje postać?
+## The C_NPC Class — What Defines a Character?
 
-Każdy NPC w Gothic jest **instancją** klasy `C_NPC`. Najważniejsze pola tej klasy to:
+Every NPC in Gothic is an **instance** of the `C_NPC` class. The most important fields are:
 
-| Pole            | Typ         | Opis                                                      |
-| --------------- | ----------- | --------------------------------------------------------- |
-| `name`          | `string[5]` | Imię NPC (wyświetlane w grze)                             |
-| `guild`         | `int`       | Gildia (np. `GIL_MIL` — milicja, `GIL_OUT` — bezgildyjny) |
-| `id`            | `int`       | Unikalny identyfikator NPC                                |
-| `voice`         | `int`       | Numer głosu (powiązany z plikami audio)                   |
-| `level`         | `int`       | Poziom postaci                                            |
-| `attribute[]`   | `int[]`     | Atrybuty: HP, mana, siła, zręczność                       |
-| `protection[]`  | `int[]`     | Ochrona przed typami obrażeń                              |
-| `fight_tactic`  | `int`       | Taktyka walki (np. `FAI_HUMAN_COWARD`)                    |
-| `daily_routine` | `func`      | Funkcja z dziennym planem NPC                             |
-| `npctype`       | `int`       | Typ NPC (główny, przyjaciel, wróg)                        |
-| `flags`         | `int`       | Flagi (np. `NPC_FLAG_IMMORTAL`)                           |
+| Field           | Type        | Description                                              |
+| --------------- | ----------- | -------------------------------------------------------- |
+| `name`          | `string[5]` | NPC name (displayed in game)                             |
+| `guild`         | `int`       | Guild (e.g., `GIL_MIL` — militia, `GIL_OUT` — guildless) |
+| `id`            | `int`       | Unique NPC identifier                                    |
+| `voice`         | `int`       | Voice number (linked to audio files)                     |
+| `level`         | `int`       | Character level                                          |
+| `attribute[]`   | `int[]`     | Attributes: HP, mana, strength, dexterity                |
+| `protection[]`  | `int[]`     | Protection against damage types                          |
+| `fight_tactic`  | `int`       | Combat tactic (e.g., `FAI_HUMAN_COWARD`)                 |
+| `daily_routine` | `func`      | NPC daily routine function                               |
+| `npctype`       | `int`       | NPC type (main, friend, enemy)                           |
+| `flags`         | `int`       | Flags (e.g., `NPC_FLAG_IMMORTAL`)                        |
 
-## Prototyp Npc_Default
+## The Npc_Default Prototype
 
-Zanim stworzymy własną postać, musimy rozumieć **prototyp** `Npc_Default`. Jest to szablon, z którego dziedziczą prawie wszystkie postacie w grze:
+Before creating our own character, we need to understand the **prototype** `Npc_Default`. This is a template that almost all characters in the game inherit from:
 
 ```daedalus
 prototype Npc_Default (C_NPC)
 {
-    // Podstawowe atrybuty
+    // Basic attributes
     attribute[ATR_STRENGTH]      = 10;
     attribute[ATR_DEXTERITY]     = 10;
     attribute[ATR_MANA_MAX]      = 10;
@@ -49,20 +49,20 @@ prototype Npc_Default (C_NPC)
     attribute[ATR_HITPOINTS_MAX] = 40;
     attribute[ATR_HITPOINTS]     = 40;
 
-    // Szanse trafienia (0% — nie umie walczyć daną bronią)
+    // Hit chances (0% — cannot fight with this weapon type)
     HitChance[NPC_TALENT_1H]       = 0;
     HitChance[NPC_TALENT_2H]       = 0;
     HitChance[NPC_TALENT_BOW]      = 0;
     HitChance[NPC_TALENT_CROSSBOW] = 0;
 
-    // Ochrona (0 — brak ochrony)
+    // Protection (0 — no protection)
     protection[PROT_EDGE]   = 0;
     protection[PROT_BLUNT]  = 0;
     protection[PROT_POINT]  = 0;
     protection[PROT_FIRE]   = 0;
     protection[PROT_MAGIC]  = 0;
 
-    // Domyślne ustawienia
+    // Default settings
     damagetype   = DAM_BLUNT;
     senses       = SENSE_HEAR | SENSE_SEE;
     senses_range = PERC_DIST_ACTIVE_MAX;
@@ -70,128 +70,128 @@ prototype Npc_Default (C_NPC)
 ```
 
 :::info
-Prototyp ustawia **domyślne wartości**. Każda instancja NPC może nadpisać dowolne z nich.
+The prototype sets **default values**. Each NPC instance can override any of them.
 :::
 
-## Tworzenie instancji NPC
+## Creating an NPC Instance
 
-Stwórzmy farmera o imieniu **Konrad**. Utwórz plik `BAU_900_Konrad.d` w folderze `Story/NPC/`:
+Let's create a farmer named **Konrad**. Create a file `BAU_900_Konrad.d` in the `Story/NPC/` folder:
 
 ```daedalus
 instance BAU_900_Konrad (Npc_Default)
 {
-    // --- Podstawowe informacje ---
+    // --- Basic information ---
     name        = "Konrad";
-    guild       = GIL_OUT;              // bezgildyjny (rolnik)
-    id          = 900;                  // unikalny numer
-    voice       = 90;                   // numer głosu
-    flags       = 0;                    // 0 = normalny, NPC_FLAG_IMMORTAL = nieśmiertelny
-    npctype     = NPCTYPE_MAIN;         // ważna postać
+    guild       = GIL_OUT;              // guildless (farmer)
+    id          = 900;                  // unique number
+    voice       = 90;                   // voice number
+    flags       = 0;                    // 0 = normal, NPC_FLAG_IMMORTAL = immortal
+    npctype     = NPCTYPE_MAIN;         // important character
 
-    // --- Atrybuty ---
+    // --- Attributes ---
     attribute[ATR_STRENGTH]      = 30;
     attribute[ATR_DEXTERITY]     = 15;
     attribute[ATR_HITPOINTS_MAX] = 80;
     attribute[ATR_HITPOINTS]     = 80;
     level                        = 5;
 
-    // --- Walka ---
-    fight_tactic = FAI_HUMAN_COWARD;    // ucieka przed walką
+    // --- Combat ---
+    fight_tactic = FAI_HUMAN_COWARD;    // flees from combat
 
-    // --- Ekwipunek ---
-    EquipItem (self, ItMw_1h_Bau_Axe);     // topór farmera
-    CreateInvItems (self, ItMi_Gold, 25);   // 25 sztuk złota
-    CreateInvItems (self, ItFo_Apple, 3);   // 3 jabłka
+    // --- Equipment ---
+    EquipItem (self, ItMw_1h_Bau_Axe);     // farmer's axe
+    CreateInvItems (self, ItMi_Gold, 25);   // 25 gold coins
+    CreateInvItems (self, ItFo_Apple, 3);   // 3 apples
 
-    // --- Wygląd ---
+    // --- Appearance ---
     B_SetNpcVisual (self, MALE, "Hum_Head_Bald", Face_N_NormalBart_Senyan, BodyTex_N, ITAR_Bau_L);
-    Mdl_SetModelFatness (self, 1);                      // tusza
-    Mdl_ApplyOverlayMds (self, "Humans_Relaxed.mds");   // zrelaksowana animacja
+    Mdl_SetModelFatness (self, 1);                      // body fat
+    Mdl_ApplyOverlayMds (self, "Humans_Relaxed.mds");   // relaxed animation
 
-    // --- Umiejętności ---
+    // --- Skills ---
     B_GiveNpcTalents (self);
-    B_SetFightSkills (self, 15);    // 15% szans trafienia
+    B_SetFightSkills (self, 15);    // 15% hit chance
 
-    // --- Plan dnia ---
+    // --- Daily routine ---
     daily_routine = Rtn_Start_900;
 };
 ```
 
 :::tip
-Konwencja nazewnictwa: `BAU` (Bauer = farmer), `900` (unikalne ID), `Konrad` (imię). W oryginalnych skryptach Gothic każda gildia ma swój prefix.
+Naming convention: `BAU` (Bauer = farmer), `900` (unique ID), `Konrad` (name). In the original Gothic scripts, each guild has its own prefix.
 :::
 
-## Plan dnia (Daily Routine)
+## Daily Routine
 
-Każdy NPC potrzebuje **planu dnia** — funkcji określającej, co robi o danej godzinie:
+Every NPC needs a **daily routine** — a function that defines what they do at each hour:
 
 ```daedalus
 func void Rtn_Start_900 ()
 {
-    // Od 7:00 do 12:00 — stoi przy studni
+    // From 7:00 to 12:00 — stands by the well
     TA_Stand_ArmsCrossed (07, 00,  12, 00, "NW_CITY_WELL_01");
 
-    // Od 12:00 do 13:00 — je posiłek
+    // From 12:00 to 13:00 — eats a meal
     TA_Sit_Bench         (12, 00,  13, 00, "NW_CITY_BENCH_01");
 
-    // Od 13:00 do 20:00 — pracuje na farmie
+    // From 13:00 to 20:00 — works at the farm
     TA_Smalltalk         (13, 00,  20, 00, "NW_FARM1_PATH_01");
 
-    // Od 20:00 do 7:00 — śpi
+    // From 20:00 to 7:00 — sleeps
     TA_Sleep             (20, 00,  07, 00, "NW_FARM1_BED_01");
 };
 ```
 
 :::warning
-Waypointy (np. `"NW_CITY_WELL_01"`) muszą istnieć w świecie gry (pliku `.zen`). Jeśli użyjesz nieistniejącego waypointa, NPC pojawi się w punkcie `(0, 0, 0)`.
+Waypoints (e.g., `"NW_CITY_WELL_01"`) must exist in the game world (`.zen` file). If you use a non-existent waypoint, the NPC will appear at the `(0, 0, 0)` point.
 :::
 
-Dostępne funkcje planu dnia:
+Available daily routine functions:
 
-| Funkcja                | Opis                         |
-| ---------------------- | ---------------------------- |
-| `TA_Stand_ArmsCrossed` | Stoi ze skrzyżowanymi rękoma |
-| `TA_Stand_Guarding`    | Stoi na straży               |
-| `TA_Sit_Bench`         | Siedzi na ławce              |
-| `TA_Sleep`             | Śpi                          |
-| `TA_Smalltalk`         | Rozmawia z pobliskimi NPC    |
-| `TA_Smith`             | Kowalstwo                    |
-| `TA_Eat`               | Je                           |
-| `TA_Practice`          | Ćwiczy                       |
+| Function               | Description              |
+| ---------------------- | ------------------------ |
+| `TA_Stand_ArmsCrossed` | Stands with arms crossed |
+| `TA_Stand_Guarding`    | Stands on guard          |
+| `TA_Sit_Bench`         | Sits on a bench          |
+| `TA_Sleep`             | Sleeps                   |
+| `TA_Smalltalk`         | Talks with nearby NPCs   |
+| `TA_Smith`             | Smithing                 |
+| `TA_Eat`               | Eats                     |
+| `TA_Practice`          | Practices                |
 
-## Rejestracja w Gothic.src
+## Registration in Gothic.src
 
-Aby gra załadowała nowego NPC, musisz dodać plik do `Gothic.src`:
+For the game to load the new NPC, you need to add the file to `Gothic.src`:
 
 ```
 Story\NPC\BAU_900_Konrad.d
 ```
 
 :::danger
-Kolejność plików w `Gothic.src` ma znaczenie! NPC musi być zadeklarowany **po** prototypie `Npc_Default`, ale **przed** dialogami.
+File order in `Gothic.src` matters! The NPC must be declared **after** the `Npc_Default` prototype, but **before** dialogs.
 :::
 
-## Osadzenie NPC w świecie
+## Placing the NPC in the World
 
-Aby NPC pojawił się w świecie gry, musisz go **wstawić** (spawn) w funkcji startowej odpowiedniego świata. W pliku `Startup.d` (lub odpowiednim pliku świata) dodaj:
+To make the NPC appear in the game world, you need to **insert** (spawn) them in the startup function of the corresponding world. In the `Startup.d` file (or the appropriate world file) add:
 
 ```daedalus
 func void Startup_NewWorld ()
 {
-    // ... inne NPC ...
+    // ... other NPCs ...
     Wld_InsertNpc (BAU_900_Konrad, "NW_CITY_WELL_01");
 };
 ```
 
-`Wld_InsertNpc` wstawia postać do świata w podanym waypoinecie. Od tego momentu NPC zacznie wykonywać swój plan dnia.
+`Wld_InsertNpc` inserts the character into the world at the given waypoint. From this moment, the NPC will start following their daily routine.
 
-## Podsumowanie
+## Summary
 
-Utworzenie NPC wymaga:
+Creating an NPC requires:
 
-1. **Instancji** dziedziczącej po `Npc_Default`
-2. Ustawienia **atrybutów** (siła, HP, poziom)
-3. Konfiguracji **wyglądu** (model, tekstura, zbroja)
-4. Zdefiniowania **planu dnia**
-5. **Rejestracji** w `Gothic.src`
-6. **Wstawienia** do świata w `Startup.d`
+1. An **instance** inheriting from `Npc_Default`
+2. Setting **attributes** (strength, HP, level)
+3. Configuring **appearance** (model, texture, armor)
+4. Defining a **daily routine**
+5. **Registration** in `Gothic.src`
+6. **Inserting** into the world in `Startup.d`

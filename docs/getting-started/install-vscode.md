@@ -1,74 +1,66 @@
 ---
 sidebar_position: 2
-title: "Instalacja Visual Studio Code"
-description: "Jak zainstalować edytor Visual Studio Code i skonfigurować go do pracy ze skryptami Gothic."
+title: "Installing Visual Studio Code"
+description: "How to install Visual Studio Code and configure it for working with Gothic scripts."
 ---
 
-# Instalacja Visual Studio Code
+# Installing Visual Studio Code
 
-**Visual Studio Code** (VS Code) to darmowy, lekki edytor kodu od Microsoftu. Dzięki rozszerzeniom obsługuje język Daedalus — kolorowanie składni, autouzupełnianie i nawigację po kodzie.
+**Visual Studio Code** (VS Code) is a free, lightweight code editor from Microsoft. Thanks to extensions, it supports the Daedalus language — syntax highlighting, autocompletion, and code navigation.
 
 :::warning
-Nie mylić z **Visual Studio** (pełne IDE). Visual Studio Code to oddzielny, znacznie lżejszy program.
+Don't confuse it with **Visual Studio** (full IDE). Visual Studio Code is a separate, much lighter program.
 :::
 
-## Pobieranie
+## Download
 
-1. Wejdź na stronę [https://code.visualstudio.com](https://code.visualstudio.com)
-2. Kliknij **Download for Windows** (lub odpowiedni system)
-3. Pobierz instalator (`.exe`)
+1. Go to [https://code.visualstudio.com](https://code.visualstudio.com)
+2. Click **Download for Windows** (or the appropriate system)
+3. Download the installer (`.exe`)
 
-## Instalacja
+## Installation
 
-1. Uruchom pobrany instalator
-2. Zaakceptuj licencję
-3. Przy wyborze opcji dodatkowych zaznacz:
-   - **Dodaj akcję "Otwórz za pomocą Code" do menu kontekstowego pliku** — pozwala otwierać pliki prawym przyciskiem myszy
-   - **Dodaj akcję "Otwórz za pomocą Code" do menu kontekstowego katalogu** — pozwala otwierać foldery prawym przyciskiem
-   - **Dodaj do PATH** — umożliwia otwieranie VS Code z terminala poleceniem `code`
-4. Kliknij **Instaluj** i poczekaj na zakończenie
+1. Run the downloaded installer
+2. Accept the license
+3. When selecting additional options, check:
+   - **Add "Open with Code" action to file context menu** — lets you open files with right-click
+   - **Add "Open with Code" action to directory context menu** — lets you open folders with right-click
+   - **Add to PATH** — enables opening VS Code from terminal with the `code` command
+4. Click **Install** and wait for completion
 
-## Pierwsze uruchomienie
+## First Launch
 
-Po instalacji uruchom VS Code. Zobaczysz ekran powitalny z opcjami konfiguracji motywu i układu.
+After installation, launch VS Code. You'll see a welcome screen with theme and layout configuration options.
 
-### Ustawienie języka polskiego (opcjonalne)
+## Opening the Scripts Folder
 
-Jeśli chcesz mieć interfejs po polsku:
+The most convenient way to work is to open the **entire scripts folder** as a workspace:
 
-1. Naciśnij `Ctrl + Shift + P` aby otworzyć paletę poleceń
-2. Wpisz **Configure Display Language**
-3. Wybierz **Polski** lub kliknij **Install Additional Languages** i zainstaluj pakiet językowy
-
-## Otwarcie folderu ze skryptami
-
-Najwygodniejszy sposób pracy to otworzenie **całego folderu** ze skryptami jako workspace:
-
-1. Kliknij **Plik → Otwórz Folder** (lub `Ctrl + K, Ctrl + O`)
-2. Przejdź do katalogu ze skryptami moda, np.:
+1. Click **File → Open Folder** (or `Ctrl + K, Ctrl + O`)
+2. Navigate to the mod's scripts directory, e.g.:
    ```
    C:\GOG Games\Gothic II Gold\_work\Data\Scripts\
    ```
-3. Kliknij **Wybierz folder**
+3. Click **Select Folder**
 
-Teraz w panelu bocznym (**Explorer**, `Ctrl + Shift + E`) widzisz całą strukturę plików i możesz szybko nawigować między skryptami.
+Now in the side panel (**Explorer**, `Ctrl + Shift + E`) you can see the entire file structure and quickly navigate between scripts.
 
-## Przydatne skróty klawiszowe
+## Useful Keyboard Shortcuts
 
-| Skrót              | Akcja                              |
-| ------------------ | ---------------------------------- |
-| `Ctrl + P`         | Szybkie otwieranie pliku po nazwie |
-| `Ctrl + Shift + F` | Wyszukiwanie w plikach (grep)      |
-| `Ctrl + G`         | Przejdź do linii                   |
-| `Ctrl + D`         | Zaznacz następne wystąpienie słowa |
-| `Ctrl + Shift + P` | Paleta poleceń                     |
-| `Ctrl + \``        | Otwórz/zamknij terminal            |
-| `F12`              | Przejdź do definicji               |
-| `Shift + F12`      | Znajdź wszystkie referencje        |
+| Shortcut           | Action                         |
+| ------------------ | ------------------------------ |
+| `Ctrl + P`         | Quick open file by name        |
+| `Ctrl + Shift + F` | Search in files (grep)         |
+| `Ctrl + G`         | Go to line                     |
+| `Ctrl + D`         | Select next occurrence of word |
+| `Ctrl + Shift + P` | Command palette                |
+| `Ctrl + \``        | Open/close terminal            |
+| `F12`              | Go to definition               |
+| `Shift + F12`      | Find all references            |
 
-## Zalecane ustawienia
+## Recommended Settings
 
-Dla wygodnej pracy ze skryptami Daedalus warto dodać kilka ustawień. Naciśnij `Ctrl + ,` aby otworzyć ustawienia, potem kliknij ikonę `{}` w prawym górnym rogu (otworzy `settings.json`) i dodaj:
+For comfortable work with Daedalus scripts, it's worth adding a few settings. Press `Ctrl + ,` to open settings, then click the `{}` icon in the top right corner (opens `settings.json`) and add:
 
 ```json
 {
@@ -83,9 +75,9 @@ Dla wygodnej pracy ze skryptami Daedalus warto dodać kilka ustawień. Naciśnij
 ```
 
 :::info
-Skrypty Gothic używają kodowania **Windows-1250** (środkowoeuropejskie) — dotyczy to skryptów w języku polskim, niemieckim i angielskim. Jeśli pracujesz z rosyjską wersją gry, zmień kodowanie na **Windows-1251** (`windows1251`).
+Gothic scripts use **Windows-1250** (Central European) encoding — this applies to Polish, German, and English scripts. If you're working with the Russian version of the game, change the encoding to **Windows-1251** (`windows1251`).
 :::
 
-## Następny krok
+## Next Step
 
-Po zainstalowaniu VS Code, przejdź do [instalacji dodatków](./install-vscode-extensions.md) — rozszerzeń dodających pełne wsparcie języka Daedalus.
+After installing VS Code, proceed to [installing extensions](./install-vscode-extensions.md) — add-ons that provide full Daedalus language support.

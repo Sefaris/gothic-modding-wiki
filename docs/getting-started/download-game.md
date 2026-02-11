@@ -1,82 +1,82 @@
 ---
 sidebar_position: 1
-title: "Pobranie gry ze Steam/GOG"
-description: "Skąd pobrać grę Gothic, wymagania systemowe i różnice między wersjami."
+title: "Downloading the Game from Steam/GOG"
+description: "Where to download Gothic, system requirements, and differences between versions."
 ---
 
-# Pobranie gry ze Steam/GOG
+# Downloading the Game from Steam/GOG
 
-Aby tworzyć modyfikacje do Gothic, potrzebujesz oryginalnej wersji gry. Gothic dostępny jest na dwóch platformach cyfrowej dystrybucji: **Steam** i **GOG**.
+To create Gothic modifications, you need the original version of the game. Gothic is available on two digital distribution platforms: **Steam** and **GOG**.
 
-## Która wersja gry?
+## Which Version?
 
-Do moddingu najczęściej używa się **Gothic II: Noc Kruka** (Gothic II: Night of the Raven) — jest to najbardziej rozbudowana wersja silnika ZenGin i posiada największe wsparcie ze strony społeczności modderskiej.
+For modding, **Gothic II: Night of the Raven** is most commonly used — it's the most feature-rich version of the ZenGin engine and has the largest modding community support.
 
 :::tip
-Jeśli chcesz tworzyć modyfikacje, wybierz **Gothic II: Złotą Edycję** (Gold Edition) — zawiera podstawkę oraz dodatek Noc Kruka.
+If you want to create modifications, choose **Gothic II: Gold Edition** — it includes the base game and the Night of the Raven expansion.
 :::
 
 ## Steam
 
-1. Otwórz [Steam](https://store.steampowered.com/) i zaloguj się na swoje konto
-2. Wyszukaj **Gothic II: Gold Edition**
-3. Kup i zainstaluj grę
-4. Domyślna ścieżka instalacji: `C:\Program Files (x86)\Steam\steamapps\common\Gothic II`
+1. Open [Steam](https://store.steampowered.com/) and log in to your account
+2. Search for **Gothic II: Gold Edition**
+3. Purchase and install the game
+4. Default installation path: `C:\Program Files (x86)\Steam\steamapps\common\Gothic II`
 
 :::warning
-Wersja Steam może wymagać dodatkowej konfiguracji — w niektórych przypadkach gra korzysta z nowszego renderera, który może powodować problemy. Upewnij się, że gra uruchamia się poprawnie przed rozpoczęciem moddingu.
+The Steam version may require additional configuration — in some cases the game uses a newer renderer that can cause issues. Make sure the game runs correctly before starting to mod.
 :::
 
 ## GOG
 
-1. Otwórz [GOG.com](https://www.gog.com/) i zaloguj się na swoje konto
-2. Wyszukaj **Gothic II: Gold Edition**
-3. Kup i zainstaluj grę za pomocą GOG Galaxy lub instalatora offline
-4. Domyślna ścieżka instalacji: `C:\GOG Games\Gothic II Gold`
+1. Open [GOG.com](https://www.gog.com/) and log in to your account
+2. Search for **Gothic II: Gold Edition**
+3. Purchase and install the game using GOG Galaxy or the offline installer
+4. Default installation path: `C:\GOG Games\Gothic II Gold`
 
 :::tip
-Wersja GOG jest zazwyczaj lepszym wyborem do moddingu — nie posiada DRM i jest bliższa oryginalnej wersji gry.
+The GOG version is usually a better choice for modding — it has no DRM and is closer to the original game version.
 :::
 
-## Struktura katalogów
+## Directory Structure
 
-Po instalacji, katalog gry powinien wyglądać mniej więcej tak:
+After installation, the game directory should look roughly like this:
 
 ```
 Gothic II/
-├── System/             ← pliki EXE, DLL, ustawienia
-│   ├── Gothic2.exe         ← główny plik gry
-│   ├── Autorun/            ← pluginy Union (DLL)
+├── System/             ← EXE files, DLLs, settings
+│   ├── Gothic2.exe         ← main game executable
+│   ├── Autorun/            ← Union plugins (DLLs)
 │   └── ...
-├── Data/               ← dane gry (modele, tekstury, światy)
+├── Data/               ← game data (models, textures, worlds)
 │   ├── Meshes.vdf
 │   ├── Textures.vdf
 │   ├── Worlds.vdf
 │   └── ...
 ├── _work/
 │   └── Data/
-│       ├── Scripts/    ← skrypty Daedalus (tu pracujemy!)
+│       ├── Scripts/    ← Daedalus scripts (we work here!)
 │       │   ├── Content/
 │       │   └── System/
-│       ├── Worlds/     ← pliki światów (.zen)
+│       ├── Worlds/     ← world files (.zen)
 │       └── ...
-└── Saves/              ← stany zapisu
+└── Saves/              ← save files
 ```
 
-Najważniejszy katalog dla moddera to **`_work/Data/Scripts/`** — tutaj znajdują się skrypty Daedalus, które będziemy edytować.
+The most important directory for a modder is **`_work/Data/Scripts/`** — this is where the Daedalus scripts we'll be editing are located.
 
-## Weryfikacja instalacji
+## Verifying Installation
 
-Przed rozpoczęciem pracy upewnij się, że:
+Before starting work, make sure that:
 
-1. **Gra się uruchamia** — włącz grę i sprawdź, czy działa poprawnie
-2. **Masz dostęp do skryptów** — sprawdź, czy katalog `_work/Data/Scripts/Content/` istnieje i zawiera pliki `.d` oraz `.src`
-3. **Gothic.src istnieje** — sprawdź, czy plik `_work/Data/Scripts/Content/Gothic.src` jest obecny
+1. **The game launches** — start the game and check that it runs correctly
+2. **You have access to scripts** — check that the `_work/Data/Scripts/Content/` directory exists and contains `.d` and `.src` files
+3. **Gothic.src exists** — check that the file `_work/Data/Scripts/Content/Gothic.src` is present
 
 :::info
-Jeśli katalog `_work/Data/Scripts/` jest pusty lub nie istnieje, może być konieczne wypakowanie skryptów z plików `.vdf` za pomocą narzędzia **Gothic VDF Tool** lub **GothicStarter**.
+If the `_work/Data/Scripts/` directory is empty or doesn't exist, you may need to extract scripts from `.vdf` files using **Gothic VDF Tool** or **GothicStarter**.
 :::
 
-## Następny krok
+## Next Step
 
-Po zainstalowaniu gry, przejdź do [instalacji Visual Studio Code](./install-vscode.md) — edytora, w którym będziemy pisać skrypty.
+After installing the game, proceed to [installing Visual Studio Code](./install-vscode.md) — the editor we'll use to write scripts.

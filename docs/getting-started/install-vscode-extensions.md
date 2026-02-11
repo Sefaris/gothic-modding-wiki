@@ -1,89 +1,89 @@
 ---
 sidebar_position: 3
-title: "Instalacja dodatków do Visual Studio Code"
-description: "Niezbędne rozszerzenia VS Code do pracy ze skryptami Gothic."
+title: "Installing VS Code Extensions"
+description: "Essential VS Code extensions for working with Gothic scripts."
 ---
 
-# Instalacja dodatków do Visual Studio Code
+# Installing VS Code Extensions
 
-Do pracy ze skryptami Daedalus potrzebne są dwa rozszerzenia VS Code:
+To work with Daedalus scripts, you need two VS Code extensions:
 
-| Rozszerzenie                 | Autor      | Opis                                                                    |
-| ---------------------------- | ---------- | ----------------------------------------------------------------------- |
-| **Daedalus**                 | Szymon Żak | Kolorowanie składni (syntax highlighting)                               |
-| **Daedalus Language Server** | kirides    | Autouzupełnianie, Go to Definition, Find References, diagnostyka błędów |
+| Extension                    | Author     | Description                                                          |
+| ---------------------------- | ---------- | -------------------------------------------------------------------- |
+| **Daedalus**                 | Szymon Żak | Syntax highlighting                                                  |
+| **Daedalus Language Server** | kirides    | Autocompletion, Go to Definition, Find References, error diagnostics |
 
-Pierwsze z nich instaluje się bezpośrednio z Marketplace w VS Code. Drugie wymaga ręcznej instalacji z pliku `.vsix`.
-
----
-
-## 1. Daedalus — kolorowanie składni
-
-To rozszerzenie dodaje rozpoznawanie języka Daedalus przez VS Code — pliki `.d` i `.src` będą miały kolorowanie składni.
-
-### Instalacja z Marketplace
-
-1. Otwórz VS Code
-2. Kliknij ikonę **Rozszerzenia** na pasku bocznym (lub naciśnij `Ctrl + Shift + X`)
-3. W polu wyszukiwania wpisz **Daedalus**
-4. Znajdź rozszerzenie **Daedalus** od autora **Szymon Żak** (`szymonzak.daedalus`)
-5. Kliknij **Zainstaluj**
-
-Po instalacji VS Code automatycznie rozpozna pliki `.d` jako język Daedalus.
+The first one is installed directly from the VS Code Marketplace. The second requires manual installation from a `.vsix` file.
 
 ---
 
-## 2. Daedalus Language Server — IntelliSense dla Daedalus
+## 1. Daedalus — Syntax Highlighting
 
-To rozszerzenie to prawdziwy game-changer. Dodaje **Language Server** — serwer językowy, który analizuje skrypty Gothic i zapewnia:
+This extension adds Daedalus language recognition to VS Code — `.d` and `.src` files will have syntax highlighting.
 
-- **Autouzupełnianie** (IntelliSense) — podpowiedzi instancji, funkcji, zmiennych podczas pisania
-- **Go to Definition** (`F12`) — przejście do definicji funkcji, klasy, instancji
-- **Find All References** (`Shift + F12`) — znajdowanie wszystkich użyć symbolu
-- **Semantic Highlighting** — kolorowanie kontekstowe (rozróżnianie stałych, parametrów, zmiennych lokalnych, globali)
-- **CodeLens** — liczba implementacji i referencji nad funkcjami
-- **Inlay Hints** — podpisy parametrów w wywołaniach funkcji
-- **Diagnostyka** — wykrywanie błędów w kodzie na żywo
+### Installation from Marketplace
 
-### Instalacja z pliku .vsix
+1. Open VS Code
+2. Click the **Extensions** icon in the sidebar (or press `Ctrl + Shift + X`)
+3. In the search field, type **Daedalus**
+4. Find the **Daedalus** extension by **Szymon Żak** (`szymonzak.daedalus`)
+5. Click **Install**
 
-To rozszerzenie nie jest dostępne w Marketplace VS Code — trzeba je zainstalować ręcznie z pliku `.vsix`.
+After installation, VS Code will automatically recognize `.d` files as Daedalus language.
 
-#### Krok 1: Pobierz plik .vsix
+---
 
-1. Wejdź na stronę [GitHub Releases — kirides/vscode-daedalus](https://github.com/kirides/vscode-daedalus/releases)
-2. Przy najnowszej wersji (np. **v0.0.26**) znajdź sekcję **Assets**
-3. Pobierz plik `vscode-daedalus-X.X.XX.vsix` (np. `vscode-daedalus-0.0.26.vsix`)
+## 2. Daedalus Language Server — IntelliSense for Daedalus
 
-#### Krok 2: Zainstaluj w VS Code
+This extension is the real game-changer. It adds a **Language Server** that analyzes Gothic scripts and provides:
 
-Są dwa sposoby:
+- **Autocompletion** (IntelliSense) — suggestions for instances, functions, variables while typing
+- **Go to Definition** (`F12`) — jump to function, class, or instance definition
+- **Find All References** (`Shift + F12`) — find all usages of a symbol
+- **Semantic Highlighting** — contextual coloring (distinguishing constants, parameters, local variables, globals)
+- **CodeLens** — implementation and reference counts above functions
+- **Inlay Hints** — parameter names in function calls
+- **Diagnostics** — live error detection in code
 
-**Sposób A — przez interfejs VS Code:**
+### Installation from .vsix File
 
-1. Otwórz VS Code
-2. Kliknij ikonę **Rozszerzenia** (`Ctrl + Shift + X`)
-3. Kliknij `...` (trzy kropki) w prawym górnym rogu panelu rozszerzeń
-4. Wybierz **Zainstaluj z pliku VSIX...**
-5. Wskaż pobrany plik `.vsix`
-6. Kliknij **Zainstaluj** i poczekaj na zakończenie
-7. Gdy pojawi się monit, kliknij **Załaduj ponownie** (Reload)
+This extension is not available in the VS Code Marketplace — it needs to be installed manually from a `.vsix` file.
 
-**Sposób B — przez terminal:**
+#### Step 1: Download the .vsix File
+
+1. Go to [GitHub Releases — kirides/vscode-daedalus](https://github.com/kirides/vscode-daedalus/releases)
+2. At the latest version (e.g., **v0.0.26**), find the **Assets** section
+3. Download the `vscode-daedalus-X.X.XX.vsix` file (e.g., `vscode-daedalus-0.0.26.vsix`)
+
+#### Step 2: Install in VS Code
+
+There are two ways:
+
+**Method A — via VS Code interface:**
+
+1. Open VS Code
+2. Click the **Extensions** icon (`Ctrl + Shift + X`)
+3. Click `...` (three dots) in the top right corner of the extensions panel
+4. Select **Install from VSIX...**
+5. Point to the downloaded `.vsix` file
+6. Click **Install** and wait for completion
+7. When prompted, click **Reload**
+
+**Method B — via terminal:**
 
 ```bash
-code --install-extension ścieżka/do/vscode-daedalus-0.0.26.vsix
+code --install-extension path/to/vscode-daedalus-0.0.26.vsix
 ```
 
 :::tip
-Po każdej aktualizacji rozszerzenia musisz pobrać nowy plik `.vsix` z GitHub i powtórzyć proces instalacji.
+After each extension update, you need to download the new `.vsix` file from GitHub and repeat the installation process.
 :::
 
-### Konfiguracja Language Server
+### Language Server Configuration
 
-Po zainstalowaniu obu rozszerzeń, Language Server automatycznie szuka pliku `Gothic.src` w otwartym folderze. Jeśli otworzyłeś folder `Scripts/` jako workspace — wszystko powinno działać od razu.
+After installing both extensions, the Language Server automatically looks for a `Gothic.src` file in the opened folder. If you opened the `Scripts/` folder as a workspace — everything should work right away.
 
-Opcjonalne ustawienia w `settings.json`:
+Optional settings in `settings.json`:
 
 ```json
 {
@@ -93,20 +93,20 @@ Opcjonalne ustawienia w `settings.json`:
 ```
 
 :::info
-Jeśli skrypty korzystają z polskich znaków (co jest normalne), ustaw kodowanie na `Windows-1250`, aby Language Server prawidłowo parsował pliki.
+If scripts use special characters (which is common in Polish/Czech/German Gothic mods), set the encoding to `Windows-1250` so the Language Server correctly parses files.
 :::
 
 ---
 
-## Weryfikacja
+## Verification
 
-Po zainstalowaniu obu rozszerzeń i otwarciu folderu ze skryptami:
+After installing both extensions and opening the scripts folder:
 
-1. **Kolorowanie składni** — otwórz dowolny plik `.d`, kod powinien być kolorowy
-2. **Autouzupełnianie** — zacznij pisać nazwę funkcji lub instancji, powinny pojawić się podpowiedzi
-3. **Go to Definition** — przytrzymaj `Ctrl` i kliknij na nazwę instancji/funkcji — VS Code powinien przejść do jej definicji
-4. **Diagnostyka** — jeśli w kodzie jest błąd (np. brakujący średnik), VS Code podkreśli go na czerwono
+1. **Syntax highlighting** — open any `.d` file, the code should be colorized
+2. **Autocompletion** — start typing a function or instance name, suggestions should appear
+3. **Go to Definition** — hold `Ctrl` and click on an instance/function name — VS Code should jump to its definition
+4. **Diagnostics** — if there's an error in the code (e.g., missing semicolon), VS Code will underline it in red
 
 :::warning
-Pierwsze załadowanie dużego projektu (np. pełnych skryptów Gothic II z modyfikacją) może zająć kilka sekund — Language Server musi sparsować wszystkie pliki wskazane w `Gothic.src`.
+First loading of a large project (e.g., full Gothic II scripts with a mod) may take a few seconds — the Language Server needs to parse all files listed in `Gothic.src`.
 :::

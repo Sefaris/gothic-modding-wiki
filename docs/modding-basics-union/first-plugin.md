@@ -1,11 +1,11 @@
 ---
 sidebar_position: 2
-title: "Moja pierwsza wtyczka"
-description: "Tworzenie pierwszego pluginu Union dla Gothic."
+title: "My First Plugin"
+description: "Creating your first Union plugin for Gothic."
 ---
 
-# Moja pierwsza wtyczka
+# My First Plugin
 
 :::info
-Ta strona jest w trakcie tworzenia. Treść zostanie uzupełniona wkrótce.
+This page is under construction. Content will be added soon.
 :::
