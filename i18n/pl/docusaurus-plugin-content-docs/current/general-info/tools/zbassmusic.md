@@ -52,15 +52,15 @@ Pełny poradnik konfiguracji, ustawienia przejść i zaawansowane funkcje znajdz
 
 ## Porównanie z DirectMusic
 
-| Cecha                        | DirectMusic (natywny)      | zBassMusic                         |
-| ---------------------------- | -------------------------- | ---------------------------------- |
-| **Formaty audio**            | `.SGT`, `.STY`, `.DLS`     | `.mp3`, `.ogg`, `.wav`, `.flac`    |
-| **Narzędzie autorskie**      | DirectMusic Producer (legacy) | Dowolny edytor audio / DAW      |
-| **Obsługa archiwów VDF/MOD** | Nie (tylko luźne pliki)    | Tak                                |
-| **Przejścia cross-fade**     | Zarządzane przez silnik    | Własne, płynne cross-fady         |
-| **Dynamiczna muzyka (patterny)** | Tak (natywnie)        | Własny system harmonogramowania    |
-| **Interfejs skryptowy**      | Tylko `C_MUSICTHEME`       | `C_MUSICTHEME` + rozszerzony Daedalus |
-| **Wymaga Uniona**            | Nie                        | Tak                                |
+| Cecha                            | DirectMusic (natywny)         | zBassMusic                            |
+| -------------------------------- | ----------------------------- | ------------------------------------- |
+| **Formaty audio**                | `.SGT`, `.STY`, `.DLS`        | `.mp3`, `.ogg`, `.wav`, `.flac`       |
+| **Narzędzie autorskie**          | DirectMusic Producer (legacy) | Dowolny edytor audio / DAW            |
+| **Obsługa archiwów VDF/MOD**     | Nie (tylko luźne pliki)       | Tak                                   |
+| **Przejścia cross-fade**         | Zarządzane przez silnik       | Własne, płynne cross-fady             |
+| **Dynamiczna muzyka (patterny)** | Tak (natywnie)                | Własny system harmonogramowania       |
+| **Interfejs skryptowy**          | Tylko `C_MUSICTHEME`          | `C_MUSICTHEME` + rozszerzony Daedalus |
+| **Wymaga Uniona**                | Nie                           | Tak                                   |
 
 ## Linki zewnętrzne
 

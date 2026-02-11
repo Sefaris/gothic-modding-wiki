@@ -52,15 +52,15 @@ For a complete setup guide, transitions configuration, and advanced features, se
 
 ## Comparison with DirectMusic
 
-| Feature                      | DirectMusic (native)       | zBassMusic                         |
-| ---------------------------- | -------------------------- | ---------------------------------- |
-| **Audio formats**            | `.SGT`, `.STY`, `.DLS`     | `.mp3`, `.ogg`, `.wav`, `.flac`    |
-| **Authoring tool**           | DirectMusic Producer (legacy) | Any audio editor / DAW          |
-| **VDF/MOD archive support**  | No (loose files only)      | Yes                                |
-| **Cross-fade transitions**   | Engine-managed             | Custom, smooth cross-fades         |
-| **Dynamic music (patterns)** | Yes (native)               | Custom scheduling system           |
-| **Script interface**         | `C_MUSICTHEME` only        | `C_MUSICTHEME` + extended Daedalus |
-| **Requires Union**           | No                         | Yes                                |
+| Feature                      | DirectMusic (native)          | zBassMusic                         |
+| ---------------------------- | ----------------------------- | ---------------------------------- |
+| **Audio formats**            | `.SGT`, `.STY`, `.DLS`        | `.mp3`, `.ogg`, `.wav`, `.flac`    |
+| **Authoring tool**           | DirectMusic Producer (legacy) | Any audio editor / DAW             |
+| **VDF/MOD archive support**  | No (loose files only)         | Yes                                |
+| **Cross-fade transitions**   | Engine-managed                | Custom, smooth cross-fades         |
+| **Dynamic music (patterns)** | Yes (native)                  | Custom scheduling system           |
+| **Script interface**         | `C_MUSICTHEME` only           | `C_MUSICTHEME` + extended Daedalus |
+| **Requires Union**           | No                            | Yes                                |
 
 ## External Links
 

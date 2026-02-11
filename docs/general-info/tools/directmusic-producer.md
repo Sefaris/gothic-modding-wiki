@@ -37,11 +37,11 @@ Music files **cannot** be packed into `.vdf` or `.mod` archives. All music files
 
 DirectMusic Producer works with three interconnected file types:
 
-| File    | Type                     | Description                                                                                                                        |
-| ------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `.DLS`  | Downloadable Sounds      | The foundation of the music system. Contains collections of virtual instruments and their wave (audio sample) data.                 |
-| `.STY`  | Style                    | Defines **Bands** (instrument configurations from `.DLS`) and **Patterns** (musical fragments/phrases that can be looped/combined). |
-| `.SGT`  | Segment                  | The final playable track. Connects patterns from styles into a complete piece. This is the file referenced in `C_MUSICTHEME.file`.  |
+| File   | Type                | Description                                                                                                                         |
+| ------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `.DLS` | Downloadable Sounds | The foundation of the music system. Contains collections of virtual instruments and their wave (audio sample) data.                 |
+| `.STY` | Style               | Defines **Bands** (instrument configurations from `.DLS`) and **Patterns** (musical fragments/phrases that can be looped/combined). |
+| `.SGT` | Segment             | The final playable track. Connects patterns from styles into a complete piece. This is the file referenced in `C_MUSICTHEME.file`.  |
 
 ### How They Relate
 

@@ -81,11 +81,11 @@ Plik `.src` określa **kolejność kompilacji** - symbole muszą być zadeklarow
 
 Gothic wykorzystuje system **Microsoft DirectMusic** do dynamicznej, interaktywnej muzyki. Pliki muzyczne przechowywane są w `Data/Music/`.
 
-| Rozszerzenie | Opis                                                                                                                                                                                                                                                                       |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rozszerzenie | Opis                                                                                                                                                                                                                                                                                     |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.SGT`       | **DirectMusic Segment.** Główny format pliku muzycznego, do którego odwołuje się pole `C_MUSICTHEME.file` w skryptach muzycznych. Zawiera odniesienia do styli, bandów i progresji akordów, które razem tworzą odtwarzalny utwór muzyczny. Przykłady: `OWD_DayStd.sgt`, `nw_dayfgt.sgt`. |
-| `.STY`       | **DirectMusic Style.** Definiuje wzorce muzyczne, motywy i wariacje. Style są wykorzystywane przez segmenty `.SGT` i dostarczają właściwe dane nut/rytmu, które DirectMusic odtwarza dynamicznie.                                                                           |
-| `.DLS`       | **Downloadable Sounds (DLS).** Pliki banku instrumentów/sampli używane przez DirectMusic do syntezy dźwięku. Zawierają faktyczne sample instrumentów (dane wavetable) wykorzystywane do odtwarzania muzyki zdefiniowanej w plikach `.SGT` i `.STY`.                          |
+| `.STY`       | **DirectMusic Style.** Definiuje wzorce muzyczne, motywy i wariacje. Style są wykorzystywane przez segmenty `.SGT` i dostarczają właściwe dane nut/rytmu, które DirectMusic odtwarza dynamicznie.                                                                                        |
+| `.DLS`       | **Downloadable Sounds (DLS).** Pliki banku instrumentów/sampli używane przez DirectMusic do syntezy dźwięku. Zawierają faktyczne sample instrumentów (dane wavetable) wykorzystywane do odtwarzania muzyki zdefiniowanej w plikach `.SGT` i `.STY`.                                      |
 
 ---
 
@@ -137,17 +137,17 @@ Zarówno `.VDF`, jak i `.MOD` używają tego samego formatu wewnętrznego. Silni
 
 ## Tabela podsumowująca
 
-| Kategoria              | Rozszerzenia                                                   |
-| ---------------------- | -------------------------------------------------------------- |
-| **Skrypty Daedalus**   | `.d`, `.src`, `.dat`                                           |
-| **Modele 3D i meshe**  | `.3DS`, `.ASC`, `.MRM`, `.MSH`, `.MDL`, `.MDM`, `.MDH`, `.MMB` |
-| **Animacje**           | `.MDS`, `.MSB`, `.MAN`                                         |
-| **Światy**             | `.ZEN`                                                         |
-| **Tekstury i grafika** | `.TGA`, `.TEX`, `.FNT`                                         |
-| **Audio**              | `.WAV`                                                         |
-| **Muzyka (DirectMusic)** | `.SGT`, `.STY`, `.DLS`                                       |
-| **Dane dialogowe**     | `.BIN` (`ou.bin`), `.CSL`                                      |
-| **Archiwa**            | `.VDF`, `.MOD`                                                 |
-| **Konfiguracja**       | `.INI`                                                         |
-| **Zapisy gry**         | `.SAV`                                                         |
-| **Pluginy Union**      | `.DLL`                                                         |
+| Kategoria                | Rozszerzenia                                                   |
+| ------------------------ | -------------------------------------------------------------- |
+| **Skrypty Daedalus**     | `.d`, `.src`, `.dat`                                           |
+| **Modele 3D i meshe**    | `.3DS`, `.ASC`, `.MRM`, `.MSH`, `.MDL`, `.MDM`, `.MDH`, `.MMB` |
+| **Animacje**             | `.MDS`, `.MSB`, `.MAN`                                         |
+| **Światy**               | `.ZEN`                                                         |
+| **Tekstury i grafika**   | `.TGA`, `.TEX`, `.FNT`                                         |
+| **Audio**                | `.WAV`                                                         |
+| **Muzyka (DirectMusic)** | `.SGT`, `.STY`, `.DLS`                                         |
+| **Dane dialogowe**       | `.BIN` (`ou.bin`), `.CSL`                                      |
+| **Archiwa**              | `.VDF`, `.MOD`                                                 |
+| **Konfiguracja**         | `.INI`                                                         |
+| **Zapisy gry**           | `.SAV`                                                         |
+| **Pluginy Union**        | `.DLL`                                                         |

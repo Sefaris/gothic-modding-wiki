@@ -37,11 +37,11 @@ Pliki muzyczne **nie mogą** być pakowane do archiwów `.vdf` ani `.mod`. Wszys
 
 DirectMusic Producer operuje na trzech powiązanych ze sobą typach plików:
 
-| Plik    | Typ                      | Opis                                                                                                                                              |
-| ------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.DLS`  | Downloadable Sounds      | Fundament systemu muzycznego. Zawiera kolekcje wirtualnych instrumentów i ich dane falowe (sample audio).                                         |
-| `.STY`  | Style                    | Definiuje **Bandy** (konfiguracje instrumentów z `.DLS`) oraz **Patterny** (fragmenty muzyczne/frazy, które mogą być zapętlane i łączone).        |
-| `.SGT`  | Segment                  | Finalny odtwarzalny utwór. Łączy patterny ze stylów w kompletną kompozycję. To ten plik jest wskazywany w `C_MUSICTHEME.file`.                   |
+| Plik   | Typ                 | Opis                                                                                                                                       |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.DLS` | Downloadable Sounds | Fundament systemu muzycznego. Zawiera kolekcje wirtualnych instrumentów i ich dane falowe (sample audio).                                  |
+| `.STY` | Style               | Definiuje **Bandy** (konfiguracje instrumentów z `.DLS`) oraz **Patterny** (fragmenty muzyczne/frazy, które mogą być zapętlane i łączone). |
+| `.SGT` | Segment             | Finalny odtwarzalny utwór. Łączy patterny ze stylów w kompletną kompozycję. To ten plik jest wskazywany w `C_MUSICTHEME.file`.             |
 
 ### Jak się ze sobą łączą
 
