@@ -27,7 +27,7 @@ npm install
 npm run start
 
 # Development server (English)
-npm run start:en
+npm run start:pl
 ```
 
 The server will start at `http://localhost:3000`. File changes are reflected live.

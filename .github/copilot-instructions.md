@@ -1,98 +1,115 @@
 # Copilot Instructions – Gothic Modding Wiki
 
-## Opis projektu
+## Project Description
 
-Strona dokumentacji poświęcona moddingowi gry **Gothic** (1 & 2), zbudowana na **Docusaurus 3**. Dokumentacja jest dwujęzyczna: **polski** (domyślny) i **angielski**.
+A documentation site dedicated to **Gothic** (1 & 2) game modding, built on **Docusaurus 3**. The documentation is bilingual: **English** (default) and **Polish**.
 
-## Struktura dokumentacji
+## Documentation Structure
 
-Dokumentacja podzielona jest na 5 głównych sekcji:
+The documentation is divided into 5 main sections:
 
-### 1. Jak zacząć? (`getting-started/`)
+### 1. Getting Started (`getting-started/`)
 
-- **Pobranie gry ze Steam/GOG** (`download-game.md`) – Skąd pobrać grę, wymagania, różnice między wersjami.
-- **Instalacja Visual Studio Code** (`install-vscode.md`) – Instalacja edytora i podstawowa konfiguracja.
-- **Instalacja dodatków do VS Code** (`install-vscode-extensions.md`) – Niezbędne rozszerzenia do pracy ze skryptami Gothic.
+- **Downloading the Game from Steam/GOG** (`download-game.md`) – Where to download the game, system requirements, version differences.
+- **Installing Visual Studio Code** (`install-vscode.md`) – Editor installation and basic configuration.
+- **Installing VS Code Extensions** (`install-vscode-extensions.md`) – Essential extensions for working with Gothic scripts.
 
-### 2. Informacje ogólne (`general-info/`)
+### 2. General Information (`general-info/`)
 
-- **Daedalus** (`daedalus.md`) – Opis języka skryptowego Daedalus używanego w Gothic.
-- **Ikarus** (`ikarus.md`) – Opis biblioteki Ikarus rozszerzającej możliwości Daedalusa.
-- **Union** (`union.md`) – Opis frameworka Union do tworzenia pluginów C++ dla Gothic.
+- **Daedalus** (`daedalus.md`) – Overview of the Daedalus scripting language used in Gothic.
+- **Ikarus** (`ikarus.md`) – Overview of the Ikarus library extending Daedalus capabilities.
+- **Union** (`union.md`) – Overview of the Union framework for creating C++ plugins for Gothic.
 
-### 3. Podstawy moddingu – Daedalus (`modding-basics-daedalus/`)
+### 3. Modding Basics – Daedalus (`modding-basics-daedalus/`)
 
-- **Opis struktury skryptów** (`script-structure.md`) – Jak zorganizowane są skrypty w Gothic.
-- **Mój pierwszy NPC** (`first-npc.md`) – Tworzenie pierwszej postaci niezależnej.
-- **Mój pierwszy przedmiot** (`first-item.md`) – Tworzenie pierwszego przedmiotu.
-- **Moje pierwsze zadanie** (`first-quest.md`) – Tworzenie pierwszego questa.
+- **Script Structure Overview** (`script-structure.md`) – How scripts are organized in Gothic.
+- **My First NPC** (`first-npc.md`) – Creating your first non-player character.
+- **My First Item** (`first-item.md`) – Creating your first item.
+- **My First Quest** (`first-quest.md`) – Creating your first quest.
+- **My First Effect** (`first-effect.md`) – Creating your first particle effect (PFX).
 
-### 4. Podstawy moddingu – Union (`modding-basics-union/`)
+### 4. Modding Basics – Union (`modding-basics-union/`)
 
-- **Jak zacząć?** (`getting-started.md`) – Konfiguracja środowiska do tworzenia pluginów Union.
-- **Moja pierwsza wtyczka** (`first-plugin.md`) – Tworzenie pierwszego pluginu Union.
+- **Getting Started** (`getting-started.md`) – Setting up the environment for Union plugin development.
+- **My First Plugin** (`first-plugin.md`) – Creating your first Union plugin.
 
-### 5. Źródła i materiały (`resources/`)
+### 5. Resources (`resources/`)
 
-- **Źródła i materiały** (`index.md`) – Linki do zasobów, narzędzi, społeczności.
+- **Resources** (`index.md`) – Links to tools, assets, and community resources.
 
-## Lokalizacja (i18n)
+### Encyclopedia (separate docs plugin)
 
-- **Polski** (domyślny) → pliki w `docs/`
-- **Angielski** → pliki w `i18n/en/docusaurus-plugin-content-docs/current/`
+- **Daily Routines (TA_)** (`routines.md`) – Complete list of TA_ daily routine functions.
+- **Animations** (`animations.md`) – Complete list of animations, MDS overlays, state transitions.
 
-Struktura katalogów i nazwy plików **muszą być identyczne** w obu wersjach językowych. Różni się jedynie treść (tytuły, opisy, zawartość).
+## Localization (i18n)
 
-### Zasady tworzenia treści
+- **English** (default) → files in `docs/` and `encyclopedia/`
+- **Polish** → files in `i18n/pl/docusaurus-plugin-content-docs/current/` and `i18n/pl/docusaurus-plugin-content-docs-encyclopedia/current/`
 
-1. **Zawsze twórz oba warianty językowe** – Każdy nowy dokument musi istnieć zarówno w `docs/` (PL) jak i w `i18n/en/docusaurus-plugin-content-docs/current/` (EN).
-2. **Zachowaj spójne nazwy plików** – Nazwy plików i folderów używaj w języku angielskim (np. `first-npc.md`, nie `pierwszy-npc.md`).
-3. **Front matter** – Każdy dokument `.md` powinien zaczynać się od front matter:
+Directory structure and file names **must be identical** in both language versions. Only the content (titles, descriptions, body text) differs.
+
+### UI Translation Files (i18n/pl/)
+
+- `i18n/pl/code.json` – Polish translations for homepage `<Translate>` components and all Docusaurus theme strings.
+- `i18n/pl/docusaurus-theme-classic/navbar.json` – Polish translations for navbar labels (e.g. "Getting Started" → "Jak zacząć?").
+- `i18n/pl/docusaurus-theme-classic/footer.json` – Polish translations for footer labels.
+- `i18n/pl/docusaurus-plugin-content-docs/current.json` – Polish translations for sidebar category labels (e.g. "Installation" → "Instalacja").
+
+### Content Creation Rules
+
+1. **Always create both language variants** – Every new document must exist in `docs/` (EN) and in `i18n/pl/docusaurus-plugin-content-docs/current/` (PL). For encyclopedia docs, use `encyclopedia/` (EN) and `i18n/pl/docusaurus-plugin-content-docs-encyclopedia/current/` (PL).
+2. **Use English file names** – File and folder names must always be in English (e.g. `first-npc.md`, not `pierwszy-npc.md`).
+3. **Front matter** – Every `.md` document should start with front matter. The default (EN) version:
    ```yaml
    ---
    sidebar_position: 1
-   title: "Tytuł po polsku"
-   description: "Opis po polsku"
+   title: "English Title"
+   description: "English description."
    ---
    ```
-4. **Kategorie** – Każdy folder sekcji zawiera plik `_category_.json`:
+   The Polish (i18n) version uses Polish title and description with the same `sidebar_position`.
+4. **Categories** – Each section folder contains a `_category_.json` file:
    ```json
    {
-     "label": "Nazwa kategorii",
+     "label": "Category Name in English",
      "position": 1,
      "collapsed": false
    }
    ```
-5. **Przykłady kodu** – Kod Daedalus oznaczaj jako ` ```daedalus `, kod C++ (Union) jako ` ```cpp `.
-6. **Obrazy** – Przechowuj w `static/img/docs/` z podkatalogami odpowiadającymi sekcjom.
+   Polish `_category_.json` files use Polish labels.
+5. **Code examples** – Mark Daedalus code as ` ```daedalus `, C++ (Union) code as ` ```cpp `.
+6. **Images** – Store in `static/img/docs/` with subdirectories matching sections.
+7. **Hardcoded labels** – All default labels in `docusaurus.config.ts`, `sidebars.ts`, and `src/pages/index.tsx` are in **English**. Polish translations are provided via `i18n/pl/` JSON files.
+8. **When adding new navbar/footer/sidebar labels** – Update the corresponding `i18n/pl/` JSON file with the Polish translation. The JSON key must reference the English label text (e.g. `"item.label.Getting Started"`).
 
-## Technologie w kontekście Gothic Modding
+## Technologies in Gothic Modding Context
 
 ### Daedalus
 
-- Język skryptowy wbudowany w silnik Gothic (ZenGin).
-- Pliki z rozszerzeniem `.d`, kompilowane do `.dat`.
-- Składnia przypomina C, ale z własnymi typami (`instance`, `prototype`, `class`).
-- Główny plik kompilacji: `Gothic.src`.
+- Scripting language built into the Gothic engine (ZenGin).
+- Files with `.d` extension, compiled to `.dat`.
+- Syntax resembles C but with custom types (`instance`, `prototype`, `class`).
+- Main compilation file: `Gothic.src`.
 
 ### Ikarus
 
-- Biblioteka skryptowa Daedalusa autorstwa Sektenspinnera.
-- Pozwala na bezpośredni dostęp do pamięci silnika z poziomu Daedalusa.
-- Wymaga inicjalizacji w `Startup.d` → `MEM_InitAll()`.
-- Często używany razem z biblioteką **LeGo**.
+- Daedalus script library by Sektenspinner.
+- Provides direct engine memory access from Daedalus.
+- Requires initialization in `Startup.d` → `MEM_InitAll()`.
+- Often used together with the **LeGo** library.
 
 ### Union
 
-- Framework C++ do tworzenia pluginów (`.dll`) ładowanych przez silnik Gothic.
-- Wymaga Union SDK i Visual Studio (nie VS Code).
-- Pluginy instalowane w `<Gothic>/System/Autorun/`.
-- Pozwala na przechwytywanie funkcji silnika (hooking) i pełny dostęp do klas silnika.
+- C++ framework for creating plugins (`.dll`) loaded by the Gothic engine.
+- Requires Union SDK and Visual Studio (not VS Code).
+- Plugins installed in `<Gothic>/System/Autorun/`.
+- Allows engine function hooking and full access to engine classes.
 
-## Konwencje
+## Conventions
 
-- **Styl pisania**: Przyjazny, tutorialowy, krok po kroku.
-- **Grupa docelowa**: Początkujący modderzy Gothic.
-- **Linki wewnętrzne**: Używaj ścieżek względnych Docusaurus, np. `[tekst](../general-info/daedalus.md)`.
-- **Admonitions**: Używaj admonitions Docusaurus (`:::tip`, `:::warning`, `:::info`, `:::danger`).
-- **Sidebar**: Autogenerowany z systemu plików (konfiguracja w `sidebars.ts`).
+- **Writing style**: Friendly, tutorial-like, step by step.
+- **Target audience**: Beginner Gothic modders.
+- **Internal links**: Use Docusaurus relative paths, e.g. `[text](../general-info/daedalus.md)`.
+- **Admonitions**: Use Docusaurus admonitions (`:::tip`, `:::warning`, `:::info`, `:::danger`).
+- **Sidebar**: Auto-generated from the file system (configuration in `sidebars.ts`), with category labels translated via `i18n/pl/docusaurus-plugin-content-docs/current.json`.
