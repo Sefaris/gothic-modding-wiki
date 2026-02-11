@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 1
 title: "Script Structure Overview"
 description: "How scripts are organized in Gothic."
@@ -6,9 +6,9 @@ description: "How scripts are organized in Gothic."
 
 # Script Structure Overview
 
-Gothic scripts are divided into two main directories: **Content** (game content) and **System** (engine systems). Each has its own set of `.src` files — special compilation files that define the loading order of scripts.
+Gothic scripts are divided into two main directories: **Content** (game content) and **System** (engine systems). Each has its own set of `.src` files - special compilation files that define the loading order of scripts.
 
-## .src Files — Compilation
+## .src Files - Compilation
 
 `.src` files are lists of `.d` (Daedalus) files in the order they should be compiled. The Gothic engine reads them from top to bottom:
 
@@ -29,7 +29,7 @@ The order of entries in `Gothic.src` is critical! If you reference an instance (
 
 ---
 
-## Content — Game Content
+## Content - Game Content
 
 The `Content/` directory contains everything that defines the game world: characters, items, dialogs, AI, magic, and quests. It is compiled by `Gothic.src` and `Fight.src`.
 
@@ -47,7 +47,7 @@ Content/
 └── Spine/                  ← Spine platform integration
 ```
 
-### `_intern/` — Engine Classes and Constants
+### `_intern/` - Engine Classes and Constants
 
 Contains engine class declarations and global constants. This is the foundation upon which all other scripts are built.
 
@@ -58,10 +58,10 @@ Contains engine class declarations and global constants. This is the foundation 
 | `Fight.d`     | Combat system constants                                             |
 
 :::info
-Files in `_intern/` are always at the beginning of `Gothic.src` — they define the data types used by the rest of the scripts.
+Files in `_intern/` are always at the beginning of `Gothic.src` - they define the data types used by the rest of the scripts.
 :::
 
-### `AI/` — Artificial Intelligence
+### `AI/` - Artificial Intelligence
 
 Controls the behavior of characters and monsters. Divided into separate subsystems:
 
@@ -96,12 +96,12 @@ AI/
 
 **Naming conventions in AI:**
 
-- **B\_** (Behavior) — functions that perform actions, e.g., `B_Attack`, `B_Flee`
-- **C\_** (Condition) — functions that check conditions, e.g., `C_CanSeeNpc`
-- **TA\_** (Tagesablauf) — NPC daily routines
-- **ZS\_** (Zustandsautomat) — AI state machines (idle, combat, flee states, etc.)
+- **B\_** (Behavior) - functions that perform actions, e.g., `B_Attack`, `B_Flee`
+- **C\_** (Condition) - functions that check conditions, e.g., `C_CanSeeNpc`
+- **TA\_** (Tagesablauf) - NPC daily routines
+- **ZS\_** (Zustandsautomat) - AI state machines (idle, combat, flee states, etc.)
 
-### `Items/` — Items
+### `Items/` - Items
 
 All item definitions in the game. Files grouped by type:
 
@@ -122,7 +122,7 @@ All item definitions in the game. Files grouped by type:
 | `IT_Written.d`        | Documents, letters, books           |
 | `MissionItems_*.d`    | Mission items (per chapter)         |
 
-### `FAI/` — Fight Tactics
+### `FAI/` - Fight Tactics
 
 Fight AI definitions for different enemy types:
 
@@ -142,7 +142,7 @@ Fight AI definitions for different enemy types:
 Fight tactics are assigned to NPCs through the `fight_tactic` field in the `C_NPC` instance.
 :::
 
-### `Story/` — Story
+### `Story/` - Story
 
 The largest and most important directory. Contains NPCs, dialogs, quests, events, and all story-related scripts:
 
@@ -231,7 +231,7 @@ Story/
 
 ---
 
-## System — Engine Systems
+## System - Engine Systems
 
 The `System/` directory contains engine system definitions: menus, camera, music, sound effects, and visual effects. Each subsystem has its own `.src` file.
 
@@ -253,20 +253,20 @@ System/
 └── VisualFX/           ← visual effects
 ```
 
-### `_intern/` — System Classes
+### `_intern/` - System Classes
 
 Engine class declarations for individual systems. Analogous to `Content/_intern/`, but for subsystems:
 
 | File           | Description                                       |
 | -------------- | ------------------------------------------------- |
-| `Camera.d`     | `C_CamSys` class — camera parameters              |
-| `Menu.d`       | `C_Menu`, `C_MenuItem` classes — menu definitions |
-| `Music.d`      | `C_MusicTheme` class — music themes               |
-| `ParticleFX.d` | `C_ParticleFX` class — particle effects           |
-| `SFX.d`        | `C_SFX` class — sound effects                     |
-| `VisualFX.d`   | `C_VisualFX` class — visual effects               |
+| `Camera.d`     | `C_CamSys` class - camera parameters              |
+| `Menu.d`       | `C_Menu`, `C_MenuItem` classes - menu definitions |
+| `Music.d`      | `C_MusicTheme` class - music themes               |
+| `ParticleFX.d` | `C_ParticleFX` class - particle effects           |
+| `SFX.d`        | `C_SFX` class - sound effects                     |
+| `VisualFX.d`   | `C_VisualFX` class - visual effects               |
 
-### `Camera/` — Camera
+### `Camera/` - Camera
 
 Camera instances used in the game:
 
@@ -274,7 +274,7 @@ Camera instances used in the game:
 | ----------- | ------------------------------------------------------ |
 | `CamInst.d` | Camera definitions: standard, dialog, combat, cutscene |
 
-### `Menu/` — Game Menus
+### `Menu/` - Game Menus
 
 Definitions for all menu screens:
 
@@ -290,13 +290,13 @@ Definitions for all menu screens:
 | `Menu_Savegame.d`     | Save/load game                      |
 | `Menu_Defines.d`      | Shared constants and definitions    |
 
-### `Music/` — Music
+### `Music/` - Music
 
 | File          | Description                                                      |
 | ------------- | ---------------------------------------------------------------- |
 | `MusicInst.d` | Music theme instances (exploration, combat, threat per location) |
 
-### `PFX/` — Particle Effects
+### `PFX/` - Particle Effects
 
 | File              | Description                           |
 | ----------------- | ------------------------------------- |
@@ -304,14 +304,14 @@ Definitions for all menu screens:
 | `PfxInstEngine.d` | Engine effects                        |
 | `PfxInstMagic.d`  | Magic effects (spells, runes)         |
 
-### `SFX/` — Sound Effects
+### `SFX/` - Sound Effects
 
 | File              | Description                                 |
 | ----------------- | ------------------------------------------- |
 | `SfxInst.d`       | Ambient, interface, and object sounds       |
 | `SfxInstSpeech.d` | Speech sounds (dialog system configuration) |
 
-### `VisualFX/` — Visual Effects
+### `VisualFX/` - Visual Effects
 
 | File             | Description                        |
 | ---------------- | ---------------------------------- |
@@ -323,7 +323,7 @@ Definitions for all menu screens:
 
 | Area           | Directory          | Compilation      | Description                                    |
 | -------------- | ------------------ | ---------------- | ---------------------------------------------- |
-| Engine classes | `Content/_intern/` | `Gothic.src`     | Foundations — C_NPC, C_Item, C_INFO classes... |
+| Engine classes | `Content/_intern/` | `Gothic.src`     | Foundations - C_NPC, C_Item, C_INFO classes... |
 | AI             | `Content/AI/`      | `Gothic.src`     | Behaviors, perception, AI states               |
 | Items          | `Content/Items/`   | `Gothic.src`     | Weapons, armor, potions, food                  |
 | Fight tactics  | `Content/FAI/`     | `Fight.src`      | Fight tactics per enemy type                   |

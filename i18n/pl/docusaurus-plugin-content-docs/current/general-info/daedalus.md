@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 1
 title: "Daedalus"
 description: "Opis języka skryptowego Daedalus używanego w grze Gothic."
@@ -6,12 +6,12 @@ description: "Opis języka skryptowego Daedalus używanego w grze Gothic."
 
 # Daedalus
 
-**Daedalus** to język skryptowy wbudowany w silnik **ZenGin** — silnik gier Gothic I i Gothic II. Za jego pomocą definiuje się praktycznie całą logikę gry: postacie, przedmioty, dialogi, zadania, efekty, dźwięki, AI i wiele więcej.
+**Daedalus** to język skryptowy wbudowany w silnik **ZenGin** - silnik gier Gothic I i Gothic II. Za jego pomocą definiuje się praktycznie całą logikę gry: postacie, przedmioty, dialogi, zadania, efekty, dźwięki, AI i wiele więcej.
 
-Pliki źródłowe Daedalusa mają rozszerzenie **`.d`**, a pliki kompilacyjne (listy plików do kompilacji) — **`.src`**. Po kompilacji powstaje plik binarny **`.dat`**, który jest odczytywany przez silnik gry.
+Pliki źródłowe Daedalusa mają rozszerzenie **`.d`**, a pliki kompilacyjne (listy plików do kompilacji) - **`.src`**. Po kompilacji powstaje plik binarny **`.dat`**, który jest odczytywany przez silnik gry.
 
 :::info
-Daedalus **nie jest** językiem ogólnego przeznaczenia. To język domenowy zaprojektowany specjalnie pod Gothic — ma wiele ograniczeń w porównaniu z nowoczesnymi językami, ale doskonale spełnia swoją rolę w kontekście moddingu.
+Daedalus **nie jest** językiem ogólnego przeznaczenia. To język domenowy zaprojektowany specjalnie pod Gothic - ma wiele ograniczeń w porównaniu z nowoczesnymi językami, ale doskonale spełnia swoją rolę w kontekście moddingu.
 :::
 
 ---
@@ -28,7 +28,7 @@ Daedalus posiada bardzo ograniczony system typów:
 | `void`   | Brak wartości zwracanej (tylko w funkcjach) | `func void MojaFunkcja()`    |
 | `func`   | Referencja do funkcji                       | `var func codzienna_rutyna;` |
 
-**Nie istnieje typ `bool`** — zamiast niego używa się stałych `TRUE` (1) i `FALSE` (0), które są typu `int`.
+**Nie istnieje typ `bool`** - zamiast niego używa się stałych `TRUE` (1) i `FALSE` (0), które są typu `int`.
 
 ---
 
@@ -50,7 +50,7 @@ func string PobierzNazwe(var int instancja)
 
 ### Zmienne globalne
 
-Deklarowane poza funkcjami — dostępne z dowolnego miejsca w skryptach:
+Deklarowane poza funkcjami - dostępne z dowolnego miejsca w skryptach:
 
 ```daedalus
 var int Kapitel;
@@ -59,7 +59,7 @@ var string PrzepiszNazwa;
 ```
 
 :::warning
-Zmienne globalne **muszą być zadeklarowane przed ich użyciem** — kolejność plików w `Gothic.src` ma znaczenie!
+Zmienne globalne **muszą być zadeklarowane przed ich użyciem** - kolejność plików w `Gothic.src` ma znaczenie!
 :::
 
 ### Stałe (`const`)
@@ -200,12 +200,12 @@ else
 ```
 
 :::danger
-Każdy blok `if`, `else if` i `else` musi kończyć się **średnikiem po klamrze zamykającej** `};` — to specyfika Daedalusa!
+Każdy blok `if`, `else if` i `else` musi kończyć się **średnikiem po klamrze zamykającej** `};` - to specyfika Daedalusa!
 :::
 
 ### Warunki wieloliniowe
 
-Daedalus pozwala na pisanie warunków `&&` i `||` w **nowych liniach** — bez nawiasów:
+Daedalus pozwala na pisanie warunków `&&` i `||` w **nowych liniach** - bez nawiasów:
 
 ```daedalus
 if (GanelunTot == TRUE)
@@ -294,7 +294,7 @@ s = IntToString(42);     // int → string: "42"
 ```
 
 :::info
-Funkcja `IntToString()` to jedyna wbudowana konwersja typów. Nie istnieje odwrotny `StringToInt()` w standardowym Daedalusie — dodaje go biblioteka Ikarus.
+Funkcja `IntToString()` to jedyna wbudowana konwersja typów. Nie istnieje odwrotny `StringToInt()` w standardowym Daedalusie - dodaje go biblioteka Ikarus.
 :::
 
 ---
@@ -354,7 +354,7 @@ func int CzyGraczWWalce()
 
 ### Funkcje zewnętrzne (externals)
 
-To funkcje zaimplementowane w C++ w silniku Gothic, dostępne do wywołania z Daedalusa. **Nie mają ciała w skryptach** — są wywoływane jak zwykłe funkcje:
+To funkcje zaimplementowane w C++ w silniku Gothic, dostępne do wywołania z Daedalusa. **Nie mają ciała w skryptach** - są wywoływane jak zwykłe funkcje:
 
 ```daedalus
 // Funkcje NPC
@@ -397,7 +397,7 @@ PrintScreen("Tekst", 50, 50, FONT_Screen, 2)
 
 ## Klasy (`class`)
 
-Klasy definiują struktury danych odpowiadające klasom C++ w silniku. Zawierają **wyłącznie deklaracje zmiennych** — nie mają metod.
+Klasy definiują struktury danych odpowiadające klasom C++ w silniku. Zawierają **wyłącznie deklaracje zmiennych** - nie mają metod.
 
 ```daedalus
 class C_NPC
@@ -483,7 +483,7 @@ prototype C_Spell_Proto(C_Spell)
 };
 ```
 
-Prototypy upraszczają tworzenie wielu podobnych instancji — wystarczy nadpisać wartości, które różnią się od domyślnych.
+Prototypy upraszczają tworzenie wielu podobnych instancji - wystarczy nadpisać wartości, które różnią się od domyślnych.
 
 ---
 
@@ -503,7 +503,7 @@ instance BAU_4410_Klara(Npc_Default)
     flags     = 0;
     npctype   = NPCTYPE_MAIN;
 
-    // Wywołania funkcji — kod wykonywalny!
+    // Wywołania funkcji - kod wykonywalny!
     B_SetAttributesToChapter(self, 4);
     B_GiveNpcTalents(self);
     fight_tactic = FAI_HUMAN_COWARD;
@@ -556,7 +556,7 @@ Silnik Gothic definiuje kilka specjalnych instancji globalnych, które są zawsz
 instance self, other(C_NPC);     // aktualny NPC i rozmówca
 instance victim(C_NPC);          // ofiara (w percepcjach)
 instance item(C_Item);           // aktualny przedmiot
-instance hero(C_NPC);            // gracz — zawsze dostępny
+instance hero(C_NPC);            // gracz - zawsze dostępny
 ```
 
 | Instancja | Opis                                                                      |
@@ -584,7 +584,7 @@ const int ATR_HITPOINTS = 0;    // komentarz na końcu linii
 
 ---
 
-## Kompilacja — Gothic.src
+## Kompilacja - Gothic.src
 
 Pliki Daedalusa nie są kompilowane pojedynczo. Plik **`Gothic.src`** (w katalogu `Content/`) zawiera **uporządkowaną listę** wszystkich plików `.d` do kompilacji:
 
@@ -600,16 +600,16 @@ STORY\Startup.d
 
 ### Zasady kompilacji
 
-1. **Kolejność ma znaczenie** — symbol musi być zadeklarowany **przed** jego użyciem. Stałe i klasy muszą być na początku listy.
-2. **Wzorce `*.d`** — można użyć wildcarda: `STORY\NPC\*.D` dołączy wszystkie pliki `.d` z folderu.
-3. **Pliki `.src` jako inkludy** — `Gothic.src` może odwoływać się do innych plików `.src` (np. `Ikarus\Ikarus.d`).
-4. **Wynik kompilacji** — plik `Gothic.dat` w katalogu `System/`, odczytywany przez silnik.
+1. **Kolejność ma znaczenie** - symbol musi być zadeklarowany **przed** jego użyciem. Stałe i klasy muszą być na początku listy.
+2. **Wzorce `*.d`** - można użyć wildcarda: `STORY\NPC\*.D` dołączy wszystkie pliki `.d` z folderu.
+3. **Pliki `.src` jako inkludy** - `Gothic.src` może odwoływać się do innych plików `.src` (np. `Ikarus\Ikarus.d`).
+4. **Wynik kompilacji** - plik `Gothic.dat` w katalogu `System/`, odczytywany przez silnik.
 
 ---
 
 ## Cechy szczególne składni
 
-### Wielkość liter — bez znaczenia
+### Wielkość liter - bez znaczenia
 
 Daedalus jest **case-insensitive**. Poniższe zapisy są równoważne:
 
@@ -627,7 +627,7 @@ FUNC VOID MojaFunkcja() {};
 
 W praktyce w oryginalnych skryptach mieszane są zapisy `CONST INT`, `const int`, `VAR INT`, `var int`, `FUNC VOID`, `func void`.
 
-### Średniki — wszędzie!
+### Średniki - wszędzie!
 
 Jedną z najbardziej charakterystycznych cech Daedalusa jest **obowiązkowy średnik po każdym bloku kodu**, włącznie z klamrami zamykającymi:
 
@@ -654,7 +654,7 @@ prototype Npc_Default(C_NPC)
 ```
 
 :::danger
-Brak średnika po `};` to jeden z najczęstszych błędów początkujących. Kompilator zgłosi błąd lub — co gorsze — skompiluje kod nieprawidłowo.
+Brak średnika po `};` to jeden z najczęstszych błędów początkujących. Kompilator zgłosi błąd lub - co gorsze - skompiluje kod nieprawidłowo.
 :::
 
 ### Brak zaawansowanych konstrukcji
@@ -665,8 +665,8 @@ Daedalus **nie posiada** wielu konstrukcji znanych z nowoczesnych języków:
 | -------------------------------- | ------------------------------------------- |
 | Pętle (`for`, `while`)           | Biblioteka Ikarus dodaje `while` i `repeat` |
 | `switch / case`                  | Łańcuchy `if / else if`                     |
-| Dynamiczne tablice               | Ikarus — dostęp do pamięci                  |
-| Wskaźniki                        | Ikarus — `_^()` (kastowanie adresów)        |
+| Dynamiczne tablice               | Ikarus - dostęp do pamięci                  |
+| Wskaźniki                        | Ikarus - `_^()` (kastowanie adresów)        |
 | Struktury (`struct`)             | Tylko `class`                               |
 | Metody w klasach                 | Wolnostojące funkcje                        |
 | Przeciążanie funkcji             | Unikalne nazwy funkcji                      |
@@ -675,11 +675,11 @@ Daedalus **nie posiada** wielu konstrukcji znanych z nowoczesnych języków:
 
 ---
 
-## System dialogowy — AI_Output
+## System dialogowy - AI_Output
 
 System dialogowy w Gothic oparty jest na funkcji `AI_Output` i klasie `C_INFO`. Ma unikalny mechanizm parsowania, który różni się od wszystkiego w standardowych językach programowania.
 
-### C_INFO — definicja wpisu dialogowego
+### C_INFO - definicja wpisu dialogowego
 
 Każda opcja dialogowa to instancja klasy `C_INFO`:
 
@@ -699,7 +699,7 @@ instance DIA_Konrad_Hallo(C_INFO)
 | Pole          | Opis                                                                          |
 | ------------- | ----------------------------------------------------------------------------- |
 | `npc`         | Instancja NPC, do którego należy dialog                                       |
-| `nr`          | Kolejność sortowania — mniejszy numer = wyżej na liście. EXIT ma zwykle `999` |
+| `nr`          | Kolejność sortowania - mniejszy numer = wyżej na liście. EXIT ma zwykle `999` |
 | `condition`   | Funkcja zwracająca `TRUE` jeśli opcja ma być widoczna                         |
 | `information` | Funkcja wywoływana po wybraniu opcji (tu piszemy AI_Output)                   |
 | `permanent`   | `TRUE` = opcja dostępna zawsze, `FALSE` = znika po użyciu                     |
@@ -707,7 +707,7 @@ instance DIA_Konrad_Hallo(C_INFO)
 | `description` | Tekst wyświetlany w menu dialogowym                                           |
 | `trade`       | `TRUE` = otwiera okno handlu                                                  |
 
-### AI_Output — wypowiedź NPC
+### AI_Output - wypowiedź NPC
 
 ```daedalus
 func void AI_Output(var C_NPC speaker, var C_NPC listener, var string outputName);
@@ -715,7 +715,7 @@ func void AI_Output(var C_NPC speaker, var C_NPC listener, var string outputName
 
 To najważniejsza funkcja systemu dialogowego. Powoduje, że NPC wypowiada kwestię z podkładem audio i napisami.
 
-#### Kto mówi — kolejność parametrów
+#### Kto mówi - kolejność parametrów
 
 - **`AI_Output(self, other, "...")`** → mówi **NPC** (self = NPC, other = gracz)
 - **`AI_Output(other, self, "...")`** → mówi **gracz** (other = bohater, self = NPC słucha)
@@ -731,7 +731,7 @@ func void DIA_Konrad_Hallo_Info()
 
 #### Parsowanie komentarza jako tekstu napisów
 
-To **unikalna cecha parsera Daedalusa** — komentarz `//` w tej samej linii co `AI_Output` **nie jest ignorowany**. Parser traktuje go jako **tekst napisów dialogowych** wyświetlany na ekranie.
+To **unikalna cecha parsera Daedalusa** - komentarz `//` w tej samej linii co `AI_Output` **nie jest ignorowany**. Parser traktuje go jako **tekst napisów dialogowych** wyświetlany na ekranie.
 
 ```daedalus
 AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hej, dobrze cię widzieć!
@@ -740,20 +740,20 @@ AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hej, dobrze cię widzieć!
 ```
 
 :::danger
-Komentarz z tekstem napisów **musi** być w **tej samej linii** co wywołanie `AI_Output`. Jeśli przeniesiesz go do następnej linii — napisy będą puste.
+Komentarz z tekstem napisów **musi** być w **tej samej linii** co wywołanie `AI_Output`. Jeśli przeniesiesz go do następnej linii - napisy będą puste.
 
 ```daedalus
-// ❌ ŹLE — napisy będą puste!
+// ❌ ŹLE - napisy będą puste!
 AI_Output(self, other, "DIA_Konrad_Hallo_08_01");
 //Hej, dobrze cię widzieć!
 
-// ✅ DOBRZE — napisy działają
+// ✅ DOBRZE - napisy działają
 AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hej, dobrze cię widzieć!
 ```
 
 :::
 
-#### Identyfikator outputu — konwencja nazewnictwa
+#### Identyfikator outputu - konwencja nazewnictwa
 
 Format: **`DIA_<NPC>_<Temat>_<NrGłosu>_<NrLinii>`**
 
@@ -761,7 +761,7 @@ Przykład: `DIA_Konrad_Hallo_08_01`
 
 | Fragment | Znaczenie                                              |
 | -------- | ------------------------------------------------------ |
-| `DIA`    | Prefiks — dialog                                       |
+| `DIA`    | Prefiks - dialog                                       |
 | `Konrad` | Nazwa NPC                                              |
 | `Hallo`  | Nazwa tematu/dialogu                                   |
 | `08`     | **Numer głosu** NPC (pole `voice` w instancji `C_NPC`) |
@@ -845,9 +845,9 @@ func int DIA_Konrad_Dalej_Condition()
 };
 ```
 
-### AI_OutputSVM — standardowe kwestie głosowe
+### AI_OutputSVM - standardowe kwestie głosowe
 
-Oprócz `AI_Output` istnieje `AI_OutputSVM` do odtwarzania **standardowych kwestii głosowych** (SVM — Standard Voice Messages). Są to gotowe wypowiedzi typu okrzyki bojowe, pozdrowienia, ostrzeżenia:
+Oprócz `AI_Output` istnieje `AI_OutputSVM` do odtwarzania **standardowych kwestii głosowych** (SVM - Standard Voice Messages). Są to gotowe wypowiedzi typu okrzyki bojowe, pozdrowienia, ostrzeżenia:
 
 ```daedalus
 // NPC mówi standardową kwestię głosową
@@ -858,7 +858,7 @@ B_Say(self, other, "$HandsOff");            // "Ręce przy sobie!"
 
 Każdy NPC ma pole `voice` w `C_NPC`, które wskazuje na zestaw SVM (`SVM_0`, `SVM_1`, ..., `SVM_100`). Klasa `C_SVM` definiuje setki standardowych kwestii, a każdy zestaw głosowy ma własne pliki audio.
 
-`AI_OutputSVM_Overlay` działa jak `AI_OutputSVM`, ale jest **nieblokujący** — nie czeka na zakończenie odtwarzania. Używany do okrzyków w walce.
+`AI_OutputSVM_Overlay` działa jak `AI_OutputSVM`, ale jest **nieblokujący** - nie czeka na zakończenie odtwarzania. Używany do okrzyków w walce.
 
 ---
 
@@ -883,4 +883,4 @@ W oryginalnych skryptach Gothic stosowane są prefiksy wskazujące na typ i prze
 | `AIV_`      | Indeks zmiennej AI           | `AIV_ATTACKREASON`                   |
 | `Rtn_`      | Funkcja rutyny dziennej      | `Rtn_Start_4401`                     |
 
-Przestrzeganie tych konwencji nie jest wymagane przez kompilator, ale **zdecydowanie zalecane** — poprawia czytelność i jest zgodne ze stylem oryginalnych skryptów.
+Przestrzeganie tych konwencji nie jest wymagane przez kompilator, ale **zdecydowanie zalecane** - poprawia czytelność i jest zgodne ze stylem oryginalnych skryptów.

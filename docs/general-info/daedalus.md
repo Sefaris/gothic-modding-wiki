@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 1
 title: "Daedalus"
 description: "Overview of the Daedalus scripting language used in Gothic."
@@ -6,12 +6,12 @@ description: "Overview of the Daedalus scripting language used in Gothic."
 
 # Daedalus
 
-**Daedalus** is a scripting language built into the **ZenGin** engine — the engine powering Gothic I and Gothic II. It's used to define virtually all game logic: characters, items, dialogs, quests, effects, sounds, AI, and much more.
+**Daedalus** is a scripting language built into the **ZenGin** engine - the engine powering Gothic I and Gothic II. It's used to define virtually all game logic: characters, items, dialogs, quests, effects, sounds, AI, and much more.
 
 Daedalus source files have the **`.d`** extension, and compilation files (lists of files to compile) use **`.src`**. After compilation, a binary **`.dat`** file is produced, which is read by the game engine.
 
 :::info
-Daedalus is **not** a general-purpose language. It's a domain-specific language designed specifically for Gothic — it has many limitations compared to modern languages, but it perfectly fulfills its role in the context of modding.
+Daedalus is **not** a general-purpose language. It's a domain-specific language designed specifically for Gothic - it has many limitations compared to modern languages, but it perfectly fulfills its role in the context of modding.
 :::
 
 ---
@@ -28,7 +28,7 @@ Daedalus has a very limited type system:
 | `void`   | No return value (functions only) | `func void MyFunction()`  |
 | `func`   | Function reference               | `var func daily_routine;` |
 
-**There is no `bool` type** — instead, constants `TRUE` (1) and `FALSE` (0) of type `int` are used.
+**There is no `bool` type** - instead, constants `TRUE` (1) and `FALSE` (0) of type `int` are used.
 
 ---
 
@@ -50,7 +50,7 @@ func string GetName(var int instance)
 
 ### Global Variables
 
-Declared outside functions — accessible from anywhere in the scripts:
+Declared outside functions - accessible from anywhere in the scripts:
 
 ```daedalus
 var int Chapter;
@@ -59,7 +59,7 @@ var string RecipeName;
 ```
 
 :::warning
-Global variables **must be declared before they are used** — the file order in `Gothic.src` matters!
+Global variables **must be declared before they are used** - the file order in `Gothic.src` matters!
 :::
 
 ### Constants (`const`)
@@ -200,12 +200,12 @@ else
 ```
 
 :::danger
-Every `if`, `else if`, and `else` block must end with a **semicolon after the closing brace** `};` — this is a Daedalus peculiarity!
+Every `if`, `else if`, and `else` block must end with a **semicolon after the closing brace** `};` - this is a Daedalus peculiarity!
 :::
 
 ### Multi-line Conditions
 
-Daedalus allows writing `&&` and `||` conditions on **new lines** — without parentheses:
+Daedalus allows writing `&&` and `||` conditions on **new lines** - without parentheses:
 
 ```daedalus
 if (GanelunDead == TRUE)
@@ -294,7 +294,7 @@ s = IntToString(42);     // int → string: "42"
 ```
 
 :::info
-`IntToString()` is the only built-in type conversion. There is no reverse `StringToInt()` in standard Daedalus — the Ikarus library adds it.
+`IntToString()` is the only built-in type conversion. There is no reverse `StringToInt()` in standard Daedalus - the Ikarus library adds it.
 :::
 
 ---
@@ -354,7 +354,7 @@ func int IsPlayerInFight()
 
 ### External Functions (Externals)
 
-These are functions implemented in C++ in the Gothic engine, available to call from Daedalus. They have **no body in scripts** — they are called like regular functions:
+These are functions implemented in C++ in the Gothic engine, available to call from Daedalus. They have **no body in scripts** - they are called like regular functions:
 
 ```daedalus
 // NPC functions
@@ -397,7 +397,7 @@ PrintScreen("Text", 50, 50, FONT_Screen, 2)
 
 ## Classes (`class`)
 
-Classes define data structures corresponding to C++ classes in the engine. They contain **only variable declarations** — they have no methods.
+Classes define data structures corresponding to C++ classes in the engine. They contain **only variable declarations** - they have no methods.
 
 ```daedalus
 class C_NPC
@@ -483,7 +483,7 @@ prototype C_Spell_Proto(C_Spell)
 };
 ```
 
-Prototypes simplify the creation of many similar instances — you only need to override values that differ from the defaults.
+Prototypes simplify the creation of many similar instances - you only need to override values that differ from the defaults.
 
 ---
 
@@ -503,7 +503,7 @@ instance BAU_4410_Klara(Npc_Default)
     flags     = 0;
     npctype   = NPCTYPE_MAIN;
 
-    // Function calls — executable code!
+    // Function calls - executable code!
     B_SetAttributesToChapter(self, 4);
     B_GiveNpcTalents(self);
     fight_tactic = FAI_HUMAN_COWARD;
@@ -556,7 +556,7 @@ The Gothic engine defines several special global instances that are always avail
 instance self, other(C_NPC);     // current NPC and dialog partner
 instance victim(C_NPC);          // victim (in perceptions)
 instance item(C_Item);           // current item
-instance hero(C_NPC);            // the player — always available
+instance hero(C_NPC);            // the player - always available
 ```
 
 | Instance | Description                                                                         |
@@ -584,7 +584,7 @@ const int ATR_HITPOINTS = 0;    // end-of-line comment
 
 ---
 
-## Compilation — Gothic.src
+## Compilation - Gothic.src
 
 Daedalus files are not compiled individually. The **`Gothic.src`** file (in the `Content/` directory) contains an **ordered list** of all `.d` files to compile:
 
@@ -600,16 +600,16 @@ STORY\Startup.d
 
 ### Compilation Rules
 
-1. **Order matters** — a symbol must be declared **before** it's used. Constants and classes must be at the top of the list.
-2. **`*.d` wildcards** — you can use wildcards: `STORY\NPC\*.D` will include all `.d` files from the folder.
-3. **`.src` files as includes** — `Gothic.src` can reference other `.src` files (e.g., `Ikarus\Ikarus.d`).
-4. **Compilation output** — the `Gothic.dat` file in the `System/` directory, read by the engine.
+1. **Order matters** - a symbol must be declared **before** it's used. Constants and classes must be at the top of the list.
+2. **`*.d` wildcards** - you can use wildcards: `STORY\NPC\*.D` will include all `.d` files from the folder.
+3. **`.src` files as includes** - `Gothic.src` can reference other `.src` files (e.g., `Ikarus\Ikarus.d`).
+4. **Compilation output** - the `Gothic.dat` file in the `System/` directory, read by the engine.
 
 ---
 
 ## Special Syntax Features
 
-### Case Sensitivity — None
+### Case Sensitivity - None
 
 Daedalus is **case-insensitive**. The following are equivalent:
 
@@ -627,7 +627,7 @@ FUNC VOID MyFunction() {};
 
 In practice, the original scripts freely mix `CONST INT`, `const int`, `VAR INT`, `var int`, `FUNC VOID`, `func void`.
 
-### Semicolons — Everywhere!
+### Semicolons - Everywhere!
 
 One of Daedalus's most distinctive features is the **mandatory semicolon after every code block**, including closing braces:
 
@@ -654,7 +654,7 @@ prototype Npc_Default(C_NPC)
 ```
 
 :::danger
-Missing semicolons after `};` is one of the most common beginner mistakes. The compiler will throw an error or — worse — compile the code incorrectly.
+Missing semicolons after `};` is one of the most common beginner mistakes. The compiler will throw an error or - worse - compile the code incorrectly.
 :::
 
 ### Missing Advanced Constructs
@@ -665,8 +665,8 @@ Daedalus **does not have** many constructs found in modern languages:
 | ----------------------------- | ---------------------------------------- |
 | Loops (`for`, `while`)        | Ikarus library adds `while` and `repeat` |
 | `switch / case`               | `if / else if` chains                    |
-| Dynamic arrays                | Ikarus — direct memory access            |
-| Pointers                      | Ikarus — `_^()` (address casting)        |
+| Dynamic arrays                | Ikarus - direct memory access            |
+| Pointers                      | Ikarus - `_^()` (address casting)        |
 | Structs                       | Only `class`                             |
 | Methods in classes            | Standalone functions                     |
 | Function overloading          | Unique function names                    |
@@ -675,11 +675,11 @@ Daedalus **does not have** many constructs found in modern languages:
 
 ---
 
-## Dialog System — AI_Output
+## Dialog System - AI_Output
 
 Gothic's dialog system is based on the `AI_Output` function and the `C_INFO` class. It has a unique parsing mechanism that differs from anything in standard programming languages.
 
-### C_INFO — Dialog Entry Definition
+### C_INFO - Dialog Entry Definition
 
 Each dialog option is an instance of the `C_INFO` class:
 
@@ -699,7 +699,7 @@ instance DIA_Konrad_Hallo(C_INFO)
 | Field         | Description                                                        |
 | ------------- | ------------------------------------------------------------------ |
 | `npc`         | NPC instance this dialog belongs to                                |
-| `nr`          | Sort order — lower number = higher in list. EXIT usually has `999` |
+| `nr`          | Sort order - lower number = higher in list. EXIT usually has `999` |
 | `condition`   | Function returning `TRUE` if the option should be visible          |
 | `information` | Function called when option is selected (AI_Output calls go here)  |
 | `permanent`   | `TRUE` = always available, `FALSE` = disappears after use          |
@@ -707,7 +707,7 @@ instance DIA_Konrad_Hallo(C_INFO)
 | `description` | Text shown in dialog menu                                          |
 | `trade`       | `TRUE` = opens trade window                                        |
 
-### AI_Output — NPC Speech Line
+### AI_Output - NPC Speech Line
 
 ```daedalus
 func void AI_Output(var C_NPC speaker, var C_NPC listener, var string outputName);
@@ -715,7 +715,7 @@ func void AI_Output(var C_NPC speaker, var C_NPC listener, var string outputName
 
 This is the core dialog system function. It makes an NPC speak a line with audio and subtitles.
 
-#### Who Speaks — Parameter Order
+#### Who Speaks - Parameter Order
 
 - **`AI_Output(self, other, "...")`** → the **NPC** speaks (self = NPC, other = player)
 - **`AI_Output(other, self, "...")`** → the **player** speaks (other = hero, self = NPC listens)
@@ -731,7 +731,7 @@ func void DIA_Konrad_Hallo_Info()
 
 #### Comment Parsing as Subtitle Text
 
-This is a **unique Daedalus parser feature** — the `//` comment on the same line as `AI_Output` **is not ignored**. The parser treats it as **subtitle text** displayed on screen.
+This is a **unique Daedalus parser feature** - the `//` comment on the same line as `AI_Output` **is not ignored**. The parser treats it as **subtitle text** displayed on screen.
 
 ```daedalus
 AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hey, good to see you!
@@ -740,20 +740,20 @@ AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hey, good to see you!
 ```
 
 :::danger
-The subtitle comment **must** be on the **same line** as the `AI_Output` call. If you move it to the next line — subtitles will be empty.
+The subtitle comment **must** be on the **same line** as the `AI_Output` call. If you move it to the next line - subtitles will be empty.
 
 ```daedalus
-// ❌ WRONG — subtitles will be empty!
+// ❌ WRONG - subtitles will be empty!
 AI_Output(self, other, "DIA_Konrad_Hallo_08_01");
 //Hey, good to see you!
 
-// ✅ CORRECT — subtitles work
+// ✅ CORRECT - subtitles work
 AI_Output(self, other, "DIA_Konrad_Hallo_08_01"); //Hey, good to see you!
 ```
 
 :::
 
-#### Output Identifier — Naming Convention
+#### Output Identifier - Naming Convention
 
 Format: **`DIA_<NPC>_<Topic>_<VoiceNumber>_<LineNumber>`**
 
@@ -761,7 +761,7 @@ Example: `DIA_Konrad_Hallo_08_01`
 
 | Part     | Meaning                                                         |
 | -------- | --------------------------------------------------------------- |
-| `DIA`    | Prefix — dialog                                                 |
+| `DIA`    | Prefix - dialog                                                 |
 | `Konrad` | NPC name                                                        |
 | `Hallo`  | Topic/dialog name                                               |
 | `08`     | **Voice number** of the NPC (`voice` field in `C_NPC` instance) |
@@ -845,7 +845,7 @@ func int DIA_Konrad_Continue_Condition()
 };
 ```
 
-### AI_OutputSVM — Standard Voice Messages
+### AI_OutputSVM - Standard Voice Messages
 
 Besides `AI_Output`, there is `AI_OutputSVM` for playing **Standard Voice Messages** (SVM). These are pre-made lines like combat shouts, greetings, warnings:
 
@@ -858,7 +858,7 @@ B_Say(self, other, "$HandsOff");            // "Hands off!"
 
 Each NPC has a `voice` field in `C_NPC` that points to an SVM set (`SVM_0`, `SVM_1`, ..., `SVM_100`). The `C_SVM` class defines hundreds of standard lines, and each voice set has its own audio files.
 
-`AI_OutputSVM_Overlay` works like `AI_OutputSVM` but is **non-blocking** — it doesn't wait for playback to finish. Used for combat shouts.
+`AI_OutputSVM_Overlay` works like `AI_OutputSVM` but is **non-blocking** - it doesn't wait for playback to finish. Used for combat shouts.
 
 ---
 
@@ -883,4 +883,4 @@ The original Gothic scripts use prefixes indicating the type and purpose of a sy
 | `AIV_`      | AI variable index           | `AIV_ATTACKREASON`                   |
 | `Rtn_`      | Daily routine function      | `Rtn_Start_4401`                     |
 
-Following these conventions is not required by the compiler but is **strongly recommended** — it improves readability and is consistent with the original script style.
+Following these conventions is not required by the compiler but is **strongly recommended** - it improves readability and is consistent with the original script style.

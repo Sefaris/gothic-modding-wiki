@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 3
 title: "Mój pierwszy przedmiot"
 description: "Tworzenie pierwszego przedmiotu w Gothic."
@@ -6,9 +6,9 @@ description: "Tworzenie pierwszego przedmiotu w Gothic."
 
 # Mój pierwszy przedmiot
 
-W tym poradniku nauczysz się tworzyć przedmioty w języku Daedalus — od miecza, przez mikstury, po jedzenie.
+W tym poradniku nauczysz się tworzyć przedmioty w języku Daedalus - od miecza, przez mikstury, po jedzenie.
 
-## Klasa C_Item — co definiuje przedmiot?
+## Klasa C_Item - co definiuje przedmiot?
 
 Każdy przedmiot w Gothic to instancja klasy `C_Item`. Najważniejsze pola:
 
@@ -94,7 +94,7 @@ instance ItMw_Miecz_Konrada (C_Item)
 | `value`         | `250`                            | Wartość 250 złota               |
 | `visual`        | `"ItMw_025_1h_sld_sword_01.3DS"` | Plik modelu 3D                  |
 | `description`   | `name`                           | Nagłówek tooltipa = nazwa itemu |
-| `TEXT/COUNT`    | —                                | Linie tooltipa w ekwipunku      |
+| `TEXT/COUNT`    | -                                | Linie tooltipa w ekwipunku      |
 
 :::info
 Pole `flags` określa typ broni: `ITEM_SWD` (miecz 1H), `ITEM_AXE` (topór 1H), `ITEM_2HD_SWD` (miecz 2H), `ITEM_2HD_AXE` (topór 2H).
@@ -149,7 +149,7 @@ func void Use_ItPo_Zdrowie_Konrada ()
 | `description`                                   | `name`                       | Nagłówek tooltipa = nazwa itemu       |
 | `TEXT[1]/COUNT[1]`                              | `+100 HP`                    | Tooltip: bonus do zdrowia             |
 | `TEXT[5]/COUNT[5]`                              | value                        | Tooltip: wartość przedmiotu           |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                            | Przywraca 100 HP przy użyciu          |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | -                            | Przywraca 100 HP przy użyciu          |
 
 :::tip
 `ITEM_MULTI` sprawia, że przedmioty tego samego typu stackują się w ekwipunku (zamiast zajmować osobne sloty).
@@ -194,7 +194,7 @@ func void Use_ItFo_Chleb_Konrada ()
 | `description`                                  | `name`                   | Nagłówek tooltipa = nazwa itemu |
 | `TEXT[1]/COUNT[1]`                             | `+15 HP`                 | Tooltip: bonus do zdrowia       |
 | `TEXT[5]/COUNT[5]`                             | value                    | Tooltip: wartość przedmiotu     |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 15)` | —                        | Przywraca 15 HP przy użyciu     |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 15)` | -                        | Przywraca 15 HP przy użyciu     |
 
 ## Dawanie przedmiotu NPC
 
@@ -220,7 +220,7 @@ CreateInvItems (self, ItMi_Gold, 100);
 
 ## Rejestracja w Gothic.src
 
-Dodaj plik z przedmiotami do `Gothic.src` — **przed** definicjami NPC:
+Dodaj plik z przedmiotami do `Gothic.src` - **przed** definicjami NPC:
 
 ```
 Items\IT_Melee_Weapons.d
@@ -235,6 +235,6 @@ Tworzenie przedmiotów wymaga:
 1. **Instancji** klasy `C_Item` z odpowiednim `mainflag` i `flags`
 2. Ustawienia **statystyk** (obrażenia, ochrona, wymagania)
 3. Podania **modelu 3D** (`.3DS`)
-4. Dla przedmiotów używalnych — **funkcji on_state** zmieniającej atrybuty
+4. Dla przedmiotów używalnych - **funkcji on_state** zmieniającej atrybuty
 5. **Tooltipa** (TEXT/COUNT) do wyświetlania informacji w grze
 6. **Rejestracji** w `Gothic.src`

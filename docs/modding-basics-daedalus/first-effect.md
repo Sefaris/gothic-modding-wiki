@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 5
 title: "My First Effect"
 description: "Creating your first particle effect (PFX) in Gothic."
@@ -6,7 +6,7 @@ description: "Creating your first particle effect (PFX) in Gothic."
 
 # My First Effect
 
-In this tutorial you will learn how to create particle effects (Particle Effects, PFX) — from simple smoke, through fire, to rain and snow.
+In this tutorial you will learn how to create particle effects (Particle Effects, PFX) - from simple smoke, through fire, to rain and snow.
 
 ## How Do Particle Effects Work?
 
@@ -20,11 +20,11 @@ Effects are defined as instances of the `C_ParticleFX` class in files in the `Sy
 | `PfxInstEngine.d` | Engine-required effects (blood, dust, water splash)   |
 | `PfxInstMagic.d`  | Magic effects (spells, runes, auras)                  |
 
-## The C_ParticleFX Class — Overview
+## The C_ParticleFX Class - Overview
 
-The class has 49 fields divided into 7 categories. You don't need to set them all — fields you don't set will use default values (usually 0 or empty string).
+The class has 49 fields divided into 7 categories. You don't need to set them all - fields you don't set will use default values (usually 0 or empty string).
 
-### 1. Emission Rate — How Many Particles and When
+### 1. Emission Rate - How Many Particles and When
 
 | Field              | Type     | Description                               |
 | ------------------ | -------- | ----------------------------------------- |
@@ -36,7 +36,7 @@ The class has 49 fields divided into 7 categories. You don't need to set them al
 | `ppsCreateEm_S`    | `string` | Child effect name (spawned per particle)  |
 | `ppsCreateEmDelay` | `float`  | Child effect delay                        |
 
-### 2. Emitter Shape — Where Particles Come From
+### 2. Emitter Shape - Where Particles Come From
 
 | Field              | Type     | Description                                                           |
 | ------------------ | -------- | --------------------------------------------------------------------- |
@@ -113,7 +113,7 @@ The class has 49 fields divided into 7 categories. You don't need to set them al
 
 ## Example 1: Simple Smoke
 
-Let's start with something simple — a column of smoke rising upward:
+Let's start with something simple - a column of smoke rising upward:
 
 ```daedalus
 instance PFX_MySmoke (C_ParticleFX)
@@ -184,11 +184,11 @@ instance PFX_MySmoke (C_ParticleFX)
 | `visAlphaEnd`        | `0`             | Fades out completely           |
 
 :::tip
-**`visAlphaFunc_S`** — blending modes:
+**`visAlphaFunc_S`** - blending modes:
 
-- `"BLEND"` — classic blending (smoke, fog, dust)
-- `"ADD"` — additive (fire, sparks, magic — bright, glowing)
-- `"MUL"` — multiplicative (shadows, darkening)
+- `"BLEND"` - classic blending (smoke, fog, dust)
+- `"ADD"` - additive (fire, sparks, magic - bright, glowing)
+- `"MUL"` - multiplicative (shadows, darkening)
   :::
 
 ## Example 2: Campfire
@@ -429,7 +429,7 @@ instance PFX_MySnow (C_ParticleFX)
 
 ## Example 5: Blood (Child Emitters)
 
-The child emitter system lets you create complex effects. Blood in Gothic consists of two instances — the main one (blood spray) and the child one (ground splat):
+The child emitter system lets you create complex effects. Blood in Gothic consists of two instances - the main one (blood spray) and the child one (ground splat):
 
 ```daedalus
 // Main effect: blood spray scattering
@@ -524,14 +524,14 @@ instance PFX_MyBlood_Splat (C_ParticleFX)
 | `visAlphaEnd`     | `0`                    | Fades out completely        |
 
 :::info
-**`ppsCreateEm_S`** — each particle from the main emitter becomes a source for a new child effect. This is a powerful tool but expensive — use carefully to avoid overloading the engine.
+**`ppsCreateEm_S`** - each particle from the main emitter becomes a source for a new child effect. This is a powerful tool but expensive - use carefully to avoid overloading the engine.
 :::
 
 ## Emitter Shapes
 
 | Shape  | `shpType_S` | `shpDim_S`       | Description                                             |
 | ------ | ----------- | ---------------- | ------------------------------------------------------- |
-| Point  | `"POINT"`   | —                | Emission from a single point                            |
+| Point  | `"POINT"`   | -                | Emission from a single point                            |
 | Line   | `"LINE"`    | `"100"` (length) | Emission along a line                                   |
 | Box    | `"BOX"`     | `"W H D"`        | Emission from a rectangular area                        |
 | Circle | `"CIRCLE"`  | `"50"` (radius)  | Emission from a circle (or disk when `shpIsVolume = 1`) |
@@ -540,8 +540,8 @@ instance PFX_MyBlood_Splat (C_ParticleFX)
 
 ### shpIsVolume
 
-- `shpIsVolume = 0` — particles appear **on the edge** of the shape (e.g., on the circle circumference)
-- `shpIsVolume = 1` — particles appear **inside** the shape (e.g., within the entire circle)
+- `shpIsVolume = 0` - particles appear **on the edge** of the shape (e.g., on the circle circumference)
+- `shpIsVolume = 1` - particles appear **inside** the shape (e.g., within the entire circle)
 
 ## Particle Orientation
 
@@ -565,7 +565,7 @@ Pfx\MyPfx.d
 ```
 
 :::warning
-PFX effects are **not** compiled by `Gothic.src` — they use their own `ParticleFX.src` file in the `System/` directory.
+PFX effects are **not** compiled by `Gothic.src` - they use their own `ParticleFX.src` file in the `System/` directory.
 :::
 
 ## Practical Tips
@@ -575,7 +575,7 @@ PFX effects are **not** compiled by `Gothic.src` — they use their own `Particl
 - Higher `ppsValue` means more particles = more computation
 - `flyCollDet_B` with many particles heavily loads the CPU
 - `useEmittersFOR = 1` combined with `flyCollDet_B` is the most expensive combination
-- `ppsCreateEm_S` multiplies the number of effects — each particle creates a new emitter
+- `ppsCreateEm_S` multiplies the number of effects - each particle creates a new emitter
 
 ### Debugging
 
@@ -599,7 +599,7 @@ PFX effects are **not** compiled by `Gothic.src` — they use their own `Particl
 Creating particle effects requires:
 
 1. An **instance** of the `C_ParticleFX` class with appropriate parameters
-2. An **emitter shape** (`shpType_S`) — where particles come from
-3. **Direction and speed** — how they move
-4. **Visualization** — texture, color, size, blending
+2. An **emitter shape** (`shpType_S`) - where particles come from
+3. **Direction and speed** - how they move
+4. **Visualization** - texture, color, size, blending
 5. **Registration** in `ParticleFX.src` (not in `Gothic.src`!)

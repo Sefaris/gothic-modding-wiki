@@ -1,7 +1,7 @@
----
+﻿---
 sidebar_position: 3
 title: "Stałe Daedalusa"
-description: "Kompletna lista stałych Daedalusa — atrybuty, kategorie przedmiotów, gildie, typy obrażeń, materiały i inne."
+description: "Kompletna lista stałych Daedalusa - atrybuty, kategorie przedmiotów, gildie, typy obrażeń, materiały i inne."
 ---
 
 # Stałe Daedalusa
@@ -201,11 +201,11 @@ Używane w polu `npctype` klasy `C_NPC`.
 | `NPCTYPE_AMBIENT`     | `0`     | NPC w tle                    |
 | `NPCTYPE_MAIN`        | `1`     | Główny/ważny NPC             |
 | `NPCTYPE_FRIEND`      | `2`     | Przyjaciel gracza            |
-| `NPCTYPE_OCAMBIENT`   | `3`     | Stary Obóz — NPC w tle (G1)  |
-| `NPCTYPE_OCMAIN`      | `4`     | Stary Obóz — główny NPC (G1) |
-| `NPCTYPE_BL_AMBIENT`  | `5`     | Obóz bandytów — NPC w tle    |
-| `NPCTYPE_TAL_AMBIENT` | `6`     | Dolina — NPC w tle           |
-| `NPCTYPE_BL_MAIN`     | `7`     | Obóz bandytów — główny NPC   |
+| `NPCTYPE_OCAMBIENT`   | `3`     | Stary Obóz - NPC w tle (G1)  |
+| `NPCTYPE_OCMAIN`      | `4`     | Stary Obóz - główny NPC (G1) |
+| `NPCTYPE_BL_AMBIENT`  | `5`     | Obóz bandytów - NPC w tle    |
+| `NPCTYPE_TAL_AMBIENT` | `6`     | Dolina - NPC w tle           |
+| `NPCTYPE_BL_MAIN`     | `7`     | Obóz bandytów - główny NPC   |
 
 ## Taktyki walki (FAI\_)
 

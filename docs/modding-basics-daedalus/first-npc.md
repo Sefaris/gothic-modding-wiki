@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 2
 title: "My First NPC"
 description: "Creating your first non-player character in Gothic."
@@ -16,14 +16,14 @@ Before starting, make sure that:
 - You understand the [script structure](./script-structure.md)
 - You know what an instance and prototype are in Daedalus
 
-## The C_NPC Class — What Defines a Character?
+## The C_NPC Class - What Defines a Character?
 
 Every NPC in Gothic is an **instance** of the `C_NPC` class. The most important fields are:
 
 | Field           | Type        | Description                                              |
 | --------------- | ----------- | -------------------------------------------------------- |
 | `name`          | `string[5]` | NPC name (displayed in game)                             |
-| `guild`         | `int`       | Guild (e.g., `GIL_MIL` — militia, `GIL_OUT` — guildless) |
+| `guild`         | `int`       | Guild (e.g., `GIL_MIL` - militia, `GIL_OUT` - guildless) |
 | `id`            | `int`       | Unique NPC identifier                                    |
 | `voice`         | `int`       | Voice number (linked to audio files)                     |
 | `level`         | `int`       | Character level                                          |
@@ -73,8 +73,8 @@ prototype Npc_Default (C_NPC)
 | `attribute[ATR_MANA]`          | `10`                      | Starting mana                                                  |
 | `attribute[ATR_HITPOINTS_MAX]` | `40`                      | Maximum health                                                 |
 | `attribute[ATR_HITPOINTS]`     | `40`                      | Starting health                                                |
-| `HitChance[NPC_TALENT_*]`      | `0`                       | Hit chance per weapon type — 0% means NPC cannot fight with it |
-| `protection[PROT_*]`           | `0`                       | Protection against each damage type — 0 means no protection    |
+| `HitChance[NPC_TALENT_*]`      | `0`                       | Hit chance per weapon type - 0% means NPC cannot fight with it |
+| `protection[PROT_*]`           | `0`                       | Protection against each damage type - 0 means no protection    |
 | `damagetype`                   | `DAM_BLUNT`               | Default damage type dealt by the NPC                           |
 | `senses`                       | `SENSE_HEAR \| SENSE_SEE` | NPC can hear and see                                           |
 | `senses_range`                 | `PERC_DIST_ACTIVE_MAX`    | Maximum perception range                                       |
@@ -150,7 +150,7 @@ Naming convention: `BAU` (Bauer = farmer), `900` (unique ID), `Konrad` (name). I
 
 ## Daily Routine
 
-Every NPC needs a **daily routine** — a function that defines what they do at each hour:
+Every NPC needs a **daily routine** - a function that defines what they do at each hour:
 
 ```daedalus
 func void Rtn_Start_900 ()
