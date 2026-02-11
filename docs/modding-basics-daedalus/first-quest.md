@@ -40,10 +40,10 @@ var int MIS_Konrad_FindAxe;
 const string TOPIC_Konrad_FindAxe = "Konrad's Axe";
 ```
 
-| Symbol | Description |
-| ------ | ----------- |
-| `MIS_Konrad_FindAxe` | Mission state variable: `0` = not started, `LOG_RUNNING` = in progress, `LOG_SUCCESS` = completed, `LOG_FAILED` = failed |
-| `TOPIC_Konrad_FindAxe` | Quest log topic name |
+| Symbol                 | Description                                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `MIS_Konrad_FindAxe`   | Mission state variable: `0` = not started, `LOG_RUNNING` = in progress, `LOG_SUCCESS` = completed, `LOG_FAILED` = failed |
+| `TOPIC_Konrad_FindAxe` | Quest log topic name                                                                                                     |
 
 ## Step 2: Mission Item
 
@@ -64,10 +64,10 @@ instance ItMi_Topor_Konrada (C_Item)
 };
 ```
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
+| Field   | Value          | Description                              |
+| ------- | -------------- | ---------------------------------------- |
 | `flags` | `ITEM_MISSION` | Mission item — cannot be sold or dropped |
-| `value` | `0` | Not for sale |
+| `value` | `0`            | Not for sale                             |
 
 :::info
 The `ITEM_MISSION` flag prevents the item from being sold or dropped.
@@ -99,18 +99,18 @@ func void DIA_Konrad_EXIT_Info ()
 };
 ```
 
-| Field / Call | Description |
-| ------------ | ----------- |
-| `nr = 999` | Always at the very bottom of the dialog list |
-| `DIALOG_ENDE` | Built-in constant for "End" |
-| `return TRUE` | Exit option is always visible |
-| `AI_StopProcessInfos(self)` | Closes the dialog window |
+| Field / Call                | Description                                  |
+| --------------------------- | -------------------------------------------- |
+| `nr = 999`                  | Always at the very bottom of the dialog list |
+| `DIALOG_ENDE`               | Built-in constant for "End"                  |
+| `return TRUE`               | Exit option is always visible                |
+| `AI_StopProcessInfos(self)` | Closes the dialog window                     |
 
 ## Step 4: Dialog — Greeting (NPC Speaks First)
 
 When the player approaches Konrad for the first time:
 
-```daedalus
+````daedalus
 instance DIA_Konrad_Hallo (C_INFO)
 {
     npc         = BAU_900_Konrad;
@@ -142,7 +142,7 @@ func void DIA_Konrad_Hallo_Info ()
     AI_Output (other, self, "DIA_Konrad_Hallo_15_01"); //What do you want?
     AI_Output (self, other, "DIA_Konrad_Hallo_01_02"); //I lost my axe somewhere in the forest. Will you help me find it?
 };
-```
+````
 
 `self` = NPC (Konrad), `other` = player.
 
@@ -241,12 +241,12 @@ func void DIA_Konrad_Topor_Oddaj_Info ()
 };
 ```
 
-| Call | Description |
-| ---- | ----------- |
-| `B_GiveInvItems(other, self, ItMi_Topor_Konrada, 1)` | Player gives the axe to Konrad |
-| `B_GiveInvItems(self, other, ItMi_Gold, 150)` | Konrad gives 150 gold to the player |
-| `B_GivePlayerXP(100)` | Player receives 100 XP |
-| `MIS_Konrad_FindAxe = LOG_SUCCESS` | Marks quest as completed |
+| Call                                                 | Description                         |
+| ---------------------------------------------------- | ----------------------------------- |
+| `B_GiveInvItems(other, self, ItMi_Topor_Konrada, 1)` | Player gives the axe to Konrad      |
+| `B_GiveInvItems(self, other, ItMi_Gold, 150)`        | Konrad gives 150 gold to the player |
+| `B_GivePlayerXP(100)`                                | Player receives 100 XP              |
+| `MIS_Konrad_FindAxe = LOG_SUCCESS`                   | Marks quest as completed            |
 
 ## Step 7: Placing the Item in the World
 

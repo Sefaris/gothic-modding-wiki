@@ -117,20 +117,20 @@ instance BAU_900_Konrad (Npc_Default)
 };
 ```
 
-| Pole / Wywołanie | Opis |
-| ---------------- | ---- |
-| `guild = GIL_OUT` | Bezgildyjny (rolnik) |
-| `id = 900` | Unikalny numer identyfikacyjny |
-| `voice = 90` | Numer głosu (powiązany z plikami audio) |
-| `flags = 0` | `0` = normalny, `NPC_FLAG_IMMORTAL` = nieśmiertelny |
-| `npctype = NPCTYPE_MAIN` | Ważna postać (związana z questami) |
-| `fight_tactic = FAI_HUMAN_COWARD` | Ucieka przed walką |
-| `EquipItem(self, ItMw_1h_Bau_Axe)` | Zakłada topór farmera |
-| `CreateInvItems(self, ItMi_Gold, 25)` | 25 sztuk złota w ekwipunku |
-| `CreateInvItems(self, ItFo_Apple, 3)` | 3 jabłka w ekwipunku |
-| `Mdl_SetModelFatness(self, 1)` | Tusza postaci |
-| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Zrelaksowana animacja |
-| `B_SetFightSkills(self, 15)` | 15% szans trafienia |
+| Pole / Wywołanie                                  | Opis                                                |
+| ------------------------------------------------- | --------------------------------------------------- |
+| `guild = GIL_OUT`                                 | Bezgildyjny (rolnik)                                |
+| `id = 900`                                        | Unikalny numer identyfikacyjny                      |
+| `voice = 90`                                      | Numer głosu (powiązany z plikami audio)             |
+| `flags = 0`                                       | `0` = normalny, `NPC_FLAG_IMMORTAL` = nieśmiertelny |
+| `npctype = NPCTYPE_MAIN`                          | Ważna postać (związana z questami)                  |
+| `fight_tactic = FAI_HUMAN_COWARD`                 | Ucieka przed walką                                  |
+| `EquipItem(self, ItMw_1h_Bau_Axe)`                | Zakłada topór farmera                               |
+| `CreateInvItems(self, ItMi_Gold, 25)`             | 25 sztuk złota w ekwipunku                          |
+| `CreateInvItems(self, ItFo_Apple, 3)`             | 3 jabłka w ekwipunku                                |
+| `Mdl_SetModelFatness(self, 1)`                    | Tusza postaci                                       |
+| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Zrelaksowana animacja                               |
+| `B_SetFightSkills(self, 15)`                      | 15% szans trafienia                                 |
 
 :::tip
 Konwencja nazewnictwa: `BAU` (Bauer = farmer), `900` (unikalne ID), `Konrad` (imię). W oryginalnych skryptach Gothic każda gildia ma swój prefix.

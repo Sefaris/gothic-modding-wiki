@@ -156,19 +156,19 @@ instance PFX_MySmoke (C_ParticleFX)
 };
 ```
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
-| `dirAngleElev` | `90` | Upward direction |
-| `dirAngleElevVar` | `15` | ±15° random variance |
-| `dirAngleHeadVar` | `180` | Spread sideways |
-| `velAvg` | `0.02` | Slow speed |
-| `flyGravity_S` | `"0 0.0001 0"` | Slightly upward (smoke rises) |
-| `visOrientation_S` | `"NONE"` | Billboard facing camera |
-| `visTexColorStart_S` | `"150 150 150"` | Gray |
-| `visTexColorEnd_S` | `"80 80 80"` | Darkens over time |
-| `visSizeEndScale` | `5` | Grows 5× |
-| `visAlphaFunc_S` | `"BLEND"` | Standard blending |
-| `visAlphaEnd` | `0` | Fades out completely |
+| Field                | Value           | Description                   |
+| -------------------- | --------------- | ----------------------------- |
+| `dirAngleElev`       | `90`            | Upward direction              |
+| `dirAngleElevVar`    | `15`            | ±15° random variance          |
+| `dirAngleHeadVar`    | `180`           | Spread sideways               |
+| `velAvg`             | `0.02`          | Slow speed                    |
+| `flyGravity_S`       | `"0 0.0001 0"`  | Slightly upward (smoke rises) |
+| `visOrientation_S`   | `"NONE"`        | Billboard facing camera       |
+| `visTexColorStart_S` | `"150 150 150"` | Gray                          |
+| `visTexColorEnd_S`   | `"80 80 80"`    | Darkens over time             |
+| `visSizeEndScale`    | `5`             | Grows 5×                      |
+| `visAlphaFunc_S`     | `"BLEND"`       | Standard blending             |
+| `visAlphaEnd`        | `0`             | Fades out completely          |
 
 :::tip
 **`visAlphaFunc_S`** — blending modes:
@@ -227,15 +227,15 @@ instance PFX_MyFire (C_ParticleFX)
 };
 ```
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
-| `shpDim_S` | `"15"` | Circle radius 15 units |
-| `visTexAniFPS` | `8` | Texture animation speed |
-| `visTexAniIsLooping` | `1` | Animation loops |
-| `visTexColorStart_S` | `"255 255 255"` | White (overexposed center) |
-| `visTexColorEnd_S` | `"255 100 30"` | Orange (flame edges) |
-| `visSizeEndScale` | `4` | Grows 4× |
-| `visAlphaFunc_S` | `"ADD"` | Additive blending (glowing) |
+| Field                | Value           | Description                 |
+| -------------------- | --------------- | --------------------------- |
+| `shpDim_S`           | `"15"`          | Circle radius 15 units      |
+| `visTexAniFPS`       | `8`             | Texture animation speed     |
+| `visTexAniIsLooping` | `1`             | Animation loops             |
+| `visTexColorStart_S` | `"255 255 255"` | White (overexposed center)  |
+| `visTexColorEnd_S`   | `"255 100 30"`  | Orange (flame edges)        |
+| `visSizeEndScale`    | `4`             | Grows 4×                    |
+| `visAlphaFunc_S`     | `"ADD"`         | Additive blending (glowing) |
 
 ## Example 3: Sparks
 
@@ -284,18 +284,18 @@ instance PFX_MySparks (C_ParticleFX)
 };
 ```
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
-| `ppsScaleKeys_S` | `"1 0"` | Instant burst, then nothing |
-| `ppsIsLooping` | `0` | One-shot (not looping) |
-| `dirAngleHeadVar` | `180` | Full 360° scatter |
-| `dirAngleElev` | `45` | Slightly upward |
-| `dirAngleElevVar` | `45` | Wide variance |
-| `velAvg` | `0.15` | Fast |
-| `flyCollDet_B` | `1` | Collides with world geometry |
-| `visTexColorStart_S` | `"255 220 100"` | Yellow |
-| `visTexColorEnd_S` | `"255 80 20"` | Dark orange |
-| `visSizeEndScale` | `0.5` | Shrinks over time |
+| Field                | Value           | Description                  |
+| -------------------- | --------------- | ---------------------------- |
+| `ppsScaleKeys_S`     | `"1 0"`         | Instant burst, then nothing  |
+| `ppsIsLooping`       | `0`             | One-shot (not looping)       |
+| `dirAngleHeadVar`    | `180`           | Full 360° scatter            |
+| `dirAngleElev`       | `45`            | Slightly upward              |
+| `dirAngleElevVar`    | `45`            | Wide variance                |
+| `velAvg`             | `0.15`          | Fast                         |
+| `flyCollDet_B`       | `1`             | Collides with world geometry |
+| `visTexColorStart_S` | `"255 220 100"` | Yellow                       |
+| `visTexColorEnd_S`   | `"255 80 20"`   | Dark orange                  |
+| `visSizeEndScale`    | `0.5`           | Shrinks over time            |
 
 ## Example 4: Snow
 
@@ -347,12 +347,12 @@ instance PFX_MySnow (C_ParticleFX)
 };
 ```
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
+| Field            | Value       | Description                 |
+| ---------------- | ----------- | --------------------------- |
 | `shpOffsetVec_S` | `"0 500 0"` | 500 units above the emitter |
-| `shpDim_S` | `"300"` | Circle radius 300 |
-| `dirAngleHead` | `20` | Slight wind direction |
-| `dirAngleElev` | `-89` | Nearly straight down |
+| `shpDim_S`       | `"300"`     | Circle radius 300           |
+| `dirAngleHead`   | `20`        | Slight wind direction       |
+| `dirAngleElev`   | `-89`       | Nearly straight down        |
 
 ## Example 5: Blood (Child Emitters)
 
@@ -411,19 +411,19 @@ instance PFX_MyBlood_Splat (C_ParticleFX)
 
 **PFX_MyBlood:**
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
+| Field           | Value                 | Description                        |
+| --------------- | --------------------- | ---------------------------------- |
 | `ppsCreateEm_S` | `"PFX_MyBlood_Splat"` | Spawns a child effect per particle |
-| `flyGravity_S` | `"0 -0.0001 0"` | Falls downward |
+| `flyGravity_S`  | `"0 -0.0001 0"`       | Falls downward                     |
 
 **PFX_MyBlood_Splat:**
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
-| `ppsIsLooping` | `0` | Single splat |
-| `dirMode_S` | `"NONE"` | No movement |
-| `lspPartAvg` | `3000` | Lasts 3 seconds |
-| `visAlphaEnd` | `0` | Fades out |
+| Field          | Value    | Description     |
+| -------------- | -------- | --------------- |
+| `ppsIsLooping` | `0`      | Single splat    |
+| `dirMode_S`    | `"NONE"` | No movement     |
+| `lspPartAvg`   | `3000`   | Lasts 3 seconds |
+| `visAlphaEnd`  | `0`      | Fades out       |
 
 :::info
 **`ppsCreateEm_S`** — each particle from the main emitter becomes a source for a new child effect. This is a powerful tool but expensive — use carefully to avoid overloading the engine.

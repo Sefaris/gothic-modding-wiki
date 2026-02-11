@@ -65,19 +65,19 @@ prototype Npc_Default (C_NPC)
 };
 ```
 
-| Field | Default | Description |
-| ----- | ------- | ----------- |
-| `attribute[ATR_STRENGTH]` | `10` | Base strength |
-| `attribute[ATR_DEXTERITY]` | `10` | Base dexterity |
-| `attribute[ATR_MANA_MAX]` | `10` | Maximum mana |
-| `attribute[ATR_MANA]` | `10` | Starting mana |
-| `attribute[ATR_HITPOINTS_MAX]` | `40` | Maximum health |
-| `attribute[ATR_HITPOINTS]` | `40` | Starting health |
-| `HitChance[NPC_TALENT_*]` | `0` | Hit chance per weapon type — 0% means NPC cannot fight with it |
-| `protection[PROT_*]` | `0` | Protection against each damage type — 0 means no protection |
-| `damagetype` | `DAM_BLUNT` | Default damage type dealt by the NPC |
-| `senses` | `SENSE_HEAR \| SENSE_SEE` | NPC can hear and see |
-| `senses_range` | `PERC_DIST_ACTIVE_MAX` | Maximum perception range |
+| Field                          | Default                   | Description                                                    |
+| ------------------------------ | ------------------------- | -------------------------------------------------------------- |
+| `attribute[ATR_STRENGTH]`      | `10`                      | Base strength                                                  |
+| `attribute[ATR_DEXTERITY]`     | `10`                      | Base dexterity                                                 |
+| `attribute[ATR_MANA_MAX]`      | `10`                      | Maximum mana                                                   |
+| `attribute[ATR_MANA]`          | `10`                      | Starting mana                                                  |
+| `attribute[ATR_HITPOINTS_MAX]` | `40`                      | Maximum health                                                 |
+| `attribute[ATR_HITPOINTS]`     | `40`                      | Starting health                                                |
+| `HitChance[NPC_TALENT_*]`      | `0`                       | Hit chance per weapon type — 0% means NPC cannot fight with it |
+| `protection[PROT_*]`           | `0`                       | Protection against each damage type — 0 means no protection    |
+| `damagetype`                   | `DAM_BLUNT`               | Default damage type dealt by the NPC                           |
+| `senses`                       | `SENSE_HEAR \| SENSE_SEE` | NPC can hear and see                                           |
+| `senses_range`                 | `PERC_DIST_ACTIVE_MAX`    | Maximum perception range                                       |
 
 :::info
 The prototype sets **default values**. Each NPC instance can override any of them.
@@ -120,20 +120,20 @@ instance BAU_900_Konrad (Npc_Default)
 };
 ```
 
-| Field / Call | Description |
-| ------------ | ----------- |
-| `guild = GIL_OUT` | Guildless (farmer) |
-| `id = 900` | Unique NPC identifier |
-| `voice = 90` | Voice number (linked to audio files) |
-| `flags = 0` | `0` = normal, `NPC_FLAG_IMMORTAL` = immortal |
-| `npctype = NPCTYPE_MAIN` | Important character (quest-relevant) |
-| `fight_tactic = FAI_HUMAN_COWARD` | Flees from combat |
-| `EquipItem(self, ItMw_1h_Bau_Axe)` | Equips a farmer's axe |
-| `CreateInvItems(self, ItMi_Gold, 25)` | 25 gold coins in inventory |
-| `CreateInvItems(self, ItFo_Apple, 3)` | 3 apples in inventory |
-| `Mdl_SetModelFatness(self, 1)` | Body fatness |
-| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Relaxed animation overlay |
-| `B_SetFightSkills(self, 15)` | 15% hit chance |
+| Field / Call                                      | Description                                  |
+| ------------------------------------------------- | -------------------------------------------- |
+| `guild = GIL_OUT`                                 | Guildless (farmer)                           |
+| `id = 900`                                        | Unique NPC identifier                        |
+| `voice = 90`                                      | Voice number (linked to audio files)         |
+| `flags = 0`                                       | `0` = normal, `NPC_FLAG_IMMORTAL` = immortal |
+| `npctype = NPCTYPE_MAIN`                          | Important character (quest-relevant)         |
+| `fight_tactic = FAI_HUMAN_COWARD`                 | Flees from combat                            |
+| `EquipItem(self, ItMw_1h_Bau_Axe)`                | Equips a farmer's axe                        |
+| `CreateInvItems(self, ItMi_Gold, 25)`             | 25 gold coins in inventory                   |
+| `CreateInvItems(self, ItFo_Apple, 3)`             | 3 apples in inventory                        |
+| `Mdl_SetModelFatness(self, 1)`                    | Body fatness                                 |
+| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Relaxed animation overlay                    |
+| `B_SetFightSkills(self, 15)`                      | 15% hit chance                               |
 
 :::tip
 Naming convention: `BAU` (Bauer = farmer), `900` (unique ID), `Konrad` (name). In the original Gothic scripts, each guild has its own prefix.
@@ -153,12 +153,12 @@ func void Rtn_Start_900 ()
 };
 ```
 
-| Time | Function | Waypoint | Activity |
-| ---- | -------- | -------- | -------- |
-| 07:00–12:00 | `TA_Stand_ArmsCrossed` | `NW_CITY_WELL_01` | Stands by the well |
-| 12:00–13:00 | `TA_Sit_Bench` | `NW_CITY_BENCH_01` | Eats a meal |
-| 13:00–20:00 | `TA_Smalltalk` | `NW_FARM1_PATH_01` | Works at the farm |
-| 20:00–07:00 | `TA_Sleep` | `NW_FARM1_BED_01` | Sleeps |
+| Time        | Function               | Waypoint           | Activity           |
+| ----------- | ---------------------- | ------------------ | ------------------ |
+| 07:00–12:00 | `TA_Stand_ArmsCrossed` | `NW_CITY_WELL_01`  | Stands by the well |
+| 12:00–13:00 | `TA_Sit_Bench`         | `NW_CITY_BENCH_01` | Eats a meal        |
+| 13:00–20:00 | `TA_Smalltalk`         | `NW_FARM1_PATH_01` | Works at the farm  |
+| 20:00–07:00 | `TA_Sleep`             | `NW_FARM1_BED_01`  | Sleeps             |
 
 :::warning
 Waypoints (e.g., `"NW_CITY_WELL_01"`) must exist in the game world (`.zen` file). If you use a non-existent waypoint, the NPC will appear at the `(0, 0, 0)` point.

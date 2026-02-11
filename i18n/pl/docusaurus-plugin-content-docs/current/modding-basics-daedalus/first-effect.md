@@ -156,19 +156,19 @@ instance PFX_MojDym (C_ParticleFX)
 };
 ```
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
-| `dirAngleElev` | `90` | Kierunek w górę |
-| `dirAngleElevVar` | `15` | ±15° losowe odchylenie |
-| `dirAngleHeadVar` | `180` | Rozrzut na boki |
-| `velAvg` | `0.02` | Powolna prędkość |
-| `flyGravity_S` | `"0 0.0001 0"` | Lekko w górę (dym unosi się) |
-| `visOrientation_S` | `"NONE"` | Billboard skierowany do kamery |
-| `visTexColorStart_S` | `"150 150 150"` | Szary |
-| `visTexColorEnd_S` | `"80 80 80"` | Ciemniejszy z czasem |
-| `visSizeEndScale` | `5` | Rośnie 5× |
-| `visAlphaFunc_S` | `"BLEND"` | Zwykłe przenikanie |
-| `visAlphaEnd` | `0` | Zanika całkowicie |
+| Pole                 | Wartość         | Opis                           |
+| -------------------- | --------------- | ------------------------------ |
+| `dirAngleElev`       | `90`            | Kierunek w górę                |
+| `dirAngleElevVar`    | `15`            | ±15° losowe odchylenie         |
+| `dirAngleHeadVar`    | `180`           | Rozrzut na boki                |
+| `velAvg`             | `0.02`          | Powolna prędkość               |
+| `flyGravity_S`       | `"0 0.0001 0"`  | Lekko w górę (dym unosi się)   |
+| `visOrientation_S`   | `"NONE"`        | Billboard skierowany do kamery |
+| `visTexColorStart_S` | `"150 150 150"` | Szary                          |
+| `visTexColorEnd_S`   | `"80 80 80"`    | Ciemniejszy z czasem           |
+| `visSizeEndScale`    | `5`             | Rośnie 5×                      |
+| `visAlphaFunc_S`     | `"BLEND"`       | Zwykłe przenikanie             |
+| `visAlphaEnd`        | `0`             | Zanika całkowicie              |
 
 :::tip
 **`visAlphaFunc_S`** — tryby blendingu:
@@ -227,15 +227,15 @@ instance PFX_MojOgien (C_ParticleFX)
 };
 ```
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
-| `shpDim_S` | `"15"` | Promień koła: 15 jednostek |
-| `visTexAniFPS` | `8` | Prędkość animacji tekstury |
-| `visTexAniIsLooping` | `1` | Animacja zapętlona |
-| `visTexColorStart_S` | `"255 255 255"` | Biały (prześwietlony środek) |
-| `visTexColorEnd_S` | `"255 100 30"` | Pomarańczowy (krawędzie) |
-| `visSizeEndScale` | `4` | Rośnie 4× |
-| `visAlphaFunc_S` | `"ADD"` | Addytywne blending (świecące) |
+| Pole                 | Wartość         | Opis                          |
+| -------------------- | --------------- | ----------------------------- |
+| `shpDim_S`           | `"15"`          | Promień koła: 15 jednostek    |
+| `visTexAniFPS`       | `8`             | Prędkość animacji tekstury    |
+| `visTexAniIsLooping` | `1`             | Animacja zapętlona            |
+| `visTexColorStart_S` | `"255 255 255"` | Biały (prześwietlony środek)  |
+| `visTexColorEnd_S`   | `"255 100 30"`  | Pomarańczowy (krawędzie)      |
+| `visSizeEndScale`    | `4`             | Rośnie 4×                     |
+| `visAlphaFunc_S`     | `"ADD"`         | Addytywne blending (świecące) |
 
 ## Przykład 3: Iskry
 
@@ -284,18 +284,18 @@ instance PFX_MojeIskry (C_ParticleFX)
 };
 ```
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
-| `ppsScaleKeys_S` | `"1 0"` | Natychmiastowy wybuch, potem nic |
-| `ppsIsLooping` | `0` | Jednorazowe (bez pętli) |
-| `dirAngleHeadVar` | `180` | Pełny rozrzut 360° |
-| `dirAngleElev` | `45` | Lekko w górę |
-| `dirAngleElevVar` | `45` | Duży rozrzut |
-| `velAvg` | `0.15` | Szybkie |
-| `flyCollDet_B` | `1` | Kolizje z geometrią świata |
-| `visTexColorStart_S` | `"255 220 100"` | Żółty |
-| `visTexColorEnd_S` | `"255 80 20"` | Ciemny pomarańcz |
-| `visSizeEndScale` | `0.5` | Zmniejszają się z czasem |
+| Pole                 | Wartość         | Opis                             |
+| -------------------- | --------------- | -------------------------------- |
+| `ppsScaleKeys_S`     | `"1 0"`         | Natychmiastowy wybuch, potem nic |
+| `ppsIsLooping`       | `0`             | Jednorazowe (bez pętli)          |
+| `dirAngleHeadVar`    | `180`           | Pełny rozrzut 360°               |
+| `dirAngleElev`       | `45`            | Lekko w górę                     |
+| `dirAngleElevVar`    | `45`            | Duży rozrzut                     |
+| `velAvg`             | `0.15`          | Szybkie                          |
+| `flyCollDet_B`       | `1`             | Kolizje z geometrią świata       |
+| `visTexColorStart_S` | `"255 220 100"` | Żółty                            |
+| `visTexColorEnd_S`   | `"255 80 20"`   | Ciemny pomarańcz                 |
+| `visSizeEndScale`    | `0.5`           | Zmniejszają się z czasem         |
 
 ## Przykład 4: Śnieg
 
@@ -347,12 +347,12 @@ instance PFX_MojSnieg (C_ParticleFX)
 };
 ```
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
+| Pole             | Wartość     | Opis                       |
+| ---------------- | ----------- | -------------------------- |
 | `shpOffsetVec_S` | `"0 500 0"` | 500 jednostek nad emiterem |
-| `shpDim_S` | `"300"` | Promień okręgu: 300 |
-| `dirAngleHead` | `20` | Lekki wiatr boczny |
-| `dirAngleElev` | `-89` | Prawie prosto w dół |
+| `shpDim_S`       | `"300"`     | Promień okręgu: 300        |
+| `dirAngleHead`   | `20`        | Lekki wiatr boczny         |
+| `dirAngleElev`   | `-89`       | Prawie prosto w dół        |
 
 ## Przykład 5: Krew (efekt potomny)
 
@@ -411,19 +411,19 @@ instance PFX_MojaKrew_Plama (C_ParticleFX)
 
 **PFX_MojaKrew:**
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
+| Pole            | Wartość                | Opis                               |
+| --------------- | ---------------------- | ---------------------------------- |
 | `ppsCreateEm_S` | `"PFX_MojaKrew_Plama"` | Tworzy efekt potomny na cząsteczkę |
-| `flyGravity_S` | `"0 -0.0001 0"` | Spada w dół |
+| `flyGravity_S`  | `"0 -0.0001 0"`        | Spada w dół                        |
 
 **PFX_MojaKrew_Plama:**
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
-| `ppsIsLooping` | `0` | Jedna plama |
-| `dirMode_S` | `"NONE"` | Bez ruchu |
-| `lspPartAvg` | `3000` | Trwa 3 sekundy |
-| `visAlphaEnd` | `0` | Zanika |
+| Pole           | Wartość  | Opis           |
+| -------------- | -------- | -------------- |
+| `ppsIsLooping` | `0`      | Jedna plama    |
+| `dirMode_S`    | `"NONE"` | Bez ruchu      |
+| `lspPartAvg`   | `3000`   | Trwa 3 sekundy |
+| `visAlphaEnd`  | `0`      | Zanika         |
 
 :::info
 **`ppsCreateEm_S`** — każda cząsteczka z głównego emitera staje się źródłem nowego efektu potomnego. To potężne narzędzie, ale kosztowne — używaj ostrożnie, by nie obciążyć silnika.

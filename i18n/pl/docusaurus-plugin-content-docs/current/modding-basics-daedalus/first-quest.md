@@ -66,10 +66,10 @@ instance ItMi_Topor_Konrada (C_Item)
 };
 ```
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
+| Pole    | Wartość        | Opis                                                |
+| ------- | -------------- | --------------------------------------------------- |
 | `flags` | `ITEM_MISSION` | Przedmiot misyjny (nie można sprzedać ani wyrzucić) |
-| `value` | `0` | Nie do sprzedaży |
+| `value` | `0`            | Nie do sprzedaży                                    |
 
 :::info
 Flaga `ITEM_MISSION` sprawia, że przedmiot nie może być sprzedany ani wyrzucony.
@@ -101,12 +101,12 @@ func void DIA_Konrad_EXIT_Info ()
 };
 ```
 
-| Pole / Wywołanie | Opis |
-| ---------------- | ---- |
-| `nr = 999` | Zawsze na samym dole listy dialogowej |
-| `DIALOG_ENDE` | Wbudowana stała = "Koniec" |
-| `return TRUE` | Opcja zawsze widoczna |
-| `AI_StopProcessInfos(self)` | Zamyka okno dialogu |
+| Pole / Wywołanie            | Opis                                  |
+| --------------------------- | ------------------------------------- |
+| `nr = 999`                  | Zawsze na samym dole listy dialogowej |
+| `DIALOG_ENDE`               | Wbudowana stała = "Koniec"            |
+| `return TRUE`               | Opcja zawsze widoczna                 |
+| `AI_StopProcessInfos(self)` | Zamyka okno dialogu                   |
 
 ## Krok 4: Dialog — powitanie (NPC mówi pierwszy)
 

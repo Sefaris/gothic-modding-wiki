@@ -80,17 +80,17 @@ instance ItMw_Miecz_Konrada (C_Item)
 };
 ```
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
-| `mainflag` | `ITEM_KAT_NF` | Kategoria: broń biała |
-| `flags` | `ITEM_SWD` | Miecz jednoręczny |
-| `damageTotal` | `35` | 35 punktów obrażeń |
-| `damagetype` | `DAM_EDGE` | Obrażenia sieczne |
-| `range` | `100` | Zasięg ataku |
-| `cond_atr[2]` | `ATR_STRENGTH` | Wymaga atrybutu siły |
-| `cond_value[2]` | `20` | Minimum 20 siły |
-| `value` | `250` | Wartość 250 złota |
-| `TEXT/COUNT` | — | Linie tooltipa w ekwipunku |
+| Pole            | Wartość        | Opis                       |
+| --------------- | -------------- | -------------------------- |
+| `mainflag`      | `ITEM_KAT_NF`  | Kategoria: broń biała      |
+| `flags`         | `ITEM_SWD`     | Miecz jednoręczny          |
+| `damageTotal`   | `35`           | 35 punktów obrażeń         |
+| `damagetype`    | `DAM_EDGE`     | Obrażenia sieczne          |
+| `range`         | `100`          | Zasięg ataku               |
+| `cond_atr[2]`   | `ATR_STRENGTH` | Wymaga atrybutu siły       |
+| `cond_value[2]` | `20`           | Minimum 20 siły            |
+| `value`         | `250`          | Wartość 250 złota          |
+| `TEXT/COUNT`    | —              | Linie tooltipa w ekwipunku |
 
 :::info
 Pole `flags` określa typ broni: `ITEM_SWD` (miecz 1H), `ITEM_AXE` (topór 1H), `ITEM_2HD_SWD` (miecz 2H), `ITEM_2HD_AXE` (topór 2H).
@@ -130,14 +130,14 @@ func void Use_ItPo_Zdrowie_Konrada ()
 };
 ```
 
-| Pole | Wartość | Opis |
-| ---- | ------- | ---- |
-| `flags` | `ITEM_MULTI` | Przedmiot stackowalny |
-| `material` | `MAT_GLAS` | Szkło (dźwięk przy podnoszeniu) |
-| `scemeName` | `"POTIONFAST"` | Animacja picia |
-| `effect` | `"SPELLFX_HEALTHPOTION"` | Efekt wizualny przy użyciu |
-| `TEXT[1]/COUNT[1]` | `+100 HP` | Tooltip: bonus do zdrowia |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | — | Przywraca 100 HP przy użyciu |
+| Pole                                            | Wartość                  | Opis                            |
+| ----------------------------------------------- | ------------------------ | ------------------------------- |
+| `flags`                                         | `ITEM_MULTI`             | Przedmiot stackowalny           |
+| `material`                                      | `MAT_GLAS`               | Szkło (dźwięk przy podnoszeniu) |
+| `scemeName`                                     | `"POTIONFAST"`           | Animacja picia                  |
+| `effect`                                        | `"SPELLFX_HEALTHPOTION"` | Efekt wizualny przy użyciu      |
+| `TEXT[1]/COUNT[1]`                              | `+100 HP`                | Tooltip: bonus do zdrowia       |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                        | Przywraca 100 HP przy użyciu    |
 
 :::tip
 `ITEM_MULTI` sprawia, że przedmioty tego samego typu stackują się w ekwipunku (zamiast zajmować osobne sloty).
@@ -180,12 +180,12 @@ CreateInvItems (self, ItFo_Chleb_Konrada, 3);
 CreateInvItems (self, ItMi_Gold, 100);
 ```
 
-| Wywołanie | Opis |
-| --------- | ---- |
-| `EquipItem(self, ItMw_Miecz_Konrada)` | Zakłada przedmiot (broń/zbroję) |
-| `CreateInvItems(self, ItPo_Zdrowie_Konrada, 5)` | 5 mikstur w plecaku |
-| `CreateInvItems(self, ItFo_Chleb_Konrada, 3)` | 3 chleby w plecaku |
-| `CreateInvItems(self, ItMi_Gold, 100)` | 100 sztuk złota |
+| Wywołanie                                       | Opis                            |
+| ----------------------------------------------- | ------------------------------- |
+| `EquipItem(self, ItMw_Miecz_Konrada)`           | Zakłada przedmiot (broń/zbroję) |
+| `CreateInvItems(self, ItPo_Zdrowie_Konrada, 5)` | 5 mikstur w plecaku             |
+| `CreateInvItems(self, ItFo_Chleb_Konrada, 3)`   | 3 chleby w plecaku              |
+| `CreateInvItems(self, ItMi_Gold, 100)`          | 100 sztuk złota                 |
 
 :::warning
 `EquipItem` automatycznie **zakłada** przedmiot (NPC będzie trzymał broń lub nosił zbroję). `CreateInvItems` tylko dodaje do ekwipunku.

@@ -74,17 +74,17 @@ instance ItMw_Miecz_Konrada (C_Item)
 };
 ```
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
-| `mainflag` | `ITEM_KAT_NF` | Melee weapon category |
-| `flags` | `ITEM_SWD` | One-handed sword |
-| `damageTotal` | `35` | 35 damage points |
-| `damagetype` | `DAM_EDGE` | Edge (slashing) damage |
-| `range` | `100` | Attack range |
-| `cond_atr[2]` | `ATR_STRENGTH` | Requires strength attribute |
-| `cond_value[2]` | `20` | Minimum 20 strength |
-| `value` | `250` | Worth 250 gold |
-| `TEXT/COUNT` | — | Tooltip lines shown in inventory |
+| Field           | Value          | Description                      |
+| --------------- | -------------- | -------------------------------- |
+| `mainflag`      | `ITEM_KAT_NF`  | Melee weapon category            |
+| `flags`         | `ITEM_SWD`     | One-handed sword                 |
+| `damageTotal`   | `35`           | 35 damage points                 |
+| `damagetype`    | `DAM_EDGE`     | Edge (slashing) damage           |
+| `range`         | `100`          | Attack range                     |
+| `cond_atr[2]`   | `ATR_STRENGTH` | Requires strength attribute      |
+| `cond_value[2]` | `20`           | Minimum 20 strength              |
+| `value`         | `250`          | Worth 250 gold                   |
+| `TEXT/COUNT`    | —              | Tooltip lines shown in inventory |
 
 :::info
 The `flags` field determines the weapon type: `ITEM_SWD` (1H sword), `ITEM_AXE` (1H axe), `ITEM_2HD_SWD` (2H sword), `ITEM_2HD_AXE` (2H axe).
@@ -120,14 +120,14 @@ func void Use_ItPo_Zdrowie_Konrada ()
 };
 ```
 
-| Field | Value | Description |
-| ----- | ----- | ----------- |
-| `flags` | `ITEM_MULTI` | Stackable item |
-| `material` | `MAT_GLAS` | Glass (affects pickup sound) |
-| `scemeName` | `"POTIONFAST"` | Drinking animation |
-| `effect` | `"SPELLFX_HEALTHPOTION"` | Visual effect on use |
-| `TEXT[1]/COUNT[1]` | `+100 HP` | Tooltip: health bonus |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | — | Restores 100 HP on use |
+| Field                                           | Value                    | Description                  |
+| ----------------------------------------------- | ------------------------ | ---------------------------- |
+| `flags`                                         | `ITEM_MULTI`             | Stackable item               |
+| `material`                                      | `MAT_GLAS`               | Glass (affects pickup sound) |
+| `scemeName`                                     | `"POTIONFAST"`           | Drinking animation           |
+| `effect`                                        | `"SPELLFX_HEALTHPOTION"` | Visual effect on use         |
+| `TEXT[1]/COUNT[1]`                              | `+100 HP`                | Tooltip: health bonus        |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                        | Restores 100 HP on use       |
 
 :::tip
 `ITEM_MULTI` makes items of the same type stack in the inventory (instead of taking up separate slots).
@@ -170,12 +170,12 @@ CreateInvItems (self, ItFo_Chleb_Konrada, 3);
 CreateInvItems (self, ItMi_Gold, 100);
 ```
 
-| Call | Description |
-| ---- | ----------- |
-| `EquipItem(self, ItMw_Miecz_Konrada)` | Equips the item (weapon/armor) |
-| `CreateInvItems(self, ItPo_Zdrowie_Konrada, 5)` | 5 potions in backpack |
-| `CreateInvItems(self, ItFo_Chleb_Konrada, 3)` | 3 bread loaves in backpack |
-| `CreateInvItems(self, ItMi_Gold, 100)` | 100 gold |
+| Call                                            | Description                    |
+| ----------------------------------------------- | ------------------------------ |
+| `EquipItem(self, ItMw_Miecz_Konrada)`           | Equips the item (weapon/armor) |
+| `CreateInvItems(self, ItPo_Zdrowie_Konrada, 5)` | 5 potions in backpack          |
+| `CreateInvItems(self, ItFo_Chleb_Konrada, 3)`   | 3 bread loaves in backpack     |
+| `CreateInvItems(self, ItMi_Gold, 100)`          | 100 gold                       |
 
 :::warning
 `EquipItem` automatically **equips** the item (the NPC will hold the weapon or wear the armor). `CreateInvItems` only adds to the inventory.
