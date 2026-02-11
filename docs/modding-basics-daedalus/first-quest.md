@@ -35,17 +35,15 @@ Each dialog option is an instance of the `C_INFO` class:
 First, define a variable to track quest progress. Add it to the mission constants file (e.g., `Log_Constants.d`):
 
 ```daedalus
-// Mission states:
-// 0             = not started
-// LOG_RUNNING   = in progress
-// LOG_SUCCESS   = completed successfully
-// LOG_FAILED    = failed
-
 var int MIS_Konrad_FindAxe;
 
-// Quest log topic name
 const string TOPIC_Konrad_FindAxe = "Konrad's Axe";
 ```
+
+| Symbol | Description |
+| ------ | ----------- |
+| `MIS_Konrad_FindAxe` | Mission state variable: `0` = not started, `LOG_RUNNING` = in progress, `LOG_SUCCESS` = completed, `LOG_FAILED` = failed |
+| `TOPIC_Konrad_FindAxe` | Quest log topic name |
 
 ## Step 2: Mission Item
 
@@ -56,8 +54,8 @@ instance ItMi_Topor_Konrada (C_Item)
 {
     name      = "Konrad's Old Axe";
     mainflag  = ITEM_KAT_NONE;
-    flags     = ITEM_MISSION;           // mission item
-    value     = 0;                      // not for sale
+    flags     = ITEM_MISSION;
+    value     = 0;
     visual    = "ItMw_010_1h_misc_axe_01.3DS";
     material  = MAT_WOOD;
 
@@ -65,6 +63,11 @@ instance ItMi_Topor_Konrada (C_Item)
     TEXT[5]     = "Mission Item";
 };
 ```
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `flags` | `ITEM_MISSION` | Mission item — cannot be sold or dropped |
+| `value` | `0` | Not for sale |
 
 :::info
 The `ITEM_MISSION` flag prevents the item from being sold or dropped.
@@ -75,27 +78,33 @@ The `ITEM_MISSION` flag prevents the item from being sold or dropped.
 Every NPC must have an **exit conversation** option. This is a standard element:
 
 ```daedalus
-// --- End conversation ---
 instance DIA_Konrad_EXIT (C_INFO)
 {
     npc         = BAU_900_Konrad;
-    nr          = 999;                  // at the very bottom
+    nr          = 999;
     condition   = DIA_Konrad_EXIT_Condition;
     information = DIA_Konrad_EXIT_Info;
     permanent   = TRUE;
-    description = DIALOG_ENDE;          // "End"
+    description = DIALOG_ENDE;
 };
 
 func int DIA_Konrad_EXIT_Condition ()
 {
-    return TRUE;                        // always visible
+    return TRUE;
 };
 
 func void DIA_Konrad_EXIT_Info ()
 {
-    AI_StopProcessInfos (self);         // close dialog window
+    AI_StopProcessInfos (self);
 };
 ```
+
+| Field / Call | Description |
+| ------------ | ----------- |
+| `nr = 999` | Always at the very bottom of the dialog list |
+| `DIALOG_ENDE` | Built-in constant for "End" |
+| `return TRUE` | Exit option is always visible |
+| `AI_StopProcessInfos(self)` | Closes the dialog window |
 
 ## Step 4: Dialog — Greeting (NPC Speaks First)
 
@@ -108,9 +117,14 @@ instance DIA_Konrad_Hallo (C_INFO)
     nr          = 1;
     condition   = DIA_Konrad_Hallo_Condition;
     information = DIA_Konrad_Hallo_Info;
-    permanent   = FALSE;                // only once
-    important   = TRUE;                 // NPC speaks first
+    permanent   = FALSE;
+    important   = TRUE;
 };
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `permanent` | `FALSE` | Dialog appears only once |
+| `important` | `TRUE` | NPC approaches the player and speaks first |
 
 func int DIA_Konrad_Hallo_Condition ()
 {
@@ -121,14 +135,16 @@ func int DIA_Konrad_Hallo_Condition ()
     };
 };
 
+```daedalus
 func void DIA_Konrad_Hallo_Info ()
 {
-    // self = NPC (Konrad), other = player
     AI_Output (self, other, "DIA_Konrad_Hallo_01_01"); //Hey, you there! Got a moment?
     AI_Output (other, self, "DIA_Konrad_Hallo_15_01"); //What do you want?
     AI_Output (self, other, "DIA_Konrad_Hallo_01_02"); //I lost my axe somewhere in the forest. Will you help me find it?
 };
 ```
+
+`self` = NPC (Konrad), `other` = player.
 
 :::tip
 **Audio naming convention:** `DIA_Konrad_Hallo_01_01` — `01` = NPC voice number, `01` = line number. `15` in the player's line refers to the hero's voice. The `//` comment after `AI_Output` **must** be on the same line — the Daedalus parser treats it as the dialog subtitle text.
@@ -197,7 +213,6 @@ instance DIA_Konrad_Topor_Oddaj (C_INFO)
 
 func int DIA_Konrad_Topor_Oddaj_Condition ()
 {
-    // Show only when quest is active AND player has the axe
     if (MIS_Konrad_FindAxe == LOG_RUNNING)
     && (Npc_HasItems (other, ItMi_Topor_Konrada) >= 1)
     {
@@ -209,17 +224,14 @@ func void DIA_Konrad_Topor_Oddaj_Info ()
 {
     AI_Output (other, self, "DIA_Konrad_Topor_Oddaj_15_01"); //I have your axe. Found it near the cave.
 
-    // Player gives the axe
     B_GiveInvItems (other, self, ItMi_Topor_Konrada, 1);
 
     AI_Output (self, other, "DIA_Konrad_Topor_Oddaj_01_01"); //Great! Take this gold as thanks.
 
-    // === REWARD ===
     CreateInvItems (self, ItMi_Gold, 150);
-    B_GiveInvItems (self, other, ItMi_Gold, 150);      // 150 gold
-    B_GivePlayerXP (100);                               // 100 XP
+    B_GiveInvItems (self, other, ItMi_Gold, 150);
+    B_GivePlayerXP (100);
 
-    // === COMPLETE QUEST ===
     MIS_Konrad_FindAxe = LOG_SUCCESS;
     B_LogEntry (TOPIC_Konrad_FindAxe,
         "I found Konrad's axe and returned it to him. In return, I received 150 gold coins."
@@ -229,6 +241,13 @@ func void DIA_Konrad_Topor_Oddaj_Info ()
 };
 ```
 
+| Call | Description |
+| ---- | ----------- |
+| `B_GiveInvItems(other, self, ItMi_Topor_Konrada, 1)` | Player gives the axe to Konrad |
+| `B_GiveInvItems(self, other, ItMi_Gold, 150)` | Konrad gives 150 gold to the player |
+| `B_GivePlayerXP(100)` | Player receives 100 XP |
+| `MIS_Konrad_FindAxe = LOG_SUCCESS` | Marks quest as completed |
+
 ## Step 7: Placing the Item in the World
 
 In the `Startup.d` file (world startup function) place the axe at a location:
@@ -236,12 +255,11 @@ In the `Startup.d` file (world startup function) place the axe at a location:
 ```daedalus
 func void Startup_NewWorld ()
 {
-    // ... other elements ...
-
-    // Place Konrad's axe at the cave waypoint
     Wld_InsertItem (ItMi_Topor_Konrada, "NW_CAVE_NORTH_01");
 };
 ```
+
+`Wld_InsertItem` places Konrad's axe at the cave waypoint.
 
 ## Complete File Structure
 

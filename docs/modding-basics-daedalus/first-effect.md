@@ -130,10 +130,10 @@ instance PFX_MySmoke (C_ParticleFX)
     // --- Direction: upward with random variance ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleElev    = 90;               // upward
-    dirAngleElevVar = 15;               // ±15° variance
-    dirAngleHeadVar = 180;              // spread sideways
-    velAvg          = 0.02;             // slow
+    dirAngleElev    = 90;
+    dirAngleElevVar = 15;
+    dirAngleHeadVar = 180;
+    velAvg          = 0.02;
     velVar          = 0.01;
 
     // --- Lifespan: 2–3 seconds ---
@@ -141,20 +141,34 @@ instance PFX_MySmoke (C_ParticleFX)
     lspPartVar      = 500;
 
     // --- No gravity (smoke rises) ---
-    flyGravity_S    = "0 0.0001 0";     // slightly upward
+    flyGravity_S    = "0 0.0001 0";
 
     // --- Appearance ---
     visName_S           = "SMOKE1.TGA";
-    visOrientation_S    = "NONE";           // billboard facing camera
-    visTexColorStart_S  = "150 150 150";    // gray
-    visTexColorEnd_S    = "80 80 80";       // darkens over time
+    visOrientation_S    = "NONE";
+    visTexColorStart_S  = "150 150 150";
+    visTexColorEnd_S    = "80 80 80";
     visSizeStart_S      = "10 10";
-    visSizeEndScale     = 5;                // grows 5x
-    visAlphaFunc_S      = "BLEND";          // standard blending
+    visSizeEndScale     = 5;
+    visAlphaFunc_S      = "BLEND";
     visAlphaStart       = 180;
-    visAlphaEnd         = 0;                // fades out
+    visAlphaEnd         = 0;
 };
 ```
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `dirAngleElev` | `90` | Upward direction |
+| `dirAngleElevVar` | `15` | ±15° random variance |
+| `dirAngleHeadVar` | `180` | Spread sideways |
+| `velAvg` | `0.02` | Slow speed |
+| `flyGravity_S` | `"0 0.0001 0"` | Slightly upward (smoke rises) |
+| `visOrientation_S` | `"NONE"` | Billboard facing camera |
+| `visTexColorStart_S` | `"150 150 150"` | Gray |
+| `visTexColorEnd_S` | `"80 80 80"` | Darkens over time |
+| `visSizeEndScale` | `5` | Grows 5× |
+| `visAlphaFunc_S` | `"BLEND"` | Standard blending |
+| `visAlphaEnd` | `0` | Fades out completely |
 
 :::tip
 **`visAlphaFunc_S`** — blending modes:
@@ -180,7 +194,7 @@ instance PFX_MyFire (C_ParticleFX)
     shpType_S       = "CIRCLE";
     shpFOR_S        = "OBJECT";
     shpIsVolume     = 1;
-    shpDim_S        = "15";             // radius 15 units
+    shpDim_S        = "15";
 
     // --- Direction: upward ---
     dirMode_S       = "DIR";
@@ -201,17 +215,27 @@ instance PFX_MyFire (C_ParticleFX)
     // --- Appearance ---
     visName_S           = "FIREFLARE.TGA";
     visOrientation_S    = "NONE";
-    visTexAniFPS        = 8;                // texture animation
-    visTexAniIsLooping  = 1;                // looped
-    visTexColorStart_S  = "255 255 255";    // white (overexposed center)
-    visTexColorEnd_S    = "255 100 30";     // orange (edges)
+    visTexAniFPS        = 8;
+    visTexAniIsLooping  = 1;
+    visTexColorStart_S  = "255 255 255";
+    visTexColorEnd_S    = "255 100 30";
     visSizeStart_S      = "5 5";
-    visSizeEndScale     = 4;                // grows
-    visAlphaFunc_S      = "ADD";            // additive = glowing
+    visSizeEndScale     = 4;
+    visAlphaFunc_S      = "ADD";
     visAlphaStart       = 255;
     visAlphaEnd         = 0;
 };
 ```
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `shpDim_S` | `"15"` | Circle radius 15 units |
+| `visTexAniFPS` | `8` | Texture animation speed |
+| `visTexAniIsLooping` | `1` | Animation loops |
+| `visTexColorStart_S` | `"255 255 255"` | White (overexposed center) |
+| `visTexColorEnd_S` | `"255 100 30"` | Orange (flame edges) |
+| `visSizeEndScale` | `4` | Grows 4× |
+| `visAlphaFunc_S` | `"ADD"` | Additive blending (glowing) |
 
 ## Example 3: Sparks
 
@@ -222,8 +246,8 @@ instance PFX_MySparks (C_ParticleFX)
 {
     // --- Emission: one-time burst ---
     ppsValue        = 50;
-    ppsScaleKeys_S  = "1 0";           // instant burst, then nothing
-    ppsIsLooping    = 0;                // one-shot
+    ppsScaleKeys_S  = "1 0";
+    ppsIsLooping    = 0;
     ppsFPS          = 2;
 
     // --- Shape: point ---
@@ -233,10 +257,10 @@ instance PFX_MySparks (C_ParticleFX)
     // --- Direction: scatter in all directions ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleHeadVar = 180;              // full 360°
-    dirAngleElev    = 45;               // slightly upward
-    dirAngleElevVar = 45;               // but with wide variance
-    velAvg          = 0.15;             // fast
+    dirAngleHeadVar = 180;
+    dirAngleElev    = 45;
+    dirAngleElevVar = 45;
+    velAvg          = 0.15;
     velVar          = 0.08;
 
     // --- Lifespan: short ---
@@ -245,20 +269,33 @@ instance PFX_MySparks (C_ParticleFX)
 
     // --- Gravity pulls down ---
     flyGravity_S    = "0 -0.0005 0";
-    flyCollDet_B    = 1;                // collision with world
+    flyCollDet_B    = 1;
 
     // --- Appearance: small, bright dots ---
     visName_S           = "ZFLARE1.TGA";
     visOrientation_S    = "NONE";
-    visTexColorStart_S  = "255 220 100";    // yellow
-    visTexColorEnd_S    = "255 80 20";      // dark orange
+    visTexColorStart_S  = "255 220 100";
+    visTexColorEnd_S    = "255 80 20";
     visSizeStart_S      = "2 2";
-    visSizeEndScale     = 0.5;              // shrink
+    visSizeEndScale     = 0.5;
     visAlphaFunc_S      = "ADD";
     visAlphaStart       = 255;
     visAlphaEnd         = 0;
 };
 ```
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `ppsScaleKeys_S` | `"1 0"` | Instant burst, then nothing |
+| `ppsIsLooping` | `0` | One-shot (not looping) |
+| `dirAngleHeadVar` | `180` | Full 360° scatter |
+| `dirAngleElev` | `45` | Slightly upward |
+| `dirAngleElevVar` | `45` | Wide variance |
+| `velAvg` | `0.15` | Fast |
+| `flyCollDet_B` | `1` | Collides with world geometry |
+| `visTexColorStart_S` | `"255 220 100"` | Yellow |
+| `visTexColorEnd_S` | `"255 80 20"` | Dark orange |
+| `visSizeEndScale` | `0.5` | Shrinks over time |
 
 ## Example 4: Snow
 
@@ -275,16 +312,16 @@ instance PFX_MySnow (C_ParticleFX)
     // --- Shape: large circle high above the player ---
     shpType_S       = "CIRCLE";
     shpFOR_S        = "OBJECT";
-    shpOffsetVec_S  = "0 500 0";        // 500 units above emitter
+    shpOffsetVec_S  = "0 500 0";
     shpIsVolume     = 1;
-    shpDim_S        = "300";            // radius 300
+    shpDim_S        = "300";
 
     // --- Direction: downward ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleHead    = 20;               // slight wind
+    dirAngleHead    = 20;
     dirAngleHeadVar = 10;
-    dirAngleElev    = -89;              // nearly straight down
+    dirAngleElev    = -89;
     velAvg          = 0.05;
     velVar          = 0.02;
 
@@ -310,6 +347,13 @@ instance PFX_MySnow (C_ParticleFX)
 };
 ```
 
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `shpOffsetVec_S` | `"0 500 0"` | 500 units above the emitter |
+| `shpDim_S` | `"300"` | Circle radius 300 |
+| `dirAngleHead` | `20` | Slight wind direction |
+| `dirAngleElev` | `-89` | Nearly straight down |
+
 ## Example 5: Blood (Child Emitters)
 
 The child emitter system lets you create complex effects. Blood in Gothic consists of two instances — the main one (blood spray) and the child one (ground splat):
@@ -319,7 +363,7 @@ The child emitter system lets you create complex effects. Blood in Gothic consis
 instance PFX_MyBlood (C_ParticleFX)
 {
     ppsValue            = 64;
-    ppsCreateEm_S       = "PFX_MyBlood_Splat";     // child effect!
+    ppsCreateEm_S       = "PFX_MyBlood_Splat";
 
     dirMode_S           = "DIR";
     dirFOR_S            = "OBJECT";
@@ -331,7 +375,7 @@ instance PFX_MyBlood (C_ParticleFX)
     lspPartAvg          = 750;
     lspPartVar          = 550;
 
-    flyGravity_S        = "0 -0.0001 0"; // falls
+    flyGravity_S        = "0 -0.0001 0";
     flyCollDet_B        = 1;
 
     visName_S           = "BLOOD1.TGA";
@@ -347,23 +391,39 @@ instance PFX_MyBlood (C_ParticleFX)
 instance PFX_MyBlood_Splat (C_ParticleFX)
 {
     ppsValue            = 1;
-    ppsIsLooping        = 0;            // single splat
+    ppsIsLooping        = 0;
 
     shpType_S           = "POINT";
 
-    dirMode_S           = "NONE";       // no movement
+    dirMode_S           = "NONE";
     velAvg              = 0;
 
-    lspPartAvg          = 3000;         // 3 seconds
+    lspPartAvg          = 3000;
 
     visName_S           = "YOURBLOODSPLAT.TGA";
     visSizeStart_S      = "10 10";
     visSizeEndScale     = 1;
     visAlphaFunc_S      = "BLEND";
     visAlphaStart       = 200;
-    visAlphaEnd         = 0;            // fades out
+    visAlphaEnd         = 0;
 };
 ```
+
+**PFX_MyBlood:**
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `ppsCreateEm_S` | `"PFX_MyBlood_Splat"` | Spawns a child effect per particle |
+| `flyGravity_S` | `"0 -0.0001 0"` | Falls downward |
+
+**PFX_MyBlood_Splat:**
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `ppsIsLooping` | `0` | Single splat |
+| `dirMode_S` | `"NONE"` | No movement |
+| `lspPartAvg` | `3000` | Lasts 3 seconds |
+| `visAlphaEnd` | `0` | Fades out |
 
 :::info
 **`ppsCreateEm_S`** — each particle from the main emitter becomes a source for a new child effect. This is a powerful tool but expensive — use carefully to avoid overloading the engine.

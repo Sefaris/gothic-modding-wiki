@@ -53,21 +53,21 @@ instance ItMw_Miecz_Konrada (C_Item)
     name        = "Miecz Konrada";
 
     // --- Kategoria ---
-    mainflag    = ITEM_KAT_NF;         // broń biała
-    flags       = ITEM_SWD;            // miecz jednoręczny
+    mainflag    = ITEM_KAT_NF;
+    flags       = ITEM_SWD;
     material    = MAT_METAL;
 
     // --- Statystyki ---
-    damageTotal = 35;                   // 35 pkt obrażeń
-    damagetype  = DAM_EDGE;            // obrażenia sieczne
-    range       = 100;                  // zasięg ataku
+    damageTotal = 35;
+    damagetype  = DAM_EDGE;
+    range       = 100;
 
     // --- Wymagania ---
-    cond_atr[2]   = ATR_STRENGTH;       // wymaga siły
-    cond_value[2] = 20;                 // minimum 20 siły
+    cond_atr[2]   = ATR_STRENGTH;
+    cond_value[2] = 20;
 
     // --- Wartość ---
-    value       = 250;                  // 250 złota
+    value       = 250;
 
     // --- Model 3D ---
     visual      = "ItMw_025_1h_sld_sword_01.3DS";
@@ -79,6 +79,18 @@ instance ItMw_Miecz_Konrada (C_Item)
     TEXT[5]  = NAME_Value;          COUNT[5] = value;
 };
 ```
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `mainflag` | `ITEM_KAT_NF` | Kategoria: broń biała |
+| `flags` | `ITEM_SWD` | Miecz jednoręczny |
+| `damageTotal` | `35` | 35 punktów obrażeń |
+| `damagetype` | `DAM_EDGE` | Obrażenia sieczne |
+| `range` | `100` | Zasięg ataku |
+| `cond_atr[2]` | `ATR_STRENGTH` | Wymaga atrybutu siły |
+| `cond_value[2]` | `20` | Minimum 20 siły |
+| `value` | `250` | Wartość 250 złota |
+| `TEXT/COUNT` | — | Linie tooltipa w ekwipunku |
 
 :::info
 Pole `flags` określa typ broni: `ITEM_SWD` (miecz 1H), `ITEM_AXE` (topór 1H), `ITEM_2HD_SWD` (miecz 2H), `ITEM_2HD_AXE` (topór 2H).
@@ -93,31 +105,39 @@ instance ItPo_Zdrowie_Konrada (C_Item)
 
     // --- Kategoria ---
     mainflag  = ITEM_KAT_POTIONS;
-    flags     = ITEM_MULTI;             // przedmiot stackowalny
+    flags     = ITEM_MULTI;
 
     // --- Wartość i wygląd ---
     value     = 75;
     visual    = "ItPo_Health_01.3ds";
-    material  = MAT_GLAS;              // szkło (dźwięk przy podnoszeniu)
+    material  = MAT_GLAS;
 
     // --- Efekt użycia ---
     on_state[0] = Use_ItPo_Zdrowie_Konrada;
-    scemeName   = "POTIONFAST";         // animacja picia
+    scemeName   = "POTIONFAST";
     wear        = WEAR_EFFECT;
-    effect      = "SPELLFX_HEALTHPOTION"; // efekt wizualny
+    effect      = "SPELLFX_HEALTHPOTION";
 
     // --- Tooltip ---
     description = name;
-    TEXT[1]  = NAME_Bonus_HP;    COUNT[1] = 100;    // +100 HP
+    TEXT[1]  = NAME_Bonus_HP;    COUNT[1] = 100;
     TEXT[5]  = NAME_Value;       COUNT[5] = value;
 };
 
-// Funkcja wywoływana po użyciu
 func void Use_ItPo_Zdrowie_Konrada ()
 {
-    Npc_ChangeAttribute (self, ATR_HITPOINTS, 100);   // +100 HP
+    Npc_ChangeAttribute (self, ATR_HITPOINTS, 100);
 };
 ```
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `flags` | `ITEM_MULTI` | Przedmiot stackowalny |
+| `material` | `MAT_GLAS` | Szkło (dźwięk przy podnoszeniu) |
+| `scemeName` | `"POTIONFAST"` | Animacja picia |
+| `effect` | `"SPELLFX_HEALTHPOTION"` | Efekt wizualny przy użyciu |
+| `TEXT[1]/COUNT[1]` | `+100 HP` | Tooltip: bonus do zdrowia |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | — | Przywraca 100 HP przy użyciu |
 
 :::tip
 `ITEM_MULTI` sprawia, że przedmioty tego samego typu stackują się w ekwipunku (zamiast zajmować osobne sloty).
@@ -136,7 +156,7 @@ instance ItFo_Chleb_Konrada (C_Item)
     material  = MAT_LEATHER;
 
     on_state[0] = Use_ItFo_Chleb_Konrada;
-    scemeName   = "FOOD";               // animacja jedzenia
+    scemeName   = "FOOD";
 
     description = name;
     TEXT[1]  = NAME_Bonus_HP;    COUNT[1] = 15;
@@ -154,12 +174,18 @@ func void Use_ItFo_Chleb_Konrada ()
 Aby NPC miał przedmiot w ekwipunku, użyj w definicji NPC:
 
 ```daedalus
-// W instancji NPC:
-EquipItem (self, ItMw_Miecz_Konrada);              // zakłada (broń/zbroję)
-CreateInvItems (self, ItPo_Zdrowie_Konrada, 5);     // 5 mikstur w plecaku
-CreateInvItems (self, ItFo_Chleb_Konrada, 3);       // 3 chleby
-CreateInvItems (self, ItMi_Gold, 100);               // 100 złota
+EquipItem (self, ItMw_Miecz_Konrada);
+CreateInvItems (self, ItPo_Zdrowie_Konrada, 5);
+CreateInvItems (self, ItFo_Chleb_Konrada, 3);
+CreateInvItems (self, ItMi_Gold, 100);
 ```
+
+| Wywołanie | Opis |
+| --------- | ---- |
+| `EquipItem(self, ItMw_Miecz_Konrada)` | Zakłada przedmiot (broń/zbroję) |
+| `CreateInvItems(self, ItPo_Zdrowie_Konrada, 5)` | 5 mikstur w plecaku |
+| `CreateInvItems(self, ItFo_Chleb_Konrada, 3)` | 3 chleby w plecaku |
+| `CreateInvItems(self, ItMi_Gold, 100)` | 100 sztuk złota |
 
 :::warning
 `EquipItem` automatycznie **zakłada** przedmiot (NPC będzie trzymał broń lub nosił zbroję). `CreateInvItems` tylko dodaje do ekwipunku.

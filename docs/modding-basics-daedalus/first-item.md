@@ -52,33 +52,39 @@ instance ItMw_Miecz_Konrada (C_Item)
 {
     name        = "Konrad's Sword";
 
-    // --- Category ---
-    mainflag    = ITEM_KAT_NF;         // melee weapon
-    flags       = ITEM_SWD;            // one-handed sword
+    mainflag    = ITEM_KAT_NF;
+    flags       = ITEM_SWD;
     material    = MAT_METAL;
 
-    // --- Stats ---
-    damageTotal = 35;                   // 35 damage points
-    damagetype  = DAM_EDGE;            // edge damage
-    range       = 100;                  // attack range
+    damageTotal = 35;
+    damagetype  = DAM_EDGE;
+    range       = 100;
 
-    // --- Requirements ---
-    cond_atr[2]   = ATR_STRENGTH;       // requires strength
-    cond_value[2] = 20;                 // minimum 20 strength
+    cond_atr[2]   = ATR_STRENGTH;
+    cond_value[2] = 20;
 
-    // --- Value ---
-    value       = 250;                  // 250 gold
+    value       = 250;
 
-    // --- 3D Model ---
     visual      = "ItMw_025_1h_sld_sword_01.3DS";
 
-    // --- Tooltip (inventory description) ---
     description    = name;
     TEXT[2]  = NAME_Dam_Edge;       COUNT[2] = damageTotal;
     TEXT[3]  = NAME_Str_needed;     COUNT[3] = cond_value[2];
     TEXT[5]  = NAME_Value;          COUNT[5] = value;
 };
 ```
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `mainflag` | `ITEM_KAT_NF` | Melee weapon category |
+| `flags` | `ITEM_SWD` | One-handed sword |
+| `damageTotal` | `35` | 35 damage points |
+| `damagetype` | `DAM_EDGE` | Edge (slashing) damage |
+| `range` | `100` | Attack range |
+| `cond_atr[2]` | `ATR_STRENGTH` | Requires strength attribute |
+| `cond_value[2]` | `20` | Minimum 20 strength |
+| `value` | `250` | Worth 250 gold |
+| `TEXT/COUNT` | — | Tooltip lines shown in inventory |
 
 :::info
 The `flags` field determines the weapon type: `ITEM_SWD` (1H sword), `ITEM_AXE` (1H axe), `ITEM_2HD_SWD` (2H sword), `ITEM_2HD_AXE` (2H axe).
@@ -91,33 +97,37 @@ instance ItPo_Zdrowie_Konrada (C_Item)
 {
     name      = "Konrad's Health Potion";
 
-    // --- Category ---
     mainflag  = ITEM_KAT_POTIONS;
-    flags     = ITEM_MULTI;             // stackable item
+    flags     = ITEM_MULTI;
 
-    // --- Value and appearance ---
     value     = 75;
     visual    = "ItPo_Health_01.3ds";
-    material  = MAT_GLAS;              // glass (pickup sound)
+    material  = MAT_GLAS;
 
-    // --- Use effect ---
     on_state[0] = Use_ItPo_Zdrowie_Konrada;
-    scemeName   = "POTIONFAST";         // drinking animation
+    scemeName   = "POTIONFAST";
     wear        = WEAR_EFFECT;
-    effect      = "SPELLFX_HEALTHPOTION"; // visual effect
+    effect      = "SPELLFX_HEALTHPOTION";
 
-    // --- Tooltip ---
     description = name;
-    TEXT[1]  = NAME_Bonus_HP;    COUNT[1] = 100;    // +100 HP
+    TEXT[1]  = NAME_Bonus_HP;    COUNT[1] = 100;
     TEXT[5]  = NAME_Value;       COUNT[5] = value;
 };
 
-// Function called after use
 func void Use_ItPo_Zdrowie_Konrada ()
 {
-    Npc_ChangeAttribute (self, ATR_HITPOINTS, 100);   // +100 HP
+    Npc_ChangeAttribute (self, ATR_HITPOINTS, 100);
 };
 ```
+
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `flags` | `ITEM_MULTI` | Stackable item |
+| `material` | `MAT_GLAS` | Glass (affects pickup sound) |
+| `scemeName` | `"POTIONFAST"` | Drinking animation |
+| `effect` | `"SPELLFX_HEALTHPOTION"` | Visual effect on use |
+| `TEXT[1]/COUNT[1]` | `+100 HP` | Tooltip: health bonus |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | — | Restores 100 HP on use |
 
 :::tip
 `ITEM_MULTI` makes items of the same type stack in the inventory (instead of taking up separate slots).
@@ -136,7 +146,7 @@ instance ItFo_Chleb_Konrada (C_Item)
     material  = MAT_LEATHER;
 
     on_state[0] = Use_ItFo_Chleb_Konrada;
-    scemeName   = "FOOD";               // eating animation
+    scemeName   = "FOOD";
 
     description = name;
     TEXT[1]  = NAME_Bonus_HP;    COUNT[1] = 15;
@@ -154,12 +164,18 @@ func void Use_ItFo_Chleb_Konrada ()
 To have an NPC carry an item in their inventory, use in the NPC definition:
 
 ```daedalus
-// In the NPC instance:
-EquipItem (self, ItMw_Miecz_Konrada);              // equips (weapon/armor)
-CreateInvItems (self, ItPo_Zdrowie_Konrada, 5);     // 5 potions in backpack
-CreateInvItems (self, ItFo_Chleb_Konrada, 3);       // 3 bread loaves
-CreateInvItems (self, ItMi_Gold, 100);               // 100 gold
+EquipItem (self, ItMw_Miecz_Konrada);
+CreateInvItems (self, ItPo_Zdrowie_Konrada, 5);
+CreateInvItems (self, ItFo_Chleb_Konrada, 3);
+CreateInvItems (self, ItMi_Gold, 100);
 ```
+
+| Call | Description |
+| ---- | ----------- |
+| `EquipItem(self, ItMw_Miecz_Konrada)` | Equips the item (weapon/armor) |
+| `CreateInvItems(self, ItPo_Zdrowie_Konrada, 5)` | 5 potions in backpack |
+| `CreateInvItems(self, ItFo_Chleb_Konrada, 3)` | 3 bread loaves in backpack |
+| `CreateInvItems(self, ItMi_Gold, 100)` | 100 gold |
 
 :::warning
 `EquipItem` automatically **equips** the item (the NPC will hold the weapon or wear the armor). `CreateInvItems` only adds to the inventory.

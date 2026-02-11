@@ -130,10 +130,10 @@ instance PFX_MojDym (C_ParticleFX)
     // --- Kierunek: w górę z losowym odchyleniem ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleElev    = 90;               // w górę
-    dirAngleElevVar = 15;               // ±15° odchylenia
-    dirAngleHeadVar = 180;              // rozrzut na boki
-    velAvg          = 0.02;             // powolny
+    dirAngleElev    = 90;
+    dirAngleElevVar = 15;
+    dirAngleHeadVar = 180;
+    velAvg          = 0.02;
     velVar          = 0.01;
 
     // --- Czas życia: 2–3 sekundy ---
@@ -141,20 +141,34 @@ instance PFX_MojDym (C_ParticleFX)
     lspPartVar      = 500;
 
     // --- Brak grawitacji (dym unosi się) ---
-    flyGravity_S    = "0 0.0001 0";     // lekko w górę
+    flyGravity_S    = "0 0.0001 0";
 
     // --- Wygląd ---
     visName_S           = "SMOKE1.TGA";
-    visOrientation_S    = "NONE";           // billboard skierowany do kamery
-    visTexColorStart_S  = "150 150 150";    // szary
-    visTexColorEnd_S    = "80 80 80";       // ciemniejszy z czasem
+    visOrientation_S    = "NONE";
+    visTexColorStart_S  = "150 150 150";
+    visTexColorEnd_S    = "80 80 80";
     visSizeStart_S      = "10 10";
-    visSizeEndScale     = 5;                // rośnie 5x
-    visAlphaFunc_S      = "BLEND";          // zwykłe przenikanie
+    visSizeEndScale     = 5;
+    visAlphaFunc_S      = "BLEND";
     visAlphaStart       = 180;
-    visAlphaEnd         = 0;                // zanika
+    visAlphaEnd         = 0;
 };
 ```
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `dirAngleElev` | `90` | Kierunek w górę |
+| `dirAngleElevVar` | `15` | ±15° losowe odchylenie |
+| `dirAngleHeadVar` | `180` | Rozrzut na boki |
+| `velAvg` | `0.02` | Powolna prędkość |
+| `flyGravity_S` | `"0 0.0001 0"` | Lekko w górę (dym unosi się) |
+| `visOrientation_S` | `"NONE"` | Billboard skierowany do kamery |
+| `visTexColorStart_S` | `"150 150 150"` | Szary |
+| `visTexColorEnd_S` | `"80 80 80"` | Ciemniejszy z czasem |
+| `visSizeEndScale` | `5` | Rośnie 5× |
+| `visAlphaFunc_S` | `"BLEND"` | Zwykłe przenikanie |
+| `visAlphaEnd` | `0` | Zanika całkowicie |
 
 :::tip
 **`visAlphaFunc_S`** — tryby blendingu:
@@ -180,7 +194,7 @@ instance PFX_MojOgien (C_ParticleFX)
     shpType_S       = "CIRCLE";
     shpFOR_S        = "OBJECT";
     shpIsVolume     = 1;
-    shpDim_S        = "15";             // promień 15 jednostek
+    shpDim_S        = "15";
 
     // --- Kierunek: w górę ---
     dirMode_S       = "DIR";
@@ -201,17 +215,27 @@ instance PFX_MojOgien (C_ParticleFX)
     // --- Wygląd ---
     visName_S           = "FIREFLARE.TGA";
     visOrientation_S    = "NONE";
-    visTexAniFPS        = 8;                // animacja tekstury
-    visTexAniIsLooping  = 1;                // zapętlona
-    visTexColorStart_S  = "255 255 255";    // biały (prześwietlony środek)
-    visTexColorEnd_S    = "255 100 30";     // pomarańczowy (krawędzie)
+    visTexAniFPS        = 8;
+    visTexAniIsLooping  = 1;
+    visTexColorStart_S  = "255 255 255";
+    visTexColorEnd_S    = "255 100 30";
     visSizeStart_S      = "5 5";
-    visSizeEndScale     = 4;                // rośnie
-    visAlphaFunc_S      = "ADD";            // addytywne = świecące
+    visSizeEndScale     = 4;
+    visAlphaFunc_S      = "ADD";
     visAlphaStart       = 255;
     visAlphaEnd         = 0;
 };
 ```
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `shpDim_S` | `"15"` | Promień koła: 15 jednostek |
+| `visTexAniFPS` | `8` | Prędkość animacji tekstury |
+| `visTexAniIsLooping` | `1` | Animacja zapętlona |
+| `visTexColorStart_S` | `"255 255 255"` | Biały (prześwietlony środek) |
+| `visTexColorEnd_S` | `"255 100 30"` | Pomarańczowy (krawędzie) |
+| `visSizeEndScale` | `4` | Rośnie 4× |
+| `visAlphaFunc_S` | `"ADD"` | Addytywne blending (świecące) |
 
 ## Przykład 3: Iskry
 
@@ -222,8 +246,8 @@ instance PFX_MojeIskry (C_ParticleFX)
 {
     // --- Emisja: jednorazowy wybuch ---
     ppsValue        = 50;
-    ppsScaleKeys_S  = "1 0";           // natychmiast, potem nic
-    ppsIsLooping    = 0;                // jednorazowe
+    ppsScaleKeys_S  = "1 0";
+    ppsIsLooping    = 0;
     ppsFPS          = 2;
 
     // --- Kształt: punkt ---
@@ -233,10 +257,10 @@ instance PFX_MojeIskry (C_ParticleFX)
     // --- Kierunek: rozbiegają się we wszystkie strony ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleHeadVar = 180;              // pełne 360°
-    dirAngleElev    = 45;               // lekko w górę
-    dirAngleElevVar = 45;               // ale z dużym rozrzutem
-    velAvg          = 0.15;             // szybkie
+    dirAngleHeadVar = 180;
+    dirAngleElev    = 45;
+    dirAngleElevVar = 45;
+    velAvg          = 0.15;
     velVar          = 0.08;
 
     // --- Czas życia: krótki ---
@@ -245,20 +269,33 @@ instance PFX_MojeIskry (C_ParticleFX)
 
     // --- Grawitacja ciągnie w dół ---
     flyGravity_S    = "0 -0.0005 0";
-    flyCollDet_B    = 1;                // kolizje ze światem
+    flyCollDet_B    = 1;
 
     // --- Wygląd: małe, jaskrawe punkty ---
     visName_S           = "ZFLARE1.TGA";
     visOrientation_S    = "NONE";
-    visTexColorStart_S  = "255 220 100";    // żółty
-    visTexColorEnd_S    = "255 80 20";      // ciemny pomarańcz
+    visTexColorStart_S  = "255 220 100";
+    visTexColorEnd_S    = "255 80 20";
     visSizeStart_S      = "2 2";
-    visSizeEndScale     = 0.5;              // zmniejszają się
+    visSizeEndScale     = 0.5;
     visAlphaFunc_S      = "ADD";
     visAlphaStart       = 255;
     visAlphaEnd         = 0;
 };
 ```
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `ppsScaleKeys_S` | `"1 0"` | Natychmiastowy wybuch, potem nic |
+| `ppsIsLooping` | `0` | Jednorazowe (bez pętli) |
+| `dirAngleHeadVar` | `180` | Pełny rozrzut 360° |
+| `dirAngleElev` | `45` | Lekko w górę |
+| `dirAngleElevVar` | `45` | Duży rozrzut |
+| `velAvg` | `0.15` | Szybkie |
+| `flyCollDet_B` | `1` | Kolizje z geometrią świata |
+| `visTexColorStart_S` | `"255 220 100"` | Żółty |
+| `visTexColorEnd_S` | `"255 80 20"` | Ciemny pomarańcz |
+| `visSizeEndScale` | `0.5` | Zmniejszają się z czasem |
 
 ## Przykład 4: Śnieg
 
@@ -275,16 +312,16 @@ instance PFX_MojSnieg (C_ParticleFX)
     // --- Kształt: duży okrąg wysoko nad graczem ---
     shpType_S       = "CIRCLE";
     shpFOR_S        = "OBJECT";
-    shpOffsetVec_S  = "0 500 0";        // 500 jednostek nad emiterem
+    shpOffsetVec_S  = "0 500 0";
     shpIsVolume     = 1;
-    shpDim_S        = "300";            // promień 300
+    shpDim_S        = "300";
 
     // --- Kierunek: w dół ---
     dirMode_S       = "DIR";
     dirFOR_S        = "OBJECT";
-    dirAngleHead    = 20;               // lekki wiatr
+    dirAngleHead    = 20;
     dirAngleHeadVar = 10;
-    dirAngleElev    = -89;              // prawie prosto w dół
+    dirAngleElev    = -89;
     velAvg          = 0.05;
     velVar          = 0.02;
 
@@ -310,6 +347,13 @@ instance PFX_MojSnieg (C_ParticleFX)
 };
 ```
 
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `shpOffsetVec_S` | `"0 500 0"` | 500 jednostek nad emiterem |
+| `shpDim_S` | `"300"` | Promień okręgu: 300 |
+| `dirAngleHead` | `20` | Lekki wiatr boczny |
+| `dirAngleElev` | `-89` | Prawie prosto w dół |
+
 ## Przykład 5: Krew (efekt potomny)
 
 System potomnych emiterów pozwala tworzyć złożone efekty. Krew w Gothic składa się z dwóch instancji — głównej (bryzy krwi) i potomnej (plamy na podłożu):
@@ -319,7 +363,7 @@ System potomnych emiterów pozwala tworzyć złożone efekty. Krew w Gothic skł
 instance PFX_MojaKrew (C_ParticleFX)
 {
     ppsValue            = 64;
-    ppsCreateEm_S       = "PFX_MojaKrew_Plama";    // potomny efekt!
+    ppsCreateEm_S       = "PFX_MojaKrew_Plama";
 
     dirMode_S           = "DIR";
     dirFOR_S            = "OBJECT";
@@ -331,7 +375,7 @@ instance PFX_MojaKrew (C_ParticleFX)
     lspPartAvg          = 750;
     lspPartVar          = 550;
 
-    flyGravity_S        = "0 -0.0001 0"; // spada
+    flyGravity_S        = "0 -0.0001 0";
     flyCollDet_B        = 1;
 
     visName_S           = "BLOOD1.TGA";
@@ -347,23 +391,39 @@ instance PFX_MojaKrew (C_ParticleFX)
 instance PFX_MojaKrew_Plama (C_ParticleFX)
 {
     ppsValue            = 1;
-    ppsIsLooping        = 0;            // jedna plama
+    ppsIsLooping        = 0;
 
     shpType_S           = "POINT";
 
-    dirMode_S           = "NONE";       // bez ruchu
+    dirMode_S           = "NONE";
     velAvg              = 0;
 
-    lspPartAvg          = 3000;         // 3 sekundy
+    lspPartAvg          = 3000;
 
     visName_S           = "YOURBLOODSPLAT.TGA";
     visSizeStart_S      = "10 10";
     visSizeEndScale     = 1;
     visAlphaFunc_S      = "BLEND";
     visAlphaStart       = 200;
-    visAlphaEnd         = 0;            // zanika
+    visAlphaEnd         = 0;
 };
 ```
+
+**PFX_MojaKrew:**
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `ppsCreateEm_S` | `"PFX_MojaKrew_Plama"` | Tworzy efekt potomny na cząsteczkę |
+| `flyGravity_S` | `"0 -0.0001 0"` | Spada w dół |
+
+**PFX_MojaKrew_Plama:**
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `ppsIsLooping` | `0` | Jedna plama |
+| `dirMode_S` | `"NONE"` | Bez ruchu |
+| `lspPartAvg` | `3000` | Trwa 3 sekundy |
+| `visAlphaEnd` | `0` | Zanika |
 
 :::info
 **`ppsCreateEm_S`** — każda cząsteczka z głównego emitera staje się źródłem nowego efektu potomnego. To potężne narzędzie, ale kosztowne — używaj ostrożnie, by nie obciążyć silnika.

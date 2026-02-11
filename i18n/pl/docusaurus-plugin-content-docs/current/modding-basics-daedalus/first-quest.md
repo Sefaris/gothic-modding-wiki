@@ -56,8 +56,8 @@ instance ItMi_Topor_Konrada (C_Item)
 {
     name      = "Stary topór Konrada";
     mainflag  = ITEM_KAT_NONE;
-    flags     = ITEM_MISSION;           // przedmiot misyjny
-    value     = 0;                      // nie do sprzedania
+    flags     = ITEM_MISSION;
+    value     = 0;
     visual    = "ItMw_010_1h_misc_axe_01.3DS";
     material  = MAT_WOOD;
 
@@ -65,6 +65,11 @@ instance ItMi_Topor_Konrada (C_Item)
     TEXT[5]     = "Przedmiot misyjny";
 };
 ```
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `flags` | `ITEM_MISSION` | Przedmiot misyjny (nie można sprzedać ani wyrzucić) |
+| `value` | `0` | Nie do sprzedaży |
 
 :::info
 Flaga `ITEM_MISSION` sprawia, że przedmiot nie może być sprzedany ani wyrzucony.
@@ -75,27 +80,33 @@ Flaga `ITEM_MISSION` sprawia, że przedmiot nie może być sprzedany ani wyrzuco
 Każdy NPC musi mieć opcję **zakończenia rozmowy**. To standardowy element:
 
 ```daedalus
-// --- Zakończ rozmowę ---
 instance DIA_Konrad_EXIT (C_INFO)
 {
     npc         = BAU_900_Konrad;
-    nr          = 999;                  // na samym dole
+    nr          = 999;
     condition   = DIA_Konrad_EXIT_Condition;
     information = DIA_Konrad_EXIT_Info;
     permanent   = TRUE;
-    description = DIALOG_ENDE;          // "Koniec"
+    description = DIALOG_ENDE;
 };
 
 func int DIA_Konrad_EXIT_Condition ()
 {
-    return TRUE;                        // zawsze widoczny
+    return TRUE;
 };
 
 func void DIA_Konrad_EXIT_Info ()
 {
-    AI_StopProcessInfos (self);         // zamknij okno dialogu
+    AI_StopProcessInfos (self);
 };
 ```
+
+| Pole / Wywołanie | Opis |
+| ---------------- | ---- |
+| `nr = 999` | Zawsze na samym dole listy dialogowej |
+| `DIALOG_ENDE` | Wbudowana stała = "Koniec" |
+| `return TRUE` | Opcja zawsze widoczna |
+| `AI_StopProcessInfos(self)` | Zamyka okno dialogu |
 
 ## Krok 4: Dialog — powitanie (NPC mówi pierwszy)
 
@@ -108,9 +119,14 @@ instance DIA_Konrad_Hallo (C_INFO)
     nr          = 1;
     condition   = DIA_Konrad_Hallo_Condition;
     information = DIA_Konrad_Hallo_Info;
-    permanent   = FALSE;                // tylko raz
-    important   = TRUE;                 // NPC mówi pierwszy
+    permanent   = FALSE;
+    important   = TRUE;
 };
+
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `permanent` | `FALSE` | Dialog pojawia się tylko raz |
+| `important` | `TRUE` | NPC sam podchodzi do gracza i mówi pierwszy |
 
 func int DIA_Konrad_Hallo_Condition ()
 {
@@ -216,8 +232,8 @@ func void DIA_Konrad_Topor_Oddaj_Info ()
 
     // === NAGRODA ===
     CreateInvItems (self, ItMi_Gold, 150);
-    B_GiveInvItems (self, other, ItMi_Gold, 150);      // 150 złota
-    B_GivePlayerXP (100);                               // 100 pkt doświadczenia
+    B_GiveInvItems (self, other, ItMi_Gold, 150);
+    B_GivePlayerXP (100);
 
     // === ZAKOŃCZ QUEST ===
     MIS_Konrad_ZnajdzTopor = LOG_SUCCESS;

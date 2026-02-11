@@ -7,7 +7,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "Gothic Modding Wiki",
   tagline: "Gothic game modding documentation",
-  favicon: "img/favicon.ico",
+  favicon: "img/favico.ico",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -84,7 +84,7 @@ const config: Config = {
       title: "Gothic Modding Wiki",
       logo: {
         alt: "Gothic Modding Wiki Logo",
-        src: "img/logo.svg",
+        src: "img/favico.ico",
       },
       items: [
         {

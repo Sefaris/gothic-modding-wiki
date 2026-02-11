@@ -41,7 +41,6 @@ Before creating our own character, we need to understand the **prototype** `Npc_
 ```daedalus
 prototype Npc_Default (C_NPC)
 {
-    // Basic attributes
     attribute[ATR_STRENGTH]      = 10;
     attribute[ATR_DEXTERITY]     = 10;
     attribute[ATR_MANA_MAX]      = 10;
@@ -49,25 +48,36 @@ prototype Npc_Default (C_NPC)
     attribute[ATR_HITPOINTS_MAX] = 40;
     attribute[ATR_HITPOINTS]     = 40;
 
-    // Hit chances (0% — cannot fight with this weapon type)
     HitChance[NPC_TALENT_1H]       = 0;
     HitChance[NPC_TALENT_2H]       = 0;
     HitChance[NPC_TALENT_BOW]      = 0;
     HitChance[NPC_TALENT_CROSSBOW] = 0;
 
-    // Protection (0 — no protection)
     protection[PROT_EDGE]   = 0;
     protection[PROT_BLUNT]  = 0;
     protection[PROT_POINT]  = 0;
     protection[PROT_FIRE]   = 0;
     protection[PROT_MAGIC]  = 0;
 
-    // Default settings
     damagetype   = DAM_BLUNT;
     senses       = SENSE_HEAR | SENSE_SEE;
     senses_range = PERC_DIST_ACTIVE_MAX;
 };
 ```
+
+| Field | Default | Description |
+| ----- | ------- | ----------- |
+| `attribute[ATR_STRENGTH]` | `10` | Base strength |
+| `attribute[ATR_DEXTERITY]` | `10` | Base dexterity |
+| `attribute[ATR_MANA_MAX]` | `10` | Maximum mana |
+| `attribute[ATR_MANA]` | `10` | Starting mana |
+| `attribute[ATR_HITPOINTS_MAX]` | `40` | Maximum health |
+| `attribute[ATR_HITPOINTS]` | `40` | Starting health |
+| `HitChance[NPC_TALENT_*]` | `0` | Hit chance per weapon type — 0% means NPC cannot fight with it |
+| `protection[PROT_*]` | `0` | Protection against each damage type — 0 means no protection |
+| `damagetype` | `DAM_BLUNT` | Default damage type dealt by the NPC |
+| `senses` | `SENSE_HEAR \| SENSE_SEE` | NPC can hear and see |
+| `senses_range` | `PERC_DIST_ACTIVE_MAX` | Maximum perception range |
 
 :::info
 The prototype sets **default values**. Each NPC instance can override any of them.
@@ -80,42 +90,50 @@ Let's create a farmer named **Konrad**. Create a file `BAU_900_Konrad.d` in the 
 ```daedalus
 instance BAU_900_Konrad (Npc_Default)
 {
-    // --- Basic information ---
     name        = "Konrad";
-    guild       = GIL_OUT;              // guildless (farmer)
-    id          = 900;                  // unique number
-    voice       = 90;                   // voice number
-    flags       = 0;                    // 0 = normal, NPC_FLAG_IMMORTAL = immortal
-    npctype     = NPCTYPE_MAIN;         // important character
+    guild       = GIL_OUT;
+    id          = 900;
+    voice       = 90;
+    flags       = 0;
+    npctype     = NPCTYPE_MAIN;
 
-    // --- Attributes ---
     attribute[ATR_STRENGTH]      = 30;
     attribute[ATR_DEXTERITY]     = 15;
     attribute[ATR_HITPOINTS_MAX] = 80;
     attribute[ATR_HITPOINTS]     = 80;
     level                        = 5;
 
-    // --- Combat ---
-    fight_tactic = FAI_HUMAN_COWARD;    // flees from combat
+    fight_tactic = FAI_HUMAN_COWARD;
 
-    // --- Equipment ---
-    EquipItem (self, ItMw_1h_Bau_Axe);     // farmer's axe
-    CreateInvItems (self, ItMi_Gold, 25);   // 25 gold coins
-    CreateInvItems (self, ItFo_Apple, 3);   // 3 apples
+    EquipItem (self, ItMw_1h_Bau_Axe);
+    CreateInvItems (self, ItMi_Gold, 25);
+    CreateInvItems (self, ItFo_Apple, 3);
 
-    // --- Appearance ---
     B_SetNpcVisual (self, MALE, "Hum_Head_Bald", Face_N_NormalBart_Senyan, BodyTex_N, ITAR_Bau_L);
-    Mdl_SetModelFatness (self, 1);                      // body fat
-    Mdl_ApplyOverlayMds (self, "Humans_Relaxed.mds");   // relaxed animation
+    Mdl_SetModelFatness (self, 1);
+    Mdl_ApplyOverlayMds (self, "Humans_Relaxed.mds");
 
-    // --- Skills ---
     B_GiveNpcTalents (self);
-    B_SetFightSkills (self, 15);    // 15% hit chance
+    B_SetFightSkills (self, 15);
 
-    // --- Daily routine ---
     daily_routine = Rtn_Start_900;
 };
 ```
+
+| Field / Call | Description |
+| ------------ | ----------- |
+| `guild = GIL_OUT` | Guildless (farmer) |
+| `id = 900` | Unique NPC identifier |
+| `voice = 90` | Voice number (linked to audio files) |
+| `flags = 0` | `0` = normal, `NPC_FLAG_IMMORTAL` = immortal |
+| `npctype = NPCTYPE_MAIN` | Important character (quest-relevant) |
+| `fight_tactic = FAI_HUMAN_COWARD` | Flees from combat |
+| `EquipItem(self, ItMw_1h_Bau_Axe)` | Equips a farmer's axe |
+| `CreateInvItems(self, ItMi_Gold, 25)` | 25 gold coins in inventory |
+| `CreateInvItems(self, ItFo_Apple, 3)` | 3 apples in inventory |
+| `Mdl_SetModelFatness(self, 1)` | Body fatness |
+| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Relaxed animation overlay |
+| `B_SetFightSkills(self, 15)` | 15% hit chance |
 
 :::tip
 Naming convention: `BAU` (Bauer = farmer), `900` (unique ID), `Konrad` (name). In the original Gothic scripts, each guild has its own prefix.
@@ -128,19 +146,19 @@ Every NPC needs a **daily routine** — a function that defines what they do at 
 ```daedalus
 func void Rtn_Start_900 ()
 {
-    // From 7:00 to 12:00 — stands by the well
     TA_Stand_ArmsCrossed (07, 00,  12, 00, "NW_CITY_WELL_01");
-
-    // From 12:00 to 13:00 — eats a meal
     TA_Sit_Bench         (12, 00,  13, 00, "NW_CITY_BENCH_01");
-
-    // From 13:00 to 20:00 — works at the farm
     TA_Smalltalk         (13, 00,  20, 00, "NW_FARM1_PATH_01");
-
-    // From 20:00 to 7:00 — sleeps
     TA_Sleep             (20, 00,  07, 00, "NW_FARM1_BED_01");
 };
 ```
+
+| Time | Function | Waypoint | Activity |
+| ---- | -------- | -------- | -------- |
+| 07:00–12:00 | `TA_Stand_ArmsCrossed` | `NW_CITY_WELL_01` | Stands by the well |
+| 12:00–13:00 | `TA_Sit_Bench` | `NW_CITY_BENCH_01` | Eats a meal |
+| 13:00–20:00 | `TA_Smalltalk` | `NW_FARM1_PATH_01` | Works at the farm |
+| 20:00–07:00 | `TA_Sleep` | `NW_FARM1_BED_01` | Sleeps |
 
 :::warning
 Waypoints (e.g., `"NW_CITY_WELL_01"`) must exist in the game world (`.zen` file). If you use a non-existent waypoint, the NPC will appear at the `(0, 0, 0)` point.
