@@ -66,10 +66,16 @@ instance ItMi_Topor_Konrada (C_Item)
 };
 ```
 
-| Pole    | Wartość        | Opis                                                |
-| ------- | -------------- | --------------------------------------------------- |
-| `flags` | `ITEM_MISSION` | Przedmiot misyjny (nie można sprzedać ani wyrzucić) |
-| `value` | `0`            | Nie do sprzedaży                                    |
+| Pole          | Wartość        | Opis                                                |
+| ------------- | -------------- | --------------------------------------------------- |
+| `name`        | `"Stary topór Konrada"` | Nazwa wyświetlana w grze                    |
+| `mainflag`    | `ITEM_KAT_NONE` | Kategoria "inne" (nie broń/zbroja/jedzenie)       |
+| `flags`       | `ITEM_MISSION` | Przedmiot misyjny (nie można sprzedać ani wyrzucić) |
+| `value`       | `0`            | Nie do sprzedaży                                    |
+| `visual`      | `"ItMw_010_1h_misc_axe_01.3DS"` | Plik modelu 3D             |
+| `material`    | `MAT_WOOD`     | Drewno (wpływa na dźwięki)                        |
+| `description` | `name`         | Nagłówek tooltipa = nazwa itemu                     |
+| `TEXT[5]`     | `"Przedmiot misyjny"` | Linia informacyjna w tooltipie            |
 
 :::info
 Flaga `ITEM_MISSION` sprawia, że przedmiot nie może być sprzedany ani wyrzucony.
@@ -103,8 +109,12 @@ func void DIA_Konrad_EXIT_Info ()
 
 | Pole / Wywołanie            | Opis                                  |
 | --------------------------- | ------------------------------------- |
+| `npc = BAU_900_Konrad`      | Dialog należy do Konrada              |
 | `nr = 999`                  | Zawsze na samym dole listy dialogowej |
-| `DIALOG_ENDE`               | Wbudowana stała = "Koniec"            |
+| `condition`                 | Funkcja warunku (tu zawsze TRUE)      |
+| `information`               | Funkcja wykonywana po wybraniu opcji  |
+| `permanent = TRUE`          | Opcja widoczna zawsze po użyciu       |
+| `description = DIALOG_ENDE` | Wbudowana stała = "Koniec"            |
 | `return TRUE`               | Opcja zawsze widoczna                 |
 | `AI_StopProcessInfos(self)` | Zamyka okno dialogu                   |
 
@@ -122,12 +132,18 @@ instance DIA_Konrad_Hallo (C_INFO)
     permanent   = FALSE;
     important   = TRUE;
 };
+```
 
 | Pole | Wartość | Opis |
 | ---- | ------- | ---- |
+| `npc` | `BAU_900_Konrad` | Dialog należy do Konrada |
+| `nr` | `1` | Wysoki priorytet (wyświetlany jako pierwszy) |
+| `condition` | `DIA_Konrad_Hallo_Condition` | Funkcja warunku |
+| `information` | `DIA_Konrad_Hallo_Info` | Funkcja wykonywana po wywołaniu |
 | `permanent` | `FALSE` | Dialog pojawia się tylko raz |
 | `important` | `TRUE` | NPC sam podchodzi do gracza i mówi pierwszy |
 
+```daedalus
 func int DIA_Konrad_Hallo_Condition ()
 {
     // Pokaż tylko jeśli quest nie został jeszcze rozpoczęty
@@ -162,7 +178,18 @@ instance DIA_Konrad_Topor (C_INFO)
     permanent   = FALSE;
     description = "Pomogę ci znaleźć topór.";
 };
+```
 
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `npc` | `BAU_900_Konrad` | Dialog należy do Konrada |
+| `nr` | `5` | Pozycja w kolejności wyświetlania |
+| `condition` | `DIA_Konrad_Topor_Condition` | Widoczny gdy quest nie rozpoczęty |
+| `information` | `DIA_Konrad_Topor_Info` | Rozpoczyna quest |
+| `permanent` | `FALSE` | Znika po wybraniu |
+| `description` | `"Pomogę ci znaleźć topór."` | Tekst opcji dialogowej gracza |
+
+```daedalus
 func int DIA_Konrad_Topor_Condition ()
 {
     if (MIS_Konrad_ZnajdzTopor == 0)
@@ -210,7 +237,18 @@ instance DIA_Konrad_Topor_Oddaj (C_INFO)
     permanent   = FALSE;
     description = "Mam twój topór.";
 };
+```
 
+| Pole | Wartość | Opis |
+| ---- | ------- | ---- |
+| `npc` | `BAU_900_Konrad` | Dialog należy do Konrada |
+| `nr` | `10` | Pozycja w kolejności wyświetlania |
+| `condition` | `DIA_Konrad_Topor_Oddaj_Condition` | Widoczny gdy quest aktywny I gracz ma topór |
+| `information` | `DIA_Konrad_Topor_Oddaj_Info` | Daje nagrodę i kończy quest |
+| `permanent` | `FALSE` | Znika po wybraniu |
+| `description` | `"Mam twój topór."` | Tekst opcji dialogowej gracza |
+
+```daedalus
 func int DIA_Konrad_Topor_Oddaj_Condition ()
 {
     // Pokaż tylko gdy quest jest aktywny I gracz ma topór
@@ -244,6 +282,16 @@ func void DIA_Konrad_Topor_Oddaj_Info ()
     AI_StopProcessInfos (self);
 };
 ```
+
+| Wywołanie                                              | Opis                                       |
+| ------------------------------------------------------ | ------------------------------------------ |
+| `Npc_HasItems(other, ItMi_Topor_Konrada)`              | Sprawdza czy gracz ma topór                |
+| `B_GiveInvItems(other, self, ItMi_Topor_Konrada, 1)`   | Gracz oddaje topór Konradowi               |
+| `CreateInvItems(self, ItMi_Gold, 150)`                 | Tworzy 150 złota w ekwipunku Konrada       |
+| `B_GiveInvItems(self, other, ItMi_Gold, 150)`          | Konrad daje 150 złota graczowi             |
+| `B_GivePlayerXP(100)`                                  | Gracz otrzymuje 100 XP                     |
+| `MIS_Konrad_ZnajdzTopor = LOG_SUCCESS`                 | Oznacza quest jako ukończony               |
+| `AI_StopProcessInfos(self)`                            | Zamyka okno dialogu                        |
 
 ## Krok 7: Umieszczenie przedmiotu w świecie
 

@@ -64,10 +64,16 @@ instance ItMi_Topor_Konrada (C_Item)
 };
 ```
 
-| Field   | Value          | Description                              |
-| ------- | -------------- | ---------------------------------------- |
-| `flags` | `ITEM_MISSION` | Mission item — cannot be sold or dropped |
-| `value` | `0`            | Not for sale                             |
+| Field         | Value          | Description                              |
+| ------------- | -------------- | ---------------------------------------- |
+| `name`        | `"Konrad's Old Axe"` | Item name displayed in game       |
+| `mainflag`    | `ITEM_KAT_NONE` | "Other" category (not weapon/armor/food) |
+| `flags`       | `ITEM_MISSION` | Mission item — cannot be sold or dropped |
+| `value`       | `0`            | Not for sale                             |
+| `visual`      | `"ItMw_010_1h_misc_axe_01.3DS"` | 3D model file          |
+| `material`    | `MAT_WOOD`     | Wood (affects sounds)                    |
+| `description` | `name`         | Tooltip header = item name               |
+| `TEXT[5]`     | `"Mission Item"` | Tooltip info line                      |
 
 :::info
 The `ITEM_MISSION` flag prevents the item from being sold or dropped.
@@ -101,8 +107,12 @@ func void DIA_Konrad_EXIT_Info ()
 
 | Field / Call                | Description                                  |
 | --------------------------- | -------------------------------------------- |
+| `npc = BAU_900_Konrad`      | This dialog belongs to Konrad                |
 | `nr = 999`                  | Always at the very bottom of the dialog list |
-| `DIALOG_ENDE`               | Built-in constant for "End"                  |
+| `condition`                 | Condition function (always TRUE here)        |
+| `information`               | Function executed when option is selected    |
+| `permanent = TRUE`          | Option stays visible after being used        |
+| `description = DIALOG_ENDE` | Built-in constant for "End"                  |
 | `return TRUE`               | Exit option is always visible                |
 | `AI_StopProcessInfos(self)` | Closes the dialog window                     |
 
@@ -120,12 +130,18 @@ instance DIA_Konrad_Hallo (C_INFO)
     permanent   = FALSE;
     important   = TRUE;
 };
+```
 
 | Field | Value | Description |
 | ----- | ----- | ----------- |
+| `npc` | `BAU_900_Konrad` | This dialog belongs to Konrad |
+| `nr` | `1` | High priority (shown first) |
+| `condition` | `DIA_Konrad_Hallo_Condition` | Condition function |
+| `information` | `DIA_Konrad_Hallo_Info` | Function executed on trigger |
 | `permanent` | `FALSE` | Dialog appears only once |
 | `important` | `TRUE` | NPC approaches the player and speaks first |
 
+```daedalus
 func int DIA_Konrad_Hallo_Condition ()
 {
     // Show only if quest hasn't been started yet
@@ -162,7 +178,18 @@ instance DIA_Konrad_Topor (C_INFO)
     permanent   = FALSE;
     description = "I'll help you find the axe.";
 };
+```
 
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `npc` | `BAU_900_Konrad` | Dialog belongs to Konrad |
+| `nr` | `5` | Display order position |
+| `condition` | `DIA_Konrad_Topor_Condition` | Visible only when quest not started |
+| `information` | `DIA_Konrad_Topor_Info` | Starts the quest |
+| `permanent` | `FALSE` | Disappears after selecting |
+| `description` | `"I'll help you find the axe."` | Player's dialog option text |
+
+```daedalus
 func int DIA_Konrad_Topor_Condition ()
 {
     if (MIS_Konrad_FindAxe == 0)
@@ -210,7 +237,18 @@ instance DIA_Konrad_Topor_Oddaj (C_INFO)
     permanent   = FALSE;
     description = "I have your axe.";
 };
+```
 
+| Field | Value | Description |
+| ----- | ----- | ----------- |
+| `npc` | `BAU_900_Konrad` | Dialog belongs to Konrad |
+| `nr` | `10` | Display order position |
+| `condition` | `DIA_Konrad_Topor_Oddaj_Condition` | Visible when quest is running AND player has the axe |
+| `information` | `DIA_Konrad_Topor_Oddaj_Info` | Gives reward and completes quest |
+| `permanent` | `FALSE` | Disappears after selecting |
+| `description` | `"I have your axe."` | Player's dialog option text |
+
+```daedalus
 func int DIA_Konrad_Topor_Oddaj_Condition ()
 {
     if (MIS_Konrad_FindAxe == LOG_RUNNING)
@@ -243,10 +281,13 @@ func void DIA_Konrad_Topor_Oddaj_Info ()
 
 | Call                                                 | Description                         |
 | ---------------------------------------------------- | ----------------------------------- |
+| `Npc_HasItems(other, ItMi_Topor_Konrada)`            | Checks if player has the axe        |
 | `B_GiveInvItems(other, self, ItMi_Topor_Konrada, 1)` | Player gives the axe to Konrad      |
+| `CreateInvItems(self, ItMi_Gold, 150)`               | Creates 150 gold in Konrad's inventory |
 | `B_GiveInvItems(self, other, ItMi_Gold, 150)`        | Konrad gives 150 gold to the player |
 | `B_GivePlayerXP(100)`                                | Player receives 100 XP              |
 | `MIS_Konrad_FindAxe = LOG_SUCCESS`                   | Marks quest as completed            |
+| `AI_StopProcessInfos(self)`                          | Closes the dialog window            |
 
 ## Step 7: Placing the Item in the World
 

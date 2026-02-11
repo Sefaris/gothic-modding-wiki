@@ -80,17 +80,21 @@ instance ItMw_Miecz_Konrada (C_Item)
 };
 ```
 
-| Pole            | Wartość        | Opis                       |
-| --------------- | -------------- | -------------------------- |
-| `mainflag`      | `ITEM_KAT_NF`  | Kategoria: broń biała      |
-| `flags`         | `ITEM_SWD`     | Miecz jednoręczny          |
-| `damageTotal`   | `35`           | 35 punktów obrażeń         |
-| `damagetype`    | `DAM_EDGE`     | Obrażenia sieczne          |
-| `range`         | `100`          | Zasięg ataku               |
-| `cond_atr[2]`   | `ATR_STRENGTH` | Wymaga atrybutu siły       |
-| `cond_value[2]` | `20`           | Minimum 20 siły            |
-| `value`         | `250`          | Wartość 250 złota          |
-| `TEXT/COUNT`    | —              | Linie tooltipa w ekwipunku |
+| Pole            | Wartość                          | Opis                             |
+| --------------- | -------------------------------- | -------------------------------- |
+| `name`          | `"Miecz Konrada"`                | Nazwa wyświetlana w grze          |
+| `mainflag`      | `ITEM_KAT_NF`                   | Kategoria: broń biała            |
+| `flags`         | `ITEM_SWD`                       | Miecz jednoręczny                |
+| `material`      | `MAT_METAL`                      | Metal (wpływa na dźwięk)         |
+| `damageTotal`   | `35`                             | 35 punktów obrażeń               |
+| `damagetype`    | `DAM_EDGE`                       | Obrażenia sieczne                 |
+| `range`         | `100`                            | Zasięg ataku w jednostkach        |
+| `cond_atr[2]`   | `ATR_STRENGTH`                   | Wymaga atrybutu siły             |
+| `cond_value[2]` | `20`                             | Minimum 20 siły do użycia        |
+| `value`         | `250`                            | Wartość 250 złota                |
+| `visual`        | `"ItMw_025_1h_sld_sword_01.3DS"` | Plik modelu 3D                   |
+| `description`   | `name`                           | Nagłówek tooltipa = nazwa itemu   |
+| `TEXT/COUNT`    | —                                | Linie tooltipa w ekwipunku       |
 
 :::info
 Pole `flags` określa typ broni: `ITEM_SWD` (miecz 1H), `ITEM_AXE` (topór 1H), `ITEM_2HD_SWD` (miecz 2H), `ITEM_2HD_AXE` (topór 2H).
@@ -130,14 +134,22 @@ func void Use_ItPo_Zdrowie_Konrada ()
 };
 ```
 
-| Pole                                            | Wartość                  | Opis                            |
-| ----------------------------------------------- | ------------------------ | ------------------------------- |
-| `flags`                                         | `ITEM_MULTI`             | Przedmiot stackowalny           |
-| `material`                                      | `MAT_GLAS`               | Szkło (dźwięk przy podnoszeniu) |
-| `scemeName`                                     | `"POTIONFAST"`           | Animacja picia                  |
-| `effect`                                        | `"SPELLFX_HEALTHPOTION"` | Efekt wizualny przy użyciu      |
-| `TEXT[1]/COUNT[1]`                              | `+100 HP`                | Tooltip: bonus do zdrowia       |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                        | Przywraca 100 HP przy użyciu    |
+| Pole                                            | Wartość                  | Opis                             |
+| ----------------------------------------------- | ------------------------ | -------------------------------- |
+| `name`                                          | `"Mikstura zdrowia Konrada"` | Nazwa wyświetlana w grze     |
+| `mainflag`                                      | `ITEM_KAT_POTIONS`       | Kategoria: mikstury              |
+| `flags`                                         | `ITEM_MULTI`             | Przedmiot stackowalny            |
+| `value`                                         | `75`                     | Wartość 75 złota                 |
+| `visual`                                        | `"ItPo_Health_01.3ds"`   | Plik modelu 3D                   |
+| `material`                                      | `MAT_GLAS`               | Szkło (dźwięk przy podnoszeniu)   |
+| `on_state[0]`                                   | `Use_ItPo_Zdrowie_Konrada` | Funkcja wywoływana przy użyciu |
+| `scemeName`                                     | `"POTIONFAST"`           | Animacja picia                   |
+| `wear`                                          | `WEAR_EFFECT`            | Włącza efekt wizualny przy użyciu   |
+| `effect`                                        | `"SPELLFX_HEALTHPOTION"` | Efekt wizualny odtwarzany przy użyciu |
+| `description`                                   | `name`                   | Nagłówek tooltipa = nazwa itemu    |
+| `TEXT[1]/COUNT[1]`                              | `+100 HP`                | Tooltip: bonus do zdrowia        |
+| `TEXT[5]/COUNT[5]`                              | value                    | Tooltip: wartość przedmiotu       |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                        | Przywraca 100 HP przy użyciu      |
 
 :::tip
 `ITEM_MULTI` sprawia, że przedmioty tego samego typu stackują się w ekwipunku (zamiast zajmować osobne sloty).
@@ -168,6 +180,21 @@ func void Use_ItFo_Chleb_Konrada ()
     Npc_ChangeAttribute (self, ATR_HITPOINTS, 15);
 };
 ```
+
+| Pole                                           | Wartość        | Opis                             |
+| ---------------------------------------------- | -------------- | -------------------------------- |
+| `name`                                         | `"Chleb Konrada"` | Nazwa wyświetlana w grze       |
+| `mainflag`                                     | `ITEM_KAT_FOOD` | Kategoria: jedzenie             |
+| `flags`                                        | `ITEM_MULTI`   | Przedmiot stackowalny            |
+| `value`                                        | `10`           | Wartość 10 złota                  |
+| `visual`                                       | `"ItFo_Bread.3ds"` | Plik modelu 3D              |
+| `material`                                     | `MAT_LEATHER`  | Materiał (wpływa na dźwięki)      |
+| `on_state[0]`                                  | `Use_ItFo_Chleb_Konrada` | Funkcja wywoływana przy użyciu |
+| `scemeName`                                    | `"FOOD"`       | Animacja jedzenia                |
+| `description`                                  | `name`         | Nagłówek tooltipa = nazwa itemu   |
+| `TEXT[1]/COUNT[1]`                             | `+15 HP`       | Tooltip: bonus do zdrowia        |
+| `TEXT[5]/COUNT[5]`                             | value          | Tooltip: wartość przedmiotu       |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 15)` | —              | Przywraca 15 HP przy użyciu       |
 
 ## Dawanie przedmiotu NPC
 

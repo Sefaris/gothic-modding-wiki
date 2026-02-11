@@ -120,20 +120,29 @@ instance BAU_900_Konrad (Npc_Default)
 };
 ```
 
-| Field / Call                                      | Description                                  |
-| ------------------------------------------------- | -------------------------------------------- |
-| `guild = GIL_OUT`                                 | Guildless (farmer)                           |
-| `id = 900`                                        | Unique NPC identifier                        |
-| `voice = 90`                                      | Voice number (linked to audio files)         |
-| `flags = 0`                                       | `0` = normal, `NPC_FLAG_IMMORTAL` = immortal |
-| `npctype = NPCTYPE_MAIN`                          | Important character (quest-relevant)         |
-| `fight_tactic = FAI_HUMAN_COWARD`                 | Flees from combat                            |
-| `EquipItem(self, ItMw_1h_Bau_Axe)`                | Equips a farmer's axe                        |
-| `CreateInvItems(self, ItMi_Gold, 25)`             | 25 gold coins in inventory                   |
-| `CreateInvItems(self, ItFo_Apple, 3)`             | 3 apples in inventory                        |
-| `Mdl_SetModelFatness(self, 1)`                    | Body fatness                                 |
-| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Relaxed animation overlay                    |
-| `B_SetFightSkills(self, 15)`                      | 15% hit chance                               |
+| Field / Call                                       | Description                                    |
+| -------------------------------------------------- | ---------------------------------------------- |
+| `name = "Konrad"`                                  | NPC name displayed in game                     |
+| `guild = GIL_OUT`                                  | Guildless (farmer)                             |
+| `id = 900`                                         | Unique NPC identifier                          |
+| `voice = 90`                                       | Voice number (linked to audio files)           |
+| `flags = 0`                                        | `0` = normal, `NPC_FLAG_IMMORTAL` = immortal   |
+| `npctype = NPCTYPE_MAIN`                           | Important character (quest-relevant)           |
+| `attribute[ATR_STRENGTH] = 30`                     | Strength (overrides prototype's 10)            |
+| `attribute[ATR_DEXTERITY] = 15`                    | Dexterity (overrides prototype's 10)           |
+| `attribute[ATR_HITPOINTS_MAX] = 80`                | Maximum health (overrides prototype's 40)      |
+| `attribute[ATR_HITPOINTS] = 80`                    | Starting health                                |
+| `level = 5`                                        | Character level                                |
+| `fight_tactic = FAI_HUMAN_COWARD`                  | Flees from combat                              |
+| `EquipItem(self, ItMw_1h_Bau_Axe)`                | Equips a farmer's axe                          |
+| `CreateInvItems(self, ItMi_Gold, 25)`              | 25 gold coins in inventory                     |
+| `CreateInvItems(self, ItFo_Apple, 3)`              | 3 apples in inventory                          |
+| `B_SetNpcVisual(self, ...)`                        | Sets body mesh, head, face, body texture, armor |
+| `Mdl_SetModelFatness(self, 1)`                     | Body fatness (0 = thin, 1 = normal, 2 = fat)   |
+| `Mdl_ApplyOverlayMds(self, "Humans_Relaxed.mds")` | Relaxed animation overlay                      |
+| `B_GiveNpcTalents(self)`                           | Assigns default talent values                  |
+| `B_SetFightSkills(self, 15)`                       | 15% hit chance for all weapon types             |
+| `daily_routine = Rtn_Start_900`                    | Daily routine function (see below)             |
 
 :::tip
 Naming convention: `BAU` (Bauer = farmer), `900` (unique ID), `Konrad` (name). In the original Gothic scripts, each guild has its own prefix.

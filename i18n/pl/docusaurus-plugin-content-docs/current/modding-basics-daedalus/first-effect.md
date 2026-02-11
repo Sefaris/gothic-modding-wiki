@@ -156,19 +156,32 @@ instance PFX_MojDym (C_ParticleFX)
 };
 ```
 
-| Pole                 | Wartość         | Opis                           |
-| -------------------- | --------------- | ------------------------------ |
-| `dirAngleElev`       | `90`            | Kierunek w górę                |
-| `dirAngleElevVar`    | `15`            | ±15° losowe odchylenie         |
-| `dirAngleHeadVar`    | `180`           | Rozrzut na boki                |
-| `velAvg`             | `0.02`          | Powolna prędkość               |
-| `flyGravity_S`       | `"0 0.0001 0"`  | Lekko w górę (dym unosi się)   |
-| `visOrientation_S`   | `"NONE"`        | Billboard skierowany do kamery |
-| `visTexColorStart_S` | `"150 150 150"` | Szary                          |
-| `visTexColorEnd_S`   | `"80 80 80"`    | Ciemniejszy z czasem           |
-| `visSizeEndScale`    | `5`             | Rośnie 5×                      |
-| `visAlphaFunc_S`     | `"BLEND"`       | Zwykłe przenikanie             |
-| `visAlphaEnd`        | `0`             | Zanika całkowicie              |
+| Pole                 | Wartość         | Opis                              |
+| -------------------- | --------------- | --------------------------------- |
+| `ppsValue`           | `30`            | 30 cząsteczek na sekundę          |
+| `ppsScaleKeys_S`     | `"1"`           | Stała emisja (bez skalowania)      |
+| `ppsIsLooping`       | `1`             | Ciągła emisja                      |
+| `shpType_S`          | `"POINT"`       | Emisja z pojedynczego punktu      |
+| `shpFOR_S`           | `"OBJECT"`      | Względem obiektu emitera           |
+| `dirMode_S`          | `"DIR"`         | Emisja kierunkowa                 |
+| `dirFOR_S`           | `"OBJECT"`      | Kierunek względem obiektu          |
+| `dirAngleElev`       | `90`            | Kierunek w górę                   |
+| `dirAngleElevVar`    | `15`            | ±15° losowe odchylenie             |
+| `dirAngleHeadVar`    | `180`           | Pełny rozrzut 360° na boki         |
+| `velAvg`             | `0.02`          | Powolna prędkość                   |
+| `velVar`             | `0.01`          | Lekka wariancja prędkości          |
+| `lspPartAvg`         | `2500`          | Średni czas życia 2,5 sekundy      |
+| `lspPartVar`         | `500`           | ±0,5s wariancja czasu życia        |
+| `flyGravity_S`       | `"0 0.0001 0"`  | Lekko w górę (dym unosi się)      |
+| `visName_S`          | `"SMOKE1.TGA"`  | Tekstura dymu                     |
+| `visOrientation_S`   | `"NONE"`        | Billboard skierowany do kamery    |
+| `visTexColorStart_S` | `"150 150 150"` | Szary przy powstaniu              |
+| `visTexColorEnd_S`   | `"80 80 80"`    | Ciemniejszy z czasem              |
+| `visSizeStart_S`     | `"10 10"`       | Rozmiar początkowy 10×10            |
+| `visSizeEndScale`    | `5`             | Rośnie 5×                           |
+| `visAlphaFunc_S`     | `"BLEND"`       | Zwykłe przenikanie                 |
+| `visAlphaStart`      | `180`           | Półprzezroczyste przy powstaniu    |
+| `visAlphaEnd`        | `0`             | Zanika całkowicie                  |
 
 :::tip
 **`visAlphaFunc_S`** — tryby blendingu:
@@ -227,15 +240,36 @@ instance PFX_MojOgien (C_ParticleFX)
 };
 ```
 
-| Pole                 | Wartość         | Opis                          |
-| -------------------- | --------------- | ----------------------------- |
-| `shpDim_S`           | `"15"`          | Promień koła: 15 jednostek    |
-| `visTexAniFPS`       | `8`             | Prędkość animacji tekstury    |
-| `visTexAniIsLooping` | `1`             | Animacja zapętlona            |
-| `visTexColorStart_S` | `"255 255 255"` | Biały (prześwietlony środek)  |
-| `visTexColorEnd_S`   | `"255 100 30"`  | Pomarańczowy (krawędzie)      |
-| `visSizeEndScale`    | `4`             | Rośnie 4×                     |
-| `visAlphaFunc_S`     | `"ADD"`         | Addytywne blending (świecące) |
+| Pole                 | Wartość         | Opis                              |
+| -------------------- | --------------- | --------------------------------- |
+| `ppsValue`           | `80`            | 80 cząsteczek na sekundę          |
+| `ppsScaleKeys_S`     | `"1"`           | Stała emisja                       |
+| `ppsIsLooping`       | `1`             | Ciągła emisja                      |
+| `shpType_S`          | `"CIRCLE"`      | Kołowy kształt emitera             |
+| `shpFOR_S`           | `"OBJECT"`      | Względem obiektu emitera           |
+| `shpIsVolume`        | `1`             | Emisja z całego dysku              |
+| `shpDim_S`           | `"15"`          | Promień koła: 15 jednostek        |
+| `dirMode_S`          | `"DIR"`         | Emisja kierunkowa                 |
+| `dirFOR_S`           | `"OBJECT"`      | Kierunek względem obiektu          |
+| `dirAngleElev`       | `90`            | Kierunek w górę                   |
+| `dirAngleElevVar`    | `20`            | ±20° losowe odchylenie             |
+| `dirAngleHeadVar`    | `180`           | Pełny rozrzut 360° na boki         |
+| `velAvg`             | `0.05`          | Umiarkowana prędkość              |
+| `velVar`             | `0.02`          | Wariancja prędkości               |
+| `lspPartAvg`         | `800`           | Krótki czas życia (0,8s)            |
+| `lspPartVar`         | `200`           | ±0,2s wariancja                    |
+| `flyGravity_S`       | `"0 0.0003 0"`  | Lekkie ciągnięcie w górę           |
+| `visName_S`          | `"FIREFLARE.TGA"` | Tekstura ognia                 |
+| `visOrientation_S`   | `"NONE"`        | Billboard skierowany do kamery    |
+| `visTexAniFPS`       | `8`             | Prędkość animacji tekstury        |
+| `visTexAniIsLooping` | `1`             | Animacja zapętlona                |
+| `visTexColorStart_S` | `"255 255 255"` | Biały (prześwietlony środek)       |
+| `visTexColorEnd_S`   | `"255 100 30"`  | Pomarańczowy (krawędzie)           |
+| `visSizeStart_S`     | `"5 5"`         | Rozmiar początkowy 5×5             |
+| `visSizeEndScale`    | `4`             | Rośnie 4×                          |
+| `visAlphaFunc_S`     | `"ADD"`         | Addytywne blending (świecące)      |
+| `visAlphaStart`      | `255`           | W pełni widoczne przy powstaniu    |
+| `visAlphaEnd`        | `0`             | Zanika całkowicie                  |
 
 ## Przykład 3: Iskry
 
@@ -284,18 +318,34 @@ instance PFX_MojeIskry (C_ParticleFX)
 };
 ```
 
-| Pole                 | Wartość         | Opis                             |
-| -------------------- | --------------- | -------------------------------- |
-| `ppsScaleKeys_S`     | `"1 0"`         | Natychmiastowy wybuch, potem nic |
-| `ppsIsLooping`       | `0`             | Jednorazowe (bez pętli)          |
-| `dirAngleHeadVar`    | `180`           | Pełny rozrzut 360°               |
-| `dirAngleElev`       | `45`            | Lekko w górę                     |
-| `dirAngleElevVar`    | `45`            | Duży rozrzut                     |
-| `velAvg`             | `0.15`          | Szybkie                          |
-| `flyCollDet_B`       | `1`             | Kolizje z geometrią świata       |
-| `visTexColorStart_S` | `"255 220 100"` | Żółty                            |
-| `visTexColorEnd_S`   | `"255 80 20"`   | Ciemny pomarańcz                 |
-| `visSizeEndScale`    | `0.5`           | Zmniejszają się z czasem         |
+| Pole                 | Wartość         | Opis                              |
+| -------------------- | --------------- | --------------------------------- |
+| `ppsValue`           | `50`            | 50 cząsteczek w wybuchu           |
+| `ppsScaleKeys_S`     | `"1 0"`         | Natychmiastowy wybuch, potem nic  |
+| `ppsIsLooping`       | `0`             | Jednorazowe (bez pętli)           |
+| `ppsFPS`             | `2`             | Prędkość odtwarzania kluczy       |
+| `shpType_S`          | `"POINT"`       | Emisja z pojedynczego punktu      |
+| `shpFOR_S`           | `"OBJECT"`      | Względem obiektu emitera           |
+| `dirMode_S`          | `"DIR"`         | Emisja kierunkowa                 |
+| `dirFOR_S`           | `"OBJECT"`      | Kierunek względem obiektu          |
+| `dirAngleHeadVar`    | `180`           | Pełny rozrzut 360°                 |
+| `dirAngleElev`       | `45`            | Lekko w górę                      |
+| `dirAngleElevVar`    | `45`            | Duży rozrzut pionowy               |
+| `velAvg`             | `0.15`          | Szybkie                           |
+| `velVar`             | `0.08`          | Duża wariancja prędkości           |
+| `lspPartAvg`         | `600`           | Krótki czas życia (0,6s)            |
+| `lspPartVar`         | `300`           | ±0,3s wariancja                    |
+| `flyGravity_S`       | `"0 -0.0005 0"` | Grawitacja ciągnie w dół            |
+| `flyCollDet_B`       | `1`             | Kolizje z geometrią świata        |
+| `visName_S`          | `"ZFLARE1.TGA"` | Tekstura małego błysku             |
+| `visOrientation_S`   | `"NONE"`        | Billboard skierowany do kamery    |
+| `visTexColorStart_S` | `"255 220 100"` | Żółty                              |
+| `visTexColorEnd_S`   | `"255 80 20"`   | Ciemny pomarańcz                  |
+| `visSizeStart_S`     | `"2 2"`         | Mały rozmiar 2×2                    |
+| `visSizeEndScale`    | `0.5`           | Zmniejszają się do połowy          |
+| `visAlphaFunc_S`     | `"ADD"`         | Addytywne blending (świecące)      |
+| `visAlphaStart`      | `255`           | W pełni widoczne przy powstaniu    |
+| `visAlphaEnd`        | `0`             | Zanikają całkowicie                |
 
 ## Przykład 4: Śnieg
 
@@ -347,12 +397,35 @@ instance PFX_MojSnieg (C_ParticleFX)
 };
 ```
 
-| Pole             | Wartość     | Opis                       |
-| ---------------- | ----------- | -------------------------- |
-| `shpOffsetVec_S` | `"0 500 0"` | 500 jednostek nad emiterem |
-| `shpDim_S`       | `"300"`     | Promień okręgu: 300        |
-| `dirAngleHead`   | `20`        | Lekki wiatr boczny         |
-| `dirAngleElev`   | `-89`       | Prawie prosto w dół        |
+| Pole                 | Wartość                  | Opis                                      |
+| -------------------- | ------------------------ | ----------------------------------------- |
+| `ppsValue`           | `50`                     | 50 cząsteczek na sekundę                  |
+| `ppsScaleKeys_S`     | `"1"`                    | Stała emisja                               |
+| `ppsIsLooping`       | `1`                      | Ciągła emisja                              |
+| `shpType_S`          | `"CIRCLE"`               | Kołowy kształt emitera                     |
+| `shpFOR_S`           | `"OBJECT"`               | Względem obiektu emitera                   |
+| `shpOffsetVec_S`     | `"0 500 0"`              | 500 jednostek nad emiterem                |
+| `shpIsVolume`        | `1`                      | Emisja z całego dysku                      |
+| `shpDim_S`           | `"300"`                  | Promień okręgu: 300 jednostek             |
+| `dirMode_S`          | `"DIR"`                  | Emisja kierunkowa                         |
+| `dirFOR_S`           | `"OBJECT"`               | Kierunek względem obiektu                  |
+| `dirAngleHead`       | `20`                     | Lekki wiatr boczny                        |
+| `dirAngleHeadVar`    | `10`                     | ±10° wariancja wiatru                      |
+| `dirAngleElev`       | `-89`                    | Prawie prosto w dół                       |
+| `velAvg`             | `0.05`                   | Powolna prędkość opadania               |
+| `velVar`             | `0.02`                   | Lekka wariancja prędkości                 |
+| `lspPartAvg`         | `5000`                   | Długi czas życia (5 sekund)                |
+| `flyGravity_S`       | `"0 0 0"`                | Brak grawitacji (stała prędkość opadania) |
+| `visName_S`          | `"MFX_SLEEP_STAR.TGA"`   | Tekstura płatka śniegu                    |
+| `visOrientation_S`   | `"NONE"`                 | Billboard skierowany do kamery            |
+| `visTexColorStart_S` | `"255 255 255"`           | Biały                                     |
+| `visTexColorEnd_S`   | `"255 255 255"`           | Pozostaje biały                            |
+| `visSizeStart_S`     | `"5 5"`                  | Rozmiar płatka 5×5                         |
+| `visSizeEndScale`    | `1`                      | Bez zmiany rozmiaru                       |
+| `visAlphaFunc_S`     | `"ADD"`                  | Addytywne blending (jasne płatki)         |
+| `visAlphaStart`      | `255`                    | W pełni widoczne                           |
+| `visAlphaEnd`        | `255`                    | Nie zanikają                               |
+| `m_bIsAmbientPFX`    | `1`                      | Efekt ambientowy (można wyłączyć w opcjach) |
 
 ## Przykład 5: Krew (efekt potomny)
 
@@ -411,19 +484,44 @@ instance PFX_MojaKrew_Plama (C_ParticleFX)
 
 **PFX_MojaKrew:**
 
-| Pole            | Wartość                | Opis                               |
-| --------------- | ---------------------- | ---------------------------------- |
-| `ppsCreateEm_S` | `"PFX_MojaKrew_Plama"` | Tworzy efekt potomny na cząsteczkę |
-| `flyGravity_S`  | `"0 -0.0001 0"`        | Spada w dół                        |
+| Pole                 | Wartość                | Opis                               |
+| -------------------- | ---------------------- | ---------------------------------- |
+| `ppsValue`           | `64`                   | 64 cząsteczki w wybuchu            |
+| `ppsCreateEm_S`      | `"PFX_MojaKrew_Plama"` | Tworzy efekt potomny na cząsteczkę |
+| `dirMode_S`          | `"DIR"`                | Emisja kierunkowa                  |
+| `dirFOR_S`           | `"OBJECT"`             | Kierunek względem obiektu           |
+| `dirAngleHeadVar`    | `30`                   | ±30° rozrzut poziomy                |
+| `dirAngleElevVar`    | `30`                   | ±30° rozrzut pionowy                |
+| `velAvg`             | `0.1`                  | Umiarkowana prędkość               |
+| `velVar`             | `0.05`                 | Wariancja prędkości                |
+| `lspPartAvg`         | `750`                  | Czas życia 0,75s                    |
+| `lspPartVar`         | `550`                  | Duża wariancja czasu życia          |
+| `flyGravity_S`       | `"0 -0.0001 0"`        | Spada w dół                         |
+| `flyCollDet_B`       | `1`                    | Kolizje z geometrią świata         |
+| `visName_S`          | `"BLOOD1.TGA"`         | Tekstura krwi                      |
+| `visTexColorStart_S` | `"255 255 255"`         | Biały (zachowuje kolor tekstury)    |
+| `visTexColorEnd_S`   | `"255 255 255"`         | Bez zmiany koloru                  |
+| `visSizeStart_S`     | `"6 6"`                | Rozmiar początkowy 6×6              |
+| `visSizeEndScale`    | `1`                    | Bez zmiany rozmiaru                |
+| `visAlphaFunc_S`     | `"BLEND"`              | Zwykłe przenikanie                  |
+| `visAlphaStart`      | `255`                  | W pełni widoczne                    |
 
 **PFX_MojaKrew_Plama:**
 
-| Pole           | Wartość  | Opis           |
-| -------------- | -------- | -------------- |
-| `ppsIsLooping` | `0`      | Jedna plama    |
-| `dirMode_S`    | `"NONE"` | Bez ruchu      |
-| `lspPartAvg`   | `3000`   | Trwa 3 sekundy |
-| `visAlphaEnd`  | `0`      | Zanika         |
+| Pole             | Wartość                  | Opis                          |
+| ---------------- | ------------------------ | ----------------------------- |
+| `ppsValue`       | `1`                      | Jedna cząsteczka (jedna plama) |
+| `ppsIsLooping`   | `0`                      | Jednorazowe                   |
+| `shpType_S`      | `"POINT"`                | Emiter punktowy               |
+| `dirMode_S`      | `"NONE"`                 | Bez kierunku ruchu            |
+| `velAvg`         | `0`                      | Nieruchome                    |
+| `lspPartAvg`     | `3000`                   | Trwa 3 sekundy                |
+| `visName_S`      | `"YOURBLOODSPLAT.TGA"`   | Tekstura plamy                |
+| `visSizeStart_S` | `"10 10"`                | Rozmiar plamy 10×10            |
+| `visSizeEndScale`| `1`                      | Bez zmiany rozmiaru           |
+| `visAlphaFunc_S` | `"BLEND"`                | Zwykłe przenikanie            |
+| `visAlphaStart`  | `200`                    | Lekko przezroczysta           |
+| `visAlphaEnd`    | `0`                      | Zanika całkowicie             |
 
 :::info
 **`ppsCreateEm_S`** — każda cząsteczka z głównego emitera staje się źródłem nowego efektu potomnego. To potężne narzędzie, ale kosztowne — używaj ostrożnie, by nie obciążyć silnika.
