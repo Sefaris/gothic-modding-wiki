@@ -77,6 +77,18 @@ Plik `.src` określa **kolejność kompilacji** - symbole muszą być zadeklarow
 
 ---
 
+## Muzyka (DirectMusic)
+
+Gothic wykorzystuje system **Microsoft DirectMusic** do dynamicznej, interaktywnej muzyki. Pliki muzyczne przechowywane są w `Data/Music/`.
+
+| Rozszerzenie | Opis                                                                                                                                                                                                                                                                       |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.SGT`       | **DirectMusic Segment.** Główny format pliku muzycznego, do którego odwołuje się pole `C_MUSICTHEME.file` w skryptach muzycznych. Zawiera odniesienia do styli, bandów i progresji akordów, które razem tworzą odtwarzalny utwór muzyczny. Przykłady: `OWD_DayStd.sgt`, `nw_dayfgt.sgt`. |
+| `.STY`       | **DirectMusic Style.** Definiuje wzorce muzyczne, motywy i wariacje. Style są wykorzystywane przez segmenty `.SGT` i dostarczają właściwe dane nut/rytmu, które DirectMusic odtwarza dynamicznie.                                                                           |
+| `.DLS`       | **Downloadable Sounds (DLS).** Pliki banku instrumentów/sampli używane przez DirectMusic do syntezy dźwięku. Zawierają faktyczne sample instrumentów (dane wavetable) wykorzystywane do odtwarzania muzyki zdefiniowanej w plikach `.SGT` i `.STY`.                          |
+
+---
+
 ## Dane dialogowe
 
 | Rozszerzenie | Opis                                                                                                                                                                                        |
@@ -133,6 +145,7 @@ Zarówno `.VDF`, jak i `.MOD` używają tego samego formatu wewnętrznego. Silni
 | **Światy**             | `.ZEN`                                                         |
 | **Tekstury i grafika** | `.TGA`, `.TEX`, `.FNT`                                         |
 | **Audio**              | `.WAV`                                                         |
+| **Muzyka (DirectMusic)** | `.SGT`, `.STY`, `.DLS`                                       |
 | **Dane dialogowe**     | `.BIN` (`ou.bin`), `.CSL`                                      |
 | **Archiwa**            | `.VDF`, `.MOD`                                                 |
 | **Konfiguracja**       | `.INI`                                                         |

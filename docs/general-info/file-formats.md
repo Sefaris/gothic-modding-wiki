@@ -77,6 +77,18 @@ The `.src` file determines the **compilation order** - symbols must be declared 
 
 ---
 
+## Music (DirectMusic)
+
+Gothic uses the **Microsoft DirectMusic** system for dynamic, interactive music. Music files are stored in `Data/Music/`.
+
+| Extension | Description                                                                                                                                                                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.SGT`    | **DirectMusic Segment.** The main music file format referenced by `C_MUSICTHEME.file` in music scripts. Contains references to styles, bands, and chord progressions that together form a playable music piece. Examples: `OWD_DayStd.sgt`, `nw_dayfgt.sgt`. |
+| `.STY`    | **DirectMusic Style.** Defines musical patterns, motifs, and variations. Styles are referenced by `.SGT` segments and provide the actual note/rhythm data that DirectMusic plays back dynamically.                                                              |
+| `.DLS`    | **Downloadable Sounds (DLS).** Instrument/sample bank files used by DirectMusic for sound synthesis. Contains the actual instrument samples (wavetable data) used to play back music defined in `.SGT` and `.STY` files.                                        |
+
+---
+
 ## Dialog Data
 
 | Extension | Description                                                                                                                                                      |
@@ -133,6 +145,7 @@ Both `.VDF` and `.MOD` use the same internal format. The engine loads them based
 | **Worlds**              | `.ZEN`                                                         |
 | **Textures & graphics** | `.TGA`, `.TEX`, `.FNT`                                         |
 | **Audio**               | `.WAV`                                                         |
+| **Music (DirectMusic)** | `.SGT`, `.STY`, `.DLS`                                         |
 | **Dialog data**         | `.BIN` (`ou.bin`), `.CSL`                                      |
 | **Archives**            | `.VDF`, `.MOD`                                                 |
 | **Configuration**       | `.INI`                                                         |
