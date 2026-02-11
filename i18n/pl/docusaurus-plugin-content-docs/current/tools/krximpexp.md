@@ -1,4 +1,4 @@
-﻿---
+---
 sidebar_position: 1
 title: "KrxImpExp"
 description: "Dodatek do Blendera umożliwiający import i eksport modeli 3D z Gothic I i Gothic II."

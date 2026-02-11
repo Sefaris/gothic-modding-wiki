@@ -1,5 +1,5 @@
-﻿---
-sidebar_position: 5
+---
+sidebar_position: 4
 title: "Formaty plików"
 description: "Kompletna lista formatów plików i rozszerzeń używanych w moddingu Gothic I/II."
 ---
@@ -26,16 +26,16 @@ Plik `.src` określa **kolejność kompilacji** - symbole muszą być zadeklarow
 
 ## Modele 3D i meshe
 
-| Rozszerzenie | Opis                                                                                                                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `.3DS`       | **Mesh 3D Studio Max.** Używany do wizualizacji przedmiotów i obiektów świata. Można importować/eksportować przez [KrxImpExp](./tools/krximpexp.md). Używany w polu `visual` instancji `C_Item`. |
-| `.ASC`       | **Format modeli ASCII.** Format tekstowy dla meshów - edytowalny format pośredni w pipeline'ach modelowania. Import/eksport przez KrxImpExp.                                                     |
-| `.MRM`       | **Multi-Resolution Mesh.** Skompilowany (binarny) format meshów, zoptymalizowany do renderowania. Tylko import w KrxImpExp.                                                                      |
-| `.MSH`       | **Mesh ZenGin.** Natywny format meshów silnika. Tylko import w KrxImpExp.                                                                                                                        |
-| `.MDL`       | **Plik modelu.** Kompletny skompilowany model zawierający mesh i dane szkieletu.                                                                                                                 |
-| `.MDM`       | **Model Mesh.** Komponent meshowy modelu (oddzielony od hierarchii).                                                                                                                             |
-| `.MDH`       | **Model Hierarchy.** Komponent szkieletu/hierarchii kości modelu.                                                                                                                                |
-| `.MMB`       | **Morph Mesh Binary.** Meshe morph (odkształcenia) twarzy używane do synchronizacji ruchu ust i ekspresji NPC.                                                                                   |
+| Rozszerzenie | Opis                                                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.3DS`       | **Mesh 3D Studio Max.** Używany do wizualizacji przedmiotów i obiektów świata. Można importować/eksportować przez [KrxImpExp](/docs/tools/krximpexp). Używany w polu `visual` instancji `C_Item`. |
+| `.ASC`       | **Format modeli ASCII.** Format tekstowy dla meshów - edytowalny format pośredni w pipeline'ach modelowania. Import/eksport przez KrxImpExp.                                                      |
+| `.MRM`       | **Multi-Resolution Mesh.** Skompilowany (binarny) format meshów, zoptymalizowany do renderowania. Tylko import w KrxImpExp.                                                                       |
+| `.MSH`       | **Mesh ZenGin.** Natywny format meshów silnika. Tylko import w KrxImpExp.                                                                                                                         |
+| `.MDL`       | **Plik modelu.** Kompletny skompilowany model zawierający mesh i dane szkieletu.                                                                                                                  |
+| `.MDM`       | **Model Mesh.** Komponent meshowy modelu (oddzielony od hierarchii).                                                                                                                              |
+| `.MDH`       | **Model Hierarchy.** Komponent szkieletu/hierarchii kości modelu.                                                                                                                                 |
+| `.MMB`       | **Morph Mesh Binary.** Meshe morph (odkształcenia) twarzy używane do synchronizacji ruchu ust i ekspresji NPC.                                                                                    |
 
 ---
 
@@ -106,7 +106,7 @@ Gothic wykorzystuje system **Microsoft DirectMusic** do dynamicznej, interaktywn
 | `.MOD`       | **Archiwum moda.** Funkcjonalnie identyczne z `.VDF`, używane do dystrybucji modyfikacji. Umieszczane w `Data/modvdf/` i ładowane przez silnik na podstawie linii `VDF=` w pliku `.ini`.                                                                                         |
 
 :::info
-Zarówno `.VDF`, jak i `.MOD` używają tego samego formatu wewnętrznego. Silnik ładuje je na podstawie znacznika daty archiwum - nowsze archiwa nadpisują starsze. Dlatego [EGMT](./tools/easy-gothic-mod-translator.md) zwiększa datę o 1 dzień przy tworzeniu łatek z tłumaczeniem.
+Zarówno `.VDF`, jak i `.MOD` używają tego samego formatu wewnętrznego. Silnik ładuje je na podstawie znacznika daty archiwum - nowsze archiwa nadpisują starsze. Dlatego [EGMT](/docs/tools/easy-gothic-mod-translator) zwiększa datę o 1 dzień przy tworzeniu łatek z tłumaczeniem.
 :::
 
 ---

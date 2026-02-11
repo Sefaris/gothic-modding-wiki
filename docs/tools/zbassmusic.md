@@ -8,7 +8,7 @@ description: "A modern Union plugin replacing Gothic's DirectMusic system with t
 
 **zBassMusic** is a modern music system for Gothic games built on the [BASS audio library](https://www.un4seen.com/). It replaces the engine's native **DirectMusic** playback with a custom implementation, allowing modders to use standard audio formats instead of the legacy `.SGT`/`.STY`/`.DLS` files.
 
-The plugin is developed by the **Silver Ore Team** (tehe) and requires [Union](../../general-info/union.md).
+The plugin is developed by the **Silver Ore Team** (tehe) and requires [Union](../general-info/union.md).
 
 :::tip
 zBassMusic is the recommended way to add custom music to new mods - you can use standard `.mp3`, `.ogg` or `.wav` files without needing to learn [DirectMusic Producer](./directmusic-producer.md).
@@ -25,7 +25,7 @@ zBassMusic is the recommended way to add custom music to new mods - you can use 
 
 ## Installation
 
-1. Install [Union](../../general-info/union.md) if you haven't already.
+1. Install [Union](../general-info/union.md) if you haven't already.
 2. Download the latest release from the [zBassMusic GitHub releases](https://github.com/Silver-Ore-Team/zBassMusic/releases).
 3. Place the plugin DLL in `<Gothic>/System/Autorun/`.
 
