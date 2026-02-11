@@ -8,6 +8,9 @@
   "sidebar.gettingStartedSidebar.category.Resources": {
     "message": "Źródła i materiały"
   },
+  "sidebar.gettingStartedSidebar.category.Tools": {
+    "message": "Narzędzia"
+  },
   "sidebar.guidesSidebar.category.Daedalus": {
     "message": "Daedalus"
   },
