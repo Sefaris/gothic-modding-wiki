@@ -166,7 +166,15 @@ Copy the compiled DLL to your Gothic installation:
 If the `Autorun` directory doesn't exist, create it.
 
 :::tip
-To skip manual copying, you can create a **symbolic link** from the output directory to your game's `Autorun` folder. This way the DLL is available immediately after each build.
+To skip manual copying, you can set the output directory directly in `CMakeLists.txt` so the DLL is built straight into your game's `Autorun` folder:
+
+```cmake
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "E:/SteamLibrary/steamapps/common/Gothic II/system/Autorun"
+)
+```
+
+Replace the path with your actual Gothic installation path. After this, every build will place the DLL directly where the game expects it.
 :::
 
 ---
