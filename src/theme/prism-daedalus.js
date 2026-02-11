@@ -24,17 +24,15 @@ module.exports = function defineDaedalus(Prism) {
     },
     keyword:
       /\b(?:var|const|func|class|prototype|instance|return|if|else|void|int|float|string|while|repeat|end)\b/i,
-    builtin:
-      /\b(?:self|other|hero|victim|item|NULL|TRUE|FALSE|EMPTY)\b/i,
-    'class-name':
+    builtin: /\b(?:self|other|hero|victim|item|NULL|TRUE|FALSE|EMPTY)\b/i,
+    "class-name":
       /\b(?:C_NPC|C_Item|C_INFO|C_Spell|C_Mission|C_Focus|C_FightAI|C_SFX|C_ParticleFX|C_Menu|C_Menu_Item|C_SVM|C_GilValues)\b/i,
     function: {
       pattern: /\b[a-z_]\w*(?=\s*\()/i,
       greedy: false,
     },
     number: /\b(?:0x[\da-f]+|\d+(?:\.\d+)?)\b/i,
-    operator:
-      /<<|>>|&&|\|\||[+\-*/%]=?|[!=<>]=?|[&|^~!]/,
+    operator: /<<|>>|&&|\|\||[+\-*/%]=?|[!=<>]=?|[&|^~!]/,
     punctuation: /[{}[\];(),.:]/,
   };
 };
