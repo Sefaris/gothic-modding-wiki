@@ -31,9 +31,9 @@ PlayVideo("Addon_Title.BIK");
 
 Silnik udostępnia dwie funkcje do odtwarzania wideo:
 
-| Funkcja | Sygnatura | Opis |
-| --- | --- | --- |
-| `PlayVideo` | `PlayVideo(string filename)` | Odtwarza plik wideo. Zwraca `TRUE` w przypadku powodzenia. |
+| Funkcja       | Sygnatura                                                        | Opis                                                                                                                                                                                |
+| ------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PlayVideo`   | `PlayVideo(string filename)`                                     | Odtwarza plik wideo. Zwraca `TRUE` w przypadku powodzenia.                                                                                                                          |
 | `PlayVideoEx` | `PlayVideoEx(string filename, int screenBlend, int exitSession)` | Rozszerzona wersja. `screenBlend` włącza efekt zaciemnienia po odtworzeniu. Jeśli `exitSession` wynosi `TRUE`, sesja gry kończy się po filmie (używane dla przerywników końcowych). |
 
 ### Gdzie umieszczać pliki wideo
@@ -52,16 +52,16 @@ Pliki wideo **nie mogą** być pakowane do archiwów `.vdf` ani `.mod`. Muszą i
 
 Gothic II: Noc Kruka zawiera następujące pliki `.BIK`:
 
-| Plik | Zastosowanie |
-| --- | --- |
-| `logo1.bik` | Logo wydawcy (odtwarzane przy uruchomieniu) |
-| `logo2.bik` | Logo dewelopera (odtwarzane przy uruchomieniu) |
-| `intro.bik` | Główny przerywnik wprowadzający |
-| `Addon_Title.bik` | Ekran tytułowy Nocy Kruka |
-| `credits.bik` | Napisy końcowe (część 1) |
-| `credits2.bik` | Napisy końcowe (część 2) |
-| `ORCATTACK.BIK` | Przerywnik ataku orków |
-| `YOURSHIP.BIK` | Przerywnik ze statkiem |
+| Plik              | Zastosowanie                                   |
+| ----------------- | ---------------------------------------------- |
+| `logo1.bik`       | Logo wydawcy (odtwarzane przy uruchomieniu)    |
+| `logo2.bik`       | Logo dewelopera (odtwarzane przy uruchomieniu) |
+| `intro.bik`       | Główny przerywnik wprowadzający                |
+| `Addon_Title.bik` | Ekran tytułowy Nocy Kruka                      |
+| `credits.bik`     | Napisy końcowe (część 1)                       |
+| `credits2.bik`    | Napisy końcowe (część 2)                       |
+| `ORCATTACK.BIK`   | Przerywnik ataku orków                         |
+| `YOURSHIP.BIK`    | Przerywnik ze statkiem                         |
 
 :::info
 Silnik wspiera również filmy specyficzne dla rozdzielczości. Przy otwieraniu pliku np. `INTRO.BIK`, najpierw próbuje wariantów z tagiem rozdzielczości (np. `INTRO1024x768.BIK`, `INTRO800x600.BIK`) pasujących do aktualnej rozdzielczości ekranu, a dopiero potem wraca do pliku bazowego.
@@ -100,12 +100,12 @@ Filmy są zazwyczaj wywoływane w trzech miejscach:
 
 ### Zalecane ustawienia dla Gothica
 
-| Ustawienie | Zalecana wartość |
-| --- | --- |
-| Rozdzielczość | 640x480 lub 800x600 (dopasuj do rozdzielczości gry) |
-| Data rate | 1500 - 3000 kbps |
-| Klatki na sekundę | 25 fps |
-| Audio | 44100 Hz, stereo |
+| Ustawienie        | Zalecana wartość                                    |
+| ----------------- | --------------------------------------------------- |
+| Rozdzielczość     | 640x480 lub 800x600 (dopasuj do rozdzielczości gry) |
+| Data rate         | 1500 - 3000 kbps                                    |
+| Klatki na sekundę | 25 fps                                              |
+| Audio             | 44100 Hz, stereo                                    |
 
 :::warning
 Gothic 1 i Gothic 2 używają **Bink 1** (`.bik`), **nie** Bink 2 (`.bk2`). Upewnij się, że kompresujesz do oryginalnego formatu Bink. RAD Video Tools domyślnie kompresuje do Bink 1.
@@ -117,14 +117,14 @@ RAD Video Tools zawiera również wbudowany **Bink Player** do podglądu filmów
 
 Podczas odtwarzania w Gothicu gracz może nacisnąć **Escape**, aby pominąć film. Jeśli w pliku INI Gothica włączono `extendedVideoKeys`, dostępne są dodatkowe sterowania:
 
-| Klawisz | Akcja |
-| --- | --- |
-| **Escape** | Pomiń / anuluj film |
-| **Spacja** | Pauza / wznowienie |
+| Klawisz              | Akcja                         |
+| -------------------- | ----------------------------- |
+| **Escape**           | Pomiń / anuluj film           |
+| **Spacja**           | Pauza / wznowienie            |
 | **Strzałka w prawo** | Przewiń o 30 klatek do przodu |
-| **Home** | Restart filmu |
-| **Góra / Dół** | Regulacja głośności |
-| **Q** | Włącz/wyłącz dźwięk |
+| **Home**             | Restart filmu                 |
+| **Góra / Dół**       | Regulacja głośności           |
+| **Q**                | Włącz/wyłącz dźwięk           |
 
 ## Użycie filmu w modzie
 

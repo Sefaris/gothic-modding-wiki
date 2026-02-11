@@ -31,9 +31,9 @@ PlayVideo("Addon_Title.BIK");
 
 The engine provides two functions for video playback:
 
-| Function | Signature | Description |
-| --- | --- | --- |
-| `PlayVideo` | `PlayVideo(string filename)` | Plays a video file. Returns `TRUE` on success. |
+| Function      | Signature                                                        | Description                                                                                                                                                                       |
+| ------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PlayVideo`   | `PlayVideo(string filename)`                                     | Plays a video file. Returns `TRUE` on success.                                                                                                                                    |
 | `PlayVideoEx` | `PlayVideoEx(string filename, int screenBlend, int exitSession)` | Extended version. `screenBlend` enables a black screen fade effect after playback. If `exitSession` is `TRUE`, the game session ends after the video (used for ending cutscenes). |
 
 ### Where to Place Video Files
@@ -52,16 +52,16 @@ Video files **cannot** be packed into `.vdf` or `.mod` archives. They must exist
 
 Gothic II: Night of the Raven ships with these `.BIK` files:
 
-| File | Used for |
-| --- | --- |
-| `logo1.bik` | Publisher logo (played on startup) |
-| `logo2.bik` | Developer logo (played on startup) |
-| `intro.bik` | Main intro cinematic |
-| `Addon_Title.bik` | Night of the Raven title screen |
-| `credits.bik` | End credits (part 1) |
-| `credits2.bik` | End credits (part 2) |
-| `ORCATTACK.BIK` | Orc attack event cutscene |
-| `YOURSHIP.BIK` | Ship cutscene |
+| File              | Used for                           |
+| ----------------- | ---------------------------------- |
+| `logo1.bik`       | Publisher logo (played on startup) |
+| `logo2.bik`       | Developer logo (played on startup) |
+| `intro.bik`       | Main intro cinematic               |
+| `Addon_Title.bik` | Night of the Raven title screen    |
+| `credits.bik`     | End credits (part 1)               |
+| `credits2.bik`    | End credits (part 2)               |
+| `ORCATTACK.BIK`   | Orc attack event cutscene          |
+| `YOURSHIP.BIK`    | Ship cutscene                      |
 
 :::info
 The engine also supports resolution-specific videos. When opening a file like `INTRO.BIK`, it first tries resolution-tagged variants (e.g., `INTRO1024x768.BIK`, `INTRO800x600.BIK`) matching the current display resolution before falling back to the base file.
@@ -100,12 +100,12 @@ Videos are typically called in three places:
 
 ### Recommended Settings for Gothic
 
-| Setting | Recommended value |
-| --- | --- |
+| Setting    | Recommended value                                   |
+| ---------- | --------------------------------------------------- |
 | Resolution | 640x480 or 800x600 (match Gothic's game resolution) |
-| Data rate | 1500 - 3000 kbps |
-| Frame rate | 25 fps |
-| Audio | 44100 Hz, stereo |
+| Data rate  | 1500 - 3000 kbps                                    |
+| Frame rate | 25 fps                                              |
+| Audio      | 44100 Hz, stereo                                    |
 
 :::warning
 Gothic 1 and Gothic 2 use **Bink 1** (`.bik`), **not** Bink 2 (`.bk2`). Make sure you compress to the original Bink format. RAD Video Tools compresses to Bink 1 by default.
@@ -117,14 +117,14 @@ RAD Video Tools also includes a built-in **Bink Player** for previewing your vid
 
 During playback in Gothic, the player can press **Escape** to skip the video. If `extendedVideoKeys` is enabled in the Gothic INI file, additional controls are available:
 
-| Key | Action |
-| --- | --- |
-| **Escape** | Skip / cancel video |
-| **Space** | Pause / unpause |
+| Key             | Action                 |
+| --------------- | ---------------------- |
+| **Escape**      | Skip / cancel video    |
+| **Space**       | Pause / unpause        |
 | **Right Arrow** | Skip forward 30 frames |
-| **Home** | Restart video |
-| **Up / Down** | Adjust volume |
-| **Q** | Toggle sound on/off |
+| **Home**        | Restart video          |
+| **Up / Down**   | Adjust volume          |
+| **Q**           | Toggle sound on/off    |
 
 ## Using Your Video in a Mod
 
