@@ -29,7 +29,7 @@ The `.src` file determines the **compilation order** — symbols must be declare
 | Extension | Description                                                                                                                                                                              |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.3DS`    | **3D Studio Max mesh.** Used for item visuals and world objects. Can be imported/exported via [KrxImpExp](./tools/krximpexp.md). Referenced in the `visual` field of `C_Item` instances. |
-| `.ASC`    | **ASCII model format.** Text-based format for meshes and animations — the editable intermediate format in model pipelines. Can be imported/exported via KrxImpExp.                       |
+| `.ASC`    | **ASCII model format.** Text-based format for meshes — the editable intermediate format in model pipelines. Can be imported/exported via KrxImpExp.                                      |
 | `.MRM`    | **Multi-Resolution Mesh.** Compiled (binary) mesh format, optimized for rendering. Import-only in KrxImpExp.                                                                             |
 | `.MSH`    | **ZenGin mesh.** Engine-native mesh format. Import-only in KrxImpExp.                                                                                                                    |
 | `.MDL`    | **Model file.** Complete compiled model containing mesh and skeleton data.                                                                                                               |
@@ -43,6 +43,7 @@ The `.src` file determines the **compilation order** — symbols must be declare
 
 | Extension | Description                                                                                                                                                                                                                       |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.ASC`    | **ASCII model format.** Also used for animations — exported skeletal animations are stored in `.ASC` files. Can be imported/exported via KrxImpExp.                                                                                |
 | `.MDS`    | **Model Script.** Animation definition file that describes animation overlays, transitions, and states. Applied via `Mdl_ApplyOverlayMds()` / `Mdl_SetVisual()`. Examples: `HUMANS.MDS`, `Humans_Relaxed.mds`, `HUMANS_FLEE.MDS`. |
 | `.MSB`    | **Model Script Binary.** Compiled version of `.MDS` files.                                                                                                                                                                        |
 | `.MAN`    | **Model Animation.** Binary animation data file for a single animation.                                                                                                                                                           |
