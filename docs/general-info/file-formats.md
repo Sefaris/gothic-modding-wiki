@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 5
 title: "File Formats"
 description: "Complete reference of file formats and extensions used in Gothic I/II modding."
@@ -19,7 +19,7 @@ This page lists all file formats and extensions used by the **ZenGin** engine (G
 | `.dat`    | **Compiled Daedalus binary.** The output of script compilation, read by the engine at runtime. Generated files: `Gothic.dat`, `Menu.dat`, `SFX.dat`, `PFX.dat`, `VFX.dat`, `Camera.dat`, `Music.dat`, `Fight.dat`.                                                    |
 
 :::info
-The `.src` file determines the **compilation order** — symbols must be declared before they are used. `Gothic.src` is the main entry point for game logic scripts.
+The `.src` file determines the **compilation order** - symbols must be declared before they are used. `Gothic.src` is the main entry point for game logic scripts.
 :::
 
 ---
@@ -29,7 +29,7 @@ The `.src` file determines the **compilation order** — symbols must be declare
 | Extension | Description                                                                                                                                                                              |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.3DS`    | **3D Studio Max mesh.** Used for item visuals and world objects. Can be imported/exported via [KrxImpExp](./tools/krximpexp.md). Referenced in the `visual` field of `C_Item` instances. |
-| `.ASC`    | **ASCII model format.** Text-based format for meshes — the editable intermediate format in model pipelines. Can be imported/exported via KrxImpExp.                                      |
+| `.ASC`    | **ASCII model format.** Text-based format for meshes - the editable intermediate format in model pipelines. Can be imported/exported via KrxImpExp.                                      |
 | `.MRM`    | **Multi-Resolution Mesh.** Compiled (binary) mesh format, optimized for rendering. Import-only in KrxImpExp.                                                                             |
 | `.MSH`    | **ZenGin mesh.** Engine-native mesh format. Import-only in KrxImpExp.                                                                                                                    |
 | `.MDL`    | **Model file.** Complete compiled model containing mesh and skeleton data.                                                                                                               |
@@ -43,7 +43,7 @@ The `.src` file determines the **compilation order** — symbols must be declare
 
 | Extension | Description                                                                                                                                                                                                                       |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.ASC`    | **ASCII model format.** Also used for animations — exported skeletal animations are stored in `.ASC` files. Can be imported/exported via KrxImpExp.                                                                               |
+| `.ASC`    | **ASCII model format.** Also used for animations - exported skeletal animations are stored in `.ASC` files. Can be imported/exported via KrxImpExp.                                                                               |
 | `.MDS`    | **Model Script.** Animation definition file that describes animation overlays, transitions, and states. Applied via `Mdl_ApplyOverlayMds()` / `Mdl_SetVisual()`. Examples: `HUMANS.MDS`, `Humans_Relaxed.mds`, `HUMANS_FLEE.MDS`. |
 | `.MSB`    | **Model Script Binary.** Compiled version of `.MDS` files.                                                                                                                                                                        |
 | `.MAN`    | **Model Animation.** Binary animation data file for a single animation.                                                                                                                                                           |
@@ -73,7 +73,7 @@ The `.src` file determines the **compilation order** — symbols must be declare
 | Extension | Description                                                                                                                                                                                             |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.WAV`    | **Audio file.** Used for voice acting, sound effects, and some music. Speech files are stored in `Data/Sound/Speech/` with names matching `AI_Output` identifiers (e.g., `DIA_Konrad_Hallo_08_01.WAV`). |
-| `.SFX`    | **Sound effect definition** (in script context — defined via `C_SFX` class in `SFX.src`).                                                                                                               |
+| `.SFX`    | **Sound effect definition** (in script context - defined via `C_SFX` class in `SFX.src`).                                                                                                               |
 
 ---
 
@@ -94,7 +94,7 @@ The `.src` file determines the **compilation order** — symbols must be declare
 | `.MOD`    | **Mod archive.** Functionally identical to `.VDF`, used for distributing mods. Placed in `Data/modvdf/` and loaded by the engine via the `.ini` file's `VDF=` line.                                                                                           |
 
 :::info
-Both `.VDF` and `.MOD` use the same internal format. The engine loads them based on archive date stamp — newer archives override older ones. That's why [EGMT](./tools/easy-gothic-mod-translator.md) increases the date by 1 day when creating translation patches.
+Both `.VDF` and `.MOD` use the same internal format. The engine loads them based on archive date stamp - newer archives override older ones. That's why [EGMT](./tools/easy-gothic-mod-translator.md) increases the date by 1 day when creating translation patches.
 :::
 
 ---

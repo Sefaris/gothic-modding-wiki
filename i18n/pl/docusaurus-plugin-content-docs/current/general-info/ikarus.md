@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 2
 title: "Ikarus"
 description: "Opis biblioteki Ikarus rozszerzającej możliwości języka Daedalus."
@@ -9,10 +9,10 @@ description: "Opis biblioteki Ikarus rozszerzającej możliwości języka Daedal
 **Ikarus** to biblioteka skryptowa dla Daedalusa stworzona przez **Sektenspinnera** (z udziałem Gottfrieda, mud-freaka i Neconspictora). Pozwala przełamać ograniczenia standardowego Daedalusa, udostępniając:
 
 - **Bezpośredni dostęp do pamięci** silnika Gothic (odczyt/zapis)
-- **Dostęp do klas silnikowych** — `oCGame`, `oCNpc`, `zCWorld`, `zCParser` i wiele innych
+- **Dostęp do klas silnikowych** - `oCGame`, `oCNpc`, `zCWorld`, `zCParser` i wiele innych
 - **Wywoływanie funkcji C++ silnika** z poziomu Daedalusa
-- **Arytmetykę zmiennoprzecinkową** (IEEE 754) — standardowy Daedalus obsługuje tylko `int`
-- **Pętle** (`while`/`end`, `repeat`/`end`) — nieobecne w standardowym Daedalusie
+- **Arytmetykę zmiennoprzecinkową** (IEEE 754) - standardowy Daedalus obsługuje tylko `int`
+- **Pętle** (`while`/`end`, `repeat`/`end`) - nieobecne w standardowym Daedalusie
 - **Odczyt/zapis plików INI** (Gothic.ini, [Mod].ini)
 - **Detekcję klawiszy** (klawiatura i mysz)
 - **Funkcje operacji na stringach** (`STR_Len`, `STR_IndexOf`, `STR_Split` i inne)
@@ -30,10 +30,10 @@ Ikarus jest wymagany przez bibliotekę **LeGo** oraz większość zaawansowanych
 
 Pakiet Ikarus składa się z:
 
-1. **Stałe** — `Ikarus_Const_G2.d` (lub `Ikarus_Const_G1.d` dla Gothic I)
-2. **Klasy silnikowe** — `EngineClasses_G2/*.d` (lub `EngineClasses_G1/*.d`)
-3. **Rdzeń Ikarusa** — `Ikarus.d` (identyczny dla G1 i G2)
-4. **Obsługa floatów** (opcjonalnie) — `float.d`
+1. **Stałe** - `Ikarus_Const_G2.d` (lub `Ikarus_Const_G1.d` dla Gothic I)
+2. **Klasy silnikowe** - `EngineClasses_G2/*.d` (lub `EngineClasses_G1/*.d`)
+3. **Rdzeń Ikarusa** - `Ikarus.d` (identyczny dla G1 i G2)
+4. **Obsługa floatów** (opcjonalnie) - `float.d`
 
 ### Integracja z Gothic.src
 
@@ -79,7 +79,7 @@ func void INIT_GLOBAL()
 - Włącza pętle `repeat`/`end`
 
 :::tip
-Wielokrotne wywołanie `MEM_InitAll()` jest bezpieczne — Ikarus sprawdza, czy już został zainicjalizowany.
+Wielokrotne wywołanie `MEM_InitAll()` jest bezpieczne - Ikarus sprawdza, czy już został zainicjalizowany.
 :::
 
 ---
@@ -123,7 +123,7 @@ MEM_WriteIntArray(tablicaAdres, 3, nowaWartosc);   // zapisz 4. element
 Jedną z najpotężniejszych możliwości Ikarusa jest konwersja surowych wskaźników pamięci na instancje Daedalusa:
 
 ```daedalus
-// _^() — konwertuj wskaźnik na instancję (alias MEM_PtrToInst)
+// _^() - konwertuj wskaźnik na instancję (alias MEM_PtrToInst)
 var oCNpc npcWPamieci;
 npcWPamieci = _^(adresNpc);
 
@@ -152,7 +152,7 @@ var int adrFloat;
 adrFloat = _@f(mojFloat);      // adres zmiennej float
 ```
 
-### Przykład — odczyt nazwy obiektu w focusie
+### Przykład - odczyt nazwy obiektu w focusie
 
 ```daedalus
 func void PokazFocus()
@@ -189,7 +189,7 @@ Po wywołaniu `MEM_InitAll()` dostępne są instancje reprezentujące kluczowe o
 | `MEM_SpawnManager`  | `oCSpawnManager`          | Menedżer spawnowania NPC    |
 
 ```daedalus
-// Przykład — odczyt aktualnej godziny w grze
+// Przykład - odczyt aktualnej godziny w grze
 var int godzina;
 godzina = MEM_WorldTimer.worldTime_hour;
 ```
@@ -238,14 +238,14 @@ wynik = MEM_PopIntResult();
 ### Podmiana funkcji
 
 ```daedalus
-// Zamień implementację funkcji — wszystkie wywołania f1 teraz wykonują f2
+// Zamień implementację funkcji - wszystkie wywołania f1 teraz wykonują f2
 MEM_ReplaceFunc(StaraFunkcja, NowaFunkcja);
 ```
 
 ### Wywoływanie funkcji C++ silnika
 
 ```daedalus
-// Przykład — wywołanie oCNpc::SetAsPlayer z poziomu Daedalusa
+// Przykład - wywołanie oCNpc::SetAsPlayer z poziomu Daedalusa
 func void SetAsPlayer(var C_NPC slf)
 {
     const int oCNpc__SetAsPlayer = 7612064; // adres w pamięci (0x7426A0)
@@ -614,7 +614,7 @@ Niektóre klasy silnikowe dla Gothic I mają status „niezweryfikowane" (np. `z
 
 ---
 
-## LeGo — rozszerzenie Ikarusa
+## LeGo - rozszerzenie Ikarusa
 
 **LeGo** to pakiet skryptów zbudowany **na bazie Ikarusa**, stworzony przez **Lehonę** i społeczność Gothic. Wymaga Ikarusa ≥ 1.2.0.
 

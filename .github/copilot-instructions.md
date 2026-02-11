@@ -112,4 +112,5 @@ Directory structure and file names **must be identical** in both language versio
 - **Target audience**: Beginner Gothic modders.
 - **Internal links**: Use Docusaurus relative paths, e.g. `[text](../general-info/daedalus.md)`.
 - **Admonitions**: Use Docusaurus admonitions (`:::tip`, `:::warning`, `:::info`, `:::danger`).
+- **Dashes**: Use regular hyphens (`-`) instead of em dashes (`—`) everywhere in documentation content and code comments. Em dashes break Daedalus dialog strings and should never be used.
 - **Sidebar**: Auto-generated from the file system (configuration in `sidebars.ts`), with category labels translated via `i18n/pl/docusaurus-plugin-content-docs/current.json`.

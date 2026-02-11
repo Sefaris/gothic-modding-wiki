@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 1
 title: "Pobranie gry ze Steam/GOG"
 description: "Skąd pobrać grę Gothic, wymagania systemowe i różnice między wersjami."
@@ -10,10 +10,10 @@ Aby tworzyć modyfikacje do Gothic, potrzebujesz oryginalnej wersji gry. Gothic 
 
 ## Która wersja gry?
 
-Do moddingu najczęściej używa się **Gothic II: Noc Kruka** (Gothic II: Night of the Raven) — jest to najbardziej rozbudowana wersja silnika ZenGin i posiada największe wsparcie ze strony społeczności modderskiej.
+Do moddingu najczęściej używa się **Gothic II: Noc Kruka** (Gothic II: Night of the Raven) - jest to najbardziej rozbudowana wersja silnika ZenGin i posiada największe wsparcie ze strony społeczności modderskiej.
 
 :::tip
-Jeśli chcesz tworzyć modyfikacje, wybierz **Gothic II: Złotą Edycję** (Gold Edition) — zawiera podstawkę oraz dodatek Noc Kruka.
+Jeśli chcesz tworzyć modyfikacje, wybierz **Gothic II: Złotą Edycję** (Gold Edition) - zawiera podstawkę oraz dodatek Noc Kruka.
 :::
 
 ## Steam
@@ -24,7 +24,7 @@ Jeśli chcesz tworzyć modyfikacje, wybierz **Gothic II: Złotą Edycję** (Gold
 4. Domyślna ścieżka instalacji: `C:\Program Files (x86)\Steam\steamapps\common\Gothic II`
 
 :::warning
-Wersja Steam może wymagać dodatkowej konfiguracji — w niektórych przypadkach gra korzysta z nowszego renderera, który może powodować problemy. Upewnij się, że gra uruchamia się poprawnie przed rozpoczęciem moddingu.
+Wersja Steam może wymagać dodatkowej konfiguracji - w niektórych przypadkach gra korzysta z nowszego renderera, który może powodować problemy. Upewnij się, że gra uruchamia się poprawnie przed rozpoczęciem moddingu.
 :::
 
 ## GOG
@@ -35,7 +35,7 @@ Wersja Steam może wymagać dodatkowej konfiguracji — w niektórych przypadkac
 4. Domyślna ścieżka instalacji: `C:\GOG Games\Gothic II Gold`
 
 :::tip
-Wersja GOG jest zazwyczaj lepszym wyborem do moddingu — nie posiada DRM i jest bliższa oryginalnej wersji gry.
+Wersja GOG jest zazwyczaj lepszym wyborem do moddingu - nie posiada DRM i jest bliższa oryginalnej wersji gry.
 :::
 
 ## Struktura katalogów
@@ -63,15 +63,15 @@ Gothic II/
 └── Saves/              ← stany zapisu
 ```
 
-Najważniejszy katalog dla moddera to **`_work/Data/Scripts/`** — tutaj znajdują się skrypty Daedalus, które będziemy edytować.
+Najważniejszy katalog dla moddera to **`_work/Data/Scripts/`** - tutaj znajdują się skrypty Daedalus, które będziemy edytować.
 
 ## Weryfikacja instalacji
 
 Przed rozpoczęciem pracy upewnij się, że:
 
-1. **Gra się uruchamia** — włącz grę i sprawdź, czy działa poprawnie
-2. **Masz dostęp do skryptów** — sprawdź, czy katalog `_work/Data/Scripts/Content/` istnieje i zawiera pliki `.d` oraz `.src`
-3. **Gothic.src istnieje** — sprawdź, czy plik `_work/Data/Scripts/Content/Gothic.src` jest obecny
+1. **Gra się uruchamia** - włącz grę i sprawdź, czy działa poprawnie
+2. **Masz dostęp do skryptów** - sprawdź, czy katalog `_work/Data/Scripts/Content/` istnieje i zawiera pliki `.d` oraz `.src`
+3. **Gothic.src istnieje** - sprawdź, czy plik `_work/Data/Scripts/Content/Gothic.src` jest obecny
 
 :::info
 Jeśli katalog `_work/Data/Scripts/` jest pusty lub nie istnieje, może być konieczne wypakowanie skryptów z plików `.vdf` za pomocą narzędzia **Gothic VDF Tool** lub **GothicStarter**.
@@ -79,4 +79,4 @@ Jeśli katalog `_work/Data/Scripts/` jest pusty lub nie istnieje, może być kon
 
 ## Następny krok
 
-Po zainstalowaniu gry, przejdź do [instalacji Visual Studio Code](./install-vscode.md) — edytora, w którym będziemy pisać skrypty.
+Po zainstalowaniu gry, przejdź do [instalacji Visual Studio Code](./install-vscode.md) - edytora, w którym będziemy pisać skrypty.

@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 2
 title: "Easy Gothic Mod Translator"
 description: "Narzędzie do automatycznego i ręcznego tłumaczenia modów do Gothic I i Gothic II."
@@ -9,7 +9,7 @@ description: "Narzędzie do automatycznego i ręcznego tłumaczenia modów do Go
 **Easy Gothic Mod Translator** (EGMT) to narzędzie stworzone przez **Lord Sargona**, które umożliwia tłumaczenie modów do **Gothic I** i **Gothic II** na inne języki. Wspiera zarówno **automatyczne tłumaczenie** (przez Google Translate), jak i **ręczne tłumaczenie** za pomocą baz danych CSV.
 
 :::tip
-EGMT to najszybszy sposób na sprawienie, by obcojęzyczny mod do Gothica stał się grywalny — automatyczne tłumaczenie można wygenerować w zaledwie kilka minut.
+EGMT to najszybszy sposób na sprawienie, by obcojęzyczny mod do Gothica stał się grywalny - automatyczne tłumaczenie można wygenerować w zaledwie kilka minut.
 :::
 
 ## Jak to działa
@@ -17,17 +17,17 @@ EGMT to najszybszy sposób na sprawienie, by obcojęzyczny mod do Gothica stał 
 EGMT odczytuje skompilowane pliki skryptów (`gothic.dat`, `menu.dat`, `ou.bin`) z archiwum `.mod` (VDF) moda. Wykorzystuje zaawansowane heurystyki, aby:
 
 - **Zdekompilować** pliki `.dat` i zidentyfikować tłumaczalne ciągi tekstowe (linie dialogowe, nazwy przedmiotów, dziennik zadań, etykiety menu itp.).
-- **Odfiltrować** nieprzetłumaczalne wzorce — nazwy waypointów (`WP_XARDAS_01`), wewnętrzne identyfikatory skryptów (`FARM1`), nazwy funkcji i inne ciągi specyficzne dla silnika.
+- **Odfiltrować** nieprzetłumaczalne wzorce - nazwy waypointów (`WP_XARDAS_01`), wewnętrzne identyfikatory skryptów (`FARM1`), nazwy funkcji i inne ciągi specyficzne dla silnika.
 - **Wygenerować plik łatki** `.mod`, który nadpisuje jedynie przetłumaczony tekst, nie ingerując w oryginalny mod.
 
-Narzędzie analizuje wywołania metod, pozycje parametrów i inne cechy kodu, aby precyzyjnie odróżnić tekst do tłumaczenia od wewnętrznych identyfikatorów — jest więc znacznie dokładniejsze niż proste wyciąganie tekstu.
+Narzędzie analizuje wywołania metod, pozycje parametrów i inne cechy kodu, aby precyzyjnie odróżnić tekst do tłumaczenia od wewnętrznych identyfikatorów - jest więc znacznie dokładniejsze niż proste wyciąganie tekstu.
 
 ## Funkcje
 
 - Automatyczne tłumaczenie przez **Google Translate**
 - Ręczne tłumaczenie za pomocą **eksportu/importu CSV**
 - **Bazy CSV** z profesjonalnie przetłumaczonymi standardowymi tekstami gry dla lepszej jakości
-- Tworzenie lekkiego **pliku łatki .mod** — nie trzeba modyfikować oryginalnego moda
+- Tworzenie lekkiego **pliku łatki .mod** - nie trzeba modyfikować oryginalnego moda
 - Obsługa modów do **Gothic I** i **Gothic II**
 - Praca z plikami `gothic.dat`, `menu.dat` i `ou.bin`
 
@@ -36,12 +36,12 @@ Narzędzie analizuje wywołania metod, pozycje parametrów i inne cechy kodu, ab
 ### Instrukcja krok po kroku
 
 1. **Pobierz i uruchom** narzędzie (zobacz [Linki](#linki) poniżej).
-2. **Wybierz języki** — wskaż język źródłowy moda i język docelowy.
-3. **Załaduj bazę CSV** _(opcjonalnie, ale zalecane)_ — jeśli istnieje baza danych dla twojej pary językowej, zaimportuj ją, aby uzyskać lepszą jakość tłumaczenia standardowych terminów gry.
-4. **Załaduj plik moda** — kliknij "Load Mod-file", przejdź do `Gothic II/Data/modvdf` i wybierz plik `.mod` moda zawierający skrypty.
-5. **Uruchom Google Translate** — poczekaj na zakończenie tłumaczenia, a następnie zapisz bazę danych jako plik `.csv` (np. `nazwamod_pl.csv`).
-6. **Wygeneruj łatkę** — kliknij "Translate Mod", zaznacz "patch only", zwiększ datę archiwum o 1 dzień i zapisz plik `.mod` w `Gothic II/Data/modvdf`.
-7. **Zarejestruj łatkę** — otwórz plik `.ini` moda w `Gothic II/System` i dopisz nazwę pliku łatki:
+2. **Wybierz języki** - wskaż język źródłowy moda i język docelowy.
+3. **Załaduj bazę CSV** _(opcjonalnie, ale zalecane)_ - jeśli istnieje baza danych dla twojej pary językowej, zaimportuj ją, aby uzyskać lepszą jakość tłumaczenia standardowych terminów gry.
+4. **Załaduj plik moda** - kliknij "Load Mod-file", przejdź do `Gothic II/Data/modvdf` i wybierz plik `.mod` moda zawierający skrypty.
+5. **Uruchom Google Translate** - poczekaj na zakończenie tłumaczenia, a następnie zapisz bazę danych jako plik `.csv` (np. `nazwamod_pl.csv`).
+6. **Wygeneruj łatkę** - kliknij "Translate Mod", zaznacz "patch only", zwiększ datę archiwum o 1 dzień i zapisz plik `.mod` w `Gothic II/Data/modvdf`.
+7. **Zarejestruj łatkę** - otwórz plik `.ini` moda w `Gothic II/System` i dopisz nazwę pliku łatki:
 
 ```ini
 # Przed:
@@ -62,11 +62,11 @@ Jeśli wolisz tłumaczyć ręcznie (lub użyć innego serwisu tłumaczeniowego, 
 1. Na etapie Google Translate naciśnij **Skip**.
 2. Zaznacz **MT** i naciśnij **Export Database**, aby zapisać plik CSV.
 3. Otwórz CSV w edytorze arkuszy (np. [Modern CSV](https://www.moderncsv.com/)).
-4. Edytuj ostatnią kolumnę — zastąp nieprzetłumaczone linie swoimi tłumaczeniami.
+4. Edytuj ostatnią kolumnę - zastąp nieprzetłumaczone linie swoimi tłumaczeniami.
 5. Zapisz CSV i zaimportuj go ponownie w EGMT, aby wygenerować plik łatki `.mod`.
 
 :::info
-Nie zostawiaj pustych pól w CSV — puste pola spowodują, że narzędzie użyje oryginalnego (nieprzetłumaczonego) tekstu.
+Nie zostawiaj pustych pól w CSV - puste pola spowodują, że narzędzie użyje oryginalnego (nieprzetłumaczonego) tekstu.
 :::
 
 ## Bazy CSV

@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 4
 title: "My First Quest"
 description: "Creating your first quest in Gothic."
@@ -6,17 +6,17 @@ description: "Creating your first quest in Gothic."
 
 # My First Quest
 
-In this tutorial you will learn how to create a complete quest — from talking to an NPC, through the quest log, to receiving a reward.
+In this tutorial you will learn how to create a complete quest - from talking to an NPC, through the quest log, to receiving a reward.
 
 ## How Do Quests Work in Gothic?
 
 The quest system in Gothic is based on three elements:
 
-1. **Dialogs** (`C_INFO`) — conversations with NPCs that start and end quests
-2. **Quest Log** — entries visible to the player
-3. **State variables** — tracking quest progress
+1. **Dialogs** (`C_INFO`) - conversations with NPCs that start and end quests
+2. **Quest Log** - entries visible to the player
+3. **State variables** - tracking quest progress
 
-## The C_INFO Class — Dialogs
+## The C_INFO Class - Dialogs
 
 Each dialog option is an instance of the `C_INFO` class:
 
@@ -24,7 +24,7 @@ Each dialog option is an instance of the `C_INFO` class:
 | ------------- | -------- | ----------------------------------------------- |
 | `npc`         | `int`    | The NPC we're talking to                        |
 | `nr`          | `int`    | Display order (lower = higher)                  |
-| `condition`   | `func`   | Condition function — when the option is visible |
+| `condition`   | `func`   | Condition function - when the option is visible |
 | `information` | `func`   | Function executed when the option is selected   |
 | `permanent`   | `int`    | `TRUE` = option doesn't disappear after use     |
 | `important`   | `int`    | `TRUE` = NPC speaks first (no player choice)    |
@@ -68,7 +68,7 @@ instance ItMi_Topor_Konrada (C_Item)
 | ------------- | ------------------------------- | ---------------------------------------- |
 | `name`        | `"Konrad's Old Axe"`            | Item name displayed in game              |
 | `mainflag`    | `ITEM_KAT_NONE`                 | "Other" category (not weapon/armor/food) |
-| `flags`       | `ITEM_MISSION`                  | Mission item — cannot be sold or dropped |
+| `flags`       | `ITEM_MISSION`                  | Mission item - cannot be sold or dropped |
 | `value`       | `0`                             | Not for sale                             |
 | `visual`      | `"ItMw_010_1h_misc_axe_01.3DS"` | 3D model file                            |
 | `material`    | `MAT_WOOD`                      | Wood (affects sounds)                    |
@@ -79,7 +79,7 @@ instance ItMi_Topor_Konrada (C_Item)
 The `ITEM_MISSION` flag prevents the item from being sold or dropped.
 :::
 
-## Step 3: Dialog — Exit Conversation
+## Step 3: Dialog - Exit Conversation
 
 Every NPC must have an **exit conversation** option. This is a standard element:
 
@@ -116,7 +116,7 @@ func void DIA_Konrad_EXIT_Info ()
 | `return TRUE`               | Exit option is always visible                |
 | `AI_StopProcessInfos(self)` | Closes the dialog window                     |
 
-## Step 4: Dialog — Greeting (NPC Speaks First)
+## Step 4: Dialog - Greeting (NPC Speaks First)
 
 When the player approaches Konrad for the first time:
 
@@ -163,10 +163,10 @@ func void DIA_Konrad_Hallo_Info ()
 `self` = NPC (Konrad), `other` = player.
 
 :::tip
-**Audio naming convention:** `DIA_Konrad_Hallo_01_01` — `01` = NPC voice number, `01` = line number. `15` in the player's line refers to the hero's voice. The `//` comment after `AI_Output` **must** be on the same line — the Daedalus parser treats it as the dialog subtitle text.
+**Audio naming convention:** `DIA_Konrad_Hallo_01_01` - `01` = NPC voice number, `01` = line number. `15` in the player's line refers to the hero's voice. The `//` comment after `AI_Output` **must** be on the same line - the Daedalus parser treats it as the dialog subtitle text.
 :::
 
-## Step 5: Dialog — Accepting the Quest
+## Step 5: Dialog - Accepting the Quest
 
 ```daedalus
 instance DIA_Konrad_Topor (C_INFO)
@@ -225,7 +225,7 @@ func void DIA_Konrad_Topor_Info ()
 | `Log_SetTopicStatus(topic, status)`   | Sets status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
 | `B_LogEntry(topic, text)`             | Adds a note to an existing entry                          |
 
-## Step 6: Dialog — Returning the Item and Reward
+## Step 6: Dialog - Returning the Item and Reward
 
 ```daedalus
 instance DIA_Konrad_Topor_Oddaj (C_INFO)

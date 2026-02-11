@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 5
 title: "Formaty plików"
 description: "Kompletna lista formatów plików i rozszerzeń używanych w moddingu Gothic I/II."
@@ -19,7 +19,7 @@ Ta strona zawiera listę wszystkich formatów plików i rozszerzeń używanych p
 | `.dat`       | **Skompilowany binarny plik Daedalus.** Wynik kompilacji skryptów, odczytywany przez silnik w trakcie gry. Generowane pliki: `Gothic.dat`, `Menu.dat`, `SFX.dat`, `PFX.dat`, `VFX.dat`, `Camera.dat`, `Music.dat`, `Fight.dat`.                                                       |
 
 :::info
-Plik `.src` określa **kolejność kompilacji** — symbole muszą być zadeklarowane przed ich użyciem. `Gothic.src` to główny punkt wejścia dla skryptów logiki gry.
+Plik `.src` określa **kolejność kompilacji** - symbole muszą być zadeklarowane przed ich użyciem. `Gothic.src` to główny punkt wejścia dla skryptów logiki gry.
 :::
 
 ---
@@ -29,7 +29,7 @@ Plik `.src` określa **kolejność kompilacji** — symbole muszą być zadeklar
 | Rozszerzenie | Opis                                                                                                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `.3DS`       | **Mesh 3D Studio Max.** Używany do wizualizacji przedmiotów i obiektów świata. Można importować/eksportować przez [KrxImpExp](./tools/krximpexp.md). Używany w polu `visual` instancji `C_Item`. |
-| `.ASC`       | **Format modeli ASCII.** Format tekstowy dla meshów — edytowalny format pośredni w pipeline'ach modelowania. Import/eksport przez KrxImpExp.                                                     |
+| `.ASC`       | **Format modeli ASCII.** Format tekstowy dla meshów - edytowalny format pośredni w pipeline'ach modelowania. Import/eksport przez KrxImpExp.                                                     |
 | `.MRM`       | **Multi-Resolution Mesh.** Skompilowany (binarny) format meshów, zoptymalizowany do renderowania. Tylko import w KrxImpExp.                                                                      |
 | `.MSH`       | **Mesh ZenGin.** Natywny format meshów silnika. Tylko import w KrxImpExp.                                                                                                                        |
 | `.MDL`       | **Plik modelu.** Kompletny skompilowany model zawierający mesh i dane szkieletu.                                                                                                                 |
@@ -43,7 +43,7 @@ Plik `.src` określa **kolejność kompilacji** — symbole muszą być zadeklar
 
 | Rozszerzenie | Opis                                                                                                                                                                                                                                 |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `.ASC`       | **Format modeli ASCII.** Również używany do animacji — wyeksportowane animacje szkieletowe przechowywane są w plikach `.ASC`. Import/eksport przez KrxImpExp.                                                                        |
+| `.ASC`       | **Format modeli ASCII.** Również używany do animacji - wyeksportowane animacje szkieletowe przechowywane są w plikach `.ASC`. Import/eksport przez KrxImpExp.                                                                        |
 | `.MDS`       | **Model Script.** Plik definicji animacji opisujący nakładki animacyjne (overlay), przejścia i stany. Stosowany przez `Mdl_ApplyOverlayMds()` / `Mdl_SetVisual()`. Przykłady: `HUMANS.MDS`, `Humans_Relaxed.mds`, `HUMANS_FLEE.MDS`. |
 | `.MSB`       | **Model Script Binary.** Skompilowana wersja plików `.MDS`.                                                                                                                                                                          |
 | `.MAN`       | **Model Animation.** Binarny plik danych animacji dla pojedynczej animacji.                                                                                                                                                          |
@@ -73,7 +73,7 @@ Plik `.src` określa **kolejność kompilacji** — symbole muszą być zadeklar
 | Rozszerzenie | Opis                                                                                                                                                                                                                |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.WAV`       | **Plik audio.** Używany do dubbingu, efektów dźwiękowych i części muzyki. Pliki mowy przechowywane w `Data/Sound/Speech/` z nazwami odpowiadającymi identyfikatorom `AI_Output` (np. `DIA_Konrad_Hallo_08_01.WAV`). |
-| `.SFX`       | **Definicja efektu dźwiękowego** (w kontekście skryptów — definiowane przez klasę `C_SFX` w `SFX.src`).                                                                                                             |
+| `.SFX`       | **Definicja efektu dźwiękowego** (w kontekście skryptów - definiowane przez klasę `C_SFX` w `SFX.src`).                                                                                                             |
 
 ---
 
@@ -94,7 +94,7 @@ Plik `.src` określa **kolejność kompilacji** — symbole muszą być zadeklar
 | `.MOD`       | **Archiwum moda.** Funkcjonalnie identyczne z `.VDF`, używane do dystrybucji modyfikacji. Umieszczane w `Data/modvdf/` i ładowane przez silnik na podstawie linii `VDF=` w pliku `.ini`.                                                                                         |
 
 :::info
-Zarówno `.VDF`, jak i `.MOD` używają tego samego formatu wewnętrznego. Silnik ładuje je na podstawie znacznika daty archiwum — nowsze archiwa nadpisują starsze. Dlatego [EGMT](./tools/easy-gothic-mod-translator.md) zwiększa datę o 1 dzień przy tworzeniu łatek z tłumaczeniem.
+Zarówno `.VDF`, jak i `.MOD` używają tego samego formatu wewnętrznego. Silnik ładuje je na podstawie znacznika daty archiwum - nowsze archiwa nadpisują starsze. Dlatego [EGMT](./tools/easy-gothic-mod-translator.md) zwiększa datę o 1 dzień przy tworzeniu łatek z tłumaczeniem.
 :::
 
 ---

@@ -1,7 +1,7 @@
----
+﻿---
 sidebar_position: 3
 title: "Daedalus Constants"
-description: "Complete reference of Daedalus constants — attributes, item categories, guilds, damage types, materials, and more."
+description: "Complete reference of Daedalus constants - attributes, item categories, guilds, damage types, materials, and more."
 ---
 
 # Daedalus Constants

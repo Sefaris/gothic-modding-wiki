@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 2
 title: "Instalacja Visual Studio Code"
 description: "Jak zainstalować edytor Visual Studio Code i skonfigurować go do pracy ze skryptami Gothic."
@@ -6,7 +6,7 @@ description: "Jak zainstalować edytor Visual Studio Code i skonfigurować go do
 
 # Instalacja Visual Studio Code
 
-**Visual Studio Code** (VS Code) to darmowy, lekki edytor kodu od Microsoftu. Dzięki rozszerzeniom obsługuje język Daedalus — kolorowanie składni, autouzupełnianie i nawigację po kodzie.
+**Visual Studio Code** (VS Code) to darmowy, lekki edytor kodu od Microsoftu. Dzięki rozszerzeniom obsługuje język Daedalus - kolorowanie składni, autouzupełnianie i nawigację po kodzie.
 
 :::warning
 Nie mylić z **Visual Studio** (pełne IDE). Visual Studio Code to oddzielny, znacznie lżejszy program.
@@ -23,9 +23,9 @@ Nie mylić z **Visual Studio** (pełne IDE). Visual Studio Code to oddzielny, zn
 1. Uruchom pobrany instalator
 2. Zaakceptuj licencję
 3. Przy wyborze opcji dodatkowych zaznacz:
-   - **Dodaj akcję "Otwórz za pomocą Code" do menu kontekstowego pliku** — pozwala otwierać pliki prawym przyciskiem myszy
-   - **Dodaj akcję "Otwórz za pomocą Code" do menu kontekstowego katalogu** — pozwala otwierać foldery prawym przyciskiem
-   - **Dodaj do PATH** — umożliwia otwieranie VS Code z terminala poleceniem `code`
+   - **Dodaj akcję "Otwórz za pomocą Code" do menu kontekstowego pliku** - pozwala otwierać pliki prawym przyciskiem myszy
+   - **Dodaj akcję "Otwórz za pomocą Code" do menu kontekstowego katalogu** - pozwala otwierać foldery prawym przyciskiem
+   - **Dodaj do PATH** - umożliwia otwieranie VS Code z terminala poleceniem `code`
 4. Kliknij **Instaluj** i poczekaj na zakończenie
 
 ## Pierwsze uruchomienie
@@ -83,9 +83,9 @@ Dla wygodnej pracy ze skryptami Daedalus warto dodać kilka ustawień. Naciśnij
 ```
 
 :::info
-Skrypty Gothic używają kodowania **Windows-1250** (środkowoeuropejskie) — dotyczy to skryptów w języku polskim, niemieckim i angielskim. Jeśli pracujesz z rosyjską wersją gry, zmień kodowanie na **Windows-1251** (`windows1251`).
+Skrypty Gothic używają kodowania **Windows-1250** (środkowoeuropejskie) - dotyczy to skryptów w języku polskim, niemieckim i angielskim. Jeśli pracujesz z rosyjską wersją gry, zmień kodowanie na **Windows-1251** (`windows1251`).
 :::
 
 ## Następny krok
 
-Po zainstalowaniu VS Code, przejdź do [instalacji dodatków](./install-vscode-extensions.md) — rozszerzeń dodających pełne wsparcie języka Daedalus.
+Po zainstalowaniu VS Code, przejdź do [instalacji dodatków](./install-vscode-extensions.md) - rozszerzeń dodających pełne wsparcie języka Daedalus.

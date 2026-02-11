@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 2
 title: "Ikarus"
 description: "Overview of the Ikarus library that extends Daedalus capabilities."
@@ -9,10 +9,10 @@ description: "Overview of the Ikarus library that extends Daedalus capabilities.
 **Ikarus** is a scripting library for Daedalus created by **Sektenspinner** (with contributions from Gottfried, mud-freak, and Neconspictor). It breaks through the limitations of standard Daedalus by providing:
 
 - **Direct memory access** to the Gothic engine (read/write)
-- **Engine class access** — `oCGame`, `oCNpc`, `zCWorld`, `zCParser`, and many more
+- **Engine class access** - `oCGame`, `oCNpc`, `zCWorld`, `zCParser`, and many more
 - **Calling C++ engine functions** from Daedalus
-- **Floating-point arithmetic** (IEEE 754) — standard Daedalus only supports `int`
-- **Loops** (`while`/`end`, `repeat`/`end`) — absent in standard Daedalus
+- **Floating-point arithmetic** (IEEE 754) - standard Daedalus only supports `int`
+- **Loops** (`while`/`end`, `repeat`/`end`) - absent in standard Daedalus
 - **INI file read/write** (Gothic.ini, [Mod].ini)
 - **Key input detection** (keyboard and mouse)
 - **String manipulation functions** (`STR_Len`, `STR_IndexOf`, `STR_Split`, and more)
@@ -30,10 +30,10 @@ Ikarus is required by the **LeGo** library and most advanced Gothic mods. Withou
 
 The Ikarus package consists of:
 
-1. **Constants** — `Ikarus_Const_G2.d` (or `Ikarus_Const_G1.d` for Gothic I)
-2. **Engine classes** — `EngineClasses_G2/*.d` (or `EngineClasses_G1/*.d`)
-3. **Ikarus core** — `Ikarus.d` (identical for G1 and G2)
-4. **Float support** (optional) — `float.d`
+1. **Constants** - `Ikarus_Const_G2.d` (or `Ikarus_Const_G1.d` for Gothic I)
+2. **Engine classes** - `EngineClasses_G2/*.d` (or `EngineClasses_G1/*.d`)
+3. **Ikarus core** - `Ikarus.d` (identical for G1 and G2)
+4. **Float support** (optional) - `float.d`
 
 ### Gothic.src Integration
 
@@ -79,7 +79,7 @@ func void INIT_GLOBAL()
 - Enables `repeat`/`end` loops
 
 :::tip
-Multiple calls to `MEM_InitAll()` are safe — Ikarus checks if it has already been initialized.
+Multiple calls to `MEM_InitAll()` are safe - Ikarus checks if it has already been initialized.
 :::
 
 ---
@@ -123,7 +123,7 @@ MEM_WriteIntArray(arrayAddress, 3, newValue);      // write 4th element
 One of Ikarus's most powerful features is converting raw memory pointers to Daedalus instances:
 
 ```daedalus
-// _^() — convert pointer to instance (alias for MEM_PtrToInst)
+// _^() - convert pointer to instance (alias for MEM_PtrToInst)
 var oCNpc npcInMemory;
 npcInMemory = _^(npcAddress);
 
@@ -152,7 +152,7 @@ var int addrFloat;
 addrFloat = _@f(myFloat);      // address of float variable
 ```
 
-### Example — Reading the Name of the Focused Object
+### Example - Reading the Name of the Focused Object
 
 ```daedalus
 func void ShowFocus()
@@ -189,7 +189,7 @@ After calling `MEM_InitAll()`, instances representing key engine objects are ava
 | `MEM_SpawnManager`  | `oCSpawnManager`          | NPC spawn manager           |
 
 ```daedalus
-// Example — reading current in-game hour
+// Example - reading current in-game hour
 var int hour;
 hour = MEM_WorldTimer.worldTime_hour;
 ```
@@ -238,14 +238,14 @@ result = MEM_PopIntResult();
 ### Function Replacement
 
 ```daedalus
-// Replace function implementation — all calls to f1 now execute f2
+// Replace function implementation - all calls to f1 now execute f2
 MEM_ReplaceFunc(OldFunction, NewFunction);
 ```
 
 ### Calling C++ Engine Functions
 
 ```daedalus
-// Example — calling oCNpc::SetAsPlayer from Daedalus
+// Example - calling oCNpc::SetAsPlayer from Daedalus
 func void SetAsPlayer(var C_NPC slf)
 {
     const int oCNpc__SetAsPlayer = 7612064; // memory address (0x7426A0)
@@ -614,7 +614,7 @@ Some engine classes for Gothic I have "unverified" status (e.g., `zCMenuItem`, `
 
 ---
 
-## LeGo — Ikarus Extension
+## LeGo - Ikarus Extension
 
 **LeGo** is a script package built **on top of Ikarus**, created by **Lehona** and the Gothic community. Requires Ikarus ≥ 1.2.0.
 

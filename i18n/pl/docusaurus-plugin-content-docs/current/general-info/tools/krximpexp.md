@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 1
 title: "KrxImpExp"
 description: "Dodatek do Blendera umożliwiający import i eksport modeli 3D z Gothic I i Gothic II."
@@ -26,7 +26,7 @@ KrxImpExp to podstawowe narzędzie dla każdego, kto chce tworzyć lub modyfikow
 
 ## Wspierane wersje Blendera
 
-KrxImpExp wspiera Blendera od wersji **2.80** do **4.0** (64-bit). Jeśli pojawi się nowsza wersja Blendera, warto ją wypróbować — feedback od społeczności pomaga utrzymać kompatybilność.
+KrxImpExp wspiera Blendera od wersji **2.80** do **4.0** (64-bit). Jeśli pojawi się nowsza wersja Blendera, warto ją wypróbować - feedback od społeczności pomaga utrzymać kompatybilność.
 
 ## Instalacja
 
@@ -57,7 +57,7 @@ Pobierz najnowszą wersję z gałęzi **dev** (zalecane):
 4. Rozwiń wpis dodatku i naciśnij **Install KrxImpExp**, aby zainstalować wymagane zależności.
 
 :::info
-Dodatek wykorzystuje bibliotekę [DearPy GUI](https://github.com/hoffstadt/DearPyGui) do nowoczesnego interfejsu. Zostanie ona zainstalowana automatycznie po naciśnięciu przycisku **Install KrxImpExp** — może to wymagać dostępu do internetu.
+Dodatek wykorzystuje bibliotekę [DearPy GUI](https://github.com/hoffstadt/DearPyGui) do nowoczesnego interfejsu. Zostanie ona zainstalowana automatycznie po naciśnięciu przycisku **Install KrxImpExp** - może to wymagać dostępu do internetu.
 :::
 
 ## Użycie

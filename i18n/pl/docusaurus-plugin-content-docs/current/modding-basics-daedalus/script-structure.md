@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 1
 title: "Opis struktury skryptów"
 description: "Jak zorganizowane są skrypty w grze Gothic."
@@ -6,9 +6,9 @@ description: "Jak zorganizowane są skrypty w grze Gothic."
 
 # Opis struktury skryptów
 
-Skrypty Gothic podzielone są na dwa główne katalogi: **Content** (treść gry) i **System** (systemy silnika). Każdy z nich posiada własny zestaw plików `.src` — specjalnych plików kompilacji, które określają kolejność ładowania skryptów.
+Skrypty Gothic podzielone są na dwa główne katalogi: **Content** (treść gry) i **System** (systemy silnika). Każdy z nich posiada własny zestaw plików `.src` - specjalnych plików kompilacji, które określają kolejność ładowania skryptów.
 
-## Pliki .src — kompilacja
+## Pliki .src - kompilacja
 
 Pliki `.src` to listy plików `.d` (Daedalus) w kolejności, w jakiej mają być skompilowane. Silnik Gothic czyta je od góry do dołu:
 
@@ -29,7 +29,7 @@ Kolejność wpisów w `Gothic.src` jest krytyczna! Jeśli odwołujesz się do in
 
 ---
 
-## Content — treść gry
+## Content - treść gry
 
 Katalog `Content/` zawiera wszystko, co definiuje świat gry: postacie, przedmioty, dialogi, AI, magię i questy. Jest kompilowany przez `Gothic.src` i `Fight.src`.
 
@@ -47,7 +47,7 @@ Content/
 └── Spine/                  ← integracja z platformą Spine
 ```
 
-### `_intern/` — klasy i stałe silnika
+### `_intern/` - klasy i stałe silnika
 
 Zawiera deklaracje klas silnika oraz stałe globalne. To fundament, na którym opierają się wszystkie inne skrypty.
 
@@ -58,10 +58,10 @@ Zawiera deklaracje klas silnika oraz stałe globalne. To fundament, na którym o
 | `Fight.d`     | Stałe systemu walki                                            |
 
 :::info
-Pliki w `_intern/` są zawsze na początku `Gothic.src` — definiują typy danych, z których korzysta reszta skryptów.
+Pliki w `_intern/` są zawsze na początku `Gothic.src` - definiują typy danych, z których korzysta reszta skryptów.
 :::
 
-### `AI/` — sztuczna inteligencja
+### `AI/` - sztuczna inteligencja
 
 Kontroluje zachowanie postaci i potworów. Podzielony na osobne podsystemy:
 
@@ -96,12 +96,12 @@ AI/
 
 **Konwencje nazewnicze w AI:**
 
-- **B\_** (Behavior) — funkcje wykonujące akcje, np. `B_Attack`, `B_Flee`
-- **C\_** (Condition) — funkcje sprawdzające warunki, np. `C_CanSeeNpc`
-- **TA\_** (Tagesablauf) — plany dnia NPC
-- **ZS\_** (Zustandsautomat) — automaty stanów AI (stan bezczynności, walki, ucieczki itp.)
+- **B\_** (Behavior) - funkcje wykonujące akcje, np. `B_Attack`, `B_Flee`
+- **C\_** (Condition) - funkcje sprawdzające warunki, np. `C_CanSeeNpc`
+- **TA\_** (Tagesablauf) - plany dnia NPC
+- **ZS\_** (Zustandsautomat) - automaty stanów AI (stan bezczynności, walki, ucieczki itp.)
 
-### `Items/` — przedmioty
+### `Items/` - przedmioty
 
 Wszystkie definicje przedmiotów w grze. Pliki pogrupowane według typu:
 
@@ -122,7 +122,7 @@ Wszystkie definicje przedmiotów w grze. Pliki pogrupowane według typu:
 | `IT_Written.d`        | Dokumenty, listy, księgi            |
 | `MissionItems_*.d`    | Przedmioty misyjne (per rozdział)   |
 
-### `FAI/` — taktyki walki
+### `FAI/` - taktyki walki
 
 Definicje taktyk walki (Fight AI) dla różnych typów przeciwników:
 
@@ -142,7 +142,7 @@ Definicje taktyk walki (Fight AI) dla różnych typów przeciwników:
 Taktyki walki są przypisywane do NPC przez pole `fight_tactic` w instancji `C_NPC`.
 :::
 
-### `Story/` — fabuła
+### `Story/` - fabuła
 
 Największy i najważniejszy katalog. Zawiera NPC, dialogi, questy, eventy i wszelkie skrypty fabularne:
 
@@ -231,7 +231,7 @@ Story/
 
 ---
 
-## System — systemy silnika
+## System - systemy silnika
 
 Katalog `System/` zawiera definicje systemów silnika: menu, kamery, muzyki, efektów dźwiękowych i wizualnych. Każdy podsystem ma własny plik `.src`.
 
@@ -253,20 +253,20 @@ System/
 └── VisualFX/           ← efekty wizualne
 ```
 
-### `_intern/` — klasy systemowe
+### `_intern/` - klasy systemowe
 
 Deklaracje klas silnika dla poszczególnych systemów. Analogicznie do `Content/_intern/`, ale dla podsystemów:
 
 | Plik           | Opis                                          |
 | -------------- | --------------------------------------------- |
-| `Camera.d`     | Klasa `C_CamSys` — parametry kamery           |
-| `Menu.d`       | Klasy `C_Menu`, `C_MenuItem` — definicje menu |
-| `Music.d`      | Klasa `C_MusicTheme` — motywy muzyczne        |
-| `ParticleFX.d` | Klasa `C_ParticleFX` — efekty cząsteczkowe    |
-| `SFX.d`        | Klasa `C_SFX` — efekty dźwiękowe              |
-| `VisualFX.d`   | Klasa `C_VisualFX` — efekty wizualne          |
+| `Camera.d`     | Klasa `C_CamSys` - parametry kamery           |
+| `Menu.d`       | Klasy `C_Menu`, `C_MenuItem` - definicje menu |
+| `Music.d`      | Klasa `C_MusicTheme` - motywy muzyczne        |
+| `ParticleFX.d` | Klasa `C_ParticleFX` - efekty cząsteczkowe    |
+| `SFX.d`        | Klasa `C_SFX` - efekty dźwiękowe              |
+| `VisualFX.d`   | Klasa `C_VisualFX` - efekty wizualne          |
 
-### `Camera/` — kamera
+### `Camera/` - kamera
 
 Instancje kamer używanych w grze:
 
@@ -274,7 +274,7 @@ Instancje kamer używanych w grze:
 | ----------- | --------------------------------------------------------- |
 | `CamInst.d` | Definicje kamer: standardowa, dialogowa, walki, cutscenki |
 
-### `Menu/` — menu gry
+### `Menu/` - menu gry
 
 Definicje wszystkich ekranów menu:
 
@@ -290,13 +290,13 @@ Definicje wszystkich ekranów menu:
 | `Menu_Savegame.d`     | Zapis/odczyt gry                      |
 | `Menu_Defines.d`      | Stałe i definicje wspólne             |
 
-### `Music/` — muzyka
+### `Music/` - muzyka
 
 | Plik          | Opis                                                                      |
 | ------------- | ------------------------------------------------------------------------- |
 | `MusicInst.d` | Instancje motywów muzycznych (eksploracja, walka, zagrożenie per lokacja) |
 
-### `PFX/` — efekty cząsteczkowe
+### `PFX/` - efekty cząsteczkowe
 
 | Plik              | Opis                              |
 | ----------------- | --------------------------------- |
@@ -304,14 +304,14 @@ Definicje wszystkich ekranów menu:
 | `PfxInstEngine.d` | Efekty silnikowe                  |
 | `PfxInstMagic.d`  | Efekty magiczne (zaklęcia, runy)  |
 
-### `SFX/` — efekty dźwiękowe
+### `SFX/` - efekty dźwiękowe
 
 | Plik              | Opis                                         |
 | ----------------- | -------------------------------------------- |
 | `SfxInst.d`       | Dźwięki otoczenia, interfejsu, obiektów      |
 | `SfxInstSpeech.d` | Dźwięki mowy (konfiguracja systemu dialogów) |
 
-### `VisualFX/` — efekty wizualne
+### `VisualFX/` - efekty wizualne
 
 | Plik             | Opis                               |
 | ---------------- | ---------------------------------- |
@@ -323,7 +323,7 @@ Definicje wszystkich ekranów menu:
 
 | Obszar          | Katalog            | Kompilacja       | Opis                                        |
 | --------------- | ------------------ | ---------------- | ------------------------------------------- |
-| Klasy silnika   | `Content/_intern/` | `Gothic.src`     | Fundamenty — klasy C_NPC, C_Item, C_INFO... |
+| Klasy silnika   | `Content/_intern/` | `Gothic.src`     | Fundamenty - klasy C_NPC, C_Item, C_INFO... |
 | AI              | `Content/AI/`      | `Gothic.src`     | Zachowania, percepcja, stany AI             |
 | Przedmioty      | `Content/Items/`   | `Gothic.src`     | Bronie, zbroje, mikstury, jedzenie          |
 | Taktyki walki   | `Content/FAI/`     | `Fight.src`      | Taktyki walki per typ wroga                 |

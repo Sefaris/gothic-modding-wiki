@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 3
 title: "My First Item"
 description: "Creating your first item in Gothic."
@@ -6,9 +6,9 @@ description: "Creating your first item in Gothic."
 
 # My First Item
 
-In this tutorial you will learn how to create items in Daedalus — from swords, through potions, to food.
+In this tutorial you will learn how to create items in Daedalus - from swords, through potions, to food.
 
-## The C_Item Class — What Defines an Item?
+## The C_Item Class - What Defines an Item?
 
 Every item in Gothic is an instance of the `C_Item` class. The most important fields are:
 
@@ -88,7 +88,7 @@ instance ItMw_Miecz_Konrada (C_Item)
 | `value`         | `250`                            | Worth 250 gold                   |
 | `visual`        | `"ItMw_025_1h_sld_sword_01.3DS"` | 3D model file                    |
 | `description`   | `name`                           | Tooltip header = item name       |
-| `TEXT/COUNT`    | —                                | Tooltip lines shown in inventory |
+| `TEXT/COUNT`    | -                                | Tooltip lines shown in inventory |
 
 :::info
 The `flags` field determines the weapon type: `ITEM_SWD` (1H sword), `ITEM_AXE` (1H axe), `ITEM_2HD_SWD` (2H sword), `ITEM_2HD_AXE` (2H axe).
@@ -139,7 +139,7 @@ func void Use_ItPo_Zdrowie_Konrada ()
 | `description`                                   | `name`                     | Tooltip header = item name        |
 | `TEXT[1]/COUNT[1]`                              | `+100 HP`                  | Tooltip: health bonus             |
 | `TEXT[5]/COUNT[5]`                              | value                      | Tooltip: item value               |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | —                          | Restores 100 HP on use            |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 100)` | -                          | Restores 100 HP on use            |
 
 :::tip
 `ITEM_MULTI` makes items of the same type stack in the inventory (instead of taking up separate slots).
@@ -184,7 +184,7 @@ func void Use_ItFo_Chleb_Konrada ()
 | `description`                                  | `name`                   | Tooltip header = item name  |
 | `TEXT[1]/COUNT[1]`                             | `+15 HP`                 | Tooltip: health bonus       |
 | `TEXT[5]/COUNT[5]`                             | value                    | Tooltip: item value         |
-| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 15)` | —                        | Restores 15 HP on use       |
+| `Npc_ChangeAttribute(self, ATR_HITPOINTS, 15)` | -                        | Restores 15 HP on use       |
 
 ## Giving Items to NPCs
 
@@ -210,7 +210,7 @@ CreateInvItems (self, ItMi_Gold, 100);
 
 ## Registration in Gothic.src
 
-Add the item files to `Gothic.src` — **before** NPC definitions:
+Add the item files to `Gothic.src` - **before** NPC definitions:
 
 ```
 Items\IT_Melee_Weapons.d
@@ -225,6 +225,6 @@ Creating items requires:
 1. An **instance** of the `C_Item` class with appropriate `mainflag` and `flags`
 2. Setting **stats** (damage, protection, requirements)
 3. Providing a **3D model** (`.3DS`)
-4. For usable items — an **on_state function** that modifies attributes
+4. For usable items - an **on_state function** that modifies attributes
 5. A **tooltip** (TEXT/COUNT) to display information in game
 6. **Registration** in `Gothic.src`

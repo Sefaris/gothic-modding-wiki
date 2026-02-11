@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 4
 title: "Moje pierwsze zadanie"
 description: "Tworzenie pierwszego questa w Gothic."
@@ -6,17 +6,17 @@ description: "Tworzenie pierwszego questa w Gothic."
 
 # Moje pierwsze zadanie
 
-W tym poradniku nauczysz się tworzyć kompletne zadanie (quest) — od rozmowy z NPC, przez dziennik misji, po nagrodę za wykonanie.
+W tym poradniku nauczysz się tworzyć kompletne zadanie (quest) - od rozmowy z NPC, przez dziennik misji, po nagrodę za wykonanie.
 
 ## Jak działają questy w Gothic?
 
 System questów w Gothic opiera się na trzech elementach:
 
-1. **Dialogi** (`C_INFO`) — rozmowy z NPC, które rozpoczynają i kończą zadania
-2. **Dziennik misji** (Quest Log) — wpisy widoczne dla gracza
-3. **Zmienne stanu** — śledzenie postępu zadania
+1. **Dialogi** (`C_INFO`) - rozmowy z NPC, które rozpoczynają i kończą zadania
+2. **Dziennik misji** (Quest Log) - wpisy widoczne dla gracza
+3. **Zmienne stanu** - śledzenie postępu zadania
 
-## Klasa C_INFO — dialogi
+## Klasa C_INFO - dialogi
 
 Każda opcja dialogowa to instancja klasy `C_INFO`:
 
@@ -24,7 +24,7 @@ Każda opcja dialogowa to instancja klasy `C_INFO`:
 | ------------- | -------- | ---------------------------------------------- |
 | `npc`         | `int`    | NPC, z którym rozmawiamy                       |
 | `nr`          | `int`    | Kolejność wyświetlania (niższy = wyżej)        |
-| `condition`   | `func`   | Funkcja warunku — kiedy opcja jest widoczna    |
+| `condition`   | `func`   | Funkcja warunku - kiedy opcja jest widoczna    |
 | `information` | `func`   | Funkcja wykonywana po wybraniu opcji           |
 | `permanent`   | `int`    | `TRUE` = opcja nie znika po użyciu             |
 | `important`   | `int`    | `TRUE` = NPC mówi pierwszy (bez wyboru gracza) |
@@ -81,7 +81,7 @@ instance ItMi_Topor_Konrada (C_Item)
 Flaga `ITEM_MISSION` sprawia, że przedmiot nie może być sprzedany ani wyrzucony.
 :::
 
-## Krok 3: Dialog — wyjście z rozmowy
+## Krok 3: Dialog - wyjście z rozmowy
 
 Każdy NPC musi mieć opcję **zakończenia rozmowy**. To standardowy element:
 
@@ -118,7 +118,7 @@ func void DIA_Konrad_EXIT_Info ()
 | `return TRUE`               | Opcja zawsze widoczna                 |
 | `AI_StopProcessInfos(self)` | Zamyka okno dialogu                   |
 
-## Krok 4: Dialog — powitanie (NPC mówi pierwszy)
+## Krok 4: Dialog - powitanie (NPC mówi pierwszy)
 
 Gdy gracz podejdzie do Konrada po raz pierwszy:
 
@@ -163,10 +163,10 @@ func void DIA_Konrad_Hallo_Info ()
 ```
 
 :::tip
-**Konwencja nazewnictwa audio:** `DIA_Konrad_Hallo_01_01` — `01` = numer głosu NPC, `01` = numer linii. `15` w linii gracza oznacza głos bohatera. Komentarz `//` po `AI_Output` **musi** być w tej samej linii — parser Daedalusa traktuje go jako tekst napisów dialogowych.
+**Konwencja nazewnictwa audio:** `DIA_Konrad_Hallo_01_01` - `01` = numer głosu NPC, `01` = numer linii. `15` w linii gracza oznacza głos bohatera. Komentarz `//` po `AI_Output` **musi** być w tej samej linii - parser Daedalusa traktuje go jako tekst napisów dialogowych.
 :::
 
-## Krok 5: Dialog — przyjęcie zadania
+## Krok 5: Dialog - przyjęcie zadania
 
 ```daedalus
 instance DIA_Konrad_Topor (C_INFO)
@@ -225,7 +225,7 @@ func void DIA_Konrad_Topor_Info ()
 | `Log_SetTopicStatus(topic, status)`   | Ustawia status: `LOG_RUNNING` / `LOG_SUCCESS` / `LOG_FAILED` |
 | `B_LogEntry(topic, tekst)`            | Dodaje notatkę do istniejącego wpisu                         |
 
-## Krok 6: Dialog — oddanie przedmiotu i nagroda
+## Krok 6: Dialog - oddanie przedmiotu i nagroda
 
 ```daedalus
 instance DIA_Konrad_Topor_Oddaj (C_INFO)

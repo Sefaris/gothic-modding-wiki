@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 5
 title: "Mój pierwszy efekt"
 description: "Tworzenie pierwszego efektu cząsteczkowego (PFX) w Gothic."
@@ -6,7 +6,7 @@ description: "Tworzenie pierwszego efektu cząsteczkowego (PFX) w Gothic."
 
 # Mój pierwszy efekt
 
-W tym poradniku nauczysz się tworzyć efekty cząsteczkowe (Particle Effects, PFX) — od prostego dymu, przez ogień, po deszcz i śnieg.
+W tym poradniku nauczysz się tworzyć efekty cząsteczkowe (Particle Effects, PFX) - od prostego dymu, przez ogień, po deszcz i śnieg.
 
 ## Jak działają efekty cząsteczkowe?
 
@@ -20,11 +20,11 @@ Efekty definiowane są jako instancje klasy `C_ParticleFX` w plikach w katalogu 
 | `PfxInstEngine.d` | Efekty wymagane przez silnik (krew, kurz, plusk wody) |
 | `PfxInstMagic.d`  | Efekty magiczne (zaklęcia, runy, aury)                |
 
-## Klasa C_ParticleFX — przegląd
+## Klasa C_ParticleFX - przegląd
 
-Klasa ma 49 pól podzielonych na 7 kategorii. Nie musisz ustawiać wszystkich — pola, których nie ustawisz, przyjmą wartości domyślne (zazwyczaj 0 lub pusty string).
+Klasa ma 49 pól podzielonych na 7 kategorii. Nie musisz ustawiać wszystkich - pola, których nie ustawisz, przyjmą wartości domyślne (zazwyczaj 0 lub pusty string).
 
-### 1. Emisja — ile cząsteczek i kiedy
+### 1. Emisja - ile cząsteczek i kiedy
 
 | Pole               | Typ      | Opis                                           |
 | ------------------ | -------- | ---------------------------------------------- |
@@ -36,7 +36,7 @@ Klasa ma 49 pól podzielonych na 7 kategorii. Nie musisz ustawiać wszystkich �
 | `ppsCreateEm_S`    | `string` | Nazwa efektu potomnego (spawny per cząsteczka) |
 | `ppsCreateEmDelay` | `float`  | Opóźnienie efektu potomnego                    |
 
-### 2. Kształt emitera — skąd lecą cząsteczki
+### 2. Kształt emitera - skąd lecą cząsteczki
 
 | Pole               | Typ      | Opis                                                                    |
 | ------------------ | -------- | ----------------------------------------------------------------------- |
@@ -113,7 +113,7 @@ Klasa ma 49 pól podzielonych na 7 kategorii. Nie musisz ustawiać wszystkich �
 
 ## Przykład 1: Prosty dym
 
-Zacznijmy od czegoś prostego — słup dymu unoszący się w górę:
+Zacznijmy od czegoś prostego - słup dymu unoszący się w górę:
 
 ```daedalus
 instance PFX_MojDym (C_ParticleFX)
@@ -184,11 +184,11 @@ instance PFX_MojDym (C_ParticleFX)
 | `visAlphaEnd`        | `0`             | Zanika całkowicie               |
 
 :::tip
-**`visAlphaFunc_S`** — tryby blendingu:
+**`visAlphaFunc_S`** - tryby blendingu:
 
-- `"BLEND"` — klasyczne przenikanie (dym, mgła, kurz)
-- `"ADD"` — addytywne (ogień, iskry, magia — jasne, świecące)
-- `"MUL"` — multiplikatywne (cienie, przyciemnianie)
+- `"BLEND"` - klasyczne przenikanie (dym, mgła, kurz)
+- `"ADD"` - addytywne (ogień, iskry, magia - jasne, świecące)
+- `"MUL"` - multiplikatywne (cienie, przyciemnianie)
   :::
 
 ## Przykład 2: Ognisko
@@ -429,7 +429,7 @@ instance PFX_MojSnieg (C_ParticleFX)
 
 ## Przykład 5: Krew (efekt potomny)
 
-System potomnych emiterów pozwala tworzyć złożone efekty. Krew w Gothic składa się z dwóch instancji — głównej (bryzy krwi) i potomnej (plamy na podłożu):
+System potomnych emiterów pozwala tworzyć złożone efekty. Krew w Gothic składa się z dwóch instancji - głównej (bryzy krwi) i potomnej (plamy na podłożu):
 
 ```daedalus
 // Główny efekt: bryzy krwi rozlatujące się
@@ -524,14 +524,14 @@ instance PFX_MojaKrew_Plama (C_ParticleFX)
 | `visAlphaEnd`     | `0`                    | Zanika całkowicie              |
 
 :::info
-**`ppsCreateEm_S`** — każda cząsteczka z głównego emitera staje się źródłem nowego efektu potomnego. To potężne narzędzie, ale kosztowne — używaj ostrożnie, by nie obciążyć silnika.
+**`ppsCreateEm_S`** - każda cząsteczka z głównego emitera staje się źródłem nowego efektu potomnego. To potężne narzędzie, ale kosztowne - używaj ostrożnie, by nie obciążyć silnika.
 :::
 
 ## Kształty emiterów
 
 | Kształt          | `shpType_S` | `shpDim_S`        | Opis                                            |
 | ---------------- | ----------- | ----------------- | ----------------------------------------------- |
-| Punkt            | `"POINT"`   | —                 | Emisja z jednego punktu                         |
+| Punkt            | `"POINT"`   | -                 | Emisja z jednego punktu                         |
 | Linia            | `"LINE"`    | `"100"` (długość) | Emisja wzdłuż linii                             |
 | Prostopadłościan | `"BOX"`     | `"W H D"`         | Emisja z prostokątnego obszaru                  |
 | Okrąg            | `"CIRCLE"`  | `"50"` (promień)  | Emisja z koła (lub dysku gdy `shpIsVolume = 1`) |
@@ -540,8 +540,8 @@ instance PFX_MojaKrew_Plama (C_ParticleFX)
 
 ### shpIsVolume
 
-- `shpIsVolume = 0` — cząsteczki pojawiają się **na krawędzi** kształtu (np. na obwodzie koła)
-- `shpIsVolume = 1` — cząsteczki pojawiają się **wewnątrz** kształtu (np. w całym kole)
+- `shpIsVolume = 0` - cząsteczki pojawiają się **na krawędzi** kształtu (np. na obwodzie koła)
+- `shpIsVolume = 1` - cząsteczki pojawiają się **wewnątrz** kształtu (np. w całym kole)
 
 ## Orientacja cząsteczek
 
@@ -565,7 +565,7 @@ Pfx\MojePfx.d
 ```
 
 :::warning
-Efekty PFX **nie** są kompilowane przez `Gothic.src` — używają własnego pliku `ParticleFX.src` w katalogu `System/`.
+Efekty PFX **nie** są kompilowane przez `Gothic.src` - używają własnego pliku `ParticleFX.src` w katalogu `System/`.
 :::
 
 ## Porady praktyczne
@@ -575,7 +575,7 @@ Efekty PFX **nie** są kompilowane przez `Gothic.src` — używają własnego pl
 - Im wyższe `ppsValue`, tym więcej cząsteczek = więcej obliczeń
 - `flyCollDet_B` z dużą ilością cząsteczek mocno obciąża CPU
 - `useEmittersFOR = 1` wraz z `flyCollDet_B` to najkosztowniejsza kombinacja
-- `ppsCreateEm_S` mnoży liczbę efektów — każda cząsteczka tworzy nowy emiter
+- `ppsCreateEm_S` mnoży liczbę efektów - każda cząsteczka tworzy nowy emiter
 
 ### Debugowanie
 
@@ -599,7 +599,7 @@ Efekty PFX **nie** są kompilowane przez `Gothic.src` — używają własnego pl
 Tworzenie efektów cząsteczkowych wymaga:
 
 1. **Instancji** klasy `C_ParticleFX` z odpowiednimi parametrami
-2. **Kształtu emitera** (`shpType_S`) — skąd lecą cząsteczki
-3. **Kierunku i prędkości** — jak się poruszają
-4. **Wizualizacji** — tekstura, kolor, rozmiar, przenikanie
+2. **Kształtu emitera** (`shpType_S`) - skąd lecą cząsteczki
+3. **Kierunku i prędkości** - jak się poruszają
+4. **Wizualizacji** - tekstura, kolor, rozmiar, przenikanie
 5. **Rejestracji** w `ParticleFX.src` (nie w `Gothic.src`!)

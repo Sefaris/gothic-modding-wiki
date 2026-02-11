@@ -1,4 +1,4 @@
-# Gothic Modding Wiki
+﻿# Gothic Modding Wiki
 
 A bilingual (🇵🇱 Polish / 🇬🇧 English) documentation site for **Gothic I** and **Gothic II** modding, built with [Docusaurus 3](https://docusaurus.io/).
 
@@ -7,9 +7,9 @@ A bilingual (🇵🇱 Polish / 🇬🇧 English) documentation site for **Gothic
 | Section               | Description                                                      |
 | --------------------- | ---------------------------------------------------------------- |
 | **Getting Started**   | Downloading the game, installing VS Code and required extensions |
-| **Guides — Daedalus** | Script structure, creating NPCs, items, quests, effects          |
-| **Guides — Union**    | Setting up the environment, creating C++ plugins                 |
-| **Encyclopedia**      | NPC routines, animations — a complete reference based on G2MDK   |
+| **Guides - Daedalus** | Script structure, creating NPCs, items, quests, effects          |
+| **Guides - Union**    | Setting up the environment, creating C++ plugins                 |
+| **Encyclopedia**      | NPC routines, animations - a complete reference based on G2MDK   |
 | **General Info**      | Overview of Daedalus, Ikarus, and Union                          |
 
 ## 🛠️ Requirements
@@ -23,7 +23,7 @@ A bilingual (🇵🇱 Polish / 🇬🇧 English) documentation site for **Gothic
 # Install dependencies
 npm install
 
-# Development server (Polish — default)
+# Development server (Polish - default)
 npm run start
 
 # Development server (English)

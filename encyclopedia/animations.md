@@ -1,7 +1,7 @@
----
+﻿---
 sidebar_position: 2
 title: "Animations"
-description: "Complete list of animations in Gothic II — MDS overlays, state transitions, character and monster animations."
+description: "Complete list of animations in Gothic II - MDS overlays, state transitions, character and monster animations."
 ---
 
 # Animations
@@ -12,9 +12,9 @@ Animations in Gothic II are played using Daedalus engine functions. They are div
 
 | Prefix | Type       | Description                                                                                 |
 | ------ | ---------- | ------------------------------------------------------------------------------------------- |
-| `T_`   | Transition | Transition animation — a one-shot transition between two states (e.g., standing → sitting). |
-| `S_`   | State      | State animation — a looping animation for an ongoing state (e.g., eating, lying down).      |
-| `R_`   | Random     | Random animation — played randomly as an idle (e.g., head scratching, shifting weight).     |
+| `T_`   | Transition | Transition animation - a one-shot transition between two states (e.g., standing → sitting). |
+| `S_`   | State      | State animation - a looping animation for an ongoing state (e.g., eating, lying down).      |
+| `R_`   | Random     | Random animation - played randomly as an idle (e.g., head scratching, shifting weight).     |
 
 ## Animation playback functions
 
@@ -22,7 +22,7 @@ Animations in Gothic II are played using Daedalus engine functions. They are div
 | -------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `AI_PlayAni(self, "NAME")`                         | Plays an animation once. The NPC must be in the appropriate base state.               |
 | `AI_PlayAniBS(self, "NAME", BS_STATE)`             | Plays an animation and changes the NPC's body state (e.g., `BS_SIT`, `BS_LIE`).       |
-| `Mdl_ApplyOverlayMds(self, "FILE.MDS")`            | Applies an animation overlay — changes the NPC's animation set (e.g., walk, posture). |
+| `Mdl_ApplyOverlayMds(self, "FILE.MDS")`            | Applies an animation overlay - changes the NPC's animation set (e.g., walk, posture). |
 | `Mdl_RemoveOverlayMds(self, "FILE.MDS")`           | Removes an applied overlay.                                                           |
 | `Mdl_ApplyOverlayMdsTimed(self, "FILE.MDS", time)` | Applies an overlay for a specified duration (ms).                                     |
 | `Mdl_ApplyRandomAni(self, "BASE", "RANDOM")`       | Registers a random animation to play during a given base state.                       |
@@ -46,7 +46,7 @@ The `AI_PlayAniBS` function requires a body state parameter:
 
 ## MDS Overlays
 
-Overlays change an NPC's animation set — they affect walking, posture, and behavior. Applied via `Mdl_ApplyOverlayMds` in NPC definitions.
+Overlays change an NPC's animation set - they affect walking, posture, and behavior. Applied via `Mdl_ApplyOverlayMds` in NPC definitions.
 
 ### Personality overlays
 
@@ -191,13 +191,13 @@ One-shot animations that play a transition between two NPC states.
 | --------------------- | -------------------------------------------- |
 | `T_STAND_2_EAT`       | Standing → eating from the ground (monsters) |
 | `T_EAT_2_STAND`       | Eating from the ground → standing (monsters) |
-| `T_FOOD_RANDOM_1`     | Eating small food (apple) — variant 1        |
-| `T_FOOD_RANDOM_2`     | Eating small food (apple) — variant 2        |
+| `T_FOOD_RANDOM_1`     | Eating small food (apple) - variant 1        |
+| `T_FOOD_RANDOM_2`     | Eating small food (apple) - variant 2        |
 | `T_FOODHUGE_RANDOM_1` | Eating large food (cheese)                   |
 | `T_MEAT_RANDOM_1`     | Eating meat (bacon, mutton)                  |
-| `T_POTION_RANDOM_1`   | Drinking — variant 1                         |
-| `T_POTION_RANDOM_2`   | Drinking — variant 2                         |
-| `T_POTION_RANDOM_3`   | Drinking — variant 3                         |
+| `T_POTION_RANDOM_1`   | Drinking - variant 1                         |
+| `T_POTION_RANDOM_2`   | Drinking - variant 2                         |
+| `T_POTION_RANDOM_3`   | Drinking - variant 3                         |
 | `T_JOINT_RANDOM_1`    | Smoking a joint                              |
 
 ### Dance
@@ -222,8 +222,8 @@ One-shot animations that play a transition between two NPC states.
 | `T_TALK_2_STAND`    | Talking pose → standing               |
 | `T_YES`             | Nodding (yes)                         |
 | `T_DONTKNOW`        | "I don't know" gesture                |
-| `T_WATCHFIGHT_OHNO` | Fight spectator reaction — dismay     |
-| `T_WATCHFIGHT_YEAH` | Fight spectator reaction — excitement |
+| `T_WATCHFIGHT_OHNO` | Fight spectator reaction - dismay     |
+| `T_WATCHFIGHT_YEAH` | Fight spectator reaction - excitement |
 
 ### Bodily actions / labor
 
@@ -242,11 +242,11 @@ One-shot animations that play a transition between two NPC states.
 
 | Animation          | Description                                |
 | ------------------ | ------------------------------------------ |
-| `T_PRACTICEMAGIC`  | Magic practice — variant 1                 |
-| `T_PRACTICEMAGIC2` | Magic practice — variant 2                 |
-| `T_PRACTICEMAGIC3` | Magic practice — variant 3                 |
-| `T_PRACTICEMAGIC4` | Magic practice — variant 4                 |
-| `T_PRACTICEMAGIC5` | Magic practice — variant 5 (circle ritual) |
+| `T_PRACTICEMAGIC`  | Magic practice - variant 1                 |
+| `T_PRACTICEMAGIC2` | Magic practice - variant 2                 |
+| `T_PRACTICEMAGIC3` | Magic practice - variant 3                 |
+| `T_PRACTICEMAGIC4` | Magic practice - variant 4                 |
+| `T_PRACTICEMAGIC5` | Magic practice - variant 5 (circle ritual) |
 
 ### Hit reactions / combat
 
@@ -267,17 +267,17 @@ One-shot animations that play a transition between two NPC states.
 | `T_STAND_2_LIGHTNING_VICTIM`      | Lightning strike            |
 | `T_STAND_2_SUCKENERGY_VICTIM`     | Energy drain                |
 | `T_STAND_2_FREEZE_VICTIM`         | Freeze                      |
-| `T_STAND_2_GREENTENTACLEA_VICTIM` | Green tentacles — variant A |
-| `T_STAND_2_GREENTENTACLEB_VICTIM` | Green tentacles — variant B |
-| `T_STAND_2_GREENTENTACLEC_VICTIM` | Green tentacles — variant C |
+| `T_STAND_2_GREENTENTACLEA_VICTIM` | Green tentacles - variant A |
+| `T_STAND_2_GREENTENTACLEB_VICTIM` | Green tentacles - variant B |
+| `T_STAND_2_GREENTENTACLEC_VICTIM` | Green tentacles - variant C |
 | `T_STAND_2_INFLATE_VICTIM`        | Inflate                     |
 | `T_STAND_2_WHIRLWIND_VICTIM`      | Whirlwind                   |
 | `T_STAND_2_SWARM_VICTIM`          | Swarm attack                |
 | `T_STAND_2_VICTIM_SLE`            | Magic sleep                 |
 | `T_VICTIM_SLE_2_STAND`            | Magic sleep → waking up     |
-| `T_STAND_2_FEAR_VICTIM1`          | Magic fear — variant 1      |
-| `T_STAND_2_FEAR_VICTIM2`          | Magic fear — variant 2      |
-| `T_STAND_2_FEAR_VICTIM3`          | Magic fear — variant 3      |
+| `T_STAND_2_FEAR_VICTIM1`          | Magic fear - variant 1      |
+| `T_STAND_2_FEAR_VICTIM2`          | Magic fear - variant 2      |
+| `T_STAND_2_FEAR_VICTIM3`          | Magic fear - variant 3      |
 
 ---
 
@@ -287,37 +287,37 @@ Looping animations that keep the NPC in a given state.
 
 | Animation       | Description                                 |
 | --------------- | ------------------------------------------- |
-| `S_EAT`         | Eating from the ground (monsters — looping) |
+| `S_EAT`         | Eating from the ground (monsters - looping) |
 | `S_FIRE_VICTIM` | Burning (fire victim)                       |
 
 ---
 
 ## Random animations (R\_)
 
-Played randomly as idle — they bring NPCs and monsters to life.
+Played randomly as idle - they bring NPCs and monsters to life.
 
 ### Monsters
 
 | Animation | Description                                                 |
 | --------- | ----------------------------------------------------------- |
-| `R_ROAM1` | Random movement — variant 1 (looking around, head movement) |
-| `R_ROAM2` | Random movement — variant 2                                 |
-| `R_ROAM3` | Random movement — variant 3                                 |
+| `R_ROAM1` | Random movement - variant 1 (looking around, head movement) |
+| `R_ROAM2` | Random movement - variant 2                                 |
+| `R_ROAM3` | Random movement - variant 3                                 |
 
-### Humans — standing
+### Humans - standing
 
 | Animation       | Description     |
 | --------------- | --------------- |
 | `R_SCRATCHHEAD` | Head scratching |
 
-### Humans — sitting
+### Humans - sitting
 
 | Animation          | Description                             |
 | ------------------ | --------------------------------------- |
-| `R_CHAIR_RANDOM_1` | Random chair/bench movement — variant 1 |
-| `R_CHAIR_RANDOM_2` | Random chair/bench movement — variant 2 |
-| `R_CHAIR_RANDOM_3` | Random chair/bench movement — variant 3 |
-| `R_CHAIR_RANDOM_4` | Random chair/bench movement — variant 4 |
+| `R_CHAIR_RANDOM_1` | Random chair/bench movement - variant 1 |
+| `R_CHAIR_RANDOM_2` | Random chair/bench movement - variant 2 |
+| `R_CHAIR_RANDOM_3` | Random chair/bench movement - variant 3 |
+| `R_CHAIR_RANDOM_4` | Random chair/bench movement - variant 4 |
 
 ---
 
@@ -331,5 +331,5 @@ NPC facial expressions played via `Mdl_StartFaceAni`:
 | `S_NEUTRAL` | Neutral facial expression |
 
 :::info
-Facial animations take an intensity parameter (0.0–1.0) and a duration in milliseconds. A value of `-1` means infinite — the animation persists until manually removed or the state changes.
+Facial animations take an intensity parameter (0.0–1.0) and a duration in milliseconds. A value of `-1` means infinite - the animation persists until manually removed or the state changes.
 :::

@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 2
 title: "Mój pierwszy NPC"
 description: "Tworzenie pierwszej postaci niezależnej w Gothic."
@@ -16,14 +16,14 @@ Przed rozpoczęciem upewnij się, że:
 - Rozumiesz [strukturę skryptów](./script-structure.md)
 - Wiesz, czym jest instancja i prototyp w Daedalusie
 
-## Klasa C_NPC — co definiuje postać?
+## Klasa C_NPC - co definiuje postać?
 
 Każdy NPC w Gothic jest **instancją** klasy `C_NPC`. Najważniejsze pola tej klasy to:
 
 | Pole            | Typ         | Opis                                                      |
 | --------------- | ----------- | --------------------------------------------------------- |
 | `name`          | `string[5]` | Imię NPC (wyświetlane w grze)                             |
-| `guild`         | `int`       | Gildia (np. `GIL_MIL` — milicja, `GIL_OUT` — bezgildyjny) |
+| `guild`         | `int`       | Gildia (np. `GIL_MIL` - milicja, `GIL_OUT` - bezgildyjny) |
 | `id`            | `int`       | Unikalny identyfikator NPC                                |
 | `voice`         | `int`       | Numer głosu (powiązany z plikami audio)                   |
 | `level`         | `int`       | Poziom postaci                                            |
@@ -49,13 +49,13 @@ prototype Npc_Default (C_NPC)
     attribute[ATR_HITPOINTS_MAX] = 40;
     attribute[ATR_HITPOINTS]     = 40;
 
-    // Szanse trafienia (0% — nie umie walczyć daną bronią)
+    // Szanse trafienia (0% - nie umie walczyć daną bronią)
     HitChance[NPC_TALENT_1H]       = 0;
     HitChance[NPC_TALENT_2H]       = 0;
     HitChance[NPC_TALENT_BOW]      = 0;
     HitChance[NPC_TALENT_CROSSBOW] = 0;
 
-    // Ochrona (0 — brak ochrony)
+    // Ochrona (0 - brak ochrony)
     protection[PROT_EDGE]   = 0;
     protection[PROT_BLUNT]  = 0;
     protection[PROT_POINT]  = 0;
@@ -77,8 +77,8 @@ prototype Npc_Default (C_NPC)
 | `attribute[ATR_MANA]`          | `10`                      | Startowa mana                                                    |
 | `attribute[ATR_HITPOINTS_MAX]` | `40`                      | Maksymalne zdrowie                                               |
 | `attribute[ATR_HITPOINTS]`     | `40`                      | Startowe zdrowie                                                 |
-| `HitChance[NPC_TALENT_*]`      | `0`                       | Szansa trafienia per typ broni — 0% = nie umie walczyć tą bronią |
-| `protection[PROT_*]`           | `0`                       | Ochrona przed typami obrażeń — 0 = brak ochrony                  |
+| `HitChance[NPC_TALENT_*]`      | `0`                       | Szansa trafienia per typ broni - 0% = nie umie walczyć tą bronią |
+| `protection[PROT_*]`           | `0`                       | Ochrona przed typami obrażeń - 0 = brak ochrony                  |
 | `damagetype`                   | `DAM_BLUNT`               | Domyślny typ zadawanych obrażeń                                  |
 | `senses`                       | `SENSE_HEAR \| SENSE_SEE` | NPC słyszy i widzi                                               |
 | `senses_range`                 | `PERC_DIST_ACTIVE_MAX`    | Maksymalny zasięg percepcji                                      |
@@ -161,21 +161,21 @@ Konwencja nazewnictwa: `BAU` (Bauer = farmer), `900` (unikalne ID), `Konrad` (im
 
 ## Plan dnia (Daily Routine)
 
-Każdy NPC potrzebuje **planu dnia** — funkcji określającej, co robi o danej godzinie:
+Każdy NPC potrzebuje **planu dnia** - funkcji określającej, co robi o danej godzinie:
 
 ```daedalus
 func void Rtn_Start_900 ()
 {
-    // Od 7:00 do 12:00 — stoi przy studni
+    // Od 7:00 do 12:00 - stoi przy studni
     TA_Stand_ArmsCrossed (07, 00,  12, 00, "NW_CITY_WELL_01");
 
-    // Od 12:00 do 13:00 — je posiłek
+    // Od 12:00 do 13:00 - je posiłek
     TA_Sit_Bench         (12, 00,  13, 00, "NW_CITY_BENCH_01");
 
-    // Od 13:00 do 20:00 — pracuje na farmie
+    // Od 13:00 do 20:00 - pracuje na farmie
     TA_Smalltalk         (13, 00,  20, 00, "NW_FARM1_PATH_01");
 
-    // Od 20:00 do 7:00 — śpi
+    // Od 20:00 do 7:00 - śpi
     TA_Sleep             (20, 00,  07, 00, "NW_FARM1_BED_01");
 };
 ```

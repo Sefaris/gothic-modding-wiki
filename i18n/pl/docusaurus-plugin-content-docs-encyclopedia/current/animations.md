@@ -1,7 +1,7 @@
----
+﻿---
 sidebar_position: 2
 title: "Animacje"
-description: "Kompletna lista animacji w Gothic II — nakładki MDS, przejścia stanów, animacje postaci i potworów."
+description: "Kompletna lista animacji w Gothic II - nakładki MDS, przejścia stanów, animacje postaci i potworów."
 ---
 
 # Animacje
@@ -12,9 +12,9 @@ Animacje w Gothic II są odtwarzane za pomocą funkcji silnika Daedalusa. Dziel�
 
 | Prefiks | Typ        | Opis                                                                                      |
 | ------- | ---------- | ----------------------------------------------------------------------------------------- |
-| `T_`    | Transition | Animacja przejścia — jednorazowe przejście między dwoma stanami (np. stanie → siedzenie). |
-| `S_`    | State      | Animacja stanu — zapętlona animacja trwającego stanu (np. jedzenie, leżenie).             |
-| `R_`    | Random     | Animacja losowa — odtwarzana losowo jako idle (np. drapanie głowy, poruszenie się).       |
+| `T_`    | Transition | Animacja przejścia - jednorazowe przejście między dwoma stanami (np. stanie → siedzenie). |
+| `S_`    | State      | Animacja stanu - zapętlona animacja trwającego stanu (np. jedzenie, leżenie).             |
+| `R_`    | Random     | Animacja losowa - odtwarzana losowo jako idle (np. drapanie głowy, poruszenie się).       |
 
 ## Funkcje odtwarzania animacji
 
@@ -22,7 +22,7 @@ Animacje w Gothic II są odtwarzane za pomocą funkcji silnika Daedalusa. Dziel�
 | ----------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `AI_PlayAni(self, "NAZWA")`                           | Odtwarza animację jednorazowo. NPC musi być w odpowiednim stanie bazowym.     |
 | `AI_PlayAniBS(self, "NAZWA", BS_STAN)`                | Odtwarza animację i zmienia body state NPC (np. `BS_SIT`, `BS_LIE`).          |
-| `Mdl_ApplyOverlayMds(self, "PLIK.MDS")`               | Nakłada overlay animacyjny — zmienia zestaw animacji NPC (np. chód, postawa). |
+| `Mdl_ApplyOverlayMds(self, "PLIK.MDS")`               | Nakłada overlay animacyjny - zmienia zestaw animacji NPC (np. chód, postawa). |
 | `Mdl_RemoveOverlayMds(self, "PLIK.MDS")`              | Usuwa nałożony overlay.                                                       |
 | `Mdl_ApplyOverlayMdsTimed(self, "PLIK.MDS", czas)`    | Nakłada overlay na określony czas (ms).                                       |
 | `Mdl_ApplyRandomAni(self, "BAZOWA", "LOSOWA")`        | Rejestruje animację losową odtwarzaną w danym stanie bazowym.                 |
@@ -46,7 +46,7 @@ Funkcja `AI_PlayAniBS` wymaga podania stanu ciała:
 
 ## Nakładki MDS (Overlays)
 
-Nakładki zmieniają zestaw animacji NPC — wpływają na chód, postawę i zachowanie. Nakładane za pomocą `Mdl_ApplyOverlayMds` w definicji NPC.
+Nakładki zmieniają zestaw animacji NPC - wpływają na chód, postawę i zachowanie. Nakładane za pomocą `Mdl_ApplyOverlayMds` w definicji NPC.
 
 ### Nakładki osobowości
 
@@ -191,13 +191,13 @@ Animacje jednorazowe odtwarzające przejście między dwoma stanami NPC.
 | --------------------- | -------------------------------------------- |
 | `T_STAND_2_EAT`       | Stanie → jedzenie z ziemi (potwory)          |
 | `T_EAT_2_STAND`       | Jedzenie z ziemi → stanie (potwory)          |
-| `T_FOOD_RANDOM_1`     | Jedzenie małego posiłku (jabłko) — wariant 1 |
-| `T_FOOD_RANDOM_2`     | Jedzenie małego posiłku (jabłko) — wariant 2 |
+| `T_FOOD_RANDOM_1`     | Jedzenie małego posiłku (jabłko) - wariant 1 |
+| `T_FOOD_RANDOM_2`     | Jedzenie małego posiłku (jabłko) - wariant 2 |
 | `T_FOODHUGE_RANDOM_1` | Jedzenie dużego posiłku (ser)                |
 | `T_MEAT_RANDOM_1`     | Jedzenie mięsa (boczek, baranina)            |
-| `T_POTION_RANDOM_1`   | Picie — wariant 1                            |
-| `T_POTION_RANDOM_2`   | Picie — wariant 2                            |
-| `T_POTION_RANDOM_3`   | Picie — wariant 3                            |
+| `T_POTION_RANDOM_1`   | Picie - wariant 1                            |
+| `T_POTION_RANDOM_2`   | Picie - wariant 2                            |
+| `T_POTION_RANDOM_3`   | Picie - wariant 3                            |
 | `T_JOINT_RANDOM_1`    | Palenie skręta                               |
 
 ### Taniec
@@ -222,8 +222,8 @@ Animacje jednorazowe odtwarzające przejście między dwoma stanami NPC.
 | `T_TALK_2_STAND`    | Poza rozmowy → stanie                     |
 | `T_YES`             | Kiwnięcie głową (tak)                     |
 | `T_DONTKNOW`        | Gest „nie wiem"                           |
-| `T_WATCHFIGHT_OHNO` | Reakcja obserwatora walki — zdenerwowanie |
-| `T_WATCHFIGHT_YEAH` | Reakcja obserwatora walki — radość        |
+| `T_WATCHFIGHT_OHNO` | Reakcja obserwatora walki - zdenerwowanie |
+| `T_WATCHFIGHT_YEAH` | Reakcja obserwatora walki - radość        |
 
 ### Akcje cielesne / prace
 
@@ -242,11 +242,11 @@ Animacje jednorazowe odtwarzające przejście między dwoma stanami NPC.
 
 | Animacja           | Opis                                       |
 | ------------------ | ------------------------------------------ |
-| `T_PRACTICEMAGIC`  | Ćwiczenie magii — wariant 1                |
-| `T_PRACTICEMAGIC2` | Ćwiczenie magii — wariant 2                |
-| `T_PRACTICEMAGIC3` | Ćwiczenie magii — wariant 3                |
-| `T_PRACTICEMAGIC4` | Ćwiczenie magii — wariant 4                |
-| `T_PRACTICEMAGIC5` | Ćwiczenie magii — wariant 5 (rytuał kręgu) |
+| `T_PRACTICEMAGIC`  | Ćwiczenie magii - wariant 1                |
+| `T_PRACTICEMAGIC2` | Ćwiczenie magii - wariant 2                |
+| `T_PRACTICEMAGIC3` | Ćwiczenie magii - wariant 3                |
+| `T_PRACTICEMAGIC4` | Ćwiczenie magii - wariant 4                |
+| `T_PRACTICEMAGIC5` | Ćwiczenie magii - wariant 5 (rytuał kręgu) |
 
 ### Reakcje na trafienie / walka
 
@@ -267,17 +267,17 @@ Animacje jednorazowe odtwarzające przejście między dwoma stanami NPC.
 | `T_STAND_2_LIGHTNING_VICTIM`      | Porażenie piorunem          |
 | `T_STAND_2_SUCKENERGY_VICTIM`     | Wysysanie energii           |
 | `T_STAND_2_FREEZE_VICTIM`         | Zamrożenie                  |
-| `T_STAND_2_GREENTENTACLEA_VICTIM` | Zielone macki — wariant A   |
-| `T_STAND_2_GREENTENTACLEB_VICTIM` | Zielone macki — wariant B   |
-| `T_STAND_2_GREENTENTACLEC_VICTIM` | Zielone macki — wariant C   |
+| `T_STAND_2_GREENTENTACLEA_VICTIM` | Zielone macki - wariant A   |
+| `T_STAND_2_GREENTENTACLEB_VICTIM` | Zielone macki - wariant B   |
+| `T_STAND_2_GREENTENTACLEC_VICTIM` | Zielone macki - wariant C   |
 | `T_STAND_2_INFLATE_VICTIM`        | Nadmuchanie                 |
 | `T_STAND_2_WHIRLWIND_VICTIM`      | Wir powietrzny              |
 | `T_STAND_2_SWARM_VICTIM`          | Atak roju                   |
 | `T_STAND_2_VICTIM_SLE`            | Magiczny sen                |
 | `T_VICTIM_SLE_2_STAND`            | Magiczny sen → przebudzenie |
-| `T_STAND_2_FEAR_VICTIM1`          | Magiczny strach — wariant 1 |
-| `T_STAND_2_FEAR_VICTIM2`          | Magiczny strach — wariant 2 |
-| `T_STAND_2_FEAR_VICTIM3`          | Magiczny strach — wariant 3 |
+| `T_STAND_2_FEAR_VICTIM1`          | Magiczny strach - wariant 1 |
+| `T_STAND_2_FEAR_VICTIM2`          | Magiczny strach - wariant 2 |
+| `T_STAND_2_FEAR_VICTIM3`          | Magiczny strach - wariant 3 |
 
 ---
 
@@ -287,37 +287,37 @@ Zapętlone animacje utrzymujące NPC w danym stanie.
 
 | Animacja        | Opis                                   |
 | --------------- | -------------------------------------- |
-| `S_EAT`         | Jedzenie z ziemi (potwory — zapętlone) |
+| `S_EAT`         | Jedzenie z ziemi (potwory - zapętlone) |
 | `S_FIRE_VICTIM` | Płonięcie (ofiara ognia)               |
 
 ---
 
 ## Animacje losowe (R\_)
 
-Odtwarzane losowo jako idle — dodają życia NPC i potworom.
+Odtwarzane losowo jako idle - dodają życia NPC i potworom.
 
 ### Potwory
 
 | Animacja  | Opis                                                    |
 | --------- | ------------------------------------------------------- |
-| `R_ROAM1` | Losowe poruszenie — wariant 1 (rozglądanie, ruch głową) |
-| `R_ROAM2` | Losowe poruszenie — wariant 2                           |
-| `R_ROAM3` | Losowe poruszenie — wariant 3                           |
+| `R_ROAM1` | Losowe poruszenie - wariant 1 (rozglądanie, ruch głową) |
+| `R_ROAM2` | Losowe poruszenie - wariant 2                           |
+| `R_ROAM3` | Losowe poruszenie - wariant 3                           |
 
-### Ludzie — stanie
+### Ludzie - stanie
 
 | Animacja        | Opis                   |
 | --------------- | ---------------------- |
 | `R_SCRATCHHEAD` | Drapanie się po głowie |
 
-### Ludzie — siedzenie
+### Ludzie - siedzenie
 
 | Animacja           | Opis                                           |
 | ------------------ | ---------------------------------------------- |
-| `R_CHAIR_RANDOM_1` | Losowe poruszenie na krześle/ławce — wariant 1 |
-| `R_CHAIR_RANDOM_2` | Losowe poruszenie na krześle/ławce — wariant 2 |
-| `R_CHAIR_RANDOM_3` | Losowe poruszenie na krześle/ławce — wariant 3 |
-| `R_CHAIR_RANDOM_4` | Losowe poruszenie na krześle/ławce — wariant 4 |
+| `R_CHAIR_RANDOM_1` | Losowe poruszenie na krześle/ławce - wariant 1 |
+| `R_CHAIR_RANDOM_2` | Losowe poruszenie na krześle/ławce - wariant 2 |
+| `R_CHAIR_RANDOM_3` | Losowe poruszenie na krześle/ławce - wariant 3 |
+| `R_CHAIR_RANDOM_4` | Losowe poruszenie na krześle/ławce - wariant 4 |
 
 ---
 
@@ -331,5 +331,5 @@ Mimika NPC odtwarzana za pomocą `Mdl_StartFaceAni`:
 | `S_NEUTRAL` | Neutralny wyraz twarzy |
 
 :::info
-Animacje twarzy przyjmują parametr intensywności (0.0–1.0) i czasu trwania w milisekundach. Wartość `-1` oznacza nieskończony czas — animacja utrzymuje się aż do ręcznego usunięcia lub zmiany stanu.
+Animacje twarzy przyjmują parametr intensywności (0.0–1.0) i czasu trwania w milisekundach. Wartość `-1` oznacza nieskończony czas - animacja utrzymuje się aż do ręcznego usunięcia lub zmiany stanu.
 :::
