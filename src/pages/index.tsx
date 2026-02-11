@@ -39,8 +39,8 @@ function HomepageHeader() {
         </Heading>
         <p className={styles.heroSubtitle}>
           <Translate id="homepage.tagline">
-            Complete Gothic modding documentation — from first steps to
-            advanced techniques.
+            Complete Gothic modding documentation — from first steps to advanced
+            techniques.
           </Translate>
         </p>
         <div className={styles.buttons}>
@@ -99,8 +99,8 @@ function HomepageFeatures() {
       icon: "⚙️",
       description: (
         <Translate id="homepage.feature.union.description">
-          Extend the Gothic engine capabilities with C++ plugins using the
-          Union framework.
+          Extend the Gothic engine capabilities with C++ plugins using the Union
+          framework.
         </Translate>
       ),
       link: "/docs/modding-basics-union/getting-started",
@@ -163,8 +163,7 @@ export default function Home(): ReactNode {
       })}
       description={translate({
         id: "homepage.metaDescription",
-        message:
-          "Gothic modding documentation — guides, tools, and community.",
+        message: "Gothic modding documentation — guides, tools, and community.",
       })}
     >
       <HomepageHeader />
