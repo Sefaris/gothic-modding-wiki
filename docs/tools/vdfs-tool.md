@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 title: "VDFS Tool"
 description: "A modern tool for creating, modifying, and compressing VDF volumes with Union support."
 ---
@@ -26,7 +26,7 @@ The tool allows you to compress volumes using the classic **zlib** (ZIP) algorit
 To use compressed volumes, the game **must have Union installed**. Union includes a special `ZippedStream` interface in `vdfs32g.dll` that allows the engine to decompress data chunks in real-time without performance loss.
 
 :::warning
-Compressed `.mod` and `.vdf` archives will **NOT** work without [Union](../union.md). Ensure your users have Union installed if you distribute compressed mods.
+Compressed `.mod` and `.vdf` archives will **NOT** work without [Union](../general-info/union.md). Ensure your users have Union installed if you distribute compressed mods.
 :::
 
 ## Volume Optimization

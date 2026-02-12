@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 title: "RAD Video Tools"
 description: "Free tool for converting video files to the Bink (.BIK) format used by the Gothic engine for cutscenes and intro videos."
 ---

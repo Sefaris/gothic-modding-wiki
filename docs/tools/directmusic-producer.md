@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 title: "DirectMusic Producer"
 description: "Microsoft's authoring tool for creating interactive music in DirectMusic format (SGT, STY, DLS) used by the Gothic engine."
 ---

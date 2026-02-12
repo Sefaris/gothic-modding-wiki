@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: zTEXiPy
 description: A Python tool for converting Gothic and Gothic 2 textures to common formats and vice versa.
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 title: "DirectMusic Producer"
 description: "Narzędzie Microsoftu do tworzenia interaktywnej muzyki w formacie DirectMusic (SGT, STY, DLS) używanym przez silnik Gothica."
 ---

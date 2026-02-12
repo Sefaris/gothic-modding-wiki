@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 title: "RAD Video Tools"
 description: "Darmowe narzędzie do konwersji plików wideo do formatu Bink (.BIK) używanego przez silnik Gothica do przerywników filmowych i filmów intro."
 ---

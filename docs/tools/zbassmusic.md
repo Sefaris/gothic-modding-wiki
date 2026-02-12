@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 title: "zBassMusic"
 description: "A modern Union plugin replacing Gothic's DirectMusic system with the BASS library, enabling MP3, OGG, WAV and other standard audio formats."
 ---

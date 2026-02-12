@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 title: "zBassMusic"
 description: "Nowoczesny plugin Union zastępujący system DirectMusic w Gothicu biblioteką BASS, umożliwiając użycie formatów MP3, OGG, WAV i innych."
 ---

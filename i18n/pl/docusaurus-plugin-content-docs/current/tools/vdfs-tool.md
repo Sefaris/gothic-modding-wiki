@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 title: "VDFS Tool"
 description: "Nowoczesne narzędzie do tworzenia, modyfikowania i kompresji wolumenów VDF ze wsparciem dla Union."
 ---
@@ -26,7 +26,7 @@ Narzędzie pozwala kompresować wolumeny przy użyciu klasycznego algorytmu **zl
 Aby gra mogła korzystać ze skompresowanych wolumenów, **musi mieć zainstalowany Union**. Union zawiera specjalny interfejs `ZippedStream` w bibliotece `vdfs32g.dll`, który umożliwia silnikowi dekompresję danych w czasie rzeczywistym bez utraty wydajności.
 
 :::warning
-Skompresowane archiwa `.mod` i `.vdf` **NIE** będą działać bez zainstalowanego pakietu [Union](../union.md). Upewnij się, że użytkownicy twojego moda mają zainstalowany Union, jeśli udostępniasz skompresowane pliki.
+Skompresowane archiwa `.mod` i `.vdf` **NIE** będą działać bez zainstalowanego pakietu [Union](../general-info/union.md). Upewnij się, że użytkownicy twojego moda mają zainstalowany Union, jeśli udostępniasz skompresowane pliki.
 :::
 
 ## Optymalizacja wolumenów

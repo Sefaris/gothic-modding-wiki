@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: zTEXiPy
 description: Narzędzie w Pythonie do konwersji tekstur Gothic i Gothic 2 na popularne formaty i odwrotnie.
 ---
