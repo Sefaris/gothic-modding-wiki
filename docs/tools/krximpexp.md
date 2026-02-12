@@ -1,4 +1,4 @@
-﻿---
+---
 sidebar_position: 1
 title: "KrxImpExp"
 description: "Blender add-on for importing and exporting 3D models from Gothic I and Gothic II."

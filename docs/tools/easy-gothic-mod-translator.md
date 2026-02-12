@@ -1,4 +1,4 @@
-﻿---
+---
 sidebar_position: 2
 title: "Easy Gothic Mod Translator"
 description: "A tool for automatic and manual translation of Gothic I and Gothic II mods."

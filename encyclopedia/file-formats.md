@@ -1,5 +1,5 @@
-﻿---
-sidebar_position: 5
+---
+sidebar_position: 4
 title: "File Formats"
 description: "Complete reference of file formats and extensions used in Gothic I/II modding."
 ---
@@ -26,16 +26,16 @@ The `.src` file determines the **compilation order** - symbols must be declared 
 
 ## 3D Models & Meshes
 
-| Extension | Description                                                                                                                                                                              |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.3DS`    | **3D Studio Max mesh.** Used for item visuals and world objects. Can be imported/exported via [KrxImpExp](./tools/krximpexp.md). Referenced in the `visual` field of `C_Item` instances. |
-| `.ASC`    | **ASCII model format.** Text-based format for meshes - the editable intermediate format in model pipelines. Can be imported/exported via KrxImpExp.                                      |
-| `.MRM`    | **Multi-Resolution Mesh.** Compiled (binary) mesh format, optimized for rendering. Import-only in KrxImpExp.                                                                             |
-| `.MSH`    | **ZenGin mesh.** Engine-native mesh format. Import-only in KrxImpExp.                                                                                                                    |
-| `.MDL`    | **Model file.** Complete compiled model containing mesh and skeleton data.                                                                                                               |
-| `.MDM`    | **Model Mesh.** Mesh component of a model (separated from hierarchy).                                                                                                                    |
-| `.MDH`    | **Model Hierarchy.** Skeleton/bone hierarchy component of a model.                                                                                                                       |
-| `.MMB`    | **Morph Mesh Binary.** Facial morph meshes used for NPC lip-sync and expressions.                                                                                                        |
+| Extension | Description                                                                                                                                                                               |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.3DS`    | **3D Studio Max mesh.** Used for item visuals and world objects. Can be imported/exported via [KrxImpExp](/docs/tools/krximpexp). Referenced in the `visual` field of `C_Item` instances. |
+| `.ASC`    | **ASCII model format.** Text-based format for meshes - the editable intermediate format in model pipelines. Can be imported/exported via KrxImpExp.                                       |
+| `.MRM`    | **Multi-Resolution Mesh.** Compiled (binary) mesh format, optimized for rendering. Import-only in KrxImpExp.                                                                              |
+| `.MSH`    | **ZenGin mesh.** Engine-native mesh format. Import-only in KrxImpExp.                                                                                                                     |
+| `.MDL`    | **Model file.** Complete compiled model containing mesh and skeleton data.                                                                                                                |
+| `.MDM`    | **Model Mesh.** Mesh component of a model (separated from hierarchy).                                                                                                                     |
+| `.MDH`    | **Model Hierarchy.** Skeleton/bone hierarchy component of a model.                                                                                                                        |
+| `.MMB`    | **Morph Mesh Binary.** Facial morph meshes used for NPC lip-sync and expressions.                                                                                                         |
 
 ---
 
@@ -77,6 +77,18 @@ The `.src` file determines the **compilation order** - symbols must be declared 
 
 ---
 
+## Music (DirectMusic)
+
+Gothic uses the **Microsoft DirectMusic** system for dynamic, interactive music. Music files are stored in `Data/Music/`.
+
+| Extension | Description                                                                                                                                                                                                                                                  |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.SGT`    | **DirectMusic Segment.** The main music file format referenced by `C_MUSICTHEME.file` in music scripts. Contains references to styles, bands, and chord progressions that together form a playable music piece. Examples: `OWD_DayStd.sgt`, `nw_dayfgt.sgt`. |
+| `.STY`    | **DirectMusic Style.** Defines musical patterns, motifs, and variations. Styles are referenced by `.SGT` segments and provide the actual note/rhythm data that DirectMusic plays back dynamically.                                                           |
+| `.DLS`    | **Downloadable Sounds (DLS).** Instrument/sample bank files used by DirectMusic for sound synthesis. Contains the actual instrument samples (wavetable data) used to play back music defined in `.SGT` and `.STY` files.                                     |
+
+---
+
 ## Dialog Data
 
 | Extension | Description                                                                                                                                                      |
@@ -94,7 +106,7 @@ The `.src` file determines the **compilation order** - symbols must be declared 
 | `.MOD`    | **Mod archive.** Functionally identical to `.VDF`, used for distributing mods. Placed in `Data/modvdf/` and loaded by the engine via the `.ini` file's `VDF=` line.                                                                                           |
 
 :::info
-Both `.VDF` and `.MOD` use the same internal format. The engine loads them based on archive date stamp - newer archives override older ones. That's why [EGMT](./tools/easy-gothic-mod-translator.md) increases the date by 1 day when creating translation patches.
+Both `.VDF` and `.MOD` use the same internal format. The engine loads them based on archive date stamp - newer archives override older ones. That's why [EGMT](/docs/tools/easy-gothic-mod-translator) increases the date by 1 day when creating translation patches.
 :::
 
 ---
@@ -133,6 +145,7 @@ Both `.VDF` and `.MOD` use the same internal format. The engine loads them based
 | **Worlds**              | `.ZEN`                                                         |
 | **Textures & graphics** | `.TGA`, `.TEX`, `.FNT`                                         |
 | **Audio**               | `.WAV`                                                         |
+| **Music (DirectMusic)** | `.SGT`, `.STY`, `.DLS`                                         |
 | **Dialog data**         | `.BIN` (`ou.bin`), `.CSL`                                      |
 | **Archives**            | `.VDF`, `.MOD`                                                 |
 | **Configuration**       | `.INI`                                                         |
