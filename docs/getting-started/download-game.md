@@ -10,29 +10,25 @@ To create Gothic modifications, you need the original version of the game. Gothi
 
 ## Which Version?
 
-For modding, **Gothic II: Night of the Raven** is most commonly used - it's the most feature-rich version of the ZenGin engine and has the largest modding community support.
+Daedalus modding is possible for two games: **Gothic I** and **Gothic II: Night of the Raven**. Both use the ZenGin engine and share a very similar scripting system - the differences between them are small.
+
+In this wiki, we focus on **Gothic II: Night of the Raven** - it offers a slightly more developed version of the engine, has the largest modding community support, and contains everything that Gothic I has.
 
 :::tip
-If you want to create modifications, choose **Gothic II: Gold Edition** - it includes the base game and the Night of the Raven expansion.
+Choose **Gothic II: Gold Edition** - it includes the base game and the Night of the Raven expansion in one package.
 :::
 
 ## Steam
 
-1. Open [Steam](https://store.steampowered.com/) and log in to your account
-2. Search for **Gothic II: Gold Edition**
-3. Purchase and install the game
-4. Default installation path: `C:\Program Files (x86)\Steam\steamapps\common\Gothic II`
-
-:::warning
-The Steam version may require additional configuration - in some cases the game uses a newer renderer that can cause issues. Make sure the game runs correctly before starting to mod.
-:::
+1. Open the [Gothic II: Gold Edition](https://store.steampowered.com/app/39510/Gothic_II_Gold_Edition/) page on Steam
+2. Purchase and install the game
+3. Default installation path: `C:\Program Files (x86)\Steam\steamapps\common\Gothic II`
 
 ## GOG
 
-1. Open [GOG.com](https://www.gog.com/) and log in to your account
-2. Search for **Gothic II: Gold Edition**
-3. Purchase and install the game using GOG Galaxy or the offline installer
-4. Default installation path: `C:\GOG Games\Gothic II Gold`
+1. Open the [Gothic II: Gold Edition](https://www.gog.com/en/game/gothic_2_gold_edition) page on GOG
+2. Purchase and install the game using GOG Galaxy or the offline installer
+3. Default installation path: `C:\GOG Games\Gothic II Gold`
 
 :::tip
 The GOG version is usually a better choice for modding - it has no DRM and is closer to the original game version.

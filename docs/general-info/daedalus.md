@@ -358,39 +358,39 @@ These are functions implemented in C++ in the Gothic engine, available to call f
 
 ```daedalus
 // NPC functions
-Npc_IsPlayer(self)                         // is this the player?
-Npc_HasItems(self, ItPo_Health_01)         // does the NPC have the item?
-Npc_KnowsInfo(other, DIA_Fred_Hallo)      // does NPC know this info?
-Npc_SetTalentSkill(slf, NPC_TALENT_1H, 60)
+Npc_IsPlayer(self)                         // returns TRUE if the NPC is the player
+Npc_HasItems(self, ItPo_Health_01)         // returns the number of ItPo_Health_01 items the NPC has
+Npc_KnowsInfo(other, DIA_Fred_Hallo)      // returns TRUE if the NPC has already seen this dialog
+Npc_SetTalentSkill(slf, NPC_TALENT_1H, 60) // sets one-handed weapon skill to 60%
 
-// AI functions
-AI_Output(self, other, "DIA_Fred_Hallo_15_01")    // NPC speech line
-AI_StopProcessInfos(self)                          // end dialog
-AI_StartState(self, ZS_Flee, 0, "")                // change AI state
+// AI functions (queued - execute in order)
+AI_Output(self, other, "DIA_Fred_Hallo_15_01")    // NPC says a dialog line (with audio + subtitles)
+AI_StopProcessInfos(self)                          // ends the conversation and closes dialog window
+AI_StartState(self, ZS_Flee, 0, "")                // switches NPC's AI state to ZS_Flee (fleeing)
 
 // World functions
-Wld_InsertNpc(MY_NPC, "WP_SPAWN")         // insert NPC into world
-Wld_InsertItem(ItMw_1h_Sword, "FP_ITEM")  // insert item into world
+Wld_InsertNpc(MY_NPC, "WP_SPAWN")         // creates NPC instance and places it at waypoint WP_SPAWN
+Wld_InsertItem(ItMw_1h_Sword, "FP_ITEM")  // creates item and places it at freepoint FP_ITEM
 
-// Item functions
-CreateInvItems(self, ItMi_Gold, 100)       // give gold
-EquipItem(self, ItMw_1h_Bau_Axe)          // equip item
+// Item/inventory functions
+CreateInvItems(self, ItMi_Gold, 100)       // adds 100 gold pieces to NPC's inventory
+EquipItem(self, ItMw_1h_Bau_Axe)          // gives the item to NPC (if not in inventory) and equips it
 
 // Model functions
-Mdl_SetVisual(slf, "HUMANS.MDS")
-Mdl_SetModelFatness(self, 0.5)
+Mdl_SetVisual(slf, "HUMANS.MDS")          // sets the base animation model (skeleton + animations)
+Mdl_SetModelFatness(self, 0.5)            // adjusts body fatness (0.0 = normal, negative = thinner)
 
 // Log/mission functions
-Log_CreateTopic(TOPIC_MY_QUEST, LOG_MISSION)
-Log_SetTopicStatus(TOPIC_MY_QUEST, LOG_RUNNING)
+Log_CreateTopic(TOPIC_MY_QUEST, LOG_MISSION) // creates a new quest entry in the quest log
+Log_SetTopicStatus(TOPIC_MY_QUEST, LOG_RUNNING) // marks the quest as active (LOG_SUCCESS = completed)
 
 // Helper functions
-Hlp_StrCmp(option, "yes")                 // compare strings
-Hlp_GetInstanceID(other)                   // get instance ID
+Hlp_StrCmp(option, "yes")                 // returns TRUE if both strings are equal
+Hlp_GetInstanceID(other)                   // returns the numeric instance ID of the NPC
 
 // Print functions
-Print("Text on screen")
-PrintScreen("Text", 50, 50, FONT_Screen, 2)
+Print("Text on screen")                    // displays text briefly in the center of the screen
+PrintScreen("Text", 50, 50, FONT_Screen, 2) // displays text at position (50%, 50%) for 2 seconds
 ```
 
 ---
@@ -398,33 +398,6 @@ PrintScreen("Text", 50, 50, FONT_Screen, 2)
 ## Classes (`class`)
 
 Classes define data structures corresponding to C++ classes in the engine. They contain **only variable declarations** - they have no methods.
-
-```daedalus
-class C_NPC
-{
-    var int     id;
-    var string  name[5];
-    var string  slot;
-    var int     npcType;
-    var int     flags;
-    var int     attribute[ATR_INDEX_MAX];
-    var int     HitChance[MAX_HITCHANCE];
-    var int     protection[PROT_INDEX_MAX];
-    var int     damage[DAM_INDEX_MAX];
-    var int     damagetype;
-    var int     guild;
-    var int     level;
-    var func    mission[MAX_MISSIONS];
-    var func    daily_routine;
-    var int     senses;
-    var int     senses_range;
-    var int     aivar[100];
-    var string  wp;
-    var int     exp;
-    var int     exp_next;
-    var int     lp;
-};
-```
 
 Engine classes (e.g., `C_NPC`, `C_Item`, `C_INFO`, `C_Spell`) are predefined and map 1:1 to structures in engine memory. You should not change their field order or add new fields.
 
@@ -443,6 +416,227 @@ Engine classes (e.g., `C_NPC`, `C_Item`, `C_INFO`, `C_Spell`) are predefined and
 | `C_ParticleFX` | Particle effects             |
 | `C_Menu`       | Menu elements                |
 | `C_Menu_Item`  | Menu fields                  |
+
+### C_NPC
+
+The most important class - defines all characters in the game (NPCs and the player).
+
+```daedalus
+class C_NPC
+{
+    var int     id;
+    var string  name[5];
+    var string  slot;
+    var string  effect;
+    var int     npcType;
+    var int     flags;
+    var int     attribute[ATR_INDEX_MAX];
+    var int     hitchance[MAX_HITCHANCE];
+    var int     protection[PROT_INDEX_MAX];
+    var int     damage[DAM_INDEX_MAX];
+    var int     damagetype;
+    var int     guild;
+    var int     level;
+    var func    mission[MAX_MISSIONS];
+    var int     fight_tactic;
+    var int     weapon;
+    var int     voice;
+    var int     voicePitch;
+    var int     bodymass;
+    var func    daily_routine;
+    var func    start_aistate;
+    var string  spawnPoint;
+    var int     spawnDelay;
+    var int     senses;
+    var int     senses_range;
+    var int     aivar[100];
+    var string  wp;
+    var int     exp;
+    var int     exp_next;
+    var int     lp;
+    var int     bodyStateInterruptableOverride;
+    var int     noFocus;
+};
+```
+
+#### C_NPC Fields
+
+| Field                            | Type        | Description                                                                                                                                                                                                                     |
+| -------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                             | `int`       | Unique NPC identifier. Used internally and in save games.                                                                                                                                                                       |
+| `name[5]`                        | `string[5]` | NPC name displayed in-game. `name[0]` is the main name. Slots 1-4 can store additional names (e.g. revealed after a quest).                                                                                                     |
+| `slot`                           | `string`    | Equipment slot name for attaching the NPC to another object. Rarely used.                                                                                                                                                       |
+| `effect`                         | `string`    | Visual effect applied to the NPC (e.g. a magic glow).                                                                                                                                                                           |
+| `npcType`                        | `int`       | NPC type. Common values: `NPCTYPE_AMBIENT` (background NPC), `NPCTYPE_MAIN` (important NPC), `NPCTYPE_OCMAIN` (Old Camp main NPC), `NPCTYPE_BL_MAIN` (Bloodwyn main).                                                           |
+| `flags`                          | `int`       | NPC flags, combined with `\|`. Values: `NPC_FLAG_FRIEND` (1) - friendly, `NPC_FLAG_IMMORTAL` (2) - cannot die, `NPC_FLAG_GHOST` (4) - ghost (no collision).                                                                     |
+| `attribute[8]`                   | `int[8]`    | Character attributes. Indices: `ATR_HITPOINTS` (0), `ATR_HITPOINTS_MAX` (1), `ATR_MANA` (2), `ATR_MANA_MAX` (3), `ATR_STRENGTH` (4), `ATR_DEXTERITY` (5), `ATR_REGENERATEHP` (6), `ATR_REGENERATEMANA` (7).                     |
+| `hitchance[5]`                   | `int[5]`    | Hit chance (%) for each weapon type. Indices: `NPC_TALENT_1H` (0 - one-handed), `NPC_TALENT_2H` (1 - two-handed), `NPC_TALENT_BOW` (2), `NPC_TALENT_CROSSBOW` (3).                                                              |
+| `protection[8]`                  | `int[8]`    | Protection values per damage type. Indices: `PROT_BARRIER` (0), `PROT_BLUNT` (1), `PROT_EDGE` (2), `PROT_FIRE` (3), `PROT_FLY` (4), `PROT_MAGIC` (5), `PROT_POINT` (6), `PROT_FALL` (7). Use `-1` (`IMMUNE`) for full immunity. |
+| `damage[8]`                      | `int[8]`    | Damage values per type (same indices as protection).                                                                                                                                                                            |
+| `damagetype`                     | `int`       | Type of damage dealt by bare hands. Values: `DAM_BLUNT`, `DAM_EDGE`, etc.                                                                                                                                                       |
+| `guild`                          | `int`       | Guild the NPC belongs to. Examples: `GIL_PAL` (Paladins), `GIL_MIL` (Militia), `GIL_VLK` (Citizens), `GIL_KDF` (Mages), `GIL_SLD` (Mercenaries), `GIL_BAU` (Farmers), `GIL_BDT` (Bandits).                                      |
+| `level`                          | `int`       | NPC level - used for experience calculation and display.                                                                                                                                                                        |
+| `mission[5]`                     | `func[5]`   | Mission callback functions for different mission states.                                                                                                                                                                        |
+| `fight_tactic`                   | `int`       | Fight AI behavior. Set to a `FAI_` constant (e.g. `FAI_HUMAN_COWARD`, `FAI_HUMAN_MASTER`).                                                                                                                                      |
+| `weapon`                         | `int`       | Initial weapon state upon entering the world.                                                                                                                                                                                   |
+| `voice`                          | `int`       | Voice set index (0-100). Maps to `SVM_<voice>` for standard voice lines and determines `AI_Output` audio file names.                                                                                                            |
+| `voicePitch`                     | `int`       | Voice pitch modification. `0` = normal.                                                                                                                                                                                         |
+| `bodymass`                       | `int`       | Body mass - affects ragdoll physics when NPC dies.                                                                                                                                                                              |
+| `daily_routine`                  | `func`      | Daily routine function called on spawn. Must be a `Rtn_` function (e.g. `Rtn_Start_4401`).                                                                                                                                      |
+| `start_aistate`                  | `func`      | Initial AI state function. If set, the NPC starts in this AI state instead of the daily routine.                                                                                                                                |
+| `spawnPoint`                     | `string`    | Waypoint where the NPC spawns.                                                                                                                                                                                                  |
+| `spawnDelay`                     | `int`       | Delay (in seconds) before the NPC respawns after death. `0` = no respawn.                                                                                                                                                       |
+| `senses`                         | `int`       | Which senses the NPC has, combined with `\|`. Values: `SENSE_SEE` (1), `SENSE_HEAR` (2), `SENSE_SMELL` (4).                                                                                                                     |
+| `senses_range`                   | `int`       | Maximum perception range in centimeters.                                                                                                                                                                                        |
+| `aivar[100]`                     | `int[100]`  | AI variables - general-purpose storage used by AI scripts. Indexed with `AIV_` constants (e.g. `AIV_ATTACKREASON`).                                                                                                             |
+| `wp`                             | `string`    | Current waypoint name.                                                                                                                                                                                                          |
+| `exp`                            | `int`       | Current experience points.                                                                                                                                                                                                      |
+| `exp_next`                       | `int`       | Experience points needed for next level.                                                                                                                                                                                        |
+| `lp`                             | `int`       | Available learning points.                                                                                                                                                                                                      |
+| `bodyStateInterruptableOverride` | `int`       | If `TRUE`, allows body state interruption.                                                                                                                                                                                      |
+| `noFocus`                        | `int`       | If `TRUE`, the player cannot focus (target) this NPC.                                                                                                                                                                           |
+
+### C_Item
+
+Defines all items in the game - weapons, armor, potions, quest items, runes, food, and more.
+
+```daedalus
+class C_Item
+{
+    var int     id;
+    var string  name;
+    var string  nameID;
+    var int     hp;
+    var int     hp_max;
+    var int     mainflag;
+    var int     flags;
+    var int     weight;
+    var int     value;
+    var int     damagetype;
+    var int     damagetotal;
+    var int     damage[DAM_INDEX_MAX];
+    var int     wear;
+    var int     protection[PROT_INDEX_MAX];
+    var int     nutrition;
+    var int     cond_atr[3];
+    var int     cond_value[3];
+    var int     change_atr[3];
+    var int     change_value[3];
+    var func    magic;
+    var func    on_equip;
+    var func    on_unequip;
+    var func    on_state[4];
+    var func    owner;
+    var int     ownerGuild;
+    var int     disguiseGuild;
+    var string  visual;
+    var string  visual_change;
+    var string  effect;
+    var int     visual_skin;
+    var string  scemeName;
+    var int     material;
+    var int     munition;
+    var int     spell;
+    var int     range;
+    var int     mag_circle;
+    var string  description;
+    var string  text[6];
+    var int     count[6];
+    var int     inv_zbias;
+    var int     inv_rotx;
+    var int     inv_roty;
+    var int     inv_rotz;
+    var int     inv_animate;
+};
+```
+
+#### C_Item Fields
+
+| Field             | Type        | Description                                                                                                                                                                                                                                                                                                                              |
+| ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | `int`       | Unique item identifier.                                                                                                                                                                                                                                                                                                                  |
+| `name`            | `string`    | Item name displayed in-game.                                                                                                                                                                                                                                                                                                             |
+| `nameID`          | `string`    | Internal name identifier.                                                                                                                                                                                                                                                                                                                |
+| `hp`              | `int`       | Current hit points of the item (e.g. for destructible items).                                                                                                                                                                                                                                                                            |
+| `hp_max`          | `int`       | Maximum hit points of the item.                                                                                                                                                                                                                                                                                                          |
+| `mainflag`        | `int`       | Main item category. Values: `ITEM_KAT_NONE` (1), `ITEM_KAT_NF` (melee), `ITEM_KAT_FF` (ranged), `ITEM_KAT_MUN` (ammo), `ITEM_KAT_ARMOR` (armor), `ITEM_KAT_FOOD` (food), `ITEM_KAT_DOCS` (documents), `ITEM_KAT_POTIONS` (potions), `ITEM_KAT_LIGHT` (light sources), `ITEM_KAT_RUNE` (runes), `ITEM_KAT_MAGIC` (magic items).           |
+| `flags`           | `int`       | Item sub-type flags, combined with `\|`. Common values: `ITEM_SWD` (sword), `ITEM_AXE` (axe), `ITEM_2HD_SWD` (two-handed sword), `ITEM_2HD_AXE` (two-handed axe), `ITEM_BOW` (bow), `ITEM_CROSSBOW` (crossbow), `ITEM_RING` (ring), `ITEM_AMULET` (amulet), `ITEM_MULTI` (stackable), `ITEM_MISSION` (quest item), `ITEM_TORCH` (torch). |
+| `weight`          | `int`       | Item weight (unused by engine, but available for scripts).                                                                                                                                                                                                                                                                               |
+| `value`           | `int`       | Item price/value in gold.                                                                                                                                                                                                                                                                                                                |
+| `damagetype`      | `int`       | Type of damage the weapon deals. Values: `DAM_BLUNT`, `DAM_EDGE`, `DAM_POINT`, `DAM_FIRE`, `DAM_MAGIC`, etc.                                                                                                                                                                                                                             |
+| `damagetotal`     | `int`       | Total damage value of the weapon.                                                                                                                                                                                                                                                                                                        |
+| `damage[8]`       | `int[8]`    | Damage split by damage type (same indices as `C_NPC.protection`).                                                                                                                                                                                                                                                                        |
+| `wear`            | `int`       | Where the item is worn. Values: `WEAR_TORSO` (1), `WEAR_HEAD` (2), `WEAR_EFFECT` (16).                                                                                                                                                                                                                                                   |
+| `protection[8]`   | `int[8]`    | Protection values per damage type when equipped (same indices as `C_NPC.protection`).                                                                                                                                                                                                                                                    |
+| `nutrition`       | `int`       | HP restored when eating the item.                                                                                                                                                                                                                                                                                                        |
+| `cond_atr[3]`     | `int[3]`    | Required attributes to use the item (ATR\_ constants).                                                                                                                                                                                                                                                                                   |
+| `cond_value[3]`   | `int[3]`    | Required attribute values (paired with `cond_atr`).                                                                                                                                                                                                                                                                                      |
+| `change_atr[3]`   | `int[3]`    | Attributes changed when the item is equipped (ATR\_ constants).                                                                                                                                                                                                                                                                          |
+| `change_value[3]` | `int[3]`    | How much the attributes change (paired with `change_atr`).                                                                                                                                                                                                                                                                               |
+| `magic`           | `func`      | Spell function associated with the item (for runes/scrolls).                                                                                                                                                                                                                                                                             |
+| `on_equip`        | `func`      | Function called when the item is equipped.                                                                                                                                                                                                                                                                                               |
+| `on_unequip`      | `func`      | Function called when the item is unequipped.                                                                                                                                                                                                                                                                                             |
+| `on_state[4]`     | `func[4]`   | State functions called when the item is used. `on_state[0]` is the most common - called when eating/drinking.                                                                                                                                                                                                                            |
+| `owner`           | `func`      | NPC instance that owns the item. Taking it is considered theft.                                                                                                                                                                                                                                                                          |
+| `ownerGuild`      | `int`       | Guild that owns this item. Taking it is theft for that guild's members.                                                                                                                                                                                                                                                                  |
+| `disguiseGuild`   | `int`       | Wearing this armor disguises the player as this guild.                                                                                                                                                                                                                                                                                   |
+| `visual`          | `string`    | 3D model file name (`.3ds` format).                                                                                                                                                                                                                                                                                                      |
+| `visual_change`   | `string`    | Visual applied to the NPC when the item is equipped (for armor - `.asc` file).                                                                                                                                                                                                                                                           |
+| `effect`          | `string`    | Visual effect applied when equipped.                                                                                                                                                                                                                                                                                                     |
+| `visual_skin`     | `int`       | Texture skin variant index.                                                                                                                                                                                                                                                                                                              |
+| `scemeName`       | `string`    | Animation scheme name. Common values: `"POTIONFAST"` (drink quickly), `"YOURSHORT"` (eat), `"YOURSHORT"` (read), `"YOURSHORT"` (use).                                                                                                                                                                                                    |
+| `material`        | `int`       | Material type (affects sounds). Values: `MAT_WOOD`, `MAT_STONE`, `MAT_METAL`, `MAT_LEATHER`, `MAT_CLAY`, `MAT_GLAS`.                                                                                                                                                                                                                     |
+| `munition`        | `int`       | Ammunition item instance for ranged weapons (e.g. `ItRw_Arrow`).                                                                                                                                                                                                                                                                         |
+| `spell`           | `int`       | Spell ID associated with the item (for runes/scrolls).                                                                                                                                                                                                                                                                                   |
+| `range`           | `int`       | Weapon range in centimeters.                                                                                                                                                                                                                                                                                                             |
+| `mag_circle`      | `int`       | Required magic circle to use the item (for runes).                                                                                                                                                                                                                                                                                       |
+| `description`     | `string`    | Description shown in inventory. Usually set to `name`.                                                                                                                                                                                                                                                                                   |
+| `text[6]`         | `string[6]` | Six lines of text displayed in the inventory description box (e.g. stat labels).                                                                                                                                                                                                                                                         |
+| `count[6]`        | `int[6]`    | Values displayed next to each `text[]` line (e.g. damage numbers).                                                                                                                                                                                                                                                                       |
+| `inv_zbias`       | `int`       | Z-depth offset for inventory rendering.                                                                                                                                                                                                                                                                                                  |
+| `inv_rotx`        | `int`       | X rotation for inventory display (in degrees).                                                                                                                                                                                                                                                                                           |
+| `inv_roty`        | `int`       | Y rotation for inventory display (in degrees).                                                                                                                                                                                                                                                                                           |
+| `inv_rotz`        | `int`       | Z rotation for inventory display (in degrees).                                                                                                                                                                                                                                                                                           |
+| `inv_animate`     | `int`       | If `TRUE`, the item rotates in inventory.                                                                                                                                                                                                                                                                                                |
+
+### C_Spell
+
+Defines spell behavior and parameters.
+
+```daedalus
+class C_Spell
+{
+    var float   time_per_mana;
+    var int     damage_per_level;
+    var int     damageType;
+    var int     spellType;
+    var int     canTurnDuringInvest;
+    var int     canChangeTargetDuringInvest;
+    var int     isMultiEffect;
+    var int     targetCollectAlgo;
+    var int     targetCollectType;
+    var int     targetCollectRange;
+    var int     targetCollectAzi;
+    var int     targetCollectElev;
+};
+```
+
+#### C_Spell Fields
+
+| Field                         | Type    | Description                                                                                                       |
+| ----------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `time_per_mana`               | `float` | Time (in milliseconds) to invest one mana point during casting. Controls casting speed.                           |
+| `damage_per_level`            | `int`   | Additional damage per caster level.                                                                               |
+| `damageType`                  | `int`   | Type of damage the spell deals (`DAM_MAGIC`, `DAM_FIRE`, `DAM_FLY`, etc.).                                        |
+| `spellType`                   | `int`   | Spell alignment. Values: `SPELL_BAD` (hostile - breaks dialog, triggers combat), `SPELL_GOOD` (friendly/neutral). |
+| `canTurnDuringInvest`         | `int`   | If `TRUE`, the caster can rotate during the invest (charging) phase.                                              |
+| `canChangeTargetDuringInvest` | `int`   | If `TRUE`, the caster can switch targets during the invest phase.                                                 |
+| `isMultiEffect`               | `int`   | If `TRUE`, the spell can hit multiple targets.                                                                    |
+| `targetCollectAlgo`           | `int`   | Algorithm for collecting targets (used for multi-target spells).                                                  |
+| `targetCollectType`           | `int`   | Type of entities that can be targeted.                                                                            |
+| `targetCollectRange`          | `int`   | Maximum range for collecting targets (in centimeters).                                                            |
+| `targetCollectAzi`            | `int`   | Azimuth angle for target collection cone (in degrees).                                                            |
+| `targetCollectElev`           | `int`   | Elevation angle for target collection cone (in degrees).                                                          |
 
 ---
 
@@ -472,6 +666,29 @@ prototype Npc_Default(C_NPC)
 };
 ```
 
+Prototypes simplify the creation of many similar instances - you only need to override values that differ from the defaults.
+
+### Common Use Cases
+
+#### NPC Prototype (`Npc_Default`)
+
+The most common prototype in Gothic. Almost every NPC instance inherits from it. It sets sensible defaults for attributes, senses, protections, and damage type, so individual NPC definitions only need to specify what's unique: name, guild, visual, AI, and dialogue.
+
+```daedalus
+// Every human NPC uses Npc_Default
+instance BAU_4401_Fred(Npc_Default)
+{
+    name      = "Fred";
+    guild     = GIL_BAU;
+    id        = 4401;
+    // ... only unique fields - the rest comes from Npc_Default
+};
+```
+
+#### Spell Prototype (`C_Spell_Proto`)
+
+Used for all spell definitions. Sets default cast time, damage type, and behavior so individual spells only need to override specific parameters.
+
 ```daedalus
 prototype C_Spell_Proto(C_Spell)
 {
@@ -481,9 +698,47 @@ prototype C_Spell_Proto(C_Spell)
     spellType            = SPELL_BAD;
     canTurnDuringInvest  = 1;
 };
+
+instance Spell_Fireball(C_Spell_Proto)
+{
+    time_per_mana        = 800;
+    damage_per_level     = 15;
+    damageType           = DAM_FIRE;
+    // spellType, canTurnDuringInvest - inherited from prototype
+};
 ```
 
-Prototypes simplify the creation of many similar instances - you only need to override values that differ from the defaults.
+#### Item Prototypes
+
+In the original scripts, items are usually created directly from `C_Item` without a prototype. However, creating custom prototypes for items is a useful technique when making a mod with many similar items:
+
+```daedalus
+// Custom prototype for one-handed swords
+prototype ItMw_1H_Common(C_Item)
+{
+    mainflag    = ITEM_KAT_NF;
+    flags       = ITEM_SWD;
+    damagetype  = DAM_EDGE;
+    material    = MAT_METAL;
+    cond_atr[2] = ATR_STRENGTH;
+    wear        = WEAR_TORSO;
+    scemeName   = "1HSWORD";
+};
+
+instance ItMw_1h_RustySword(ItMw_1H_Common)
+{
+    name          = "Rusty Sword";
+    visual        = "ItMw_010_1h_Sword_short_01.3ds";
+    damagetotal   = 15;
+    cond_value[2] = 10;
+    value         = 30;
+    description   = name;
+};
+```
+
+:::tip
+Use prototypes whenever you have **3 or more instances** sharing most of the same field values. It reduces code duplication and makes bulk changes easier - modify the prototype and all inheriting instances update automatically.
+:::
 
 ---
 
@@ -571,16 +826,46 @@ instance hero(C_NPC);            // the player - always available
 
 ## Comments
 
+Comments are fragments of code ignored by the compiler - they serve as notes for the programmer. Daedalus supports two styles of comments, identical to C/C++.
+
+### Single-line comment (`//`)
+
+Everything after `//` to the end of the line is ignored by the compiler:
+
 ```daedalus
 // This is a single-line comment
+const int ATR_HITPOINTS = 0;    // end-of-line comment
+var int myVar;                  // variable description
+```
 
+### Multi-line comment (`/* */`)
+
+Everything between `/*` and `*/` is ignored, even across multiple lines:
+
+```daedalus
 /*
    This is a
    multi-line comment
 */
 
-const int ATR_HITPOINTS = 0;    // end-of-line comment
+/* Single-line block comment */
 ```
+
+:::warning
+Multi-line comments **cannot be nested**. The following code will cause a compilation error:
+
+```daedalus
+/* outer comment
+    /* inner comment */
+   this line will cause an error!
+*/
+```
+
+:::
+
+:::danger
+The `//` comment on the same line as `AI_Output` is a **special case** - the parser treats it as subtitle text, not as a regular comment! See the [Dialog System](#dialog-system---ai_output) section above.
+:::
 
 ---
 
