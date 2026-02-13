@@ -1,6 +1,6 @@
 ﻿# Gothic Modding Wiki
 
-A bilingual (🇵🇱 Polish / 🇬🇧 English) documentation site for **Gothic I** and **Gothic II** modding, built with [Docusaurus 3](https://docusaurus.io/).
+A bilingual (🇬🇧 English / 🇵🇱 Polish) documentation site for **Gothic I** and **Gothic II** modding, built with [Docusaurus 3](https://docusaurus.io/).
 
 ## 📖 Contents
 
@@ -14,7 +14,7 @@ A bilingual (🇵🇱 Polish / 🇬🇧 English) documentation site for **Gothic
 
 ## 🛠️ Requirements
 
-- [Node.js](https://nodejs.org/) v18+
+- [Node.js](https://nodejs.org/) v20+
 - npm (bundled with Node.js)
 
 ## 🚀 Getting Started
@@ -23,10 +23,10 @@ A bilingual (🇵🇱 Polish / 🇬🇧 English) documentation site for **Gothic
 # Install dependencies
 npm install
 
-# Development server (Polish - default)
+# Development server (English - default)
 npm run start
 
-# Development server (English)
+# Development server (Polish)
 npm run start:pl
 ```
 
@@ -47,13 +47,13 @@ npm run serve
 ## 📁 Project Structure
 
 ```
-├── docs/                  # Polish documentation (default)
+├── docs/                  # English documentation (default)
 │   ├── getting-started/   #   Getting started guides
 │   ├── general-info/      #   General info (Daedalus, Ikarus)
 │   ├── modding-basics-daedalus/  #   Daedalus tutorials
 │   └── modding-basics-union/     #   Union tutorials
-├── encyclopedia/          # Polish encyclopedia (separate docs instance)
-├── i18n/en/               # English translations
+├── encyclopedia/          # English encyclopedia (separate docs instance)
+├── i18n/pl/               # Polish translations
 │   ├── docusaurus-plugin-content-docs/current/
 │   └── docusaurus-plugin-content-docs-encyclopedia/current/
 ├── src/                   # React components, homepage, CSS
@@ -65,10 +65,10 @@ npm run serve
 
 ## 🌍 Localization (i18n)
 
-| Language            | Source Path              | URL    |
-| ------------------- | ------------------------ | ------ |
-| 🇵🇱 Polish (default) | `docs/`, `encyclopedia/` | `/`    |
-| 🇬🇧 English          | `i18n/en/...`            | `/en/` |
+| Language             | Source Path              | URL    |
+| -------------------- | ------------------------ | ------ |
+| 🇬🇧 English (default) | `docs/`, `encyclopedia/` | `/`    |
+| 🇵🇱 Polish            | `i18n/pl/...`            | `/pl/` |
 
 Every new document must exist in both language versions. File and folder names should always be in English.
 
