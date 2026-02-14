@@ -68,6 +68,15 @@ const config: Config = {
 
   plugins: [
     [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        indexBlog: false,
+        docsRouteBasePath: ["/docs", "/encyclopedia"],
+        language: ["en"],
+      },
+    ],
+    [
       "@docusaurus/plugin-content-docs",
       {
         id: "encyclopedia",
@@ -124,6 +133,10 @@ const config: Config = {
         },
         {
           type: "localeDropdown",
+          position: "right",
+        },
+        {
+          type: "search",
           position: "right",
         },
       ],

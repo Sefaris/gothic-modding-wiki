@@ -35,6 +35,9 @@
   --ifm-navbar-background-color: #1c1c1c;
   --ifm-footer-background-color: #141414;
   --docusaurus-highlighted-code-line-bg: rgba(199, 241, 72, 0.15);
+  --search-local-highlight-color: var(--ifm-color-primary-darkest);
+  --search-local-input-active-border-color: var(--ifm-color-primary-darkest);
+  --ifm-navbar-search-input-background-color: #3b3b3b;
 }
 
 /* Navbar styling */

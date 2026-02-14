@@ -364,5 +364,45 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tagi",
     "description": "The title of the tag list page"
+  },
+  "theme.SearchBar.label": {
+    "message": "Szukaj",
+    "description": "The label for the navbar search bar"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "Zobacz wszystkie wyniki",
+    "description": "The label of the search bar footer link to see all results"
+  },
+  "theme.SearchBar.noResultsText": {
+    "message": "Brak wyników",
+    "description": "The text shown in search bar dropdown when no results are found"
+  },
+  "theme.SearchBar.searchInContext": {
+    "message": "Zobacz wszystkie wyniki w obrębie \"{context}\"",
+    "description": "The search bar footer text to see all results limited to a search context"
+  },
+  "theme.SearchBar.seeAllOutsideContext": {
+    "message": "Zobacz wszystkie wyniki poza \"{context}\"",
+    "description": "The search bar footer text to see all results outside the current search context"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Wyniki wyszukiwania dla \"{query}\"",
+    "description": "The page title of the search page for non-empty query"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Przeszukaj dokumentację",
+    "description": "The page title of the search page when query is empty"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "1 dokument znaleziony|{count} dokumentów znalezionych",
+    "description": "Pluralized label for number of documents found on the search page"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "Nie znaleziono żadnych dokumentów",
+    "description": "The text shown on search page when no documents are found"
+  },
+  "theme.SearchPage.searchContext.everywhere": {
+    "message": "Wszędzie",
+    "description": "The label for search context that includes all sections"
   }
 }
