@@ -87,3 +87,30 @@ a,
     background-color 0.2s ease,
     border-color 0.2s ease;
 }
+
+.navbar__item.dropdown {
+  display: flex;
+}
+
+.navbar-locale {
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-locale > *:first-child {
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.navbar-locale.navbar__link:after {
+  top: 5px;
+}
+
+.navbar-locale svg {
+  width: 24px;
+  height: 24px;
+}
+
+.navbar__search {
+  margin-left: 0 !important;
+}

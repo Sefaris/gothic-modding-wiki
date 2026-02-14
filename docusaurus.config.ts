@@ -70,10 +70,13 @@ const config: Config = {
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
-        hashed: true,
+        indexDocs: true,
         indexBlog: false,
-        docsRouteBasePath: ["/docs", "/encyclopedia"],
-        language: ["en"],
+        indexPages: true,
+        hashed: true,
+        docsRouteBasePath: ["docs", "encyclopedia"],
+        docsDir: ["docs", "encyclopedia"],
+        highlightSearchTermsOnTargetPage: true,
       },
     ],
     [
@@ -122,17 +125,22 @@ const config: Config = {
           label: "Encyclopedia",
         },
         {
+          type: "custom-iconLink",
           href: "https://discord.gg/9EVFJv5Uyf",
+          icon: "simple-icons:discord",
           label: "Discord",
           position: "right",
         },
         {
+          type: "custom-iconLink",
           href: "https://github.com/sefaris/gothic-modding-wiki",
+          icon: "simple-icons:github",
           label: "GitHub",
           position: "right",
         },
         {
           type: "localeDropdown",
+          className: "navbar-locale",
           position: "right",
         },
         {
