@@ -137,6 +137,16 @@
   margin: 0;
 }
 
+@media screen and (max-width: 996px) {
+  .features :global(.row) {
+    row-gap: 1rem;
+  }
+
+  .featureCard {
+    margin-bottom: 0;
+  }
+}
+
 /* ===== COMMUNITY ===== */
 .community {
   padding: 4rem 0;
