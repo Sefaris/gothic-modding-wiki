@@ -114,3 +114,35 @@ a,
 .navbar__search {
   margin-left: 0 !important;
 }
+
+@media (max-width: 1200px) {
+  :root {
+    --ifm-navbar-item-padding-horizontal: 0.6rem;
+  }
+
+  .navbar__items--right .navbar-right-discord span,
+  .navbar__items--right .navbar-right-github span {
+    display: none;
+  }
+
+  .navbar__search, .navbar__search-input {
+    width: 11rem;
+  }
+}
+
+@media (max-width: 996px) {
+  .navbar__items--right .navbar-right-discord,
+  .navbar__items--right .navbar-right-github,
+  .navbar__items--right .navbar-right-locale {
+    display: none !important;
+  }
+
+  .navbar__items--right .navbar-right-search [class*="searchHintContainer"],
+  .navbar__items--right .navbar-right-search .DocSearch-Button-Keys {
+    display: none !important;
+  }
+
+  .navbar__search, .navbar__search-input {
+    width: 8rem;
+  }
+}

@@ -129,6 +129,7 @@ const config: Config = {
           href: "https://discord.gg/9EVFJv5Uyf",
           icon: "simple-icons:discord",
           label: "Discord",
+          className: "navbar-right-discord",
           position: "right",
         },
         {
@@ -136,15 +137,17 @@ const config: Config = {
           href: "https://github.com/sefaris/gothic-modding-wiki",
           icon: "simple-icons:github",
           label: "GitHub",
+          className: "navbar-right-github",
           position: "right",
         },
         {
           type: "localeDropdown",
-          className: "navbar-locale",
+          className: "navbar-locale navbar-right-locale",
           position: "right",
         },
         {
           type: "search",
+          className: "navbar-right-search",
           position: "right",
         },
       ],
