@@ -146,3 +146,9 @@ a,
     width: 8rem;
   }
 }
+
+@media (max-width: 576px) { 
+  .navbar__search, .navbar__search-input {
+    width: unset;
+  }
+}
