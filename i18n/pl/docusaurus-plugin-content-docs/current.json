@@ -17,6 +17,9 @@
   "sidebar.guidesSidebar.category.Union": {
     "message": "Union"
   },
+  "sidebar.guidesSidebar.category.SpacerNET": {
+    "message": "SpacerNET"
+  },
   "version.label": {
     "message": "Next",
     "description": "The label for version current"
