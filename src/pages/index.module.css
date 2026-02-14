@@ -37,6 +37,27 @@
   flex-wrap: wrap;
 }
 
+.buttonWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+
+.buttonWithIcon svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.heroBtnPrimary,
+.heroBtnSecondary,
+.discordBtn,
+.githubBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .heroBtnPrimary {
   background-color: #c7f148;
   border-color: #c7f148;

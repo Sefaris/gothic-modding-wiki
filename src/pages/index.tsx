@@ -5,6 +5,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import Translate, { translate } from "@docusaurus/Translate";
+import { Icon } from "@iconify/react";
 
 import styles from "./index.module.css";
 
@@ -48,13 +49,19 @@ function HomepageHeader() {
             className={clsx("button button--lg", styles.heroBtnPrimary)}
             to="/docs/getting-started/download-game"
           >
-            <Translate id="homepage.cta.start">Get Started</Translate>
+            <span className={styles.buttonWithIcon}>
+              <Icon icon="mdi:rocket-launch-outline" width="20" aria-hidden="true" />
+              <Translate id="homepage.cta.start">Get Started</Translate>
+            </span>
           </Link>
           <Link
             className={clsx("button button--lg", styles.heroBtnSecondary)}
             to="/docs/modding-basics-daedalus/script-structure"
           >
-            <Translate id="homepage.cta.guides">Guides</Translate>
+            <span className={styles.buttonWithIcon}>
+              <Icon icon="mdi:book-open-page-variant-outline" width="20" aria-hidden="true" />
+              <Translate id="homepage.cta.guides">Guides</Translate>
+            </span>
           </Link>
         </div>
       </div>
@@ -140,13 +147,19 @@ function HomepageCommunity() {
             className={clsx("button button--lg", styles.discordBtn)}
             href="https://discord.gg/9EVFJv5Uyf"
           >
-            Discord
+            <span className={styles.buttonWithIcon}>
+              <Icon icon="simple-icons:discord" width="20" aria-hidden="true" />
+              Discord
+            </span>
           </Link>
           <Link
             className={clsx("button button--lg", styles.githubBtn)}
             href="https://github.com/sefaris/gothic-modding-wiki"
           >
-            GitHub
+            <span className={styles.buttonWithIcon}>
+              <Icon icon="simple-icons:github" width="20" aria-hidden="true" />
+              GitHub
+            </span>
           </Link>
         </div>
       </div>
