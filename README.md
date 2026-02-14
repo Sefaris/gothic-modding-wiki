@@ -15,7 +15,7 @@ A bilingual (🇬🇧 English / 🇵🇱 Polish) documentation site for **Gothic
 ## 🛠️ Requirements
 
 - [Node.js](https://nodejs.org/) v20+
-- npm (bundled with Node.js)
+- [npm](https://www.npmjs.com/) (bundled with Node.js)
 
 ## 🚀 Getting Started
 
@@ -38,7 +38,7 @@ The server will start at `http://localhost:3000`. File changes are reflected liv
 npm run build
 ```
 
-Generates static files into `build/` (PL) and `build/en/` (EN). You can test the build locally:
+Generates static files into `build/` (EN) and `build/pl/` (PL). You can test the build locally:
 
 ```bash
 npm run serve
