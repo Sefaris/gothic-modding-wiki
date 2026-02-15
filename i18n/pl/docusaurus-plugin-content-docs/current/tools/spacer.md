@@ -123,6 +123,8 @@ Jeśli twój mod używa innych wtyczek Union, które przeszkadzają SpacerNET:
 2. Dodaj konfliktujące wtyczki do listy wykluczeń
 3. Użyj formatu określonego w INI do wykluczeń wtyczek
 
+![wykluczenia](/img/spacer_1.JPG)
+
 ## Dobre praktyki
 
 - **Regularnie twórz kopie zapasowe** swoich światów podczas pracy z SpacerNET

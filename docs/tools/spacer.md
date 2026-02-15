@@ -123,6 +123,8 @@ If your mod uses other Union plugins that interfere with SpacerNET:
 2. Add conflicting plugins to the exclusion list
 3. Use the format specified in the INI for plugin exclusions
 
+![exclusions](/img/spacer_1.JPG)
+
 ## Best Practices
 
 - **Backup your worlds** regularly when working with SpacerNET

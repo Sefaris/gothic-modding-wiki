@@ -43,7 +43,7 @@ Podczas pracy z SpacerNET napotkasz różne terminy specyficzne dla moddingu Got
 - **SFX** - Obiekty efektów dźwiękowych i ich właściwości (przechowywane w SFX.dat)
 
 :::tip Dowiedz się więcej
-Dla szczegółowych informacji o lokacjach indoor/outdoor i portalach, zobacz: [Przewodnik Indoor/Outdoor](https://worldofplayers.ru/threads/37707/) (rosyjski)
+Dla szczegółowych informacji o lokacjach indoor/outdoor i portalach, zobacz: [Umieszczanie portali](spacer-additional.md#3-umieszczanie-portali-jest-obowiązkowe)
 :::
 
 ## Pierwsze uruchomienie i konfiguracja interfejsu
@@ -53,12 +53,16 @@ Po pierwszym uruchomieniu SpacerNET zauważysz, że okna są chaotycznie rozmies
 ### Główne elementy interfejsu
 
 - **Górny pasek menu**: Zawiera wszystkie główne funkcje SpacerNET
-- **Menu View**: Przełączniki pokaz/ukryj dla Vobs, Waynet i Help vobs
+- **Menu View**: Przełączniki pokaz/ukryj dla Vobs(1), Waynet(2) i Help vobs(3)
 - **Ikony paska narzędzi**: Szybki dostęp do funkcji menu
+
+![Interfejs SpacerNET](/img/spacer_2.JPG)
 
 ### Opcje układu okien
 
 Dostęp przez **View → Positions of windows**:
+
+![Opcje układu okien](/img/spacer_3.JPG)
 
 - **Reset**: Przywrócenie wszystkich okien do pozycji domyślnych
 - **Use windows presets #1**: Zoptymalizowany układ dla FullHD (1920×1080)
@@ -100,22 +104,30 @@ Naciśnij klawisz **I**, aby przełączyć wyświetlanie informacji na ekranie (
 6. **Info portalu** - Informacje o aktualnym portalu (jeśli jesteś w środku)
 7. **Odległość do wybranego voba** - Dystans od kamery do wybranego obiektu
 
+![Wyświetlanie informacji](/img/spacer_4.JPG)
+
 ### Ustawienia kontroli kamery
 
 - **Prędkość ruchu**: Jak szybko kamera przemieszcza się przez świat
 - **Prędkość obrotu**: Szybkość obracania kamery
 - **Wygładzanie obrotu**: Płynne przejścia obrotu kamery
 
+![Ustawienia kontroli kamery](/img/spacer_5.JPG)
+
 ### Opcje renderowania (tylko DX7)
 
 - **Renderowanie mesh świata**: Dostosuj wyświetlanie geometrii świata
 - **Renderowanie vobów**: Kontroluj jakość renderowania obiektów
+
+![Opcje renderowania](/img/spacer_6.JPG)
 
 ### Dodatkowe opcje
 
 - **Prędkość obrotu modelu podglądu**: Szybkość obracania modelu w oknach podglądu
 - **Ukryj okna podczas ruchu kamery**: Auto-ukrywanie okien podczas ruchu kamery (przeciągnij prawym przyciskiem)
 - **Ogranicz FPS**: Limit klatek na sekundę (wymaga restartu SpacerNET)
+
+![Ustawienia kamery i wyświetlania](/img/spacer_7.JPG)
 
 ## Ustawienia vobów
 
@@ -143,6 +155,8 @@ Skonfiguruj jak punkty nawigacyjne orientują się podczas umieszczania:
 - **W stronę kamery**
 - **Losowo wokół osi pionowej**
 
+![Ustawienia vobów](/img/spacer_8.JPG)
+
 ## Ustawienia różne
 
 Ważne opcje przepływu pracy w **Settings → Misc**.
@@ -162,9 +176,16 @@ Ważne opcje przepływu pracy w **Settings → Misc**.
 ### Optymalizacja świata
 
 7. **Wyczyść nazwy wizualne dla zCVobLevelCompo**: Optymalizuj jeśli świat nie jest podzielony na części
-8. **Usuń wszystkie zCVobLevelCompo ze świata**: Kompletne usunięcie (nieodwracalne po zapisie)
-9. **Zapytaj o sortowanie wielokątów dla dużych światów**: Opcja wydajności dla światów 200k+ wielokątów
-10. **Zezwalaj tylko na łacińskie symbole w wprowadzaniu**: Zalecane dla kompatybilności
+8. **Zapytaj o sortowanie wielokątów dla dużych światów**: Opcja wydajności dla światów 200k+ wielokątów
+9. [Placeholder]
+10. [Placeholder]
+11. **Zezwalaj tylko na łacińskie symbole w wprowadzaniu**: Zalecane dla kompatybilności
+12. [Placeholder]
+13. [Placeholder]
+14. [Placeholder]
+15. [Placeholder]
+
+![Ustawienia różne](/img/spacer_9.JPG)
 
 :::warning Sortowanie wielokątów
 Dla finalnych światów zawsze włączaj sortowanie wielokątów. Pomijaj tylko podczas rozwoju, aby przyspieszyć zapisy.
@@ -188,6 +209,8 @@ W wielu tabelach i listach możesz kopiować wybrane elementy używając środko
 ## Funkcje menu World
 
 Podstawowe narzędzia zarządzania światem w menu **World**.
+
+![Funkcje menu World](/img/spacer_10.JPG)
 
 ### Kompilacja światła
 

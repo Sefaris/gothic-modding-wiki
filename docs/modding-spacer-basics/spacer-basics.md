@@ -43,7 +43,7 @@ When working with SpacerNET, you'll encounter various terms specific to Gothic m
 - **SFX** - Sound effect objects and their properties (stored in SFX.dat)
 
 :::tip Learning More
-For detailed information about indoor/outdoor locations and portals, see: [Indoor/Outdoor Guide](https://worldofplayers.ru/threads/37707/) (Russian)
+For detailed information about indoor/outdoor locations and portals, see: [Portal Placement](spacer-additional.md#3-portal-placement-is-mandatory)
 :::
 
 ## First Launch and Interface Setup
@@ -56,9 +56,13 @@ After launching SpacerNET for the first time, you'll notice windows are scattere
 - **View Menu**: Show/Hide toggles for Vobs, Waynet, and Help vobs
 - **Toolbar Icons**: Quick access versions of menu functions
 
+![SpacerNET Interface](/img/spacer_2.JPG)
+
 ### Window Layout Options
 
 Access these in **View → Positions of windows**:
+
+![Window layout options](/img/spacer_3.JPG)
 
 - **Reset**: Return all windows to default positions
 - **Use windows presets #1**: Optimized layout for FullHD (1920×1080)
@@ -100,22 +104,30 @@ Press **I** key to toggle on-screen information display (customizable in key set
 6. **Portal info** - Current portal information (if inside one)
 7. **Distance to selected vob** - Distance from camera to selected object
 
+![Display information](/img/spacer_4.JPG)
+
 ### Camera Control Settings
 
 - **Movement speed**: How fast camera moves through the world
 - **Rotation speed**: Camera turning speed
 - **Rotation smoothing**: Smooth camera rotation transitions
 
+![Camera control settings](/img/spacer_5.JPG)
+
 ### Rendering Options (DX7 only)
 
 - **World mesh rendering**: Adjust world geometry display
 - **Vob rendering**: Control object rendering quality
+
+![Rendering options](/img/spacer_6.JPG)
 
 ### Additional Options
 
 - **Preview model rotation speed**: Speed of model rotation in preview windows
 - **Hide windows when moving camera**: Auto-hide windows during camera movement (right-click drag)
 - **Limit FPS**: Frame rate cap (requires SpacerNET restart)
+
+![Camera and display settings](/img/spacer_7.JPG)
 
 ## Vob Settings
 
@@ -143,6 +155,8 @@ Configure how navigation points orient when placed:
 - **Towards camera**
 - **Random around vertical axis**
 
+![Vob settings](/img/spacer_8.JPG)
+
 ## Miscellaneous Settings
 
 Important workflow options in **Settings → Misc**.
@@ -162,9 +176,16 @@ Important workflow options in **Settings → Misc**.
 ### World Optimization
 
 7. **Clear visual names for zCVobLevelCompo**: Optimize if world isn't split into parts
-8. **Remove all zCVobLevelCompo from world**: Complete removal (irreversible after save)
-9. **Ask about polygon sorting for large worlds**: Performance option for 200k+ polygon worlds
-10. **Only allow Latin symbols in input**: Recommended for compatibility
+8. **Ask about polygon sorting for large worlds**: Performance option for 200k+ polygon worlds
+9. [Placeholder]
+10. [Placeholder]
+11. **Only allow Latin symbols in input**: Recommended for compatibility
+12. [Placeholder]
+13. [Placeholder]
+14. [Placeholder]
+15. [Placeholder]
+
+![Miscellaneous settings](/img/spacer_9.JPG)
 
 :::warning Polygon Sorting
 For final release worlds, always enable polygon sorting. Only skip it during development to speed up saves.
@@ -188,6 +209,8 @@ In many tables and lists, you can copy selected items using the middle mouse but
 ## World Menu Functions
 
 Essential world management tools in the **World** menu.
+
+![World menu functions](/img/spacer_10.JPG)
 
 ### Light Compilation
 

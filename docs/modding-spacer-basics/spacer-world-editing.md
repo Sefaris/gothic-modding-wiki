@@ -59,6 +59,8 @@ You need two windows active for working with vobs:
 - **Properties Window** - Shows selected vob's properties
 - **Object List Window** - Lists all objects in the world
 
+![Required windows](/img/spacer_11.JPG)
+
 ### Selecting and Deselecting Vobs
 
 **Selecting:**
@@ -106,7 +108,9 @@ Unlike the old Spacer, you don't need to disable collision to move vobs - Spacer
 - **Delete** key - Removes vob from world (cannot be undone except by reloading)
 
 :::warning Child Objects
-If a vob contains other vobs (children), they will also be deleted. Example: A candle contains a FIRE_COMPLETE_A0.TGA decal. Deleting the candle removes the fire decal too.
+If a vob contains other vobs (children), they will also be deleted. Example: A torch contains TORCH_BURN, FIRE_PFX and other objects. Deleting the torch removes all its child elements as well.
+
+![Deleting vobs](/img/spacer_12.JPG)
 :::
 
 **Copying:**
@@ -135,6 +139,8 @@ If a vob contains other vobs (children), they will also be deleted. Example: A c
 
 Open the **Objects Window** and go to the first tab (All classes).
 
+![Creating basic vobs](/img/spacer_13.JPG)
+
 1. Select vob type - For most objects, use **zCVob** (barrels, tables, trees, grass)
 2. Optional: Enter a name (required only for unique objects like triggers)
 3. Optional: Choose a 3D model (search and press **Enter** to see available visuals)
@@ -155,6 +161,8 @@ Items are special vobs defined in scripts. To add items, use the **Items** tab.
 
 Unlike regular vobs, items cannot have custom names or visuals - they're defined in scripts.
 
+![Creating items](/img/spacer_14.JPG)
+
 **Method 1: From List**
 
 1. Select item from left list
@@ -171,6 +179,8 @@ Unlike regular vobs, items cannot have custom names or visuals - they're defined
 - Toggle to show icons for all items on map
 - Useful for seeing what items are where
 - Can filter by flags and name prefix (e.g., ITPO\_ for potions)
+
+![Item locator](/img/spacer_15.JPG)
 
 ### Creating Custom Model Vobs
 
@@ -192,7 +202,7 @@ SpacerNET provides powerful tools for searching, mass deleting, and renaming vob
 
 ### Searching Vobs by Visual
 
-To find all vobs with a specific visual (e.g., `NW_CAVEWEBS_V201.3DS`):
+To find all vobs with a specific visual (e.g., `OC_PICTURE_V2.3DS`):
 
 1. Open the **Search** tab in the Objects Window
 2. Make sure vob type is set to **zCVob**
@@ -202,27 +212,33 @@ To find all vobs with a specific visual (e.g., `NW_CAVEWEBS_V201.3DS`):
 
 Results appear in the list. You can click on them to navigate to each vob.
 
+![Searching vobs](/img/spacer_16.JPG)
+
 **Combining Search Criteria:**
 
-You can combine multiple fields. For example, to find vobs with visual `NW_CAVEWEBS_V201.3DS` AND name `123`:
+You can combine multiple fields. For example, to find vobs with visual `OC_PICTURE_V2.3DS` AND name `123`:
 
-1. Double-click **visual** field, enter `NW_CAVEWEBS_V201.3DS`
+1. Double-click **visual** field, enter `OC_PICTURE_V2.3DS`
 2. Double-click **vobName** field, enter `123`
 3. Click **Search**
 
 Only vobs matching both criteria will be found.
 
+![Multi-criteria search](/img/spacer_17.JPG)
+
 ### Searching Items in Locations
 
-To find all gold coins (`ITMI_GOLD`) in a location, including chests:
+To find all gold chests (`ITMI_GOLDCHEST`) in a location, including chests:
 
 1. Select vob type **oCItem**
-2. Double-click **vobName** field
-3. Enter item instance name: `ITMI_GOLD`
+2. Double-click **itemInstance** field
+3. Enter item instance name: `ITMI_GOLDCHEST`
 4. Enable option to search in chests
 5. Click **Search**
 
 Results show all matching items both in the world and inside containers.
+
+![Searching items](/img/spacer_18.JPG)
 
 ### Advanced Search Options
 
@@ -239,7 +255,7 @@ Additional search conditions:
 
 ### Mass Deleting Vobs
 
-To delete all vobs with a specific visual (e.g., `NW_HARBOUR_BARRELGROUP_01.3DS`):
+To delete all vobs with a specific visual (e.g., `OC_PICTURE_V2.3DS`):
 
 1. Select vob type **zCVob**
 2. Double-click **visual** field

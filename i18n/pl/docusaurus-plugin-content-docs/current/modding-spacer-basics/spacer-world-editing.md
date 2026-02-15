@@ -59,6 +59,8 @@ Potrzebujesz dwóch aktywnych okien do pracy z vobami:
 - **Okno właściwości** - Pokazuje właściwości wybranego voba
 - **Lista obiektów** - Wyświetla wszystkie obiekty w świecie
 
+![Wymagane okna](/img/spacer_11.JPG)
+
 ### Zaznaczanie i odznaczanie vobów
 
 **Zaznaczanie:**
@@ -106,7 +108,9 @@ W przeciwieństwie do starego Spacera, nie musisz wyłączać kolizji, aby przes
 - Klawisz **Delete** - Usuwa voba ze świata (nie można cofnąć, chyba że przeładujesz)
 
 :::warning Obiekty podrzędne
-Jeśli vob zawiera inne voby (dzieci), one również zostaną usunięte. Przykład: Świeca zawiera dekal FIRE_COMPLETE_A0.TGA. Usunięcie świecy usuwa również dekal ognia.
+Jeśli vob zawiera inne voby (dzieci), one również zostaną usunięte. Przykład: Pochodnia zawiera w sobie TORCH_BURN, FIRE_PFX i inne obiekty. Usunięcie pochodni usuwa również wszystkie jej elementy podrzędne.
+
+![Usuwanie vobów](/img/spacer_12.JPG)
 :::
 
 **Kopiowanie:**
@@ -135,6 +139,8 @@ Jeśli vob zawiera inne voby (dzieci), one również zostaną usunięte. Przykł
 
 Otwórz **Okno obiektów** i przejdź do pierwszej zakładki (Wszystkie klasy).
 
+![Tworzenie podstawowych vobów](/img/spacer_13.JPG)
+
 1. Wybierz typ voba - Dla większości obiektów użyj **zCVob** (beczki, stoły, drzewa, trawa)
 2. Opcjonalnie: Wprowadź nazwę (wymagane tylko dla unikalnych obiektów, takich jak triggery)
 3. Opcjonalnie: Wybierz model 3D (szukaj i naciśnij **Enter**, aby zobaczyć dostępne wizualizacje)
@@ -155,6 +161,8 @@ Przedmioty to specjalne voby zdefiniowane w skryptach. Aby dodać przedmioty, u�
 
 W przeciwieństwie do zwykłych vobów, przedmioty nie mogą mieć niestandardowych nazw ani wizualizacji - są zdefiniowane w skryptach.
 
+![Tworzenie przedmiotów](/img/spacer_14.JPG)
+
 **Metoda 1: Z listy**
 
 1. Wybierz przedmiot z lewej listy
@@ -171,6 +179,7 @@ W przeciwieństwie do zwykłych vobów, przedmioty nie mogą mieć niestandardow
 - Przełącz, aby pokazać ikony wszystkich przedmiotów na mapie
 - Przydatne do zobaczenia, jakie przedmioty są gdzie
 - Można filtrować według flag i prefiksu nazwy (np. ITPO\_ dla mikstur)
+  ![Lokator przedmiotów](/img/spacer_15.JPG)
 
 ### Tworzenie vobów z własnym modelem
 
@@ -192,7 +201,7 @@ SpacerNET zapewnia potężne narzędzia do wyszukiwania, masowego usuwania i zmi
 
 ### Wyszukiwanie vobów po wizualizacji
 
-Aby znaleźć wszystkie voby z konkretną wizualizacją (np. `NW_CAVEWEBS_V201.3DS`):
+Aby znaleźć wszystkie voby z konkretną wizualizacją (np. `OC_PICTURE_V2.3DS`):
 
 1. Otwórz zakładkę **Search** (Wyszukiwanie) w Oknie obiektów
 2. Upewnij się, że typ voba jest ustawiony na **zCVob**
@@ -202,27 +211,33 @@ Aby znaleźć wszystkie voby z konkretną wizualizacją (np. `NW_CAVEWEBS_V201.3
 
 Wyniki pojawią się na liście. Możesz klikać na nie, aby przejść do każdego voba.
 
+![Wyszukiwanie vobów](/img/spacer_16.JPG)
+
 **Łączenie kryteriów wyszukiwania:**
 
-Możesz łączyć wiele pól. Na przykład, aby znaleźć voby z wizualizacją `NW_CAVEWEBS_V201.3DS` I nazwą `123`:
+Możesz łączyć wiele pól. Na przykład, aby znaleźć voby z wizualizacją `OC_PICTURE_V2.3DS` I nazwą `123`:
 
-1. Podwójny klik na polu **visual**, wpisz `NW_CAVEWEBS_V201.3DS`
+1. Podwójny klik na polu **visual**, wpisz `OC_PICTURE_V2.3DS`
 2. Podwójny klik na polu **vobName**, wpisz `123`
 3. Kliknij **Search**
 
 Znalezione zostaną tylko voby spełniające oba kryteria.
 
+![Wyszukiwanie wielokryterialne](/img/spacer_17.JPG)
+
 ### Wyszukiwanie przedmiotów w lokacjach
 
-Aby znaleźć wszystkie złote monety (`ITMI_GOLD`) w lokacji, włącznie ze skrzyniami:
+Aby znaleźć wszystkie złote skrzynie (`ITMI_GOLDCHEST`) w lokacji, włącznie ze skrzyniami:
 
 1. Wybierz typ voba **oCItem**
-2. Podwójny klik na polu **vobName**
-3. Wprowadź nazwę instancji przedmiotu: `ITMI_GOLD`
+2. Podwójny klik na polu **itemInstance**
+3. Wprowadź nazwę instancji przedmiotu: `ITMI_GOLDCHEST`
 4. Włącz opcję wyszukiwania w skrzyniach
 5. Kliknij **Search**
 
 Wyniki pokażą wszystkie pasujące przedmioty zarówno w świecie, jak i wewnątrz kontenerów.
+
+![Wyszukiwanie przedmiotów](/img/spacer_18.JPG)
 
 ### Zaawansowane opcje wyszukiwania
 
@@ -239,7 +254,7 @@ Dodatkowe warunki wyszukiwania:
 
 ### Masowe usuwanie vobów
 
-Aby usunąć wszystkie voby z konkretną wizualizacją (np. `NW_HARBOUR_BARRELGROUP_01.3DS`):
+Aby usunąć wszystkie voby z konkretną wizualizacją (np. `OC_PICTURE_V2.3DS`):
 
 1. Wybierz typ voba **zCVob**
 2. Podwójny klik na polu **visual**
