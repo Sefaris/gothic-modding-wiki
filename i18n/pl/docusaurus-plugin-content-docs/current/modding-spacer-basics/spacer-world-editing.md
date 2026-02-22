@@ -310,6 +310,8 @@ Upewnij się, że widoczne są voby pomocnicze i siatka waypointów:
 - Włącz wyświetlanie **Help-vobs**
 - Włącz wyświetlanie **siatki waypointów**
 
+![Waypoints w Spacerze](/img/spacer_19.JPG)
+
 ### Tworzenie waypointów (WP)
 
 1. Przejdź do zakładki **WP/FP** w Oknie obiektów
@@ -357,6 +359,8 @@ Movery to animowane obiekty, takie jak drzwi, bramy lub platformy ruchome.
 4. Ustaw **Dynamic collision**
 5. Kliknij **Create**
 
+![Tworzenie movera](/img/spacer_20.JPG)
+
 ### Konfiguracja ruchu movera
 
 Po utworzeniu zaznacz movera i przejdź do zakładki **Triggers**:
@@ -366,12 +370,18 @@ Po utworzeniu zaznacz movera i przejdź do zakładki **Triggers**:
 3. **New Key** - Tworzy klucz 1
 4. Żółta linia pokazuje ścieżkę ruchu
 
+![Ścieżka ruchu movera](/img/spacer_21.JPG)
+
 **Nawigacja:**
 
 - Przyciski strzałek - Przechodzenie między kluczami
 - **Run** - Uruchom animację movera
 
 ### Właściwości movera
+
+<table>
+<tr>
+<td style={{width: "60%", verticalAlign: "top"}}>
 
 1. **Speed** - Prędkość ruchu między kluczami (wyższa = szybciej)
 2. **Move behavior** (Zachowanie ruchu):
@@ -392,6 +402,15 @@ Po utworzeniu zaznacz movera i przejdź do zakładki **Triggers**:
 - Pętla dźwięku ruchu
 - Dźwięk końcowy
 
+</td>
+<td style={{width: "40%", verticalAlign: "top"}}>
+
+![Właściwości movera](/img/spacer_22.JPG)
+
+</td>
+</tr>
+</table>
+
 **Kolizja statyczna:**
 Jeśli sąsiednie voby mają `isStatic = TRUE`, mover zignoruje z nimi kolizję i przejdzie przez nie (przydatna funkcja).
 
@@ -407,6 +426,8 @@ Przejdź do zakładki **Camera** w Oknie obiektów:
 2. Kliknij **Create**
 3. Obiekt kamery pojawia się w świecie
 
+![Obiekt kamery](/img/spacer_23.JPG)
+
 ### Konfigurowanie ścieżki kamery
 
 1. Przesuń kamerę do żądanej pozycji
@@ -415,10 +436,30 @@ Przejdź do zakładki **Camera** w Oknie obiektów:
 
 Klucze są numerowane od 1 do n. Pierwszy klucz ma etykietę **START**, ostatni klucz **END**.
 
+**Menu prawym przyciskiem:**
+
+<table>
+<tr>
+<td style={{width: "60%", verticalAlign: "top"}}>
+
+- Usuń klucze
+- Dodaj klucze między istniejącymi
+
+</td>
+<td style={{width: "40%", verticalAlign: "top"}}>
+
+![Zarządzanie kluczami kamery](/img/spacer_26.JPG)
+
+</td>
+</tr>
+</table>
+
 ### Testowanie ruchu kamery
 
 1. Ustaw czas odtwarzania (w sekundach)
 2. Kliknij **Start** - Kamera leci wzdłuż ścieżki
+
+![Testowanie ścieżki kamery](/img/spacer_24.JPG)
 
 **Wywoływanie w grze:**
 
@@ -435,18 +476,17 @@ Czas jest ustawiany w dwóch miejscach:
 
 Dopasuj te wartości po znalezieniu odpowiedniego czasu w SpacerNET.
 
+![Ustawienia czasu kamery](/img/spacer_25.JPG)
+
 ### Cele kamery
 
 **Metoda 1: Linia celów**
-Dodaj **targets** (punkty, na które kamera patrzy podczas lotu). Czerwone strzałki pokazują kierunek patrzenia kamery.
-
-**Menu prawym przyciskiem:**
-
-- Usuń klucze
-- Dodaj klucze między istniejącymi
+Dodaj **targets** (punkty, na które kamera patrzy podczas lotu). Dodanie targetów tworzy linię, która określa kierunek wzroku kamery podczas ruchu. Czerwone strzałki pokazują kierunek patrzenia kamery.
 
 **Metoda 2: Skupienie na Voba**
 Ustaw właściwość `autoCamFocusVobName` na unikalną nazwę voba. Kamera będzie patrzyć na ten vob podczas całego lotu.
+
+![Cele kamery](/img/spacer_27.JPG)
 
 ### Przydatne właściwości kamery
 
@@ -470,6 +510,8 @@ Aby stworzyć funkcjonujące drzwi:
 
 Drzwi zostały utworzone. Nie zapomnij sprawdzić **kolizji dynamicznej**, aby gracz nie mógł przechodzić przez nie.
 
+![Tworzenie drzwi](/img/spacer_28.JPG)
+
 ### Tworzenie łóżka
 
 Aby stworzyć łóżko, z którego mogą korzystać NPC:
@@ -481,6 +523,8 @@ Aby stworzyć łóżko, z którego mogą korzystać NPC:
 5. Kliknij **Create Vob** (Utwórz voba)
 
 Łóżko zostało utworzone. Nie zapomnij sprawdzić **kolizji dynamicznej**, aby gracz nie mógł przechodzić przez nie.
+
+![Tworzenie łóżka](/img/spacer_29.JPG)
 
 :::info Alternatywna metoda
 Czasami łóżka tworzy się używając typu **oCMobDoor** (prawdopodobnie po to, aby można było podchodzić do łóżka z obu stron), ale generalnie nie jest to zalecane.
@@ -501,8 +545,10 @@ Aby stworzyć trigger, który przenosi gracza do innej lokacji:
    - Przykład: `FP_ENTER_NEW_FROM_ARENA` (nazwa Freepointu)
 7. Użyj **trybu edycji bbox** (naciśnij **6**), aby ustawić rozmiar strefy triggera
    - Czerwone linie pokazują granice strefy
-   - Zobacz [tutorial edycji BBOX](https://worldofplayers.ru/threads/43491/) po szczegóły
-8. Sprawdź, czy właściwość **respondToPC** jest ustawiona na **TRUE** (reaguje na gracza wchodzącego do strefy)
+   - Zobacz [tutorial edycji BBOX](spacer-advanced-world-editing.md#bbox-editing--zone-sizing) po szczegóły
+8. Sprawdź, czy właściwość **respondToPC** jest ustawiona na **TRUE** (reaguje na gracza chodzącego do strefy)
+
+![Trigger zmiany lokacji](/img/spacer_30.JPG)
 
 **Ważne ustawienia właściwości:**
 
@@ -569,14 +615,16 @@ Otwórz zakładkę **Light** w Oknie obiektów.
 5. Wybierz typ światła (statyczne lub dynamiczne)
 6. Kliknij **Apply**, aby zapisać preset
 
+![Tworzenie presetu światła](/img/spacer_31.JPG)
+
 ### Tworzenie światła z presetu
 
 1. Wybierz swój preset
 2. Przesuń się do strefy portalowej (jaskinia/budynek) dla światła statycznego
 3. Kliknij **Create LightVob**
-
-**Dla światła statycznego:**
-Światło nie będzie widoczne, dopóki go nie skompilujesz.
+   ![Tworzenie voba światła](/img/spacer_32.JPG)
+   **Dla światła statycznego:**
+   Światło nie będzie widoczne, dopóki go nie skompilujesz.
 
 ### Kompilowanie światła statycznego
 
@@ -586,6 +634,8 @@ Otwórz zakładkę **Light** w Oknie obiektów.
    - **Medium/High** - Lepsza jakość (widoczna głównie na powierzchniach o wysokiej liczbie wielokątów)
 3. Włącz **Compile region**, aby skompilować tylko pobliski obszar
 4. Poczekaj na kompilację
+
+![Kompilacja światła](/img/spacer_33.JPG)
 
 ### Kolory światła dynamicznego
 
@@ -597,6 +647,8 @@ Otwórz zakładkę **Light** w Oknie obiektów.
 4. Utwórz voba światła
 5. Ustaw właściwość `colorAniFps` (np. 1)
    - Wyższe wartości = szybsze przejścia kolorów
+
+![Kolory światła dynamicznego](/img/spacer_34.JPG)
 
 ### Światło i voby statyczne
 
@@ -623,6 +675,8 @@ Przejdź do zakładki **Spawn** w Oknie obiektów:
 6. Kliknij **Show spawn points**
 
 Nazwy instancji potworów pojawiają się nad punktami spawnu WP/FP.
+
+![Punkty spawnu potworów](/img/spacer_35.JPG)
 
 **Wyczyść wyświetlanie:**
 Kliknij **Clear**, aby usunąć znaczniki punktów spawnu.
@@ -656,7 +710,9 @@ Strefy mgły dodają atmosferyczną mgiełkę do określonych obszarów.
 
 Użyj **trybu edycji bbox** (naciśnij **6**), aby zmienić rozmiar strefy mgły. Czerwone linie pokazują granice strefy.
 
-Szczegółowe instrukcje edycji bbox znajdziesz w osobnym tutorialu [Edycja BBOX](https://worldofplayers.ru/threads/43491/).
+![Ustawienia strefy mgły](/img/spacer_36.JPG)
+
+Szczegółowe instrukcje edycji bbox znajdziesz w osobnym tutorialu [Edycja BBOX](spacer-advanced-world-editing.md#bbox-editing--zone-sizing).
 
 :::warning Różnica DX11
 Na rendererze DX11 strefy mgły renderują się nieco inaczej. Właściwość `fogRangeCenter` nie działa tak samo jak na DX7.

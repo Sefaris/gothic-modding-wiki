@@ -311,6 +311,8 @@ Make sure helper vobs and waypoint grid are visible:
 - Enable **Help-vobs** display
 - Enable **Waypoint grid** display
 
+![Waypoints in Spacer](/img/spacer_19.JPG)
+
 ### Creating Waypoints (WP)
 
 1. Go to **WP/FP** tab in Objects Window
@@ -358,6 +360,8 @@ Movers are animated objects like doors, gates, or moving platforms.
 4. Set **Dynamic collision**
 5. Click **Create**
 
+![Creating a Mover](/img/spacer_20.JPG)
+
 ### Setting Up Mover Movement
 
 Once created, select the mover and go to the **Triggers** tab:
@@ -367,12 +371,18 @@ Once created, select the mover and go to the **Triggers** tab:
 3. **New Key** - Creates key 1
 4. Yellow line shows movement path
 
+![Mover Movement Path](/img/spacer_21.JPG)
+
 **Navigation:**
 
 - Arrow buttons - Move between keys
 - **Run** - Start mover animation
 
 ### Mover Properties
+
+<table>
+<tr>
+<td style={{width: "60%", verticalAlign: "top"}}>
 
 1. **Speed** - Movement speed between keys (higher = faster)
 2. **Move behavior**:
@@ -393,6 +403,15 @@ Once created, select the mover and go to the **Triggers** tab:
 - Movement loop sound
 - End sound
 
+</td>
+<td style={{width: "40%", verticalAlign: "top"}}>
+
+![Mover Properties](/img/spacer_22.JPG)
+
+</td>
+</tr>
+</table>
+
 **Static collision:**
 If neighboring vobs have `isStatic = TRUE`, the mover will ignore collision with them and pass through (useful feature).
 
@@ -408,6 +427,8 @@ Go to **Camera** tab in Objects Window:
 2. Click **Create**
 3. A camera object appears in the world
 
+![Camera Object](/img/spacer_23.JPG)
+
 ### Setting Up Camera Path
 
 1. Fly camera to desired position
@@ -416,10 +437,30 @@ Go to **Camera** tab in Objects Window:
 
 Keys are numbered 1 to n. First key is labeled **START**, last key is **END**.
 
+**Right-click menu:**
+
+<table>
+<tr>
+<td style={{width: "60%", verticalAlign: "top"}}>
+
+- Delete keys
+- Add keys between existing ones
+
+</td>
+<td style={{width: "40%", verticalAlign: "top"}}>
+
+![Camera Key Management](/img/spacer_26.JPG)
+
+</td>
+</tr>
+</table>
+
 ### Testing Camera Movement
 
 1. Set playback time (in seconds)
 2. Click **Start** - Camera flies along the path
+
+![Camera Path Testing](/img/spacer_24.JPG)
 
 **Triggering in-game:**
 
@@ -436,18 +477,17 @@ Time is set in two places:
 
 Match these values after finding the right timing in SpacerNET.
 
+![Camera Time Settings](/img/spacer_25.JPG)
+
 ### Camera Targets
 
 **Method 1: Target Line**
-Add **targets** (points the camera looks at during flight). Red arrows show camera look direction.
-
-**Right-click menu:**
-
-- Delete keys
-- Add keys between existing ones
+Add **targets** (points the camera looks at during flight). Adding targets creates a line that defines where the camera looks during movement. Red arrows show camera look direction.
 
 **Method 2: Focus on Vob**
 Set `autoCamFocusVobName` property to a vob's unique name. Camera will look at that vob during the entire flight.
+
+![Camera Targets](/img/spacer_27.JPG)
 
 ### Useful Camera Properties
 
@@ -471,6 +511,8 @@ To create a functioning door:
 
 The door is created. Don't forget to check **dynamic collision** so the player cannot walk through it.
 
+![Door Creation](/img/spacer_28.JPG)
+
 ### Creating a Bed
 
 To create a bed that NPCs can use:
@@ -482,6 +524,8 @@ To create a bed that NPCs can use:
 5. Click **Create Vob**
 
 The bed is created. Don't forget to check **dynamic collision** so the player cannot walk through it.
+
+![Bed Creation](/img/spacer_29.JPG)
 
 :::info Alternative Method
 Sometimes beds are created using **oCMobDoor** type (apparently to allow approaching the bed from both sides), but this is generally not recommended.
@@ -502,8 +546,10 @@ To create a trigger that transports the player to another location:
    - Example: `FP_ENTER_NEW_FROM_ARENA` (a Freepoint name)
 7. Use **bbox edit mode** (press **6**) to set the trigger zone size
    - Red lines show the zone boundaries
-   - See [BBOX Editing tutorial](https://worldofplayers.ru/threads/43491/) for details
+   - See [BBOX Editing tutorial](spacer-advanced-world-editing.md#bbox-editing--zone-sizing) for details
 8. Verify that **respondToPC** is set to **TRUE** (reacts to player entering the zone)
+
+![Level Change Trigger](/img/spacer_30.JPG)
 
 **Important property settings:**
 
@@ -570,11 +616,15 @@ Open **Light** tab in Objects Window.
 5. Select light type (static or dynamic)
 6. Click **Apply** to save preset
 
+![Light Preset Creation](/img/spacer_31.JPG)
+
 ### Creating Light from Preset
 
 1. Select your preset
 2. Fly to a portal zone (cave/building) for static light
 3. Click **Create LightVob**
+
+![Creating Light Vob](/img/spacer_32.JPG)
 
 **For static light:**
 The light won't be visible until you compile it.
@@ -588,6 +638,8 @@ The light won't be visible until you compile it.
 3. Enable **Compile region** to compile only nearby area
 4. Wait for compilation
 
+![Light Compilation](/img/spacer_33.JPG)
+
 ### Dynamic Light Colors
 
 Dynamic lights can animate through multiple colors:
@@ -598,6 +650,8 @@ Dynamic lights can animate through multiple colors:
 4. Create light vob
 5. Set `colorAniFps` property (e.g., 1)
    - Higher values = faster color transitions
+
+![Dynamic Light Colors](/img/spacer_34.JPG)
 
 ### Light and Static Vobs
 
@@ -624,6 +678,8 @@ Go to **Spawn** tab in Objects Window:
 6. Click **Show spawn points**
 
 Monster instance names appear above WP/FP spawn points.
+
+![Monster Spawn Points](/img/spacer_35.JPG)
 
 **Clear display:**
 Click **Clear** to remove spawn point markers.
@@ -657,7 +713,9 @@ Fog zones add atmospheric haze to specific areas.
 
 Use **bbox editing mode** (press **6**) to resize the fog zone. Red lines show zone boundaries.
 
-For detailed bbox editing instructions, see the separate tutorial on [Editing BBOX](https://worldofplayers.ru/threads/43491/).
+![Fog Zone Settings](/img/spacer_36.JPG)
+
+For detailed bbox editing instructions, see the separate tutorial on [Editing BBOX](spacer-advanced-world-editing.md#bbox-editing--zone-sizing).
 
 :::warning DX11 Difference
 On DX11 renderer, fog zones render slightly differently. The `fogRangeCenter` property doesn't work the same way as on DX7.
