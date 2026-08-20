@@ -30,10 +30,6 @@ Choose **Gothic II: Gold Edition** - it includes the base game and the Night of 
 2. Purchase and install the game using GOG Galaxy or the offline installer
 3. Default installation path: `C:\GOG Games\Gothic II Gold`
 
-:::tip
-The GOG version is usually a better choice for modding - it has no DRM and is closer to the original game version.
-:::
-
 ## Directory Structure
 
 After installation, the game directory should look roughly like this:

@@ -30,9 +30,6 @@ Wybierz **Gothic II: Złotą Edycję** (Gold Edition) - zawiera podstawkę oraz 
 2. Kup i zainstaluj grę za pomocą GOG Galaxy lub instalatora offline
 3. Domyślna ścieżka instalacji: `C:\GOG Games\Gothic II Gold`
 
-:::tip
-Wersja GOG jest zazwyczaj lepszym wyborem do moddingu - nie posiada DRM i jest bliższa oryginalnej wersji gry.
-:::
 
 ## Struktura katalogów
 
