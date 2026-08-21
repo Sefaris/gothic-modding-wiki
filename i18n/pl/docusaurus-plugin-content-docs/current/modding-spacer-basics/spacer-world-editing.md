@@ -729,6 +729,8 @@ W Oknie obiektów znajduje się zakładka **Particles** (Efekty), gdzie możesz 
 1. **Lewa lista** - Wszystkie dostępne efekty
 2. **Prawa lista** - Tylko te efekty, które spełniają warunek wyszukiwania
 
+![Podgląd efektów cząsteczkowych](/img/spacer_37.jpg)
+
 **Podgląd efektów:**
 
 1. Wybierając obiekt z listy, zobaczysz go na ekranie

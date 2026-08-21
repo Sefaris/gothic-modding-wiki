@@ -732,6 +732,8 @@ In the Object Window, there is a **Particles** tab where you can browse existing
 1. **Left list** - All available effects
 2. **Right list** - Only effects matching the search condition
 
+![Particle effects preview](/img/spacer_37.jpg)
+
 **Previewing effects:**
 
 1. Select an effect in the list to see it on screen

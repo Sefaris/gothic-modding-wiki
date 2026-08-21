@@ -8,41 +8,149 @@ description: "Advanced features and tools for professional world editing in Spac
 
 This guide covers advanced SpacerNET features that streamline professional world editing workflows.
 
-## Display Modes and View Options
+### Additional Icons and Display Modes
 
-SpacerNET provides various display modes accessible through the top menu bar:
+SpacerNET offers a range of additional view modes accessible through icons in the top menu bar:
 
-### Display Mode Toggles
+![Additional icons and display modes](/img/spacer_38.jpg)
 
-| Icon Position | Function            | Description                             |
-| ------------- | ------------------- | --------------------------------------- |
-| 1st icon      | Vob Boxes           | Toggle visibility of vob bounding boxes |
-| 2nd icon      | Wireframe           | Display world in wireframe mode         |
-| 3rd icon      | Lighting            | Toggle lighting display                 |
-| 4th icon      | Textures            | Toggle texture display                  |
-| 5th icon      | Grid                | Show/hide grid overlay                  |
-| 6th icon      | Skybox              | Toggle skybox rendering                 |
-| 7th icon      | FPS Counter         | Display frames per second               |
-| 8th icon      | Alternative Control | Enable alternative camera controls      |
+#### 1. Vob Display Mode
 
-### Special Display Modes
+Toggles the visibility of all vobs in the scene. This is a copy of the **View ? Show ? Vobs** menu function.
 
-**Multi-selection Mode**
+- Use this to quickly hide all objects and focus only on world geometry
+- Useful when working on terrain mesh alone
 
-- Allows selecting multiple vobs simultaneously
-- Useful for batch operations
-- Toggle via icon or keyboard shortcut
+#### 2. WayPoint Network Display Mode
 
-**NoGrass Mode with Custom Hide List**
+Toggles the display of the navigation point network (waynet). This is a copy of the **View ? Show ? Waynet** menu function.
 
-- Hides grass for better performance
-- Supports custom hiding list for specific objects
-- Create file: `_work\tools\spacernet_norender.txt`
-- Add visual names (one per line) to hide specific models
-- Example: Hide all grass models by adding grass visual names
+- Shows all connections between NPC navigation points
+- Useful for debugging patrol routes and free points
+
+#### 3. Help-Vob Display Mode
+
+Toggles the display of helper vobs (service objects). This is a copy of the **View ? Show ? Help vobs** menu function.
+
+- Shows invisible helper objects: FreePoints (FP), WayPoints (WP), Triggers, Zones
+- Essential when placing navigation points and trigger zones
+
+#### 4. Show All BBOX Mode
+
+Toggles the display of bounding boxes for all vobs.
+
+- Used rarely, mainly for collision debugging
+- **Note**: Does not work with DirectX 11 rendering
+
+#### 5. Show Invisible Vobs Mode
+
+Displays vobs that have the `showVisual = FALSE` property set.
+
+- Some vobs have a 3D model but are set as invisible in-game
+- Typical use case: Invisible oCMobInter placed at the same location as a decorative model
+- This allows player interaction with a "new" model while actually using the invisible object
+- Such objects are drawn as green wireframe boxes
+
+#### 6. Alternative Control Mode
+
+Enables an alternative vob manipulation system:
+
+- Allows moving vobs directly with the mouse
+- **Key 1**: Move mode
+- **Key 2**: Rotate mode
+- Significantly speeds up object placement
+
+#### 7. Multi-Selection Mode
+
+Activates a mode for selecting multiple vobs simultaneously by "dragging" with the mouse:
+
+- **Drag mouse** across the screen to select all vobs in the area
+- **LSHIFT + drag**: Add vobs to selection
+- **LALT + drag**: Remove vobs from selection
+- **LCTRL + drag**: Ignore collision and select all vobs "through" objects
+
+#### 8. NoGrass Mode
+
+Temporarily disables the visibility of grass and other specified models.
+
+- The default database includes standard grass model names
+- You can add your own models to hide
+
+**Adding custom models to hide:**
+
+1. Create a file `SpacerNet_HideList.txt` in the `System` folder
+2. Add visual names of models (one per line)
+3. Example contents:
+
+```
+GRASS_01.3DS
+GRASS_02.3DS
+BUSH_SMALL.3DS
+```
+
+### VobList Window
+
+The VobList Window is a powerful tool for collecting and managing vobs within a specific area.
+
+#### Collecting Vobs by Radius from Camera
+
+You can collect all vobs of a specific type within a given radius from the camera position:
+
+1. **Set radius** using the slider (value in units - 100 units = 1 meter)
+2. **Select vob type** from the dropdown (e.g., oCItem, oCMob, zCVobLight)
+3. **Press Search (F1)** to scan the area
+4. **Results list** will display all vobs matching the criteria
+
+![Collecting vobs by radius from camera](/img/spacer_39.jpg)
+
+Example: Collecting all oCItem objects within 9.75 meters (975 units):
+
+- Radius: 975
+- Vob type: oCItem
+- Press Search (F1)
+
+#### Working with the Vob List
+
+After collecting vobs to the list, you can:
+
+- **Single click** on a vob - displays its properties
+- **Double click** on a vob - moves camera to that vob
+- **Clear button** - clears the list (vobs are not removed from the world)
+
+:::info
+The VobList Window is especially useful for finding and editing objects in densely populated areas where it's difficult to click directly on the right vob.
+:::
+
+#### Vob Selection Filters
+
+![Vob selection filters](/img/spacer_40.jpg)
+
+The selection filter allows you to limit which vob types can be selected by clicking in the 3D view:
+
+**Usage example:**
+
+You want to select a plant (oCItem), but it's located in grass that blocks selection:
+
+1. In the VobList window, select the **ITEM** filter from the dropdown
+2. Now you can only click on oCItem type vobs
+3. All other vob types will be ignored during selection
+
+**Available filters:**
+
+- **None** - No filter, all vobs can be selected
+- **ITEM** - Only oCItem
+- **MOB** - Only oCMob and oCMobInter
+- **LIGHT** - Only zCVobLight
+- **SOUND** - Only zCVobSound
+- **TRIGGER** - Only triggers
+- And many others...
+
+**Return to normal selection:**
+
+Select **None** from the filter list to be able to select all vob types again.
 
 :::tip
-Use NoGrass mode when working on terrain or architecture to improve editor performance and visibility.
+Use selection filters when working in areas with many overlapping objects, such as forests (trees + grass + rocks) or cities (architecture + decorations + lights).
 :::
 
 ## Vob Containers and Advanced Selection
